@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAqH///64\u003d",
+        "filename": "drivers/usb/gadget/android.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001286
+      },
+      "writtenOn": "2009-12-22T15:21:41Z",
+      "side": 1,
+      "message": "probably a list of registered functions here...",
+      "revId": "f0dd27e95437a0d7bc360f64d2e63072cd6dc879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAqH///60\u003d",
+        "filename": "drivers/usb/gadget/android.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1001286
+      },
+      "writtenOn": "2009-12-22T15:21:41Z",
+      "side": 1,
+      "message": "whitespace",
+      "revId": "f0dd27e95437a0d7bc360f64d2e63072cd6dc879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAqH///6w\u003d",
+        "filename": "drivers/usb/gadget/android.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1001286
+      },
+      "writtenOn": "2009-12-22T15:21:41Z",
+      "side": 1,
+      "message": "whitespace",
+      "revId": "f0dd27e95437a0d7bc360f64d2e63072cd6dc879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAqH///7E\u003d",
+        "filename": "include/linux/usb/android.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001286
+      },
+      "writtenOn": "2009-12-22T15:21:41Z",
+      "side": 1,
+      "message": "Maybe we should use a more specific header file name than android.h?  generic_composite.h?  android_composite.h?",
+      "revId": "f0dd27e95437a0d7bc360f64d2e63072cd6dc879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAqH///7A\u003d",
+        "filename": "include/linux/usb/android.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001286
+      },
+      "writtenOn": "2009-12-22T15:21:41Z",
+      "side": 1,
+      "message": "I\u0027d prefer to drop the function list here and have the function drivers publish themselves (as platform devices would be okay), to make this less fragile in the face of drivers being included/excluded.",
+      "revId": "f0dd27e95437a0d7bc360f64d2e63072cd6dc879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAqH///68\u003d",
+        "filename": "include/linux/usb/android.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001286
+      },
+      "writtenOn": "2009-12-22T15:21:41Z",
+      "side": 1,
+      "message": "These could go away if the function drivers used a publish mechanism.  They could all actually just call a registration function...",
+      "revId": "f0dd27e95437a0d7bc360f64d2e63072cd6dc879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
