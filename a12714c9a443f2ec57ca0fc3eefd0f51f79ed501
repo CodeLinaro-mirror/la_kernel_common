@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAA0n///ak\u003d",
+        "filename": "drivers/usb/gadget/composite.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2010-06-28T23:29:40Z",
+      "side": 1,
+      "message": "shouldn\u0027t you be using the flags version?",
+      "revId": "a12714c9a443f2ec57ca0fc3eefd0f51f79ed501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
