@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAA0n///aY\u003d",
+        "filename": "include/linux/usb/composite.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2010-06-28T23:38:57Z",
+      "side": 1,
+      "message": "should really be a \u0027bool\u0027",
+      "revId": "346e90a96fc8e1f130a85186403f01f4560e4ba5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
