@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAA8H//9Sg\u003d",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001534
+      },
+      "writtenOn": "2010-11-03T20:17:56Z",
+      "side": 1,
+      "message": "80ms feels pretty high to me but your comments say its based off of UI tests\n\nWill this cause the CPU to spend more time running at higher frequencies? Given how bursty UI workload is there might be more room for power savings.",
+      "revId": "a76ff44476e38eea00bc45e803d6be1b1ee9fbc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA8H//9Sw\u003d",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001534
+      },
+      "writtenOn": "2010-11-03T20:17:56Z",
+      "side": 1,
+      "message": "IT would be great it this was tuneable from /sys",
+      "revId": "a76ff44476e38eea00bc45e803d6be1b1ee9fbc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA8H//9Ss\u003d",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1001534
+      },
+      "writtenOn": "2010-11-03T20:17:56Z",
+      "side": 1,
+      "message": "I am curious why we exit early here. If the timer fires in less than 1ms, its too probably too quick for us to determine if we want to scale up, but can we decide to scale down?",
+      "revId": "a76ff44476e38eea00bc45e803d6be1b1ee9fbc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA8H//9Sk\u003d",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1001534
+      },
+      "writtenOn": "2010-11-03T20:17:56Z",
+      "side": 1,
+      "message": "Do we want to calculate the load since the last cpu speed change?\n\nCorrect me if I\u0027m wrong, but in the case where CPU is at max (1ghz) for 10 seconds, then the load suddenly drops, it will take some time before the CPU lowers its speed.\n\nThe ondemand governor uses X as a sample period (30-40ms on Nexus One), so actually in this case we keep the cpu running higher for longer burning more power.\n\nIt might be better to look at the load for the last X ms, ie the last min_sample_time for that CPU, so the governor ramps down quickly.",
+      "revId": "a76ff44476e38eea00bc45e803d6be1b1ee9fbc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
