@@ -34,6 +34,24 @@
       "revId": "ee14f1317bbe2d2630d5611e8bd81f5e69182082",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA8H//85c\u003d",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1613,
+      "author": {
+        "id": 1000866
+      },
+      "writtenOn": "2010-11-05T21:40:06Z",
+      "side": 1,
+      "message": "My bad.  The underscore wasn\u0027t visible in the gerrit diff.",
+      "parentUuid": "AAAA8H//85w\u003d",
+      "revId": "ee14f1317bbe2d2630d5611e8bd81f5e69182082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
