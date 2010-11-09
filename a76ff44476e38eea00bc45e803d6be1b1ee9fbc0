@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAA8X///+s\u003d",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2010-11-09T00:56:10Z",
+      "side": 1,
+      "message": "Will continue to tweak this.",
+      "parentUuid": "AAAA8H//9Sg\u003d",
+      "revId": "a76ff44476e38eea00bc45e803d6be1b1ee9fbc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA8H//9Sw\u003d",
         "filename": "drivers/cpufreq/cpufreq_interactive.c",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2010-11-03T20:17:56Z",
       "side": 1,
       "message": "IT would be great it this was tuneable from /sys",
+      "revId": "a76ff44476e38eea00bc45e803d6be1b1ee9fbc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA8X///+o\u003d",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2010-11-09T00:56:10Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "AAAA8H//9Sw\u003d",
       "revId": "a76ff44476e38eea00bc45e803d6be1b1ee9fbc0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAA8X///+Y\u003d",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2010-11-09T00:56:10Z",
+      "side": 1,
+      "message": "The original patch had a check for delta_time \u003d\u003d 0 here, and perhaps that can now be restored.  \n\nI\u0027m hoping this case is now rare or non-existent.  Previously it happened rather frequently when CPU A idle exit raced with CPU B scheduling the timer function: the timer was no longer \"pending\" but hadn\u0027t actually run yet, and by the time it reached this point CPU A had started a new timer.  In each case I saw, the two CPUs returned the exact same timestamp from get_cpu_idle_time_us().  This race is defended against by having idle exit no longer start a new timer if the timer function hasn\u0027t run since the last idle exit timer was started.",
+      "parentUuid": "AAAA8H//9Ss\u003d",
+      "revId": "a76ff44476e38eea00bc45e803d6be1b1ee9fbc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA8H//9Sk\u003d",
         "filename": "drivers/cpufreq/cpufreq_interactive.c",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2010-11-03T20:17:56Z",
       "side": 1,
       "message": "Do we want to calculate the load since the last cpu speed change?\n\nCorrect me if I\u0027m wrong, but in the case where CPU is at max (1ghz) for 10 seconds, then the load suddenly drops, it will take some time before the CPU lowers its speed.\n\nThe ondemand governor uses X as a sample period (30-40ms on Nexus One), so actually in this case we keep the cpu running higher for longer burning more power.\n\nIt might be better to look at the load for the last X ms, ie the last min_sample_time for that CPU, so the governor ramps down quickly.",
+      "revId": "a76ff44476e38eea00bc45e803d6be1b1ee9fbc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA8X///94\u003d",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2010-11-09T00:56:10Z",
+      "side": 1,
+      "message": "The original patch would scale up to max if zero idle time since idle exit or possibly scale down based on the load since last frequency change.  This version of the patch scales up (including incrementally up, not necessarily to max) or down based on the higher of the two loads, since idle exit or since last frequency change.\n\nIn looking at the debug logs, there were times in which heavy loads were briefly interrupted by periods of lighter activity, and previously these could cause speed to be lowered, only to be quickly scaled back up when the heavy load resumed (if more than min_sample_time had elapsed since scaling up). \n\nLike most of these changes, it is biased toward keeping speeds high while the load is (or has recently been) high, only scaling down when sustained lighter loads are seen.   And this is influenced by the hardware we\u0027re initially testing it on, where squeezing every last drop of battery juice isn\u0027t as critical as it is on some other phones.  Maybe more tunables are needed.",
+      "parentUuid": "AAAA8H//9Sk\u003d",
       "revId": "a76ff44476e38eea00bc45e803d6be1b1ee9fbc0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
