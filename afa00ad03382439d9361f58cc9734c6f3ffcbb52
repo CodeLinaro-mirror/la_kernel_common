@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAA9n///fA\u003d",
+        "filename": "drivers/net/wireless/bcm4329/wl_iw.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1003344
+      },
+      "writtenOn": "2010-11-19T21:30:12Z",
+      "side": 1,
+      "message": "now that we have a flag to control the use of DFS channels,do we still need CONFIG_US_NON_DFS_CHANNELS_ONLY ?\n\nsince we are doing this for US alone, we could call it use_non_dfs_channels_in_us",
+      "revId": "afa00ad03382439d9361f58cc9734c6f3ffcbb52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA9n///dI\u003d",
+        "filename": "drivers/net/wireless/bcm4329/wl_iw.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1026,
+      "author": {
+        "id": 1003344
+      },
+      "writtenOn": "2010-11-19T21:30:12Z",
+      "side": 1,
+      "message": "can we initiate a count wl_iw_set_country() at this point ?\n\nThis would mean that we do not have to do two driver  commands every time the user changes DFS settings in the advanced settings.\n\nAlso, removing the dependency is better.",
+      "revId": "afa00ad03382439d9361f58cc9734c6f3ffcbb52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
