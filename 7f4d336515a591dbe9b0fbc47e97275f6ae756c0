@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAA+3//3xE\u003d",
+        "filename": "arch/arm/Kconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2011-02-23T03:26:11Z",
+      "side": 1,
+      "message": "Botched tabbing, will fix.",
+      "revId": "7f4d336515a591dbe9b0fbc47e97275f6ae756c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
