@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAA/H///LI\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1005480
+      },
+      "writtenOn": "2011-03-08T00:58:07Z",
+      "side": 1,
+      "message": "and transport type, direction, and bytes to be put in the uid_stat when the worker_func runs. This will avoid the loss.",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H///Lw\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1005480
+      },
+      "writtenOn": "2011-03-08T00:58:07Z",
+      "side": 1,
+      "message": "Imagine seeing \"KMalloc error\" in the logs.\nYou might want to add at least a driver name in the message.",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H///Ls\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1005480
+      },
+      "writtenOn": "2011-03-08T00:58:07Z",
+      "side": 1,
+      "message": "Where did it come from?",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H///Lg\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1005480
+      },
+      "writtenOn": "2011-03-08T00:58:07Z",
+      "side": 1,
+      "message": "So if there is an rx-flood, a bucketload of worker threads are started up and they all rush and all allocate, and if things don\u0027t go belly up, they all kfree.\n\nMaybe serialize kmalloc in the worker_func ?\n\nHave an iface_entry-\u003epending_worker_uid_list, look up the uid in here and add it if needed.\nIf it was there, then hang around until it vanishes so as not to kmalloc+free unnecessarily.\nIf it was not there, kmalloc().\nIn all cases, update with the tx/rx data passed in worker_struct.\n\nThe other advantage of doing it in that way, is that early counts are not lost.",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H///Lk\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1005480
+      },
+      "writtenOn": "2011-03-08T00:58:07Z",
+      "side": 1,
+      "message": "\"which\" what?\nMaybe call it \"direction\".",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H///LM\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1005480
+      },
+      "writtenOn": "2011-03-08T00:58:07Z",
+      "side": 1,
+      "message": "Maybe add the wanted transport, direction, and bytes.\nLike that the worker_func will be able to count them once the entry exists.",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H///Lo\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1005480
+      },
+      "writtenOn": "2011-03-08T00:58:07Z",
+      "side": 1,
+      "message": "Why -1?\nShould it be just as fatal as the kmalloc() fail?",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H///KM\u003d",
+        "filename": "net/ipv4/ip_output.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1005480
+      },
+      "writtenOn": "2011-03-08T00:58:07Z",
+      "side": 1,
+      "message": "nit: one-shot mask+assign as is done elsewhere.",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
