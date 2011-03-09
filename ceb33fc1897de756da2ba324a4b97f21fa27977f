@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAA/H///Es\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-09T22:37:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/H///LI\u003d",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA/H///Lw\u003d",
         "filename": "drivers/misc/iface_stat.c",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2011-03-08T00:58:07Z",
       "side": 1,
       "message": "Imagine seeing \"KMalloc error\" in the logs.\nYou might want to add at least a driver name in the message.",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H///Eo\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-09T22:37:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/H///Lw\u003d",
       "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAA/H///Ek\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-09T22:37:38Z",
+      "side": 1,
+      "message": "This was by observation. Adding the details of the packet to the work_struct eliminates the need to do this. Fixed.",
+      "parentUuid": "AAAA/H///Ls\u003d",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA/H///Lg\u003d",
         "filename": "drivers/misc/iface_stat.c",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2011-03-08T00:58:07Z",
       "side": 1,
       "message": "So if there is an rx-flood, a bucketload of worker threads are started up and they all rush and all allocate, and if things don\u0027t go belly up, they all kfree.\n\nMaybe serialize kmalloc in the worker_func ?\n\nHave an iface_entry-\u003epending_worker_uid_list, look up the uid in here and add it if needed.\nIf it was there, then hang around until it vanishes so as not to kmalloc+free unnecessarily.\nIf it was not there, kmalloc().\nIn all cases, update with the tx/rx data passed in worker_struct.\n\nThe other advantage of doing it in that way, is that early counts are not lost.",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+6E\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-09T22:37:38Z",
+      "side": 1,
+      "message": "I am using the shared workqueue created by the kernel, so only one thread per processor will be actively servicing the queue. Besides, I believe the default behavior is to service the queue on the same processor it was requested from. So the possibility of having multiple worker threads trying to run two different create request instances for the same uid_stat are pretty remote. The current approach will provide correctness eve in that case, and I believe we should not optimize for the rare case by using another lock.\n\nI have made the changes to the work_struct so now, no info is lost. Subsequent work_requests just end up updating the stats if they have already been created.",
+      "parentUuid": "AAAA/H///Lg\u003d",
       "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "AAAA/H///Eg\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-09T22:37:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/H///Lk\u003d",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA/H///LM\u003d",
         "filename": "drivers/misc/iface_stat.c",
         "patchSetId": 3
@@ -98,6 +188,24 @@
       "writtenOn": "2011-03-08T00:58:07Z",
       "side": 1,
       "message": "Maybe add the wanted transport, direction, and bytes.\nLike that the worker_func will be able to count them once the entry exists.",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H///Ec\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-09T22:37:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/H///LM\u003d",
       "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "AAAA/H///EY\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-09T22:37:38Z",
+      "side": 1,
+      "message": "This happens every time the first packet is seen for a uid, and leads to the creation of a new stat entry using the work_struct. This should not be fatal as kmalloc error.",
+      "parentUuid": "AAAA/H///Lo\u003d",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA/H///KM\u003d",
         "filename": "net/ipv4/ip_output.c",
         "patchSetId": 3
@@ -132,6 +258,24 @@
       "writtenOn": "2011-03-08T00:58:07Z",
       "side": 1,
       "message": "nit: one-shot mask+assign as is done elsewhere.",
+      "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H///Ew\u003d",
+        "filename": "net/ipv4/ip_output.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-09T22:37:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/H///KM\u003d",
       "revId": "ceb33fc1897de756da2ba324a4b97f21fa27977f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
