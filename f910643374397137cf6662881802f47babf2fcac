@@ -16,6 +16,24 @@
       "revId": "f910643374397137cf6662881802f47babf2fcac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+3M\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-10T04:14:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/H//+30\u003d",
+      "revId": "f910643374397137cf6662881802f47babf2fcac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
