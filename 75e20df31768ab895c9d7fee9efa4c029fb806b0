@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAA/H//+uM\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2011-03-10T23:33:20Z",
+      "side": 1,
+      "message": "if i understand this correctly, in steady state, for every packet on any interface, you intend to do 2 list walks one of which is doing strcmp and the other looking for uids?!\n\nFor at least the uids, you should look into a moving it to an rb_tree.\n\nAlso, you have also now added a point of contention for every packet since they all have to take the iface_list_lock before being dispatched to update the right stat structure.",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
