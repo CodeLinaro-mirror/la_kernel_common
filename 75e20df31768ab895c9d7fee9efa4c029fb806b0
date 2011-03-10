@@ -16,6 +16,24 @@
       "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+uE\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-10T23:44:17Z",
+      "side": 1,
+      "message": "Yes, there are currently two list walks (although the interface list should never really exceed  members - cellular, WiFi, Ethernet/bluetooth). In this version, I chose to replicate the strategy of uid_stats which also does a list walk on uids (iface_stats will replace uid_stats in the near future). I could move from the list to rb_tree in pass 2 or this version if you sa so.\n\n\nAbout the iface_list_lock, it does add a point of contention for every packet, but I tried hard to move it to a point where its not done before the packet is dispatched, but after. I am updating stats just before kfree(sk_buff) is called for any outgoing/incoming packet - knowing that a kfree is done outside the critical path and as a low priority action.",
+      "parentUuid": "AAAA/H//+uM\u003d",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
