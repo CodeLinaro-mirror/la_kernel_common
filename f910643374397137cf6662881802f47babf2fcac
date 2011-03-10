@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAA/H//+30\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1005480
+      },
+      "writtenOn": "2011-03-10T02:08:27Z",
+      "side": 1,
+      "message": "3 times the same code.\nCreate an update_uid_stats();",
+      "revId": "f910643374397137cf6662881802f47babf2fcac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
