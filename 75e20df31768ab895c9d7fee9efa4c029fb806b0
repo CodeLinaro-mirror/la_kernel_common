@@ -298,6 +298,24 @@
       "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+kM\u003d",
+        "filename": "net/ipv4/ip_output.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2011-03-11T19:15:41Z",
+      "side": 1,
+      "message": "well no, they can\u0027t use this interface since those are userspace processes. You\u0027ll need to expose this interface to userspace first (we\u0027ll have to be very careful when designing that interface). And when the time comes for you to need to do that, i\u0027m sure your interface will change slightly anyway, because they always do (which is ok).\n\nIn any case, I now understand the constraints from tcp_ipv4 etc. However, I still don\u0027t like doing the if (TCP) here in it_output. I would prefer that you add \u0027protocol\u0027 as an argument to your function, and have your internals do the right thing based on the protocol.",
+      "parentUuid": "AAAA/H//+ko\u003d",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
