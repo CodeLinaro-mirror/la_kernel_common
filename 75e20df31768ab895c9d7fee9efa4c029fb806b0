@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAA/H//+rg\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-11T18:40:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/H//+t4\u003d",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA/H//+t0\u003d",
         "filename": "drivers/misc/iface_stat.c",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "AAAA/H//+rc\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-11T18:40:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/H//+t0\u003d",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA/H//+t8\u003d",
         "filename": "drivers/misc/iface_stat.c",
         "patchSetId": 5
@@ -47,6 +83,24 @@
       "writtenOn": "2011-03-11T00:14:07Z",
       "side": 1,
       "message": "you should use container_of to get to your container struct.",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+qY\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-11T18:40:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/H//+t8\u003d",
       "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -105,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "AAAA/H//+q0\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-11T18:40:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/H//+tw\u003d",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA/H//+ts\u003d",
         "filename": "drivers/misc/iface_stat.c",
         "patchSetId": 5
@@ -116,6 +188,24 @@
       "writtenOn": "2011-03-11T00:14:07Z",
       "side": 1,
       "message": "same as above, do not typecast here, but instead do \u0026create_work-\u003ecreate_work",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+q4\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-11T18:40:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/H//+ts\u003d",
       "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -187,6 +277,24 @@
       "side": 1,
       "message": "That won\u0027t work either. In tcp_ipv4.c skb-\u003edev \u003d NULL; has been called before I update, which makes determining the incoming interface impossible.",
       "parentUuid": "AAAA/H//+tY\u003d",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+ko\u003d",
+        "filename": "net/ipv4/ip_output.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-11T18:40:27Z",
+      "side": 1,
+      "message": "There is another reason why this interface makes more sense instead of passing the entire packet. There are services like mediaserver, download-manager, sync, backup manager - that act on behalf of other applications. So they could use this interface to correctly attribute the transfered bytes to the applications that requested the transfer.",
+      "parentUuid": "AAAA/H//+tQ\u003d",
       "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
