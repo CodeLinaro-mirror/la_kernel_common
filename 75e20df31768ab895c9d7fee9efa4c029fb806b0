@@ -136,6 +136,24 @@
       "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+tg\u003d",
+        "filename": "net/ipv4/ip_output.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-11T00:23:29Z",
+      "side": 1,
+      "message": "In that case the interface would have to be different for  if_uid_update_tx and  if_uid_update_rx, as I cannot pass struct sk_buff on the receive side, as on the receive path, skb_pull(ip_header) has already been invoked and I will never know the length of the incoming ip_header. \n\nFor the sake of consistency of interface on outgoing/incoming path, I chose to do the parsing here.",
+      "parentUuid": "AAAA/H//+to\u003d",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
