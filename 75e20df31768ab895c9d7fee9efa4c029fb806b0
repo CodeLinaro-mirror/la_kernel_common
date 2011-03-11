@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "AAAA/H//+t4\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2011-03-11T00:14:07Z",
+      "side": 1,
+      "message": "this is not a type, but a structure, please rename to \"create_stat_work_struct\"",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+t0\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2011-03-11T00:14:07Z",
+      "side": 1,
+      "message": "do not typecast to void *, it is superfluous. This applies to everywhere else in the file.",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+t8\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2011-03-11T00:14:07Z",
+      "side": 1,
+      "message": "you should use container_of to get to your container struct.",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA/H//+uM\u003d",
         "filename": "drivers/misc/iface_stat.c",
         "patchSetId": 5
@@ -31,6 +82,57 @@
       "side": 1,
       "message": "Yes, there are currently two list walks (although the interface list should never really exceed  members - cellular, WiFi, Ethernet/bluetooth). In this version, I chose to replicate the strategy of uid_stats which also does a list walk on uids (iface_stats will replace uid_stats in the near future). I could move from the list to rb_tree in pass 2 or this version if you sa so.\n\n\nAbout the iface_list_lock, it does add a point of contention for every packet, but I tried hard to move it to a point where its not done before the packet is dispatched, but after. I am updating stats just before kfree(sk_buff) is called for any outgoing/incoming packet - knowing that a kfree is done outside the critical path and as a low priority action.",
       "parentUuid": "AAAA/H//+uM\u003d",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+tw\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2011-03-11T00:14:07Z",
+      "side": 1,
+      "message": "instead of typecasting to work_struct, just pass \u0026create_work-\u003ecreate_work to be explicit.",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+ts\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2011-03-11T00:14:07Z",
+      "side": 1,
+      "message": "same as above, do not typecast here, but instead do \u0026create_work-\u003ecreate_work",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+to\u003d",
+        "filename": "net/ipv4/ip_output.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2011-03-11T00:14:07Z",
+      "side": 1,
+      "message": "You should not do the test for protocol here, but rather do it inside your stat function. Also, you should just pass the whole skb into your stat update function and pull out all the relevant info there. So, your interface should probably just look like:\nint if_uid_update_tx(struct sk_buff *skb);\n\nThis will let you control how to dispatch inside your function based on the protocol, pull out exactly what you need from skb-\u003esk (uid), get the inferface info and packet len, etc. This will also mean that your change to ip_output.c is minimal and is easy to maintain.",
       "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
