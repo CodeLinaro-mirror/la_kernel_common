@@ -172,6 +172,24 @@
       "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/H//+tQ\u003d",
+        "filename": "net/ipv4/ip_output.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-11T00:31:36Z",
+      "side": 1,
+      "message": "That won\u0027t work either. In tcp_ipv4.c skb-\u003edev \u003d NULL; has been called before I update, which makes determining the incoming interface impossible.",
+      "parentUuid": "AAAA/H//+tY\u003d",
+      "revId": "75e20df31768ab895c9d7fee9efa4c029fb806b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
