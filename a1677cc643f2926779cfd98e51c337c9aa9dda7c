@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAA/X///bM\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2011-03-18T18:27:15Z",
+      "side": 1,
+      "message": "I don\u0027t see why you need these TCP/UDP/TX/RX enums since the caller always has all the information that it passes as arguments. It would be much cleaner if you did something like this at the very least:\n\nstruct traff_stat {\n    unsigned long packets;\n    unsigned long bytes;\n};\n\nstruct uid_stat {\n    struct traff_stat tcp_rx;\n    struct traff_stat tcp_tx;\n    struct traff_stat udp_rx;\n    struct traff_stat udp_tx;\n    ...\n};\n\nYou can also go a little further and do something like:\n\nstruct proto_stat {\n   struct traff_stat rx;\n   struct traff_stat tx;\n};\n\nstruct uid_stat {\n   struct proto_stat tcp;\n   struct proto_stat udp;\n};\n\nThen this function would just take a struct traff_stat * and an int as argument. With current design though, it would not  actually work because you have that work you schedule and you need these parameters. But, to be honest, I don\u0027t actually understand WHY you schedule away that work. In the time sensitive part you *already* walk the interface list and the uid list, so you already *know* that it does not exist. You then allocate memory for the work and schedule away to do the same list walks again. Why can\u0027t you just allocate the uid_stat struct right there and then and insert it into the list? This will get rid of these races, get rid of the scheduling, simplify a bunch of the stuff and make the code cleaner in the process. Am I missing something?",
+      "revId": "a1677cc643f2926779cfd98e51c337c9aa9dda7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/X///fg\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2011-03-18T18:27:15Z",
+      "side": 1,
+      "message": "remove void*",
+      "revId": "a1677cc643f2926779cfd98e51c337c9aa9dda7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/X///fc\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2011-03-18T18:27:15Z",
+      "side": 1,
+      "message": "remove all the void*",
+      "revId": "a1677cc643f2926779cfd98e51c337c9aa9dda7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
