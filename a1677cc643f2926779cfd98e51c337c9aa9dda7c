@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "AAAA/X///Is\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-21T21:38:57Z",
+      "side": 1,
+      "message": "Here is the reason why I schedule away the work, instead of creating the new uid_stat entry right there and inserting it in the list. The uid_stat_update function is called from a software interrupt context when a packet has been received. We are updating stats at the point when the IP layer has assembled the packet and is about to enqueue the packet to the TCP socket buffer. This seems to be the right place as any lower in the stack than this point - we would not know which TCP socket the packet is intended for, and hence which app is responsible for this traffic. Any upper in the stack, and we would have lost info on the IP layer headers. At this point, if I create a fresh uid_stat entry then kmalloc can sleep (unless I use GFP_ATOMIC instead of GFP_KERNEL - which seems hard to justify). The exception is something like - \n\n  \n\u003c3\u003e[   58.570343] BUG: sleeping function called from invalid context at mm/slab.c:3102\n\u003c3\u003e[   58.570526] in_atomic(): 1, irqs_disabled(): 0, pid: 266, name: droid.wallpaper\n\u003c4\u003e[   58.570831] Backtrace: \n\u003c4\u003e[   58.571197] [\u003cc002ba30\u003e] (dump_backtrace+0x0/0x110) from [\u003cc035142c\u003e] (dump_stack+0x18/0x1c)\n\u003c4\u003e[   58.571502]  r7:00000000 r6:c62085c4 r5:000000d0 r4:c7c00120\n\u003c4\u003e[   58.572326] [\u003cc0351414\u003e] (dump_stack+0x0/0x1c) from [\u003cc0053ecc\u003e] (__might_sleep+0x120/0x140)\n\u003c4\u003e[   58.572662] [\u003cc0053dac\u003e] (__might_sleep+0x0/0x140) from [\u003cc00c1680\u003e] (kmem_cache_alloc+0x34/0xcc)\n\u003c4\u003e[   58.573028] [\u003cc00c164c\u003e] (kmem_cache_alloc+0x0/0xcc) from [\u003cc01d1268\u003e] (if_uid_stat_update+0x240/0x588)\n\u003c4\u003e[   58.573333]  r7:00000000 r6:c62085c4 r5:c62085a0 r4:00000000\n\u003c4\u003e[   58.574157] [\u003cc01d1028\u003e] (if_uid_stat_update+0x0/0x588) from [\u003cc01d15e0\u003e] (if_uid_stat_update_rx+0x30/0x74)\n\u003c4\u003e[   58.574462] [\u003cc01d15b0\u003e] (if_uid_stat_update_rx+0x0/0x74) from [\u003cc02bb288\u003e] (tcp_v4_rcv+0x630/0x898)\n\u003c4\u003e[   58.574798]  r4:c7177a80\n\u003c4\u003e[   58.575134] [\u003cc02bac58\u003e] (tcp_v4_rcv+0x0/0x898) from [\u003cc029d684\u003e] (ip_local_deliver_finish+0x134/0x23c)\n\u003c4\u003e[   58.575439] [\u003cc029d550\u003e] (ip_local_deliver_finish+0x0/0x23c) from [\u003cc029d818\u003e] (ip_local_deliver+0x8c/0x9c)\n\u003c4\u003e[   58.575775]  r9:c05253e8 r8:00000000 r7:c7177b2c r6:c05253c8 r5:c6adb050\n\u003c4\u003e[   58.576721] r4:c7177a80\n\u003c4\u003e[   58.577209] [\u003cc029d78c\u003e] (ip_local_deliver+0x0/0x9c) from [\u003cc029d24c\u003e] (ip_rcv_finish+0x358/0x378)\n\u003c4\u003e[   58.577545]  r4:c7177a80\n\u003c4\u003e[   58.577880] [\u003cc029cef4\u003e] (ip_rcv_finish+0x0/0x378) from [\u003cc029d518\u003e] (ip_rcv+0x2ac/0x2e4)\n\u003c4\u003e[   58.578063]  r8:00000000 r7:c7177b2c r6:c05253c8 r5:c7da6400 r4:c7177a80\n\u003c4\u003e[   58.579162] [\u003cc029d26c\u003e] (ip_rcv+0x0/0x2e4) from [\u003cc0254040\u003e] (__netif_receive_skb+0x3d8/0x43c)\n\u003c4\u003e[   58.579498]  r5:c7da6400 r4:c7177a80\n\u003c4\u003e[   58.579986] [\u003cc0253c68\u003e] (__netif_receive_skb+0x0/0x43c) from [\u003cc0254130\u003e] (process_backlog+0x8c/0x140)\n\u003c4\u003e[   58.580291] [\u003cc02540a4\u003e] (process_backlog+0x0/0x140) from [\u003cc025444c\u003e] (net_rx_action+0x70/0x15c)\n\u003c4\u003e[   58.580627] [\u003cc02543dc\u003e] (net_rx_action+0x0/0x15c) from [\u003cc00614ec\u003e] (__do_softirq+0x78/0x100)\n\u003c4\u003e[   58.580963] [\u003cc0061474\u003e] (__do_softirq+0x0/0x100) from [\u003cc00615c0\u003e] (irq_exit+0x4c/0xb0)\n\u003c4\u003e[   58.581146] [\u003cc0061574\u003e] (irq_exit+0x0/0xb0) from [\u003cc0027078\u003e] (asm_do_IRQ+0x78/0x94)\n\u003c4\u003e[   58.581481] [\u003cc0027000\u003e] (asm_do_IRQ+0x0/0x94) from [\u003cc0027cec\u003e] (__irq_usr+0x4c/0x80)\n\nWhich is why, I decided to offload the update function to use a workqueue and use kmalloc(GFP_ATOMIC) to only create the workqueue. Even if I were to choose GFP_ATOMIC to create the uid_Stat right then and there when it was not found during the update, it would be a terrible idea, because different apps may start receiving incoming packets simultaneously and start eating up precious kernel memory in interrupt context, all with irqs_disabled, creating a crisis.",
+      "revId": "a1677cc643f2926779cfd98e51c337c9aa9dda7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA/X///bM\u003d",
         "filename": "drivers/misc/iface_stat.c",
         "patchSetId": 8
@@ -13,6 +30,24 @@
       "writtenOn": "2011-03-18T18:27:15Z",
       "side": 1,
       "message": "I don\u0027t see why you need these TCP/UDP/TX/RX enums since the caller always has all the information that it passes as arguments. It would be much cleaner if you did something like this at the very least:\n\nstruct traff_stat {\n    unsigned long packets;\n    unsigned long bytes;\n};\n\nstruct uid_stat {\n    struct traff_stat tcp_rx;\n    struct traff_stat tcp_tx;\n    struct traff_stat udp_rx;\n    struct traff_stat udp_tx;\n    ...\n};\n\nYou can also go a little further and do something like:\n\nstruct proto_stat {\n   struct traff_stat rx;\n   struct traff_stat tx;\n};\n\nstruct uid_stat {\n   struct proto_stat tcp;\n   struct proto_stat udp;\n};\n\nThen this function would just take a struct traff_stat * and an int as argument. With current design though, it would not  actually work because you have that work you schedule and you need these parameters. But, to be honest, I don\u0027t actually understand WHY you schedule away that work. In the time sensitive part you *already* walk the interface list and the uid list, so you already *know* that it does not exist. You then allocate memory for the work and schedule away to do the same list walks again. Why can\u0027t you just allocate the uid_stat struct right there and then and insert it into the list? This will get rid of these races, get rid of the scheduling, simplify a bunch of the stuff and make the code cleaner in the process. Am I missing something?",
+      "revId": "a1677cc643f2926779cfd98e51c337c9aa9dda7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/X///JQ\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-21T21:38:57Z",
+      "side": 1,
+      "message": "Since this is a static local function, there is no real advantage to changing the function parameter format from multiple arguments to a single struct traff_stat *. In fact, here is what I think might be the drawbacks of that approach: Given that you buy the argument of the need to schedule workqueues, what this approach might lead to is - unnecessary allocation of memory for the remaining entries in the struct (if the packet is tcp, then all udp entries in the struct are useless). Since we know exactly what we are updating, I think this would be unnecessary work for no real advantage. For example, the number of packets are simply updated by one for every update operation, so the traff_stat structure only really needs one entry of bytes. Similarly, if the update function is for tx, then  struct traff_stat rx would unnecessarily ask for memory allocation in the workqueue scheduled.",
+      "parentUuid": "AAAA/X///bM\u003d",
       "revId": "a1677cc643f2926779cfd98e51c337c9aa9dda7c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -36,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "AAAA/X///J0\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-21T21:38:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/X///fg\u003d",
+      "revId": "a1677cc643f2926779cfd98e51c337c9aa9dda7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA/X///fc\u003d",
         "filename": "drivers/misc/iface_stat.c",
         "patchSetId": 8
@@ -47,6 +100,24 @@
       "writtenOn": "2011-03-18T18:27:15Z",
       "side": 1,
       "message": "remove all the void*",
+      "revId": "a1677cc643f2926779cfd98e51c337c9aa9dda7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/X///Jc\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-21T21:38:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAA/X///fc\u003d",
       "revId": "a1677cc643f2926779cfd98e51c337c9aa9dda7c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
