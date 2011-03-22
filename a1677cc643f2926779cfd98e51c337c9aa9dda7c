@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "AAAA/X///Dw\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2011-03-22T17:51:00Z",
+      "side": 1,
+      "message": "it\u0027s not about function parameter format but rather about the completely needless switch statements (since you already know which fields to update in the caller), and also effectively a copy and paste of the same 2 lines of code 4 times.\n\nI don\u0027t understand why you need to schedule work. You are currently ALWAYS allocating a work_struct item for every new uid under GFP_ATOMIC, so I don\u0027t buy your argument that you are somehow allocating less now than you would with my approach. You are \"wasting\" the same \"precious\" kernel memory that you were saying you want to protect. Also, you are already \"wasting\" the extra memory in your struct since I don\u0027t see any unions for the members you mention.\n\nThe only thing I see here that cannot be done in atomic context is the proc entry creation. I think the problem is that you ar etrying to do everything on the first packet. Can\u0027t you hook in at the time the UDP/TCP socket is created and create your uid structure then? You know you can\u0027t send data without having the socket created, so you don\u0027t need to postpone you struct and proc entry creation until then.",
+      "parentUuid": "AAAA/X///JQ\u003d",
+      "revId": "a1677cc643f2926779cfd98e51c337c9aa9dda7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAA/X///fg\u003d",
         "filename": "drivers/misc/iface_stat.c",
         "patchSetId": 8
