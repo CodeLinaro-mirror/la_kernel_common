@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAA/X//+60\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-23T18:45:46Z",
+      "side": 1,
+      "message": "Fixed a bug here. Duplicate workqueue functions update the existing uid_stat entries, instead of just returning.",
+      "revId": "ac3c786093c0eac1adcca10c49a8726aed3c97c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/X//+6w\u003d",
+        "filename": "drivers/misc/iface_stat.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-23T18:45:46Z",
+      "side": 1,
+      "message": "Got rid of a vestigial debug function.",
+      "revId": "ac3c786093c0eac1adcca10c49a8726aed3c97c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/X//+6s\u003d",
+        "filename": "include/linux/iface_stat.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1005412
+      },
+      "writtenOn": "2011-03-23T18:45:46Z",
+      "side": 1,
+      "message": "Got rid of the vestigial debug function declaration.",
+      "revId": "ac3c786093c0eac1adcca10c49a8726aed3c97c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
