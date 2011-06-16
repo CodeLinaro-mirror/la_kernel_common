@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAABC3////Y\u003d",
+        "filename": "drivers/net/wireless/bcmdhd/dhd_custom_gpio.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2011-06-16T16:54:46Z",
+      "side": 1,
+      "message": "As we spoke, it is 2.6.36",
+      "revId": "4c1d92dabf8992bba1ca2bacf733ca292990ab18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
