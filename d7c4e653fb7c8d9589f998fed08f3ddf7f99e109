@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAEK3////A\u003d",
+        "filename": "drivers/base/sync.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2012-03-22T07:40:17Z",
+      "side": 1,
+      "message": "-ETIMEDOUT?",
+      "revId": "d7c4e653fb7c8d9589f998fed08f3ddf7f99e109",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
