@@ -16,6 +16,24 @@
       "revId": "d7c4e653fb7c8d9589f998fed08f3ddf7f99e109",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAEqH////8\u003d",
+        "filename": "drivers/base/sync.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1001891
+      },
+      "writtenOn": "2012-04-10T21:22:04Z",
+      "side": 1,
+      "message": "-ETIMEDOUT is \"Connection timed out\" and looks to be network related.  -ETIME is \"timer expired\" which seems more appropriate",
+      "parentUuid": "AAAEK3////A\u003d",
+      "revId": "d7c4e653fb7c8d9589f998fed08f3ddf7f99e109",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
