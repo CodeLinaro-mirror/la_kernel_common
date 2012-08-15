@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAIW3///ow\u003d",
+        "filename": "drivers/gpu/ion/ion_mem_pool.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2012-08-15T17:22:51Z",
+      "side": 1,
+      "message": "remove/comment out",
+      "revId": "be33304bd87ca7eae045dfa3c32ff14b01866111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAIbX///04\u003d",
+        "filename": "drivers/gpu/ion/ion_mem_pool.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2012-08-15T17:22:51Z",
+      "side": 1,
+      "message": "if this failed, you\u0027d leak the page. You probably have to tell the pool to pool-\u003efree the page?",
+      "revId": "be33304bd87ca7eae045dfa3c32ff14b01866111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAIbn///tc\u003d",
+        "filename": "drivers/gpu/ion/ion_mem_pool.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2012-08-15T17:22:51Z",
+      "side": 1,
+      "message": "is this supposed to return how much you freed or how much is left?",
+      "revId": "be33304bd87ca7eae045dfa3c32ff14b01866111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAIbH///sM\u003d",
+        "filename": "drivers/gpu/ion/ion_mem_pool.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2012-08-15T17:22:51Z",
+      "side": 1,
+      "message": "do you need to unregister the shrinker?\nAlso, mutex_destroy() for mutex debugging.",
+      "revId": "be33304bd87ca7eae045dfa3c32ff14b01866111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
