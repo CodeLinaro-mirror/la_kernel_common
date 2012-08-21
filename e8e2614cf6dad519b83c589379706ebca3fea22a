@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAI2H///8s\u003d",
+        "filename": "drivers/gpu/ion/ion_system_heap.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2012-08-21T23:09:18Z",
+      "side": 1,
+      "message": "could be const",
+      "revId": "e8e2614cf6dad519b83c589379706ebca3fea22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI2X///+4\u003d",
+        "filename": "drivers/gpu/ion/ion_system_heap.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2012-08-21T23:09:18Z",
+      "side": 1,
+      "message": "could be const",
+      "revId": "e8e2614cf6dad519b83c589379706ebca3fea22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI2X///+c\u003d",
+        "filename": "drivers/gpu/ion/ion_system_heap.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2012-08-21T23:09:18Z",
+      "side": 1,
+      "message": "dma_unmap_page for symmetry?  that will trigger unnecessary cache operations though.  a comment that it is just used for cache operations would help.",
+      "revId": "e8e2614cf6dad519b83c589379706ebca3fea22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI2H///6Y\u003d",
+        "filename": "drivers/gpu/ion/ion_system_heap.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2012-08-21T23:09:18Z",
+      "side": 1,
+      "message": "it would be nice to avoid these temporary allocations.  if you passed the struct page_info into alloc_largest_available, you could do something fancier here, like put the first ones on the stack and then kmalloc if more are necessary, but that would get pretty ugly.  or you could kmalloc them in blocks.",
+      "revId": "e8e2614cf6dad519b83c589379706ebca3fea22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI13///4g\u003d",
+        "filename": "drivers/gpu/ion/ion_system_heap.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2012-08-21T23:09:18Z",
+      "side": 1,
+      "message": "no need to initialize",
+      "revId": "e8e2614cf6dad519b83c589379706ebca3fea22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI13///3k\u003d",
+        "filename": "drivers/gpu/ion/ion_system_heap.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2012-08-21T23:09:18Z",
+      "side": 1,
+      "message": "LIST_HEAD(pages) then you won\u0027t need INIT_LIST_HEAD",
+      "revId": "e8e2614cf6dad519b83c589379706ebca3fea22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI13///38\u003d",
+        "filename": "drivers/gpu/ion/ion_system_heap.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2012-08-21T23:09:18Z",
+      "side": 1,
+      "message": "sg_miter_start would do the mapping for you, although it\u0027s probably more complicated than doing the mapping yourself.",
+      "revId": "e8e2614cf6dad519b83c589379706ebca3fea22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI13///4w\u003d",
+        "filename": "drivers/gpu/ion/ion_system_heap.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2012-08-21T23:09:18Z",
+      "side": 1,
+      "message": "this would be a reasonable use of kmap if you don\u0027t need to set the pgprot",
+      "revId": "e8e2614cf6dad519b83c589379706ebca3fea22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI2X///9Q\u003d",
+        "filename": "drivers/gpu/ion/ion_system_heap.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2012-08-21T23:09:18Z",
+      "side": 1,
+      "message": "why is the memset necessary?",
+      "revId": "e8e2614cf6dad519b83c589379706ebca3fea22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI13///3I\u003d",
+        "filename": "drivers/gpu/ion/ion_system_heap.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2012-08-21T23:09:18Z",
+      "side": 1,
+      "message": "the kmalloc here and then kfree in ion_system_heap_free_pagelist is a little scary.  could the kfree be moved after ion_system_heap_free_pagelist?",
+      "revId": "e8e2614cf6dad519b83c589379706ebca3fea22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
