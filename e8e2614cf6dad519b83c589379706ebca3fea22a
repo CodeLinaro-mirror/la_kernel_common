@@ -169,6 +169,24 @@
       "revId": "e8e2614cf6dad519b83c589379706ebca3fea22a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI2X///5s\u003d",
+        "filename": "drivers/gpu/ion/ion_system_heap.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1001118
+      },
+      "writtenOn": "2012-08-21T23:38:59Z",
+      "side": 1,
+      "message": "that\u0027s hard because free_pagelist is also consolidating into larger chunks as it frees, so items that are contiguous have their list entries freed and are joined up with the previous entry.  After ionsystem_heap_free_pagelist, the list no longer exists.  I suppose I could build a second list of free\u0027d items but that seems unnecessarily complex",
+      "parentUuid": "AAAI13///3I\u003d",
+      "revId": "e8e2614cf6dad519b83c589379706ebca3fea22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
