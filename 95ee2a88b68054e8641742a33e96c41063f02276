@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "AAAI6X//7wk\u003d",
+        "filename": "drivers/w1/masters/ds2482.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2012-08-31T23:19:34Z",
+      "side": 1,
+      "message": "do you want to copy this in probe instead?",
+      "revId": "95ee2a88b68054e8641742a33e96c41063f02276",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAI6X//7xA\u003d",
         "filename": "drivers/w1/masters/ds2482.c",
         "patchSetId": 1
