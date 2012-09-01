@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAI6n//8Yo\u003d",
+        "filename": "drivers/w1/masters/ds2482.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2012-09-01T00:31:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAI6X//7wk\u003d",
+      "revId": "95ee2a88b68054e8641742a33e96c41063f02276",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAI6X//7xA\u003d",
         "filename": "drivers/w1/masters/ds2482.c",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2012-08-31T23:17:24Z",
       "side": 1,
       "message": "where do you request this gpio and set it to be an output?",
+      "revId": "95ee2a88b68054e8641742a33e96c41063f02276",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI6n//8Yk\u003d",
+        "filename": "drivers/w1/masters/ds2482.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2012-09-01T00:31:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAI6X//7xA\u003d",
       "revId": "95ee2a88b68054e8641742a33e96c41063f02276",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
