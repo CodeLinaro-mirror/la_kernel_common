@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAI6n//8X0\u003d",
+        "filename": "drivers/w1/masters/ds2482.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2012-09-01T00:54:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAI6X//7r4\u003d",
+      "revId": "00446c509ffe9349d36ce19d06069652e0efd82c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAI6X//7r0\u003d",
         "filename": "drivers/w1/masters/ds2482.c",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2012-09-01T00:38:37Z",
       "side": 1,
       "message": "do you want to put it pack in sleep mode?",
+      "revId": "00446c509ffe9349d36ce19d06069652e0efd82c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI6n//8Xw\u003d",
+        "filename": "drivers/w1/masters/ds2482.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2012-09-01T00:54:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAI6X//7r0\u003d",
       "revId": "00446c509ffe9349d36ce19d06069652e0efd82c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
