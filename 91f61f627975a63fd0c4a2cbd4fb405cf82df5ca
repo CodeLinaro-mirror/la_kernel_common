@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "M1G1lDjw",
+        "filename": "lib/Kconfig.debug",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2012-12-18T23:13:58Z",
+      "side": 1,
+      "message": "Number of seconds would be more useful here.",
+      "revId": "91f61f627975a63fd0c4a2cbd4fb405cf82df5ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
