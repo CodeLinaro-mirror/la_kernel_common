@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "M1M3VIgs",
+        "filename": "lib/Kconfig.debug",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2012-12-18T23:08:35Z",
+      "side": 1,
+      "message": "Do you want you add some text describing how often the other_cpu hardlockup detection runs?",
+      "revId": "c038ff336ae4bbe2b99246675748ca94ee712667",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
