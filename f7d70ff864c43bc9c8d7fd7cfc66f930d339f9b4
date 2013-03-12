@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "RgQHNKgk",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2013-03-12T04:01:37Z",
+      "side": 1,
+      "message": "I\u0027d suggest disabling io_is_busy for all by default to preserve the old behavior (and probably no one will run this governor on those specific X86 CPUs).  I could see enabling io_is_busy by default since performing I/O is a good indication the processor is about to become busy, but it may waste some power (most ARMs still pay a substantial cost to idle at higher speeds).  Open to suggestion about all this.",
+      "revId": "f7d70ff864c43bc9c8d7fd7cfc66f930d339f9b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "RgSFm7iw",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2013-03-12T04:01:37Z",
+      "side": 1,
+      "message": "Change-Id: If7d70ff864c43bc9c8d7fd7cfc66f930d339f9b4",
+      "revId": "f7d70ff864c43bc9c8d7fd7cfc66f930d339f9b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "RgcHGIu0",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2013-03-12T04:01:37Z",
+      "side": 1,
+      "message": "If we keep this function I\u0027ll fixup some typos introduced in the copy.",
+      "revId": "f7d70ff864c43bc9c8d7fd7cfc66f930d339f9b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "RgSGNzrI",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2013-03-12T04:01:37Z",
+      "side": 1,
+      "message": "I don\u0027t think the governor is run on any configs without NOHZ, but OK.  In later kernel revs we can probably use the common get_cpu_idle_time() anyway.",
+      "revId": "f7d70ff864c43bc9c8d7fd7cfc66f930d339f9b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
