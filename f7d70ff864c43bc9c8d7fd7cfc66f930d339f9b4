@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "SA1-8q6k",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2013-03-19T22:47:25Z",
+      "side": 1,
+      "message": "switching to bool",
+      "revId": "f7d70ff864c43bc9c8d7fd7cfc66f930d339f9b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "RgcHGIu0",
         "filename": "drivers/cpufreq/cpufreq_interactive.c",
         "patchSetId": 1
@@ -53,6 +70,23 @@
     },
     {
       "key": {
+        "uuid": "SA9-nmxI",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2013-03-19T22:47:25Z",
+      "side": 1,
+      "message": "will just use a default of false, and configure per-platform.",
+      "revId": "f7d70ff864c43bc9c8d7fd7cfc66f930d339f9b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "RgSGNzrI",
         "filename": "drivers/cpufreq/cpufreq_interactive.c",
         "patchSetId": 1
@@ -64,6 +98,23 @@
       "writtenOn": "2013-03-12T04:01:37Z",
       "side": 1,
       "message": "I don\u0027t think the governor is run on any configs without NOHZ, but OK.  In later kernel revs we can probably use the common get_cpu_idle_time() anyway.",
+      "revId": "f7d70ff864c43bc9c8d7fd7cfc66f930d339f9b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "SA3-VL6k",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2013-03-19T22:47:25Z",
+      "side": 1,
+      "message": "switching to kstrtoul",
       "revId": "f7d70ff864c43bc9c8d7fd7cfc66f930d339f9b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
