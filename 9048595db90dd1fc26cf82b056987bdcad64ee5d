@@ -16,6 +16,24 @@
       "revId": "9048595db90dd1fc26cf82b056987bdcad64ee5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "SGbgLxdo",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2013-03-20T23:11:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "SGXhMLVE",
+      "revId": "9048595db90dd1fc26cf82b056987bdcad64ee5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
