@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "S8nlUG3c",
+        "filename": "drivers/gpu/ion/ion_carveout_heap.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1001118
+      },
+      "writtenOn": "2013-04-03T23:46:31Z",
+      "side": 1,
+      "message": "i\u0027m not convinced we want to have a verbose message like this as on several of our programs it\u0027d be pretty common to make a request out of the carveout heap if it\u0027s not full and fall back on something like the system heap.  In those cases we\u0027d be seeing these messages pretty frequently.",
+      "revId": "aa916e524c408da121bdf166e0874bcdbf24b56a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
