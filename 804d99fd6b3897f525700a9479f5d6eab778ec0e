@@ -33,6 +33,24 @@
       "revId": "804d99fd6b3897f525700a9479f5d6eab778ec0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "S8pnNPw8",
+        "filename": "drivers/gpu/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1010468
+      },
+      "writtenOn": "2013-04-04T00:13:40Z",
+      "side": 1,
+      "message": "This was a bad integration on my part and kstrdup is the better solution. I\u0027ll resubmit.",
+      "parentUuid": "S8nkHu10",
+      "revId": "804d99fd6b3897f525700a9479f5d6eab778ec0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
