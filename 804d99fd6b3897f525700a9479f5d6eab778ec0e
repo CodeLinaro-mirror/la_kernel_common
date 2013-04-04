@@ -16,6 +16,23 @@
       "revId": "804d99fd6b3897f525700a9479f5d6eab778ec0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "S8nkHu10",
+        "filename": "drivers/gpu/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2013-04-04T00:10:10Z",
+      "side": 1,
+      "message": "also, why can\u0027t you just kstrdup?",
+      "revId": "804d99fd6b3897f525700a9479f5d6eab778ec0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
