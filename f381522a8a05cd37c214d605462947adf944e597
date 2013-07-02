@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2771b0c7_9cefc9e6",
+        "filename": "fs/proc/task_mmu.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2013-07-02T23:51:44Z",
+      "side": 1,
+      "message": "oops, left over from when I had the vm_name stuff just below.",
+      "parentUuid": "2771b0c7_79fe8727",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2771b0c7_d99553d4",
         "filename": "fs/proc/task_mmu.c",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2013-07-02T23:40:54Z",
       "side": 1,
       "message": "this would match the existing code closer if you put it inside if (!name).",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771b0c7_7cc99579",
+        "filename": "fs/proc/task_mmu.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2013-07-02T23:51:44Z",
+      "side": 1,
+      "message": "thats why the goto done was there, but I moved it here because I wanted a custom format [anon:\u003cname\u003e].  I could set name to \u003cname\u003e, and then use the presence of vma-\u003evm_name or some other flag to modify the format, but it seemed cleaner just to do it here.",
+      "parentUuid": "2771b0c7_d99553d4",
       "revId": "f381522a8a05cd37c214d605462947adf944e597",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "2771b0c7_9ce109ed",
+        "filename": "mm/madvise.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2013-07-02T23:51:44Z",
+      "side": 1,
+      "message": "will fix",
+      "parentUuid": "2771b0c7_99911bd7",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2771b0c7_dcfb01f9",
         "filename": "mm/madvise.c",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2013-07-02T23:40:54Z",
       "side": 1,
       "message": "You are zeroing a buffer here that you then fully overwrite.",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771b0c7_5cadb192",
+        "filename": "mm/madvise.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2013-07-02T23:51:44Z",
+      "side": 1,
+      "message": "will fix",
+      "parentUuid": "2771b0c7_dcfb01f9",
       "revId": "f381522a8a05cd37c214d605462947adf944e597",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "2771b0c7_fcbda5bd",
+        "filename": "mm/madvise.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2013-07-02T23:51:44Z",
+      "side": 1,
+      "message": "i switched to passing the length around instead of using null termination because other users of this api might use a struct instead of a string, but I need to pass arg_len all the way down to vma_name_get_from_str.",
+      "parentUuid": "2771b0c7_5c113161",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2771b0c7_fc53651c",
         "filename": "mm/vma_name.c",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2013-07-02T23:40:54Z",
       "side": 1,
       "message": "why a list?",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771b0c7_fc6fe56d",
+        "filename": "mm/vma_name.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2013-07-02T23:51:44Z",
+      "side": 1,
+      "message": "I wanted very fast remove times, since they will get called from various mm operations, and adds will only ever get called from madvise2(MADV_NAME).  an rb tree has O(log n) remove time.\n\non the other hand, madvise2(MADV_NAME) will walk the list twice while holding the mmap_sem, so improving search time might be worth it.",
+      "parentUuid": "2771b0c7_fc53651c",
       "revId": "f381522a8a05cd37c214d605462947adf944e597",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "2771b0c7_9c6ca97b",
+        "filename": "mm/vma_name.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2013-07-02T23:51:44Z",
+      "side": 1,
+      "message": "either, i\u0027ll update the comment.",
+      "parentUuid": "2771b0c7_1ce89900",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2771b0c7_7c251583",
         "filename": "mm/vma_name.c",
         "patchSetId": 1
@@ -132,6 +258,24 @@
       "writtenOn": "2013-07-02T23:40:54Z",
       "side": 1,
       "message": "why does this need a length limit? It is copying another kernel string.",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771b0c7_bc696d6a",
+        "filename": "mm/vma_name.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2013-07-02T23:51:44Z",
+      "side": 1,
+      "message": "i\u0027ll pass in arg_len from the top level and use that instead",
+      "parentUuid": "2771b0c7_7c251583",
       "revId": "f381522a8a05cd37c214d605462947adf944e597",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
