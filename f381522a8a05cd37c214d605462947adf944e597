@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2771b0c7_79fe8727",
+        "filename": "fs/proc/task_mmu.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2013-07-02T23:40:54Z",
+      "side": 1,
+      "message": "This does not do anything. Did you mean to jump somewhere else?",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771b0c7_d99553d4",
+        "filename": "fs/proc/task_mmu.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2013-07-02T23:40:54Z",
+      "side": 1,
+      "message": "this would match the existing code closer if you put it inside if (!name).",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771b0c7_99911bd7",
+        "filename": "mm/madvise.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2013-07-02T23:40:54Z",
+      "side": 1,
+      "message": "Why call this when IS_ERR(new_name) is true?",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771b0c7_dcfb01f9",
+        "filename": "mm/madvise.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2013-07-02T23:40:54Z",
+      "side": 1,
+      "message": "You are zeroing a buffer here that you then fully overwrite.",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771b0c7_5c113161",
+        "filename": "mm/madvise.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2013-07-02T23:40:54Z",
+      "side": 1,
+      "message": "arg may not be null terminated",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771b0c7_fc53651c",
+        "filename": "mm/vma_name.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2013-07-02T23:40:54Z",
+      "side": 1,
+      "message": "why a list?",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771b0c7_1ce89900",
+        "filename": "mm/vma_name.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2013-07-02T23:40:54Z",
+      "side": 1,
+      "message": "What does \"list lock held\" mean? read, write or either?",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771b0c7_7c251583",
+        "filename": "mm/vma_name.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2013-07-02T23:40:54Z",
+      "side": 1,
+      "message": "why does this need a length limit? It is copying another kernel string.",
+      "revId": "f381522a8a05cd37c214d605462947adf944e597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
