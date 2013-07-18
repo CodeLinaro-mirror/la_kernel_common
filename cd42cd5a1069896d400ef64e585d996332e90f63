@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33665713_7bec3b42",
+        "filename": "drivers/net/wireless/bcmdhd/dhd_linux.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1021673
+      },
+      "writtenOn": "2013-07-18T00:52:24Z",
+      "side": 1,
+      "message": "Hi Dmitry\nProbably someone make mistake this code.\ncould you change this code like this?\n\u0026\u0026 -\u003e \u0026",
+      "revId": "cd42cd5a1069896d400ef64e585d996332e90f63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
