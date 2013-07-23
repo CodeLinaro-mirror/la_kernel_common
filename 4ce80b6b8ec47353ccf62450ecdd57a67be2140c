@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "337c97f0_e82fd396",
+        "filename": "drivers/net/wireless/bcmdhd/wl_cfg80211.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 8979,
+      "author": {
+        "id": 1021673
+      },
+      "writtenOn": "2013-07-23T18:17:00Z",
+      "side": 0,
+      "message": "Hi Dmitry\nIs there any reason to remove this definition?\n\nRegards,\nEcco",
+      "revId": "4ce80b6b8ec47353ccf62450ecdd57a67be2140c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
