@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1857b042_972144c8",
+        "filename": "include/linux/mm.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1638,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2013-08-07T23:31:31Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "bc4bcf63aa39bdf5be534ba8e6a290ff45e9fcd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1857b042_3a981d73",
+        "filename": "mm/mempolicy.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2013-08-07T23:31:31Z",
+      "side": 1,
+      "message": "use the accessor",
+      "revId": "bc4bcf63aa39bdf5be534ba8e6a290ff45e9fcd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
