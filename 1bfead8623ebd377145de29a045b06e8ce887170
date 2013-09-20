@@ -16,6 +16,24 @@
       "revId": "1bfead8623ebd377145de29a045b06e8ce887170",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44d6a7dc_745ea625",
+        "filename": "drivers/gpu/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2013-09-20T19:02:18Z",
+      "side": 1,
+      "message": "Yes, it is an idr integer, but when it gets passed to userspace and back it gets stored in a struct ion_handle *.  Userspace treats it as an opaque pointer, but I didn\u0027t want to change the type exposed to userspace.",
+      "parentUuid": "e47f9b95_6a6f7fbb",
+      "revId": "1bfead8623ebd377145de29a045b06e8ce887170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
