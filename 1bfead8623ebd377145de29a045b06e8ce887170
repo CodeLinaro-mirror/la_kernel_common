@@ -34,6 +34,24 @@
       "revId": "1bfead8623ebd377145de29a045b06e8ce887170",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4a76389_c44c7e78",
+        "filename": "drivers/gpu/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2013-09-20T19:12:00Z",
+      "side": 1,
+      "message": "well it\u0027s technically not valid to store it in an unsigned long either, should use an intptr_t (or uintptr_t if you so desire).\n\nMy vote is to change the userspace API to be an int32_t (__s32) and bite the bullet. idr_alloc is unfortunately an int, and not sized explicitly so it\u0027s hard to really provide a stable/consistent integer id to userspace anyway. Is this stuff in staging yet?",
+      "parentUuid": "44d6a7dc_745ea625",
+      "revId": "1bfead8623ebd377145de29a045b06e8ce887170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
