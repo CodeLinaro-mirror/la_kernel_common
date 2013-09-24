@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04b3cffa_b7ad48c7",
+        "filename": "drivers/gpu/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2013-09-24T06:32:09Z",
+      "side": 1,
+      "message": "take a direction? the call site in ion_buffer_sync_for_device below expects to pass a direction, but you drop it on the floor and force bidirectional. that\u0027s not correct.",
+      "revId": "cffd51edd82bd06e4d506d32c6ec158f50d74974",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
