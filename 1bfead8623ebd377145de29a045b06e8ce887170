@@ -70,6 +70,24 @@
       "revId": "1bfead8623ebd377145de29a045b06e8ce887170",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4c79b62_96668cc2",
+        "filename": "drivers/gpu/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000413
+      },
+      "writtenOn": "2013-09-24T06:27:35Z",
+      "side": 1,
+      "message": "Technically, there\u0027s no guarantee that unsigned long will be able to store a ptr (you need an intptr_t for that). However, I think the kernel makes that assumption in other places so other things will break before this does. And I agree that a long here is better than an int :)",
+      "parentUuid": "44d6a7dc_546fe2ba",
+      "revId": "1bfead8623ebd377145de29a045b06e8ce887170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
