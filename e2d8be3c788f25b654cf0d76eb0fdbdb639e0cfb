@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "def26816_6481debd",
+        "filename": "drivers/video/adf/adf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1108,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2013-10-24T03:19:48Z",
+      "side": 1,
+      "message": "Would this make more sense as a macro or static inline in a header file? unless you might add some more code to it at a later time",
+      "revId": "e2d8be3c788f25b654cf0d76eb0fdbdb639e0cfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
