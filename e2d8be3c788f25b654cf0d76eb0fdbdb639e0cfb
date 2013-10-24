@@ -16,6 +16,24 @@
       "revId": "e2d8be3c788f25b654cf0d76eb0fdbdb639e0cfb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ee9602b_49ecb97b",
+        "filename": "drivers/video/adf/adf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1108,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2013-10-24T17:07:38Z",
+      "side": 1,
+      "message": "I don\u0027t expect it to change, so I moved it into a static inline.",
+      "parentUuid": "def26816_6481debd",
+      "revId": "e2d8be3c788f25b654cf0d76eb0fdbdb639e0cfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
