@@ -16,6 +16,24 @@
       "revId": "191b477931f7a9b20caea9269f4f340ca76e5a2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a82f3bb4_bcd7010d",
+        "filename": "android/configs/android-recommended.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1005480
+      },
+      "writtenOn": "2013-12-13T01:32:29Z",
+      "side": 0,
+      "message": "My understanding was that we preferred CONFIG_CONTEXT_SWITCH_TRACER\nwhich gets enabled with CONFIG_ENABLE_DEFAULT_TRACERS which is \u0027y\u0027. Based on\n\nhttps://b.corp.google.com/issue?id\u003d6538553#ISSUE_HistoryHeader21",
+      "parentUuid": "28aeeb65_adb4be64",
+      "revId": "191b477931f7a9b20caea9269f4f340ca76e5a2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
