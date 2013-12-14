@@ -34,6 +34,24 @@
       "revId": "8f1c42284159ebd6851e1e75507f2ad6fba87d0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28ab4b9f_411454c7",
+        "filename": "android/configs/android-recommended.cfg",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2013-12-14T01:05:43Z",
+      "side": 0,
+      "message": "sysrq t does not work well without it",
+      "parentUuid": "28ab4b9f_a191d834",
+      "revId": "8f1c42284159ebd6851e1e75507f2ad6fba87d0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
