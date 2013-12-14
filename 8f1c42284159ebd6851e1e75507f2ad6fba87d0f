@@ -16,6 +16,24 @@
       "revId": "8f1c42284159ebd6851e1e75507f2ad6fba87d0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28ab4b9f_a191d834",
+        "filename": "android/configs/android-recommended.cfg",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1005480
+      },
+      "writtenOn": "2013-12-14T00:43:01Z",
+      "side": 0,
+      "message": "I used manta_defconfig as a reference, and it was not being set.",
+      "parentUuid": "c86c6f4a_e9f7d1fd",
+      "revId": "8f1c42284159ebd6851e1e75507f2ad6fba87d0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
