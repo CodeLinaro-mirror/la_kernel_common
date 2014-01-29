@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "12a87aa1_fd6547f2",
+        "filename": "drivers/staging/android/Kconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1030338
+      },
+      "writtenOn": "2014-01-29T11:30:47Z",
+      "side": 1,
+      "message": "I see this config working in a different way. \n\n1) if 32bit kernel (e.g. ARCH\u003darm) - use the old interface - where binder_uintptr_t is void * - __u32. Using the 64bit interface where binder_uintptr_t is __u64 is not permitted since it will have a \"depends on 64BIT\" field.  I am not sure that we want to pass __u64 on systems that do not make use of \u003e 32bit. Also I am not sure it is safe in all cases! As long as your app uses the binder interface at the API level it is suppose to do there should be no issues with 32bit apps running on 64bit systems and 32bit systems since the binder ABI is abstracted away.\n\n2) if 64bit kernel (e.g. ARCH\u003darm64)- use the 64bit interface ANDROID_BINDER_IPC_64BIT. In this we typedef binder_uintptr_t to __u64 and direct the binder_fops.compat_ioctl to binder_ioctl. Here both 32/64bit APPs will use the 64bit binder interface that uses __u64 for binder_uintptr_t and that allows the apps to coexist / communicate.\n\nIs there a particular reason for using binder_uintptr_t as __u64 on pure 32bit systems (32bit kernel/ 32bit userspace) that I am missing and you would like to cover with this change ?\n\nPlease note that with this patch the default for 32bit kernels would be the 64bit interface.",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12731a25_851c8282",
         "filename": "drivers/staging/android/Kconfig",
         "patchSetId": 1
@@ -13,6 +30,74 @@
       "writtenOn": "2014-01-29T02:27:51Z",
       "side": 1,
       "message": "mention that this will break the new Android user-space",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2b1820e_5b77a3a7",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1030338
+      },
+      "writtenOn": "2014-01-29T11:30:47Z",
+      "side": 1,
+      "message": "why not (struct binder_buffer *) ?",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "929c6a85_61a516c4",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3537,
+      "author": {
+        "id": 1030338
+      },
+      "writtenOn": "2014-01-29T11:30:47Z",
+      "side": 1,
+      "message": "Why do we need this? unlocked_ioctl won\u0027t be defined for 64bit kernels that are using the 32bit interface which is already covered by:\n\nBINDER_IPC_32BIT\n   depends on !64BIT",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "12a87aa1_7d7a5793",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3540,
+      "author": {
+        "id": 1030338
+      },
+      "writtenOn": "2014-01-29T11:30:47Z",
+      "side": 1,
+      "message": "The common idiom is to have .compat_ioctl surrounded by a CONFIG_COMPAT clause. I am not sure we want to expose this for 32bit architectures.",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "12a87aa1_1d7113b1",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1030338
+      },
+      "writtenOn": "2014-01-29T11:30:47Z",
+      "side": 1,
+      "message": "Why do we need this extra flag ? Is it because of the scripts that generate the bionic headers? We can add CONFIG_ANDROID_BINDER_IPC_32BIT to the white list and such the scripts won\u0027t remove the CONFIG_ANDROID_BINDER_IPC_32BIT blocks.",
       "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
