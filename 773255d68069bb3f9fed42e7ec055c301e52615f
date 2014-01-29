@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12731a25_851c8282",
+        "filename": "drivers/staging/android/Kconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2014-01-29T02:27:51Z",
+      "side": 1,
+      "message": "mention that this will break the new Android user-space",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
