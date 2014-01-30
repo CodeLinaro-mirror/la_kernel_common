@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f2b4c6fd_e3ec8176",
+        "filename": "drivers/staging/android/Kconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2014-01-30T03:47:58Z",
+      "side": 1,
+      "message": "The plan is to remove support for the 32 bit interface and use the 64 bit interface everywhere.",
+      "parentUuid": "12a87aa1_fd6547f2",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12731a25_851c8282",
         "filename": "drivers/staging/android/Kconfig",
         "patchSetId": 1
@@ -70,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "92870a29_52b085c2",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3537,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2014-01-30T03:47:58Z",
+      "side": 1,
+      "message": "We don\u0027t need it. I commented out that line to test the 32 bit interface on a 64 bit kernel.",
+      "parentUuid": "929c6a85_61a516c4",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12a87aa1_7d7a5793",
         "filename": "drivers/staging/android/binder.c",
         "patchSetId": 1
@@ -87,6 +123,24 @@
     },
     {
       "key": {
+        "uuid": "92870a29_f2c89942",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3540,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2014-01-30T03:47:58Z",
+      "side": 1,
+      "message": "Even when the compat_ioctl points to the same handler? I see both used in other drivers, and the field always exists.",
+      "parentUuid": "12a87aa1_7d7a5793",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12a87aa1_1d7113b1",
         "filename": "drivers/staging/android/uapi/binder.h",
         "patchSetId": 1
@@ -98,6 +152,24 @@
       "writtenOn": "2014-01-29T11:30:47Z",
       "side": 1,
       "message": "Why do we need this extra flag ? Is it because of the scripts that generate the bionic headers? We can add CONFIG_ANDROID_BINDER_IPC_32BIT to the white list and such the scripts won\u0027t remove the CONFIG_ANDROID_BINDER_IPC_32BIT blocks.",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52811216_1080c5dd",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2014-01-30T03:47:58Z",
+      "side": 1,
+      "message": "I did not see a white list. Does one exist?",
+      "parentUuid": "12a87aa1_1d7113b1",
       "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
