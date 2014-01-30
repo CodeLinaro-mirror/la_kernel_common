@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "f2b4c6fd_c3bf4541",
+        "filename": "drivers/staging/android/Kconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2014-01-30T03:59:00Z",
+      "side": 1,
+      "message": "We didn\u0027t like the idea of the 32-bit version libbinder being compiled differently for a 32-bit kernel vs. a 64-bit kernel.  This should only exist for a relatively short transition period, we figured we should switch the whole binder api to one that is 64-bit safe now and then later get rid of all the compatibility code completely.",
+      "parentUuid": "f2b4c6fd_e3ec8176",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12731a25_851c8282",
         "filename": "drivers/staging/android/Kconfig",
         "patchSetId": 1
@@ -141,6 +159,41 @@
     },
     {
       "key": {
+        "uuid": "f2b4c6fd_63af510e",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3540,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2014-01-30T03:59:00Z",
+      "side": 1,
+      "message": "compat_ioctl can never get called when CONFIG_COMPAT is not set, and CONFIG_COMPAT doesn\u0027t exist for 32-bit kernels. There is no need for an #ifdef.",
+      "parentUuid": "92870a29_f2c89942",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "92870a29_d2e2b5b4",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2014-01-30T03:59:00Z",
+      "side": 1,
+      "message": "you could move this block to ../binder.h so the uapi file doesn\u0027t reference any CONFIG options",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12a87aa1_1d7113b1",
         "filename": "drivers/staging/android/uapi/binder.h",
         "patchSetId": 1
@@ -170,6 +223,24 @@
       "side": 1,
       "message": "I did not see a white list. Does one exist?",
       "parentUuid": "12a87aa1_1d7113b1",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "92870a29_f2dfb9f1",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2014-01-30T03:59:00Z",
+      "side": 1,
+      "message": "I like this better, it makes it clear that this is a conditional that applies to both userspace and the kernel.  Setting a CONFIG_* option in userspace seems strange to me.",
+      "parentUuid": "52811216_1080c5dd",
       "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
