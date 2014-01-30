@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "12a87aa1_209a64a3",
+        "filename": "drivers/staging/android/Kconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1030338
+      },
+      "writtenOn": "2014-01-30T11:32:07Z",
+      "side": 1,
+      "message": "Thanks for the update! I was assuming this is the reason but I wanted to double check.",
+      "parentUuid": "f2b4c6fd_c3bf4541",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12731a25_851c8282",
         "filename": "drivers/staging/android/Kconfig",
         "patchSetId": 1
@@ -241,6 +259,24 @@
       "side": 1,
       "message": "I like this better, it makes it clear that this is a conditional that applies to both userspace and the kernel.  Setting a CONFIG_* option in userspace seems strange to me.",
       "parentUuid": "52811216_1080c5dd",
+      "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "12a87aa1_e06a3cc2",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1030338
+      },
+      "writtenOn": "2014-01-30T11:32:07Z",
+      "side": 1,
+      "message": "I was thinking of adding:\n\n@@ -35,6 +35,7 @@ kernel_known_macros \u003d {\n     \"__CHECK_ENDIAN__\": kCppUndefinedMacro,\n     \"CONFIG_X86_32\": \"__i386__\",\n     \"__EXPORTED_HEADERS__\": \"1\",\n+    \"CONFIG_ANDROID_BINDER_IPC_32BIT\":\"BINDER_IPC_32BIT\",\n     }\n\nto bionic\u0027s  https://android.googlesource.com/platform/bionic/+/master/libc/kernel/tools/defaults.py .\n\nThis fixes the same issue as the above snippet. I agree with Colin setting CONFIG_* in the userspace seems odd.",
+      "parentUuid": "92870a29_f2dfb9f1",
       "revId": "773255d68069bb3f9fed42e7ec055c301e52615f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
