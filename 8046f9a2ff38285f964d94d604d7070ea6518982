@@ -16,6 +16,24 @@
       "revId": "8046f9a2ff38285f964d94d604d7070ea6518982",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "721616de_9bad0fb3",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1316,
+      "author": {
+        "id": 1010468
+      },
+      "writtenOn": "2014-02-04T03:26:15Z",
+      "side": 1,
+      "message": "yes, thinking about this again I think we can handle this completely in the custom ioctl.\n\n#ifdef CONFIG_COMAPT\n\n#define custom_ioct    compat_ioctl\n\n#else\n\n#define custom_ioctl  regular_ioctl\n\n#endif\n\n\nion_device_create(custom_ioctl)",
+      "parentUuid": "f25046a6_7f758b0d",
+      "revId": "8046f9a2ff38285f964d94d604d7070ea6518982",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
