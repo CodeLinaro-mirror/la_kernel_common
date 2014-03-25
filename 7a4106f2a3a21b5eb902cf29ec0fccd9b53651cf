@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5cd5a977_07c0f669",
+        "filename": "drivers/video/adf/adf_fbdev.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2014-03-25T00:27:02Z",
+      "side": 1,
+      "message": "use BUG_ON if someone is still holding a reference",
+      "range": {
+        "startLine": 654,
+        "startChar": 5,
+        "endLine": 654,
+        "endChar": 12
+      },
+      "revId": "7a4106f2a3a21b5eb902cf29ec0fccd9b53651cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
