@@ -22,6 +22,30 @@
       "revId": "c7b6223b15c73caeb7f0e3efe967277ed1346106",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9995785_2156584c",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1192,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2014-04-07T23:46:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19734325_3d2afa94",
+      "range": {
+        "startLine": 1192,
+        "startChar": 3,
+        "endLine": 1192,
+        "endChar": 6
+      },
+      "revId": "c7b6223b15c73caeb7f0e3efe967277ed1346106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
