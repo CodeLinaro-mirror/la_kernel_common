@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "398d6745_740900c0",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1168,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2014-04-07T23:35:22Z",
+      "side": 1,
+      "message": "Sure. Changed to down_read.",
+      "parentUuid": "19734325_f12c13c4",
+      "range": {
+        "startLine": 1168,
+        "startChar": 18,
+        "endLine": 1168,
+        "endChar": 25
+      },
+      "revId": "b72b67e7a4b27bd67f3df678e874d17ef3d10487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59a69bd4_4eb0fb6c",
         "filename": "drivers/cpufreq/cpufreq_interactive.c",
         "patchSetId": 3

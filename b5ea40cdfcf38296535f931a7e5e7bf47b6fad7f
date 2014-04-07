@@ -22,6 +22,30 @@
       "revId": "b5ea40cdfcf38296535f931a7e5e7bf47b6fad7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9995785_019f94d0",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1179,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2014-04-07T23:35:22Z",
+      "side": 0,
+      "message": "Right. Seems like the patch is trying to reset the load accounting by setting cputime_speedadj to 0, hence it cancels and recheds the timer. Performing this only if max_freq is raised",
+      "parentUuid": "59a69bd4_4edfdbf0",
+      "range": {
+        "startLine": 1179,
+        "startChar": 3,
+        "endLine": 1179,
+        "endChar": 34
+      },
+      "revId": "b5ea40cdfcf38296535f931a7e5e7bf47b6fad7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
