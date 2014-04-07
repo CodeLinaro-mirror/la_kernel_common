@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59a69bd4_4edfdbf0",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1179,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2014-04-07T21:43:44Z",
+      "side": 0,
+      "message": "May undo the effect of commit 0edc2b4c9c30a695d9500d3204acdf5f3ddfa027 \"cpufreq: interactive: resched timer if max freq raised\"\n\nMay need to restart timer if policy max freq raised?",
+      "range": {
+        "startLine": 1179,
+        "startChar": 3,
+        "endLine": 1179,
+        "endChar": 34
+      },
+      "revId": "b5ea40cdfcf38296535f931a7e5e7bf47b6fad7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}

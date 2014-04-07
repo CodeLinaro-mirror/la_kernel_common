@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19734325_f12c13c4",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1168,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2014-04-07T21:43:44Z",
+      "side": 1,
+      "message": "Need trylock?  Can just wait for writer to complete?",
+      "range": {
+        "startLine": 1168,
+        "startChar": 18,
+        "endLine": 1168,
+        "endChar": 25
+      },
+      "revId": "b72b67e7a4b27bd67f3df678e874d17ef3d10487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59a69bd4_4eb0fb6c",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2014-04-07T21:43:44Z",
+      "side": 1,
+      "message": "Let\u0027s delete this comment, esp. if there\u0027s nothing else to be done.  If there\u0027s more to be done here, don\u0027t need this comment anyway, unless there\u0027s some specific ordering concern that should be documented.",
+      "range": {
+        "startLine": 1176,
+        "startChar": 3,
+        "endLine": 1176,
+        "endChar": 35
+      },
+      "revId": "b72b67e7a4b27bd67f3df678e874d17ef3d10487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
