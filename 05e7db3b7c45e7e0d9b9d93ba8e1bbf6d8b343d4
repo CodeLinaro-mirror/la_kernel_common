@@ -22,6 +22,30 @@
       "revId": "05e7db3b7c45e7e0d9b9d93ba8e1bbf6d8b343d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a66bc13_bf80786d",
+        "filename": "include/video/adf_fbdev.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2014-05-02T22:48:31Z",
+      "side": 1,
+      "message": "The kernel convention seems to be #ifdef for declarations and #if IS_ENABLED for loop conditions, where the latter actually needs to expand to 0/1.",
+      "parentUuid": "0a8044c3_1ff96fe9",
+      "range": {
+        "startLine": 42,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 6
+      },
+      "revId": "05e7db3b7c45e7e0d9b9d93ba8e1bbf6d8b343d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
