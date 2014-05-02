@@ -46,6 +46,30 @@
       "revId": "05e7db3b7c45e7e0d9b9d93ba8e1bbf6d8b343d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a66bc13_a2529f22",
+        "filename": "include/video/adf_fbdev.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2014-05-02T22:59:01Z",
+      "side": 1,
+      "message": "more and more code is getting converted to using #if IS_ENABLED, although a lot of cose is still using #ifdef CONFIG_\nsince the macros are (fairly) new",
+      "parentUuid": "4a66bc13_bf80786d",
+      "range": {
+        "startLine": 42,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 6
+      },
+      "revId": "05e7db3b7c45e7e0d9b9d93ba8e1bbf6d8b343d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
