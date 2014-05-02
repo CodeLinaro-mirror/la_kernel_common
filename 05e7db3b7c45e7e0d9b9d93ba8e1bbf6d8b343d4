@@ -70,6 +70,30 @@
       "revId": "05e7db3b7c45e7e0d9b9d93ba8e1bbf6d8b343d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea7cd0a5_3846c535",
+        "filename": "include/video/adf_fbdev.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2014-05-02T23:04:28Z",
+      "side": 1,
+      "message": "OK, I just found some discussion on LKML about how it\u0027s preferred for new code.  Will fix.",
+      "parentUuid": "4a66bc13_a2529f22",
+      "range": {
+        "startLine": 42,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 6
+      },
+      "revId": "05e7db3b7c45e7e0d9b9d93ba8e1bbf6d8b343d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
