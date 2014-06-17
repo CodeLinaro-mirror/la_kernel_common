@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4046504_c58fd0d5",
+        "filename": "include/linux/power_supply.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2014-06-17T02:35:41Z",
+      "side": 1,
+      "message": "s64?",
+      "range": {
+        "startLine": 170,
+        "startChar": 1,
+        "endLine": 170,
+        "endChar": 8
+      },
+      "revId": "8ee650bdfc5bd74be0bb839d53169e4365a919dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
