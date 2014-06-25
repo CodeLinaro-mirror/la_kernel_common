@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4b1310f_fb166f1e",
+        "filename": "drivers/usb/gadget/f_accessory.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2014-06-25T02:33:42Z",
+      "side": 1,
+      "message": "Is there a reason why we cant merge this to the previous if... else... block  ?",
+      "range": {
+        "startLine": 675,
+        "startChar": 2,
+        "endLine": 682,
+        "endChar": 53
+      },
+      "revId": "815522ef8315d9e4c67ea3c0a28c7947be802d66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
