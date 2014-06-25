@@ -22,6 +22,30 @@
       "revId": "815522ef8315d9e4c67ea3c0a28c7947be802d66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a493f168_8e19fb93",
+        "filename": "drivers/usb/gadget/f_accessory.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1047636
+      },
+      "writtenOn": "2014-06-25T03:10:08Z",
+      "side": 1,
+      "message": "Can be done also. I thought of keeping it separate. Do you think I should merge it with the previous if .. else block",
+      "parentUuid": "a4b1310f_fb166f1e",
+      "range": {
+        "startLine": 675,
+        "startChar": 2,
+        "endLine": 682,
+        "endChar": 53
+      },
+      "revId": "815522ef8315d9e4c67ea3c0a28c7947be802d66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
