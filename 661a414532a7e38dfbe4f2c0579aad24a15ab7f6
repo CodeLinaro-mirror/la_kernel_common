@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a46cd148_1d4f037e",
+        "filename": "include/net/cfg80211.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 3699,
+      "author": {
+        "id": 1021673
+      },
+      "writtenOn": "2014-06-26T17:26:28Z",
+      "side": 1,
+      "message": "NL80211_CMD_VENDOR",
+      "revId": "661a414532a7e38dfbe4f2c0579aad24a15ab7f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
