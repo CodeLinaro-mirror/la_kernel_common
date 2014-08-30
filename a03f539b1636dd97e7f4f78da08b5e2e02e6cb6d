@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13a1690c_172ade68",
+        "filename": "net/ipv6/route.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2014-08-30T01:36:37Z",
+      "side": 1,
+      "message": "The change to rt6_get_route_info() signature causes this patch from the 3.10 stable series to miscompile:\n\n    ipv6: use rt6_get_dflt_router to get default router in rt6_route_rcv\n    \n    [ Upstream commit f104a567e673f382b09542a8dc3500aa689957b4 ]\n\n\nCan the stable patch be ported to the android changes in android-3.10?",
+      "range": {
+        "startLine": 93,
+        "startChar": 22,
+        "endLine": 93,
+        "endChar": 37
+      },
+      "revId": "a03f539b1636dd97e7f4f78da08b5e2e02e6cb6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
