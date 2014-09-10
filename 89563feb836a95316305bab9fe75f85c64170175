@@ -16,6 +16,24 @@
       "revId": "89563feb836a95316305bab9fe75f85c64170175",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d013479f_8dd92907",
+        "filename": "arch/arm64/kernel/process.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2014-09-10T16:20:06Z",
+      "side": 1,
+      "message": "Agreed, I\u0027ll do a follow-up patch on both arm and arm64 to change this.",
+      "parentUuid": "d013479f_e41efac3",
+      "revId": "89563feb836a95316305bab9fe75f85c64170175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
