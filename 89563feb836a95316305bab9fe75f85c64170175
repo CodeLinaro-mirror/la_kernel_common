@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d013479f_e41efac3",
+        "filename": "arch/arm64/kernel/process.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2014-09-10T02:09:14Z",
+      "side": 1,
+      "message": "This printf is confusing (from the original patch). When looking at a crash log, it is easy to assume the value printed here is the register value, but it off by nbytes. Also passing in the register address and instead printing that would be better.",
+      "revId": "89563feb836a95316305bab9fe75f85c64170175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
