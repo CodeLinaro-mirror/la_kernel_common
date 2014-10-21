@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5103e40_6e9697da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2014-10-21T22:06:28Z",
+      "side": 1,
+      "message": "The change is to compile on kernels where cpufreq stats are compiled as a module (CONFIG_CPU_FREQ_STAT\u003dm), because total_cpus is not exported for module use.",
+      "range": {
+        "startLine": 10,
+        "startChar": 31,
+        "endLine": 10,
+        "endChar": 56
+      },
+      "revId": "b7ff4f746045db7dc485cdafc73f2e0822be5569",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "151b126c_766aeedf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2014-10-21T22:06:28Z",
+      "side": 1,
+      "message": "Suggest add:\n\nReported-By: Emilio López \u003celopez93@gmail.com\u003e\n\nand add as reviewer.",
+      "revId": "b7ff4f746045db7dc485cdafc73f2e0822be5569",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
