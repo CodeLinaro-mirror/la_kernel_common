@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b58de6f4_756a0ae0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2014-10-23T22:32:26Z",
+      "side": 1,
+      "message": "Adding a long description, that explains why, would be useful.",
+      "revId": "b64114ece18ff0af537d3cb17cdf2f5521cf6506",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
