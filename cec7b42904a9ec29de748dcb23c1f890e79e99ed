@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f583dec2_53191be4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2014-10-23T20:33:39Z",
+      "side": 1,
+      "message": "Staging: android: binder:",
+      "revId": "cec7b42904a9ec29de748dcb23c1f890e79e99ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b58de6f4_2fc8b52e",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2014-10-23T20:33:39Z",
+      "side": 1,
+      "message": "The last two are only used during init and teardown so they probably don\u0027t need to be converted.",
+      "revId": "cec7b42904a9ec29de748dcb23c1f890e79e99ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
