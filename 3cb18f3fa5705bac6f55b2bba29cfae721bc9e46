@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff581d71_dd0e3fa1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2014-11-26T00:01:29Z",
+      "side": 1,
+      "message": "remove trailing space",
+      "revId": "3cb18f3fa5705bac6f55b2bba29cfae721bc9e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
