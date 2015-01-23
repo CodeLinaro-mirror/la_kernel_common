@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bc7afd5_258b6eb2",
+        "filename": "drivers/usb/gadget/f_accessory.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1203,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2015-01-23T23:57:48Z",
+      "side": 1,
+      "message": "Would it be better to check this inside kill_all_hid_devices ??",
+      "range": {
+        "startLine": 1203,
+        "startChar": 1,
+        "endLine": 1203,
+        "endChar": 14
+      },
+      "revId": "e229feaf0de3f4f7a151fcaa9a994e34e15ff73b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
