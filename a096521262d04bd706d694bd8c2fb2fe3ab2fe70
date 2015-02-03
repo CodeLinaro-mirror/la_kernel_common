@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c0fe024_bafcedc6",
+        "filename": "security/selinux/hooks.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 3128,
+      "author": {
+        "id": 1026058
+      },
+      "writtenOn": "2015-02-03T22:16:36Z",
+      "side": 1,
+      "message": "If this code path is taken, it will skip the additional cmd checks.  This should be something along the lines of \n\nif (sid !\u003d fsec-\u003esid) {\n    rc \u003d file_has_perm();\n    if rc\n         return rc;",
+      "range": {
+        "startLine": 3128,
+        "startChar": 2,
+        "endLine": 3128,
+        "endChar": 42
+      },
+      "revId": "a096521262d04bd706d694bd8c2fb2fe3ab2fe70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
