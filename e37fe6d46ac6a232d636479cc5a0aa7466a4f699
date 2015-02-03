@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "17515fa8_3003b0b2",
+        "filename": "security/selinux/avc.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2015-02-03T05:20:52Z",
+      "side": 1,
+      "message": "goto out_unlock ? Since the lock is acquired on line 592.",
+      "range": {
+        "startLine": 619,
+        "startChar": 8,
+        "endLine": 619,
+        "endChar": 11
+      },
+      "revId": "e37fe6d46ac6a232d636479cc5a0aa7466a4f699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f74dab10_6fcb9924",
+        "filename": "security/selinux/avc.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2015-02-03T05:20:52Z",
+      "side": 1,
+      "message": "move block to line 777, after grabbing lock, and after BUG_ON line 774.",
+      "revId": "e37fe6d46ac6a232d636479cc5a0aa7466a4f699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f74dab10_0fe3f5aa",
+        "filename": "security/selinux/hooks.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1598,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2015-02-03T05:20:52Z",
+      "side": 1,
+      "message": "avoid unnecessary whitespace changes",
+      "revId": "e37fe6d46ac6a232d636479cc5a0aa7466a4f699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "378ca3b9_40411078",
+        "filename": "security/selinux/hooks.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 3128,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2015-02-03T05:20:52Z",
+      "side": 1,
+      "message": "should be size_t",
+      "revId": "e37fe6d46ac6a232d636479cc5a0aa7466a4f699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17515fa8_50175ce5",
+        "filename": "security/selinux/hooks.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 3138,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2015-02-03T05:20:52Z",
+      "side": 1,
+      "message": "instead of having avd.avo be a pointer, can you put the entire struct into avd? At first glance, this feels odd...",
+      "revId": "e37fe6d46ac6a232d636479cc5a0aa7466a4f699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f74dab10_6ff2b976",
+        "filename": "security/selinux/ss/avtab.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2015-02-03T05:20:52Z",
+      "side": 1,
+      "message": "ya, it feels like if you declare this to be:\n\n  struct avtab_operations ops;\n\ninstead of using a pointer, you don\u0027t have to worry about all the funky null assignments.\n\nbut maybe I don\u0027t understand this code enough yet...",
+      "revId": "e37fe6d46ac6a232d636479cc5a0aa7466a4f699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
