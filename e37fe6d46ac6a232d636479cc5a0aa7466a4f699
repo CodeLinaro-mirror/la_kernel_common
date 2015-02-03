@@ -107,6 +107,24 @@
       "revId": "e37fe6d46ac6a232d636479cc5a0aa7466a4f699",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5778376f_d96c37f3",
+        "filename": "security/selinux/ss/avtab.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1026058
+      },
+      "writtenOn": "2015-02-03T16:41:08Z",
+      "side": 1,
+      "message": "Jeff may correct me, but I believe this is being done to conserve space in the cache.  There is an avtab_datum stored for every access vector (ssid, tsid, class), which currently just occupies one u32, but will effectively double/triple in size with just the pointer, and will grow larger if mapping an avtab_operations struct, which should presumably be needed in only a relatively small number of cache entries (the ones corresponding to rules with augmented ioctls).\n\nI\u0027ll be able to review more when in the office, though...",
+      "parentUuid": "f74dab10_6ff2b976",
+      "revId": "e37fe6d46ac6a232d636479cc5a0aa7466a4f699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
