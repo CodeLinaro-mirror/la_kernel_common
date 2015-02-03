@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "97854f8c_342368a8",
+        "filename": "security/selinux/avc.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2015-02-03T17:52:20Z",
+      "side": 1,
+      "message": "These are all stack variables. Modifying them outside the lock is intentional.",
+      "parentUuid": "f74dab10_6fcb9924",
+      "revId": "e37fe6d46ac6a232d636479cc5a0aa7466a4f699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f74dab10_0fe3f5aa",
         "filename": "security/selinux/hooks.c",
         "patchSetId": 2
@@ -93,6 +111,24 @@
     },
     {
       "key": {
+        "uuid": "97854f8c_946ef462",
+        "filename": "security/selinux/hooks.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 3138,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2015-02-03T17:52:20Z",
+      "side": 1,
+      "message": "This is done because avo is fairly large (currently 33 bytes) and uncommon, while avd is used for every type enforcement decision. Looking at the hash_stats in sysfs, there are currently  511 entries. So saving at most (511*29 saved bytes) 15k hardly seems worth all the extra steps I am having to take. We also need to consider desktops though, perhaps 150k would be worth it?",
+      "parentUuid": "17515fa8_50175ce5",
+      "revId": "e37fe6d46ac6a232d636479cc5a0aa7466a4f699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f74dab10_6ff2b976",
         "filename": "security/selinux/ss/avtab.h",
         "patchSetId": 2
@@ -122,6 +158,24 @@
       "side": 1,
       "message": "Jeff may correct me, but I believe this is being done to conserve space in the cache.  There is an avtab_datum stored for every access vector (ssid, tsid, class), which currently just occupies one u32, but will effectively double/triple in size with just the pointer, and will grow larger if mapping an avtab_operations struct, which should presumably be needed in only a relatively small number of cache entries (the ones corresponding to rules with augmented ioctls).\n\nI\u0027ll be able to review more when in the office, though...",
       "parentUuid": "f74dab10_6ff2b976",
+      "revId": "e37fe6d46ac6a232d636479cc5a0aa7466a4f699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f74dab10_4adfab86",
+        "filename": "security/selinux/ss/avtab.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2015-02-03T17:52:20Z",
+      "side": 1,
+      "message": "exactly. The avtab structure is currently storing 4-5k worth of avtab_nodes. 29 bytes of saved storage per avtab_node ~150k in memory. It would be interesting to know the savings on a desktop. We have been throwing around the 10x number for policy size.",
+      "parentUuid": "5778376f_d96c37f3",
       "revId": "e37fe6d46ac6a232d636479cc5a0aa7466a4f699",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
