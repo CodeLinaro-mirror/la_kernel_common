@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "dc10cc40_2eaf7f2d",
+        "filename": "security/selinux/avc.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1026058
+      },
+      "writtenOn": "2015-02-04T02:01:34Z",
+      "side": 1,
+      "message": "Needs updating to reflect addition of AVC_USE_SUPPLIED_AVO",
+      "range": {
+        "startLine": 745,
+        "startChar": 12,
+        "endLine": 745,
+        "endChar": 27
+      },
+      "revId": "a096521262d04bd706d694bd8c2fb2fe3ab2fe70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5c293c84_6e0eaf30",
+        "filename": "security/selinux/avc.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1026058
+      },
+      "writtenOn": "2015-02-04T02:01:34Z",
+      "side": 1,
+      "message": "what purpose does this serve?  Would it be easier to move the AVC_USE_SUPPLIED_AVO check down to the memcpy below and only memcpy if AVC_USE_SUPPLIED_AVO is true?",
+      "range": {
+        "startLine": 771,
+        "startChar": 2,
+        "endLine": 771,
+        "endChar": 21
+      },
+      "revId": "a096521262d04bd706d694bd8c2fb2fe3ab2fe70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5c24dca3_994b7f17",
+        "filename": "security/selinux/hooks.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2794,
+      "author": {
+        "id": 1026058
+      },
+      "writtenOn": "2015-02-04T02:01:34Z",
+      "side": 1,
+      "message": "just whitespace change?",
+      "range": {
+        "startLine": 2793,
+        "startChar": 1,
+        "endLine": 2794,
+        "endChar": 21
+      },
+      "revId": "a096521262d04bd706d694bd8c2fb2fe3ab2fe70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c0fe024_bafcedc6",
         "filename": "security/selinux/hooks.c",
         "patchSetId": 4
@@ -18,6 +87,29 @@
         "startChar": 2,
         "endLine": 3128,
         "endChar": 42
+      },
+      "revId": "a096521262d04bd706d694bd8c2fb2fe3ab2fe70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc10cc40_c3fc5cc8",
+        "filename": "security/selinux/include/security.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1026058
+      },
+      "writtenOn": "2015-02-04T02:01:34Z",
+      "side": 1,
+      "message": "16?",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 31
       },
       "revId": "a096521262d04bd706d694bd8c2fb2fe3ab2fe70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
