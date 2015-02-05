@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fca4b088_03184e70",
+        "filename": "security/selinux/hooks.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2794,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2015-02-05T00:31:19Z",
+      "side": 1,
+      "message": "let\u0027s avoid whitespace only changes please.",
+      "revId": "fa4005336ab085b0d927ccdbb858d17346017dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3caba858_650a6603",
+        "filename": "security/selinux/selinuxfs.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2015-02-05T00:31:19Z",
+      "side": 1,
+      "message": "necessary?",
+      "revId": "fa4005336ab085b0d927ccdbb858d17346017dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3caba858_4505eaf1",
+        "filename": "security/selinux/ss/services.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2015-02-05T00:31:19Z",
+      "side": 1,
+      "message": "It feels odd for an init function to be taking a partially populated av_decision object...",
+      "revId": "fa4005336ab085b0d927ccdbb858d17346017dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
