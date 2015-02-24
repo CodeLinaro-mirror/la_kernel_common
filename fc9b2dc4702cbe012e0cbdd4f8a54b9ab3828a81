@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65810917_275afac6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2015-02-24T19:08:39Z",
+      "side": 1,
+      "message": "Do you have a stack trace from a crash to put in the commit message?",
+      "revId": "fc9b2dc4702cbe012e0cbdd4f8a54b9ab3828a81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65810917_a74c2a09",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2015-02-24T19:08:39Z",
+      "side": 1,
+      "message": "I believe rbtrees may get reordered during add or delete, so you can\u0027t assume that an entry will stay at the same offset across multiple calls to ion_client_seq_start.",
+      "revId": "fc9b2dc4702cbe012e0cbdd4f8a54b9ab3828a81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4576c513_069dfad6",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2015-02-24T19:08:39Z",
+      "side": 1,
+      "message": "Why move the lock after the kfree?  If you\u0027re about to free the memory nobody better have a reference to it, so the lock is unnecessary.",
+      "revId": "fc9b2dc4702cbe012e0cbdd4f8a54b9ab3828a81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c582b518_4a1a93e6",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1637,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2015-02-24T19:08:39Z",
+      "side": 1,
+      "message": "This changes the output from a file per client to a single file, which is a pretty drastic change to make, and doesn\u0027t seem necessary.",
+      "revId": "fc9b2dc4702cbe012e0cbdd4f8a54b9ab3828a81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
