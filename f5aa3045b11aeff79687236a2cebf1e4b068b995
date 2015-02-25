@@ -16,6 +16,24 @@
       "revId": "f5aa3045b11aeff79687236a2cebf1e4b068b995",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65bca932_2ff6a992",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1067053
+      },
+      "writtenOn": "2015-02-25T08:42:32Z",
+      "side": 0,
+      "message": "Hi Colin, \n\n  Even if I add \"struct kref refcount;\" to ion_client, there is no way to synchronize between seq_read and debugfs_remove_dir(). (ion_client_destroy()). ion_client data pointer is still with inode-\u003ei_private data, which allows seq_read to proceed further and access the memory which is already freed by the ion_client_destroy().\n\nAs per our trails, ion_client data struct is not consistent or valid after ion_client_destroy.",
+      "parentUuid": "65810917_8781e699",
+      "revId": "f5aa3045b11aeff79687236a2cebf1e4b068b995",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
