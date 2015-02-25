@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "0233e3f5_4c9adf56",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2015-02-25T20:56:18Z",
+      "side": 1,
+      "message": "If the seq_buf overflows, seq_file will allocate a bigger buffer and call show again.\n\nYour code will print clients multiple times or not at all if any new client is created between seq_start and seq_stop.",
+      "parentUuid": "65bca932_4f9fad40",
+      "revId": "fc9b2dc4702cbe012e0cbdd4f8a54b9ab3828a81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4576c513_069dfad6",
         "filename": "drivers/staging/android/ion/ion.c",
         "patchSetId": 1
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "I would like to maintain synchronization between ion_client_destory() and ion_client_debug_show().\n\nion_client data pointer is still with inode-\u003ei_private data, which allows seq_read to proceed further and access the memory which is already freed by the ion_client_destroy(). \n\ndebugfs_remove_recursively is not atomic and after freeing ion_client also, inode-\u003ei_private data still referencing to freed ion_client and which leads to system crash will reading/dereferencing the ion client members.",
       "parentUuid": "4576c513_069dfad6",
+      "revId": "fc9b2dc4702cbe012e0cbdd4f8a54b9ab3828a81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "222627b6_2d88ad04",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2015-02-25T20:56:18Z",
+      "side": 1,
+      "message": "Moving the lock after kfree isn\u0027t going to help, and is just going to mask other problems.  The client has already been destroyed by the time we call kfree, and ion_client_debug_show must not be referencing it.",
+      "parentUuid": "65bca932_afac5989",
       "revId": "fc9b2dc4702cbe012e0cbdd4f8a54b9ab3828a81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
