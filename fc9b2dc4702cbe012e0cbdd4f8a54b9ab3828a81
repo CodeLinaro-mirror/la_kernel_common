@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "22ee27c7_2d9f4d78",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1067053
+      },
+      "writtenOn": "2015-02-26T04:44:05Z",
+      "side": 1,
+      "message": "Yes. With my code some of the clients may be printed twice. \n\nInitially I tried the same option such as printing all the clients in ion_client_seq_show(). I will upload upload patch set. \n\n-Thanks, Prasad",
+      "parentUuid": "0233e3f5_4c9adf56",
+      "revId": "fc9b2dc4702cbe012e0cbdd4f8a54b9ab3828a81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4576c513_069dfad6",
         "filename": "drivers/staging/android/ion/ion.c",
         "patchSetId": 1
@@ -137,6 +155,24 @@
       "side": 1,
       "message": "Moving the lock after kfree isn\u0027t going to help, and is just going to mask other problems.  The client has already been destroyed by the time we call kfree, and ion_client_debug_show must not be referencing it.",
       "parentUuid": "65bca932_afac5989",
+      "revId": "fc9b2dc4702cbe012e0cbdd4f8a54b9ab3828a81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8252734f_38cae9d8",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1067053
+      },
+      "writtenOn": "2015-02-26T04:44:05Z",
+      "side": 1,
+      "message": "Okay. I will address this new new patch set.",
+      "parentUuid": "222627b6_2d88ad04",
       "revId": "fc9b2dc4702cbe012e0cbdd4f8a54b9ab3828a81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false

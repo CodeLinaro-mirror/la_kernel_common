@@ -52,6 +52,24 @@
       "revId": "f5aa3045b11aeff79687236a2cebf1e4b068b995",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22ee27c7_ada97da5",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1067053
+      },
+      "writtenOn": "2015-02-26T04:44:05Z",
+      "side": 0,
+      "message": "Hi Colin, \n\n  Yes. I have already tried this option. if I keep client and dev in a new struct and that struct is passed in inode-\u003ei_private also leads to system crash. Because what ever the memory allocated for new struct need to be freed in ion_client_destroy(). \n\n\"if I form a structure with ion_device and client pair. But we need to allocate memory for this struct and we need free that memory as a part ion_client_destory(). This struct memory is need to be freed in the ion_client_destroy. So same problem will come with SLUB_DEBUG_ON flag(6b string).\"",
+      "parentUuid": "0233e3f5_aca26385",
+      "revId": "f5aa3045b11aeff79687236a2cebf1e4b068b995",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
