@@ -70,6 +70,24 @@
       "revId": "f5aa3045b11aeff79687236a2cebf1e4b068b995",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e2f7af97_eb6b7100",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2015-02-26T05:33:07Z",
+      "side": 0,
+      "message": "Hm, you\u0027re right, allocating a new structure doesn\u0027t help.\n\nI believe the open function should be synchronized with debugfs_remove by debugfs.  If that\u0027s the case, then client is guaranteed to still exist until open exits.  You should be able to add a kref there to keep client alive until release is called.  You may also need to move debugfs_remove_recursive to the beginning of ion_client_destroy, and while you\u0027re at it destroy needs a call to mutex_destroy(\u0026client-\u003elock).",
+      "parentUuid": "22ee27c7_ada97da5",
+      "revId": "f5aa3045b11aeff79687236a2cebf1e4b068b995",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
