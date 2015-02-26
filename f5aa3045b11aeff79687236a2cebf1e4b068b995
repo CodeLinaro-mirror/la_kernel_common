@@ -88,6 +88,24 @@
       "revId": "f5aa3045b11aeff79687236a2cebf1e4b068b995",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22ee27c7_b0af16f8",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1067053
+      },
+      "writtenOn": "2015-02-26T17:14:40Z",
+      "side": 0,
+      "message": "Hi Colin, \n 1) kref to ion_client is not working because ion_client data struct itself get freed and kref is part of ion_client.\n\n 2) Even if I move debugfs_remove_recursive to beginning of ion_client_destroy() device would crash, because on one core ion_debug_client_show() function might have just started before other core calls debugfs_remove_recursive().  \n\nFor that reason I am thinking that we should not hold ion_client in  inode-\u003ei_private and when ever control reaches ion_debug_client_show() take device lock and walk through RB tree nodes. when we are not holding ion_client there is no need to have different file for every ion_client. \n\n 3) We can call mutex_destory(\u0026client-\u003elock) to avoid crash at mutex_lock API in the ion_debug_client_show(), but device would crash when we are accessing another variables associated with ion_client data struct. Correct me If I am wrong ? \n\n-Thanks, Prasad",
+      "parentUuid": "e2f7af97_eb6b7100",
+      "revId": "f5aa3045b11aeff79687236a2cebf1e4b068b995",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
