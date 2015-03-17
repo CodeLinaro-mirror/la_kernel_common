@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06a4dcb8_93aafe4d",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2015-03-17T18:08:24Z",
+      "side": 1,
+      "message": "kref_init initializes the refcount to 1, this probably sets it to 2, and then the client is never released.",
+      "revId": "15740c6bbc6913390b23c58ba4ae13dd9db9e289",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
