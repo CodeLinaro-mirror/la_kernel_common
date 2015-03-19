@@ -16,6 +16,24 @@
       "revId": "15740c6bbc6913390b23c58ba4ae13dd9db9e289",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8670cc19_380851ad",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1067053
+      },
+      "writtenOn": "2015-03-19T10:27:31Z",
+      "side": 1,
+      "message": "Yes. I agree with you and I should removed ion_client_get() call.\n\nIf I remove ion_client_get() call from ion_client_create, so that ion_client_release() getting called. \n\nBut same original race condition is getting reproduced again with kref too. \n\nHere is the call stack showing panic. \n\u003c6\u003e[   87.065872] [\u003cc039b7f4\u003e] (__list_add+0x34/0x98) from [\u003cc0962074\u003e] (__mutex_lock_slowpath+0x134/0x33c)\n\u003c6\u003e[   87.065880] [\u003cc0962074\u003e] (__mutex_lock_slowpath+0x134/0x33c) from [\u003cc096229c\u003e] (mutex_lock+0x20/0x3c)\n\u003c6\u003e[   87.065888] [\u003cc096229c\u003e] (mutex_lock+0x20/0x3c) from [\u003cc043ec94\u003e] (ion_debug_client_show+0x74/0x10c)\n\u003c6\u003e[   87.065897] [\u003cc043ec94\u003e] (ion_debug_client_show+0x74/0x10c) from [\u003cc0275f2c\u003e] (seq_read+0x1bc/0x410)\n\u003c6\u003e[   87.065905] [\u003cc0275f2c\u003e] (seq_read+0x1bc/0x410) from [\u003cc025a574\u003e] (vfs_read+0xa4/0x134)\n\u003c6\u003e[   87.065911] [\u003cc025a574\u003e] (vfs_read+0xa4/0x134) from [\u003cc025a8f8\u003e] (sys_read+0x34/0x68)\n\u003c6\u003e[   87.065919] [\u003cc025a8f8\u003e] (sys_read+0x34/0x68) from [\u003cc0105f20\u003e] (ret_fast_syscall+0x0/0x30)\n\u003c0\u003e[   87.065927] Code: e3a0101d e59f2060 e1a03004 ebf7ee85 (e5943000)",
+      "parentUuid": "06a4dcb8_93aafe4d",
+      "revId": "15740c6bbc6913390b23c58ba4ae13dd9db9e289",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
