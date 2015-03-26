@@ -16,6 +16,24 @@
       "revId": "7af7a7d021416dfdbb30e6b31957297d484ebb97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "834c3e8c_7ef3f171",
+        "filename": "kernel/power/process.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1041663
+      },
+      "writtenOn": "2015-03-26T00:17:16Z",
+      "side": 1,
+      "message": "Error because tasks failing to suspend is taken care in the suspend.c Line 151.\n\nThe error propagates till there.",
+      "parentUuid": "2362b2ee_864c12a2",
+      "revId": "7af7a7d021416dfdbb30e6b31957297d484ebb97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
