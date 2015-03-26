@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2362b2ee_0052453a",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2015-03-26T05:09:34Z",
+      "side": 1,
+      "message": "ion is designed to support multiple nodes, if you need access to the ion device it needs to be passed in through the file private data",
+      "revId": "c5135dc025dae1cb61a7f72447dfa5970354e4c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2362b2ee_e0acd19f",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2015-03-26T05:09:34Z",
+      "side": 1,
+      "message": "wouldn\u0027t a read lock be enough?",
+      "revId": "c5135dc025dae1cb61a7f72447dfa5970354e4c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2362b2ee_a0b6d9ed",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2015-03-26T05:09:34Z",
+      "side": 1,
+      "message": "use goto out here, so you always drop the lock correctly",
+      "revId": "c5135dc025dae1cb61a7f72447dfa5970354e4c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
