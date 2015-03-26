@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2362b2ee_864c12a2",
+        "filename": "kernel/power/process.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1051712
+      },
+      "writtenOn": "2015-03-26T00:01:43Z",
+      "side": 1,
+      "message": "you might want to log abort for todo as well, either wakeup or todo will return EBUSY and abort suspend.",
+      "revId": "7af7a7d021416dfdbb30e6b31957297d484ebb97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
