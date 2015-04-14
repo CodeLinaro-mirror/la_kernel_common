@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0242aae_a69a58e9",
+        "filename": "drivers/misc/uid_cputime.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1051712
+      },
+      "writtenOn": "2015-04-14T22:57:27Z",
+      "side": 1,
+      "message": "please use from_kuid_munged.",
+      "revId": "3cad941453d74d68f3812d957b810449eb0587a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
