@@ -34,6 +34,24 @@
       "revId": "4ca0c80ee8aff286b8f445b3564cb2a6ff4d0b69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0d42a38_adcc1d6b",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2015-04-24T23:22:52Z",
+      "side": 1,
+      "message": "Some other options:\npol_hispeed_validate_time / loc_hispeed_validate_time\npol_hispeed_val_time / loc_hispeed_val_time\n\np_ and l_ don\u0027t have quite enough to know what they are if you see them in the code, but \"pol_\" or \"clu_\" might.\n\nAnyway, I\u0027ll leave it to you to come up with something :)",
+      "parentUuid": "5083ee1c_79ef3383",
+      "revId": "4ca0c80ee8aff286b8f445b3564cb2a6ff4d0b69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
