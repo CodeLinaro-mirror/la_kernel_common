@@ -16,6 +16,24 @@
       "revId": "e250074a281095a17ad877296eaef876eefdfcf9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5083ee1c_b9da8b10",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1070083
+      },
+      "writtenOn": "2015-04-24T22:01:09Z",
+      "side": 1,
+      "message": "Good idea. I should probably use policy_fvtime instead of cluster. I will wait for other comments and fix in next patch set.",
+      "parentUuid": "309d9a70_b7c35589",
+      "revId": "e250074a281095a17ad877296eaef876eefdfcf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
