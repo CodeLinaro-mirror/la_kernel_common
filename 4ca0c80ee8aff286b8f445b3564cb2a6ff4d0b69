@@ -16,6 +16,24 @@
       "revId": "4ca0c80ee8aff286b8f445b3564cb2a6ff4d0b69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5083ee1c_79ef3383",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1003665
+      },
+      "writtenOn": "2015-04-24T23:17:06Z",
+      "side": 1,
+      "message": "Agree with your comment about adding policy_ or cluster_ prefix, but really, hispeed_validate_time is a better name than hvtime since it\u0027s more meaningful.\n\nHowever policy_hispeed_validate_time makes it unwieldy. I guess p_hispeed_validate_time and l_... works?\n\nI\u0027m just nit picking I guess.",
+      "parentUuid": "d0d43e30_eb6b201c",
+      "revId": "4ca0c80ee8aff286b8f445b3564cb2a6ff4d0b69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
