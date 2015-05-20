@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ed4089d5_a8f99f95",
+        "filename": "drivers/net/wireless/bcmdhd/dhd_msgbuf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1879,
+      "author": {
+        "id": 1072843
+      },
+      "writtenOn": "2015-05-20T19:42:34Z",
+      "side": 1,
+      "message": "I don\u0027t think so. that \"#else\" belongs to DHD_DONOT_FORWARD_BCMEVENT_AS_NETWORK_PKT. and not for DHD_USE_STATIC_IOCTLBUF.",
+      "parentUuid": "adfdb1c1_fa652dcd",
+      "range": {
+        "startLine": 1879,
+        "startChar": 2,
+        "endLine": 1879,
+        "endChar": 3
+      },
+      "revId": "0ec5e19315f54ede614d7cdc0ca5d889a8356251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d8cfd85_5a1ea28c",
         "filename": "drivers/net/wireless/bcmdhd/dhd_msgbuf.c",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2015-05-19T21:45:23Z",
       "side": 1,
       "message": "Why this is related to BCM4358 (and not 4356 for example)?",
+      "range": {
+        "startLine": 1886,
+        "startChar": 12,
+        "endLine": 1886,
+        "endChar": 26
+      },
+      "revId": "0ec5e19315f54ede614d7cdc0ca5d889a8356251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd4745eb_24e616b4",
+        "filename": "drivers/net/wireless/bcmdhd/dhd_msgbuf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1886,
+      "author": {
+        "id": 1072843
+      },
+      "writtenOn": "2015-05-20T19:42:34Z",
+      "side": 1,
+      "message": "This is temporal patch for 4358 case. We haven\u0027t used kernel preallocated memory(STATIC buffer) yet. \n4356 case we used static buffer. So this code not needed. \n\nWe\u0027re now adding platform function to handle this memory allocation. When it\u0027s done we will revise code.",
+      "parentUuid": "0d8cfd85_5a1ea28c",
       "range": {
         "startLine": 1886,
         "startChar": 12,
