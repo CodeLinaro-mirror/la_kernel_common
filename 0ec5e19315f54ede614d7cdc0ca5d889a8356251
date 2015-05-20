@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6d7ad934_0061940f",
+        "filename": "drivers/net/wireless/bcmdhd/dhd_msgbuf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1879,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2015-05-20T19:58:29Z",
+      "side": 1,
+      "message": "You are right! Then you need to add this PKTGET() under #else",
+      "parentUuid": "ed4089d5_a8f99f95",
+      "range": {
+        "startLine": 1879,
+        "startChar": 2,
+        "endLine": 1879,
+        "endChar": 3
+      },
+      "revId": "0ec5e19315f54ede614d7cdc0ca5d889a8356251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d8cfd85_5a1ea28c",
         "filename": "drivers/net/wireless/bcmdhd/dhd_msgbuf.c",
         "patchSetId": 1
