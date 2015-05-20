@@ -141,6 +141,30 @@
       "revId": "0ec5e19315f54ede614d7cdc0ca5d889a8356251",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d6e217b_9dadf3eb",
+        "filename": "drivers/net/wireless/bcmdhd/dhd_msgbuf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1886,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2015-05-20T20:56:39Z",
+      "side": 1,
+      "message": "Still why just not to remove CONFIG_BCM4358?",
+      "parentUuid": "cd4745eb_24e616b4",
+      "range": {
+        "startLine": 1886,
+        "startChar": 12,
+        "endLine": 1886,
+        "endChar": 26
+      },
+      "revId": "0ec5e19315f54ede614d7cdc0ca5d889a8356251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
