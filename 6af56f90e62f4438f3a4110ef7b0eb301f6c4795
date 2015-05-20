@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed4089d5_c8cc230b",
+        "filename": "drivers/net/wireless/bcmdhd/dhd_msgbuf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1886,
+      "author": {
+        "id": 1072843
+      },
+      "writtenOn": "2015-05-20T23:33:11Z",
+      "side": 1,
+      "message": "Hi, Dmitry. \nCONFIG_BCM4358 is still exist. We agreed that removing it. \nCan I modify it here as well?",
+      "range": {
+        "startLine": 1886,
+        "startChar": 4,
+        "endLine": 1886,
+        "endChar": 28
+      },
+      "revId": "6af56f90e62f4438f3a4110ef7b0eb301f6c4795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
