@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6d42d931_9e0b5c25",
+        "filename": "security/selinux/include/avc.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1010111
+      },
+      "writtenOn": "2015-06-01T15:32:35Z",
+      "side": 1,
+      "message": "Not sure as we haven\u0027t truly thought this through for netlink. We presently have hardcoded tables in security/selinux/nlmsgtab.c that map u16 nlmsg_type values for some netlink protocols to a small number of discrete nlmsg_* permissions, so that would be a candidate for conversion to using these extended permissions.  But nlmsg_type is a single u16 field of the nlmsghdr with no internal encoding and the defined values are typically just enumerations and usually seem to fit in a u8 (e.g. include/uapi/linux/rtnetlink.h RTM_MAX), so token/subsystem/driver might end up unused there in practice until/unless someone has more than that many nlmsg_type values for a given netlink protocol.  Unless we chose to encode the netlink protocol itself as the driver/subsystem and then\nthe nlmsg_type as the perm, and stop trying to map each netlink protocol to its own class (although I did just upstream a patch to update the SELinux netlink classes to match the current set of netlink protocols).\nFurther, we haven\u0027t really considered how to properly control NETLINK_GENERIC or NETLINK_CONNECTOR where it is simply a generic transport for communication and it is not at all clear how to map the nlmsg_type or even protocol-specific information like the genlmsghdr u8 cmd value.",
+      "parentUuid": "b91fb853_1274d445",
+      "revId": "bd462f12ba5748cf5dd91f28e5795764363121a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d42d931_439be1ee",
         "filename": "security/selinux/include/security.h",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "It made for MUCH cleaner code.",
       "parentUuid": "6d42d931_439be1ee",
+      "revId": "bd462f12ba5748cf5dd91f28e5795764363121a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d9fb8c32_9bb7e428",
+        "filename": "security/selinux/include/security.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1010111
+      },
+      "writtenOn": "2015-06-01T15:32:35Z",
+      "side": 1,
+      "message": "Can you point to an example (before and after)?\nI don\u0027t quite see it, and the field is never used outside of avc.c.  Its presence in an out argument of the security server suggests that the security server is returning a list to the caller, which is not true and would be problematic anyway.",
+      "parentUuid": "b91fb853_52c00cbe",
       "revId": "bd462f12ba5748cf5dd91f28e5795764363121a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
