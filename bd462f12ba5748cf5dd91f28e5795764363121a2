@@ -53,6 +53,23 @@
     },
     {
       "key": {
+        "uuid": "6d42d931_a34ac5af",
+        "filename": "security/selinux/ss/avtab.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1010111
+      },
+      "writtenOn": "2015-06-01T13:48:49Z",
+      "side": 1,
+      "message": "Let\u0027s change this to match the logic in libsepol i.e. treat it as an error if (vers \u003c POLICYDB_VERSION_XPERMS_IOCTL) \u0026\u0026 (key.specified \u0026 AVTAB_XPERMS).",
+      "revId": "bd462f12ba5748cf5dd91f28e5795764363121a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d42d931_03a1d91e",
         "filename": "security/selinux/ss/avtab.h",
         "patchSetId": 1
