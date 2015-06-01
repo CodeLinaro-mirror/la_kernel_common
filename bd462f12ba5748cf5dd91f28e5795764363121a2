@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b91fb853_1274d445",
+        "filename": "security/selinux/include/avc.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2015-06-01T14:37:44Z",
+      "side": 1,
+      "message": "1) what I like about splitting them up is that is how they are always used.\n2) Agreed. I like \"driver\" but that seems very ioctl specific. If netfilter were to use this and required more than 256 bits of permissions, what would be a good generic specifier?",
+      "parentUuid": "6d42d931_a32e4537",
+      "revId": "bd462f12ba5748cf5dd91f28e5795764363121a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d42d931_439be1ee",
         "filename": "security/selinux/include/security.h",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-06-01T13:36:27Z",
       "side": 1,
       "message": "This list is only used by the AVC, not by the security server, and therefore belongs in an AVC-private data structure that wraps the structure returned by the security server.  In the old version of the ptach, this was in the avc_operation_decision_node structure?",
+      "revId": "bd462f12ba5748cf5dd91f28e5795764363121a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b91fb853_52c00cbe",
+        "filename": "security/selinux/include/security.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2015-06-01T14:37:44Z",
+      "side": 1,
+      "message": "It made for MUCH cleaner code.",
+      "parentUuid": "6d42d931_439be1ee",
       "revId": "bd462f12ba5748cf5dd91f28e5795764363121a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -81,6 +117,24 @@
       "writtenOn": "2015-06-01T13:36:27Z",
       "side": 1,
       "message": "Names don\u0027t really convey the meaning clearly.  Can we use IOCTLNUM and IOCTLTYPE here unambiguously since it is specific to ioctls?  Or perhaps IOCTLDRIVER and IOCTLCMD?  Or IOCTLDRIVER and IOCTLFUNC?  Anything that would be clearer than SEQ/CODE.",
+      "revId": "bd462f12ba5748cf5dd91f28e5795764363121a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ed56c9ec_c376c854",
+        "filename": "security/selinux/ss/avtab.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2015-06-01T14:37:44Z",
+      "side": 1,
+      "message": "IOCTLDRIVER and IOCTLFUNC sound good to me. Thanks",
+      "parentUuid": "6d42d931_03a1d91e",
       "revId": "bd462f12ba5748cf5dd91f28e5795764363121a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
