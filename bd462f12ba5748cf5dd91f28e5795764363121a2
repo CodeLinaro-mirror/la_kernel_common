@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "0d54fde2_afa299a7",
+        "filename": "security/selinux/include/avc.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2015-06-01T16:10:27Z",
+      "side": 1,
+      "message": "I\u0027ll go with \"driver\" for now. If/when netlink needs this field it might make sense to create a union so that the variable names make sense.",
+      "parentUuid": "6d42d931_9e0b5c25",
+      "revId": "bd462f12ba5748cf5dd91f28e5795764363121a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d42d931_439be1ee",
         "filename": "security/selinux/include/security.h",
         "patchSetId": 1
