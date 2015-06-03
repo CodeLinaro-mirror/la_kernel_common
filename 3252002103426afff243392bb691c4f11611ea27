@@ -125,6 +125,23 @@
     },
     {
       "key": {
+        "uuid": "99a8345d_61633193",
+        "filename": "security/selinux/ss/services.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1010111
+      },
+      "writtenOn": "2015-06-03T16:58:53Z",
+      "side": 1,
+      "message": "extended permissions",
+      "revId": "3252002103426afff243392bb691c4f11611ea27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d9ae2c65_4d874a18",
         "filename": "security/selinux/ss/services.c",
         "patchSetId": 3
