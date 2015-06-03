@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "d9ae2c65_0df632d0",
+        "filename": "security/selinux/include/avc.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1010111
+      },
+      "writtenOn": "2015-06-03T16:34:19Z",
+      "side": 1,
+      "message": "Ok, fair enough.",
+      "parentUuid": "395ca863_d973f30b",
+      "revId": "3252002103426afff243392bb691c4f11611ea27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99a8345d_cb29e614",
         "filename": "security/selinux/include/security.h",
         "patchSetId": 3
@@ -83,6 +101,24 @@
       "side": 1,
       "message": "How did this even compile?",
       "parentUuid": "99a8345d_cb29e614",
+      "revId": "3252002103426afff243392bb691c4f11611ea27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d9ae2c65_cdffbaa1",
+        "filename": "security/selinux/include/security.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1010111
+      },
+      "writtenOn": "2015-06-03T16:34:19Z",
+      "side": 1,
+      "message": "Only because the XPERMS_ALL macro is never used and thus never compiled...",
+      "parentUuid": "395ca863_1ce3991a",
       "revId": "3252002103426afff243392bb691c4f11611ea27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
