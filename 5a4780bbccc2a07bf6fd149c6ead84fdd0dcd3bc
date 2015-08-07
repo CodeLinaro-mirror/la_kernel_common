@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "270ba719_de567555",
+        "filename": "drivers/net/wireless/bcmdhd/include/devctrl_if/wlioctl_defs.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1072843
+      },
+      "writtenOn": "2015-08-07T06:25:22Z",
+      "side": 1,
+      "message": "Yes, I will",
+      "parentUuid": "270ba719_5b25d7b1",
+      "range": {
+        "startLine": 433,
+        "startChar": 6,
+        "endLine": 433,
+        "endChar": 7
+      },
+      "revId": "5a4780bbccc2a07bf6fd149c6ead84fdd0dcd3bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "270ba719_3b1a2376",
         "filename": "drivers/net/wireless/bcmdhd/wl_cfg80211.c",
         "patchSetId": 1
