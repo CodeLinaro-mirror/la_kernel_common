@@ -69,6 +69,30 @@
       "revId": "5a4780bbccc2a07bf6fd149c6ead84fdd0dcd3bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "270ba719_21c0b473",
+        "filename": "drivers/net/wireless/bcmdhd/wl_cfg80211.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3623,
+      "author": {
+        "id": 1072843
+      },
+      "writtenOn": "2015-08-07T06:54:57Z",
+      "side": 1,
+      "message": "Yes, you\u0027re right. we will review this one and get back to you soon.",
+      "parentUuid": "270ba719_3b1a2376",
+      "range": {
+        "startLine": 3619,
+        "startChar": 0,
+        "endLine": 3623,
+        "endChar": 30
+      },
+      "revId": "5a4780bbccc2a07bf6fd149c6ead84fdd0dcd3bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
