@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "243ac5f6_e089e2ad",
+        "filename": "drivers/net/wireless/bcmdhd/wl_cfg80211.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 4663,
+      "author": {
+        "id": 1014961
+      },
+      "writtenOn": "2015-08-13T21:44:03Z",
+      "side": 1,
+      "message": "Is it still not supported? If so, return -EOPNOTSUPP. If this is just a no-op, then don\u0027t call this function at all.",
+      "range": {
+        "startLine": 4663,
+        "startChar": 1,
+        "endLine": 4663,
+        "endChar": 7
+      },
+      "revId": "7b7452b23fc19724b28c528e8f221c77ea284afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "243ac5f6_200d8ac7",
+        "filename": "drivers/net/wireless/bcmdhd/wl_cfg80211.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 6219,
+      "author": {
+        "id": 1014961
+      },
+      "writtenOn": "2015-08-13T21:44:03Z",
+      "side": 1,
+      "message": "Please use: for(cnt \u003d suite_count; cnt \u003e 0; cnt--)",
+      "range": {
+        "startLine": 6219,
+        "startChar": 1,
+        "endLine": 6219,
+        "endChar": 6
+      },
+      "revId": "7b7452b23fc19724b28c528e8f221c77ea284afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
