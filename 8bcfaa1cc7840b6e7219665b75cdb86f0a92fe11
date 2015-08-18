@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04b861a5_f54a7b2b",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1021676
+      },
+      "writtenOn": "2015-08-18T18:55:04Z",
+      "side": 1,
+      "message": "kfree(dual_role)",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 1
+      },
+      "revId": "8bcfaa1cc7840b6e7219665b75cdb86f0a92fe11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04b861a5_d541770e",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1021676
+      },
+      "writtenOn": "2015-08-18T18:55:04Z",
+      "side": 1,
+      "message": "kfree(dup_buf)",
+      "range": {
+        "startLine": 323,
+        "startChar": 0,
+        "endLine": 323,
+        "endChar": 13
+      },
+      "revId": "8bcfaa1cc7840b6e7219665b75cdb86f0a92fe11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
