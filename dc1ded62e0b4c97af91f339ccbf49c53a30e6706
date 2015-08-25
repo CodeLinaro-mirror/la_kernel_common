@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4700952_e016bfd7",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2015-08-25T23:14:48Z",
+      "side": 1,
+      "message": "If you add a default to the switch below to deal with out-of-range, no need to initialize.",
+      "range": {
+        "startLine": 348,
+        "startChar": 10,
+        "endLine": 348,
+        "endChar": 15
+      },
+      "revId": "dc1ded62e0b4c97af91f339ccbf49c53a30e6706",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a42a3512_9ac09b96",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2015-08-25T23:14:48Z",
+      "side": 1,
+      "message": "ret \u003d -ENOTSUP;\ngoto error;",
+      "range": {
+        "startLine": 374,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 21
+      },
+      "revId": "dc1ded62e0b4c97af91f339ccbf49c53a30e6706",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "048f817d_6493c62e",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2015-08-25T23:14:48Z",
+      "side": 1,
+      "message": "This could move to the default: case in above switch statement. This will allow you to save an indent here, no need to check (total !\u003d -1).",
+      "range": {
+        "startLine": 383,
+        "startChar": 3,
+        "endLine": 385,
+        "endChar": 13
+      },
+      "revId": "dc1ded62e0b4c97af91f339ccbf49c53a30e6706",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
