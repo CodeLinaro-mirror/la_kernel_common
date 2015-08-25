@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c4700952_2f45981a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2015-08-25T00:34:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4485f957_fd20b2a6",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 52
+      },
+      "revId": "8bcfaa1cc7840b6e7219665b75cdb86f0a92fe11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a47f9520_cc8d043e",
         "filename": "Documentation/ABI/testing/sysfs-class-dual-role-usb",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "e4750d3f_fcf18b8c",
+        "filename": "Documentation/ABI/testing/sysfs-class-dual-role-usb",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2015-08-25T00:34:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a47f9520_cc8d043e",
+      "range": {
+        "startLine": 29,
+        "startChar": 10,
+        "endLine": 29,
+        "endChar": 18
+      },
+      "revId": "8bcfaa1cc7840b6e7219665b75cdb86f0a92fe11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "048f817d_710ceb47",
         "filename": "drivers/usb/phy/Kconfig",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2015-08-24T20:07:57Z",
       "side": 1,
       "message": "lower case",
+      "range": {
+        "startLine": 227,
+        "startChar": 3,
+        "endLine": 227,
+        "endChar": 4
+      },
+      "revId": "8bcfaa1cc7840b6e7219665b75cdb86f0a92fe11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c42ba915_ed4b2000",
+        "filename": "drivers/usb/phy/Kconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2015-08-25T00:34:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "048f817d_710ceb47",
       "range": {
         "startLine": 227,
         "startChar": 3,
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "e4750d3f_5a2c6298",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2015-08-25T00:34:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04b861a5_f54a7b2b",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 1
+      },
+      "revId": "8bcfaa1cc7840b6e7219665b75cdb86f0a92fe11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a47f9520_6c0c1048",
         "filename": "drivers/usb/phy/class-dual-role.c",
         "patchSetId": 1
@@ -134,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "a42a3512_25cff158",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2015-08-25T00:34:16Z",
+      "side": 1,
+      "message": "Actually missed defining bunch of functions... Have made relevant changes",
+      "parentUuid": "a47f9520_6c0c1048",
+      "revId": "8bcfaa1cc7840b6e7219665b75cdb86f0a92fe11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "248c8586_e2e3284e",
         "filename": "drivers/usb/phy/class-dual-role.c",
         "patchSetId": 1
@@ -145,6 +259,30 @@
       "writtenOn": "2015-08-24T20:07:57Z",
       "side": 1,
       "message": "what protects this, and similar indexes, from getting out of range? This code is high risk if the max and the arrays (which are in two different files) do not match; this needs to be simplified and centralized.",
+      "range": {
+        "startLine": 260,
+        "startChar": 24,
+        "endLine": 260,
+        "endChar": 36
+      },
+      "revId": "8bcfaa1cc7840b6e7219665b75cdb86f0a92fe11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4750d3f_7cc59b30",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2015-08-25T00:34:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "248c8586_e2e3284e",
       "range": {
         "startLine": 260,
         "startChar": 24,
@@ -180,6 +318,30 @@
     },
     {
       "key": {
+        "uuid": "048f817d_27de2552",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2015-08-25T00:34:16Z",
+      "side": 1,
+      "message": "Done !! Added checks in module_init",
+      "parentUuid": "048f817d_5148c780",
+      "range": {
+        "startLine": 288,
+        "startChar": 10,
+        "endLine": 288,
+        "endChar": 35
+      },
+      "revId": "8bcfaa1cc7840b6e7219665b75cdb86f0a92fe11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04b861a5_d541770e",
         "filename": "drivers/usb/phy/class-dual-role.c",
         "patchSetId": 1
@@ -191,6 +353,30 @@
       "writtenOn": "2015-08-18T18:55:04Z",
       "side": 1,
       "message": "kfree(dup_buf)",
+      "range": {
+        "startLine": 323,
+        "startChar": 0,
+        "endLine": 323,
+        "endChar": 13
+      },
+      "revId": "8bcfaa1cc7840b6e7219665b75cdb86f0a92fe11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a42a3512_80aa7307",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2015-08-25T00:34:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04b861a5_d541770e",
       "range": {
         "startLine": 323,
         "startChar": 0,
