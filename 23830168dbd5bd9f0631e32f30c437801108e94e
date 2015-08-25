@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a47f9520_f8b5166b",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2015-08-25T14:55:47Z",
+      "side": 1,
+      "message": "Just asking. Does any of the compilers warn about this being possibly confusing? checkpatch.pl does not complain if this block is braced or not, so it is not a style issue.",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 15
+      },
+      "revId": "23830168dbd5bd9f0631e32f30c437801108e94e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e430ad80_c442bcc4",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2015-08-25T14:55:47Z",
+      "side": 1,
+      "message": "Where the BREAK_COMPILE_NE resides does not matter since a compile error is a compile error. But over here it sets a precedence that if a new one is added, then the coder will also add the corresponding check here. Here is a true enumeration of all the role types.",
+      "range": {
+        "startLine": 346,
+        "startChar": 25,
+        "endLine": 346,
+        "endChar": 26
+      },
+      "revId": "23830168dbd5bd9f0631e32f30c437801108e94e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4485f957_d3ba7f27",
+        "filename": "include/linux/usb/class-dual-role.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2015-08-25T14:55:47Z",
+      "side": 1,
+      "message": "How does one (set_property or get_property?) differentiate if one has an intval, a strval or an int64val in this object?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 2
+      },
+      "revId": "23830168dbd5bd9f0631e32f30c437801108e94e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
