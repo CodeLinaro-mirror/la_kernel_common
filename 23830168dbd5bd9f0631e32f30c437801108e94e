@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "048f817d_62d5fb5e",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2015-08-25T22:00:21Z",
+      "side": 1,
+      "message": "If you feel that this is little risky, I can enclose the inner if-else within { }...",
+      "parentUuid": "a47f9520_f8b5166b",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 15
+      },
+      "revId": "23830168dbd5bd9f0631e32f30c437801108e94e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e430ad80_c442bcc4",
         "filename": "drivers/usb/phy/class-dual-role.c",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2015-08-25T14:55:47Z",
       "side": 1,
       "message": "Where the BREAK_COMPILE_NE resides does not matter since a compile error is a compile error. But over here it sets a precedence that if a new one is added, then the coder will also add the corresponding check here. Here is a true enumeration of all the role types.",
+      "range": {
+        "startLine": 346,
+        "startChar": 25,
+        "endLine": 346,
+        "endChar": 26
+      },
+      "revId": "23830168dbd5bd9f0631e32f30c437801108e94e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a47f9520_be1c579d",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2015-08-25T22:00:21Z",
+      "side": 1,
+      "message": "Sure.. Can move it here...",
+      "parentUuid": "e430ad80_c442bcc4",
       "range": {
         "startLine": 346,
         "startChar": 25,
