@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4700952_9e35dbe0",
+        "filename": "Documentation/ABI/testing/sysfs-class-dual-role-usb",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2015-08-26T19:59:33Z",
+      "side": 1,
+      "message": "This is somewhat confusing.  Suggested text (following sys-devices-power as an arbitrary example):\n\nOn devices where the USB mode is software-controllable, userspace can change the mode by writing \"dfp\" or \"ufp\".\n\nOn devices where the USB mode is fixed in hardware, this attribute is read-only.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "0046c03bfee621fe695007ac329b6a8b633db270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4700952_5e2f738e",
+        "filename": "Documentation/ABI/testing/sysfs-class-dual-role-usb",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2015-08-26T19:59:33Z",
+      "side": 1,
+      "message": "Likewise:\n\nOn devices implementing USB Power Delivery, userspace can control the power role by writing \"sink\" or \"source\".\n\nOn devices without USB-PD, this attribute is read-only.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 49
+      },
+      "revId": "0046c03bfee621fe695007ac329b6a8b633db270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "048f817d_f593deae",
+        "filename": "Documentation/ABI/testing/sysfs-class-dual-role-usb",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2015-08-26T19:59:33Z",
+      "side": 1,
+      "message": "On devices implementing USB Power Delivery, userspace can control the data role by writing \"host\" or \"device\".\n\nOn devices without USB-PD, this attribute is read-only.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 49
+      },
+      "revId": "0046c03bfee621fe695007ac329b6a8b633db270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "849451c2_be58355e",
+        "filename": "Documentation/ABI/testing/sysfs-class-dual-role-usb",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2015-08-26T19:59:33Z",
+      "side": 1,
+      "message": "On devices with software control of VCONN, userspace can disable the power supply to VCONN by writing \"0\", or enable the power supply by writing \"1\".\n\nOn devices without control over VCONN, this attribute is read-only.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 18
+      },
+      "revId": "0046c03bfee621fe695007ac329b6a8b633db270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4485f957_82a1faab",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2015-08-26T19:59:33Z",
+      "side": 1,
+      "message": "The kernel already provides BUILD_BUG_ON(), please use that instead of rolling your own",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 59
+      },
+      "revId": "0046c03bfee621fe695007ac329b6a8b633db270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84253145_1f5799d8",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2015-08-26T19:59:33Z",
+      "side": 1,
+      "message": "DUAL_ROLE_PROP_VCONN_SUPPLY is a boolean value, so special-case it to use strtobool() for consistency with other boolean attributes.  (Notably strtobool() accepts inputs like \"Y\" that a simple string comparison will not.)",
+      "range": {
+        "startLine": 351,
+        "startChar": 1,
+        "endLine": 384,
+        "endChar": 2
+      },
+      "revId": "0046c03bfee621fe695007ac329b6a8b633db270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
