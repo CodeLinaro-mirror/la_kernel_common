@@ -94,6 +94,29 @@
     },
     {
       "key": {
+        "uuid": "048f817d_9bc08196",
+        "filename": "drivers/usb/phy/Makefile",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2015-08-26T23:35:21Z",
+      "side": 1,
+      "message": "Ideally my code only relies on CONFIG_SYSFS to compile.. Do I a need a separate config to enable this ? Or should I just change this to obj-$(CONFIG_SYSFS) and remove the new config flag ??",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 53
+      },
+      "revId": "0046c03bfee621fe695007ac329b6a8b633db270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4485f957_82a1faab",
         "filename": "drivers/usb/phy/class-dual-role.c",
         "patchSetId": 4
