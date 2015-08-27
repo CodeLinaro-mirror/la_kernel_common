@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "048f817d_6db5e218",
+        "filename": "drivers/usb/phy/Kconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2015-08-27T16:00:00Z",
+      "side": 1,
+      "message": "false default does not need to be specified.",
+      "range": {
+        "startLine": 224,
+        "startChar": 9,
+        "endLine": 224,
+        "endChar": 14
+      },
+      "revId": "3d0e01aea51f5e3ed5d3f038663e08c6b34aab62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "849451c2_2af69fcb",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2015-08-27T16:00:00Z",
+      "side": 1,
+      "message": "Never assume bool is bigger/smaller/endian the same as an int value? For clarity please use a bool to pull the value, then assign it to value.",
+      "range": {
+        "startLine": 364,
+        "startChar": 2,
+        "endLine": 364,
+        "endChar": 43
+      },
+      "revId": "3d0e01aea51f5e3ed5d3f038663e08c6b34aab62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
