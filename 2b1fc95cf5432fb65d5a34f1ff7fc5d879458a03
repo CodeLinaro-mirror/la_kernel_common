@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44cedaa4_838f08af",
+        "filename": "drivers/net/wireless/bcmdhd/dhd_msgbuf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1076784
+      },
+      "writtenOn": "2015-09-10T03:43:57Z",
+      "side": 1,
+      "message": "OK, so if we think about this one: we are destroying the map along with the lock. If there is a user that still has handle to this map then, once we release the lock and it can start using the map, it will be using freed object. So what exactly locking here buys us?",
+      "range": {
+        "startLine": 473,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 0
+      },
+      "revId": "2b1fc95cf5432fb65d5a34f1ff7fc5d879458a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "244c8613_8f73856f",
+        "filename": "drivers/net/wireless/bcmdhd/dhd_msgbuf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1076784
+      },
+      "writtenOn": "2015-09-10T03:43:57Z",
+      "side": 1,
+      "message": "This is completely useless. map-\u003eavail can change the moment we release the lock.",
+      "range": {
+        "startLine": 563,
+        "startChar": 0,
+        "endLine": 565,
+        "endChar": 42
+      },
+      "revId": "2b1fc95cf5432fb65d5a34f1ff7fc5d879458a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4c34e74_ae366bc7",
+        "filename": "drivers/net/wireless/bcmdhd/dhd_msgbuf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1076784
+      },
+      "writtenOn": "2015-09-10T03:43:57Z",
+      "side": 1,
+      "message": "It sounds like API is intentionally non-reentrant and it is caller\u0027s responsibility to take care of the locking.",
+      "range": {
+        "startLine": 571,
+        "startChar": 0,
+        "endLine": 572,
+        "endChar": 78
+      },
+      "revId": "2b1fc95cf5432fb65d5a34f1ff7fc5d879458a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
