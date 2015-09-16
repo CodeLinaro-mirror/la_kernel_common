@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44725a92_e37cc7f7",
+        "filename": "drivers/net/wireless/bcmdhd/dhd_pcie.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2443,
+      "author": {
+        "id": 1076784
+      },
+      "writtenOn": "2015-09-16T18:27:30Z",
+      "side": 1,
+      "message": "Can we add a comment that the lock here is not to protect -\u003eup flag but rather to ensure that dhd_bus_watchdog does not touch hardware past this point.",
+      "revId": "5f6106c6aa04f9deaaf251191b12f711ece0115a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
