@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee86cdd4_40ce2399",
+        "filename": "Documentation/device-mapper/verity.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2015-09-28T16:59:24Z",
+      "side": 1,
+      "message": "I was under the impression that the mmc controller already did this. Have you verified that this is necessary?",
+      "revId": "4b27b40dfdf3c021c0da5804f6002df3d109355d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
