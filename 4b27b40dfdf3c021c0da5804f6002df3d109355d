@@ -16,6 +16,24 @@
       "revId": "4b27b40dfdf3c021c0da5804f6002df3d109355d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0eb5e1d9_3d13dbd6",
+        "filename": "Documentation/device-mapper/verity.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-09-29T09:37:38Z",
+      "side": 1,
+      "message": "Yes, it\u0027s necessary. This refers to blocks that contain data, but are not used by the file system. We do not clear the entire partition when writing the file system and blocks that dm-verity expects to contain zeros may actually contain non-zero data as a result.",
+      "parentUuid": "ee86cdd4_40ce2399",
+      "revId": "4b27b40dfdf3c021c0da5804f6002df3d109355d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
