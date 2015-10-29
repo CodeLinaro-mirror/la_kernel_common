@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56ab01f0_3bdd4342",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2015-10-29T17:59:10Z",
+      "side": 1,
+      "message": "Add:\n\n(cherry pick from commit 83d4a806ae46397f606de7376b831524bd3a21e5)",
+      "range": {
+        "startLine": 7,
+        "startChar": 47,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "ffd7f1a7a38c4a5731fabb617443f9ee5f14b0c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56c4e1d1_f90c5bc3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2015-10-29T17:59:10Z",
+      "side": 1,
+      "message": "bottom of footer as non compliant",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 52
+      },
+      "revId": "ffd7f1a7a38c4a5731fabb617443f9ee5f14b0c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "36a68d28_007e1434",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2015-10-29T17:59:10Z",
+      "side": 1,
+      "message": "This footer is scary and perfect for Halloween.\n\nIt is probably a good idea to remove from footer, move to the top, but alas this was PM\u0027s comment ...",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 26
+      },
+      "revId": "ffd7f1a7a38c4a5731fabb617443f9ee5f14b0c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
