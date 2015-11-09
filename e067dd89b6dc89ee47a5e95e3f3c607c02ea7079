@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b66efe78_8c53871e",
+        "filename": "drivers/staging/android/sync.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2015-11-09T18:18:09Z",
+      "side": 1,
+      "message": "Is there a reason these need to be two separate variables?  Unless there\u0027s something subtle I\u0027m missing here, it seems simpler to just set status \u003d -errno instead of using a -1 flag with a separate error code.",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 13
+      },
+      "revId": "e067dd89b6dc89ee47a5e95e3f3c607c02ea7079",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
