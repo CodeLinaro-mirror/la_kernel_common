@@ -22,6 +22,30 @@
       "revId": "e067dd89b6dc89ee47a5e95e3f3c607c02ea7079",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d66b7268_2dfff983",
+        "filename": "drivers/staging/android/sync.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1064128
+      },
+      "writtenOn": "2015-11-09T18:40:46Z",
+      "side": 1,
+      "message": "That was the original thought, but it\u0027s possible for a sync fence with multiple sync pts to have subsequent sync pts signaled, which would call atomic_dec_and_test() on status in fence_check_fb_func() and that would corrupt the error value in status.\n\nAn alternative approach may be to free the other sync points of a sync fence that hits an error condition, although that would be slightly more invasive.\n\nLet me know your opinions here.",
+      "parentUuid": "b66efe78_8c53871e",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 13
+      },
+      "revId": "e067dd89b6dc89ee47a5e95e3f3c607c02ea7079",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
