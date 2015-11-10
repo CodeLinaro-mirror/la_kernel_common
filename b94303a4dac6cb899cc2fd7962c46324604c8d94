@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "369daed4_d0706277",
+        "filename": "drivers/staging/android/sync.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1064128
+      },
+      "writtenOn": "2015-11-10T02:56:59Z",
+      "side": 1,
+      "message": "Done; hasty mistake there.",
+      "parentUuid": "f6a6b626_11330c39",
+      "range": {
+        "startLine": 426,
+        "startChar": 9,
+        "endLine": 426,
+        "endChar": 12
+      },
+      "revId": "b94303a4dac6cb899cc2fd7962c46324604c8d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7689e6a7_62bd38da",
         "filename": "drivers/staging/android/sync.h",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2015-11-10T02:22:21Z",
       "side": 1,
       "message": "Bikeshedding time!\n\n1 \u003d signaled, 0 \u003d active is a bit weird since it\u0027s the reverse of fence-\u003estatus.",
+      "range": {
+        "startLine": 345,
+        "startChar": 3,
+        "endLine": 345,
+        "endChar": 25
+      },
+      "revId": "b94303a4dac6cb899cc2fd7962c46324604c8d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "369daed4_70808e64",
+        "filename": "drivers/staging/android/sync.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1064128
+      },
+      "writtenOn": "2015-11-10T02:56:59Z",
+      "side": 1,
+      "message": "Right, but in the original implementation before the dma-buf fences went in, these are the states that fence-\u003estatus took.  I figure it\u0027s better to keep that consistent than reverse the status now?\n\nI don\u0027t have a strong opinion though if you think we should keep the status consistent with how fence-\u003estatus is now.",
+      "parentUuid": "7689e6a7_62bd38da",
       "range": {
         "startLine": 345,
         "startChar": 3,
