@@ -93,6 +93,30 @@
       "revId": "b94303a4dac6cb899cc2fd7962c46324604c8d94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7689e6a7_e29a2893",
+        "filename": "drivers/staging/android/sync.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2015-11-10T18:16:54Z",
+      "side": 1,
+      "message": "No strong opinions here either, as long as there\u0027s some rationale for the (very slightly) surprising behavior it\u0027s fine.",
+      "parentUuid": "369daed4_70808e64",
+      "range": {
+        "startLine": 345,
+        "startChar": 3,
+        "endLine": 345,
+        "endChar": 25
+      },
+      "revId": "b94303a4dac6cb899cc2fd7962c46324604c8d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
