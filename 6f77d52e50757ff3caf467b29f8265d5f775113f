@@ -46,6 +46,30 @@
       "revId": "6f77d52e50757ff3caf467b29f8265d5f775113f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1b153384_4bec36ea",
+        "filename": "drivers/md/dm-verity.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1394,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2015-11-24T20:34:08Z",
+      "side": 1,
+      "message": "I seem to remember this discussion before ;-/ I must be getting old. If it does not get larger than 4Kb, then no need to change. I was looking at data_dev_block_bits being an unsigned char, which _could_ get rather large though. I would feel more comfortable if I could see something limiting the range of this value? in verity_ctr perhaps?",
+      "parentUuid": "7bb2aff7_3a767de5",
+      "range": {
+        "startLine": 1394,
+        "startChar": 21,
+        "endLine": 1394,
+        "endChar": 48
+      },
+      "revId": "6f77d52e50757ff3caf467b29f8265d5f775113f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
