@@ -22,6 +22,30 @@
       "revId": "6f77d52e50757ff3caf467b29f8265d5f775113f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bb2aff7_3a767de5",
+        "filename": "drivers/md/dm-verity.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1394,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-11-24T18:57:00Z",
+      "side": 1,
+      "message": "It doesn\u0027t have to be physically contiguous, but the buffer is at most 4 KiB and the allocation is performed while dm-verity device is being created, so I thought it\u0027s probably fine. Do you think I should switch to vzalloc here?",
+      "parentUuid": "5b1b2bb8_83e29153",
+      "range": {
+        "startLine": 1394,
+        "startChar": 21,
+        "endLine": 1394,
+        "endChar": 48
+      },
+      "revId": "6f77d52e50757ff3caf467b29f8265d5f775113f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
