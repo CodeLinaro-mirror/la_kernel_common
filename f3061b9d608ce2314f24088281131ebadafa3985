@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00f7809a_8bbe2d7d",
+        "filename": "drivers/usb/phy/class-dual-role.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1089333
+      },
+      "writtenOn": "2015-12-07T10:21:23Z",
+      "side": 1,
+      "message": "No Colon",
+      "range": {
+        "startLine": 89,
+        "startChar": 44,
+        "endLine": 89,
+        "endChar": 45
+      },
+      "revId": "f3061b9d608ce2314f24088281131ebadafa3985",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
