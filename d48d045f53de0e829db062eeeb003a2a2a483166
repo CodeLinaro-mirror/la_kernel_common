@@ -1,0 +1,487 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a5532654_deb91594",
+        "filename": "drivers/md/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "What would you say about including this as an optional module in dm-verity, similarly to how dm-verity-fec is implemented?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 54
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4568aa02_5851a10a",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "Why is this necessary?",
+      "range": {
+        "startLine": 73,
+        "startChar": 10,
+        "endLine": 73,
+        "endChar": 53
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "85a702bf_52c9722c",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "Instead of freeing the pages you already allocated, it would simplify the  code quite a bit to just jump to free_pages and testing if the page was allocated before freeing it. Something like this, perhaps:\n\n  for (n \u003d 0; n \u003c npages; n++)\n    if (pages[n])\n      __free_page(pages[n]);",
+      "range": {
+        "startLine": 142,
+        "startChar": 3,
+        "endLine": 144,
+        "endChar": 39
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5532654_beff011a",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "FEC_BLOCK_SIZE is never larger than the verity block size, which is limited to PAGE_SIZE in verity_ctr. If you want, you can just include this in the BUG_ON.",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 32
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "85b2a2f4_7a14751c",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "It\u0027s safe to assume that the size of struct fec_header is always at most PAGE_SIZE and just use BUG_ON. This would somewhat simplify the code.",
+      "range": {
+        "startLine": 201,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 43
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65acceb5_41f21493",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "In this function it\u0027s safe to assume that you only need to read one page from the beginning of the metadata. This would make the function (and others) quite a bit simpler since you only need to deal with a single page.",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 38
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e59a7e77_b548caaf",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "We want to remove logging mode, so let\u0027s leave this out. Always use either restart or EIO mode.",
+      "range": {
+        "startLine": 397,
+        "startChar": 0,
+        "endLine": 398,
+        "endChar": 32
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5532654_7e7a899d",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "EINVAL?",
+      "range": {
+        "startLine": 406,
+        "startChar": 15,
+        "endLine": 406,
+        "endChar": 21
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65acceb5_a1aaf893",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "VERITY_METADATA_VERSION?",
+      "range": {
+        "startLine": 420,
+        "startChar": 46,
+        "endLine": 420,
+        "endChar": 47
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "85b2a2f4_fa3c05bd",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "Unsupported version?",
+      "range": {
+        "startLine": 421,
+        "startChar": 19,
+        "endLine": 421,
+        "endChar": 31
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25673634_b7660230",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "You could have just one error (or out) label if you initialize pks to NULL. It\u0027s safe to call kfree(NULL). The same can be applied elsewhere in this file too to simplify exit paths.",
+      "range": {
+        "startLine": 452,
+        "startChar": 7,
+        "endLine": 452,
+        "endChar": 19
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25673634_37a67286",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "In EIO mode, we should not allow mounting the partition if something fails.",
+      "range": {
+        "startLine": 489,
+        "startChar": 0,
+        "endLine": 489,
+        "endChar": 46
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "056cf246_e6b620fc",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "sector_t for data_sectors and u32 for data_block_size.",
+      "range": {
+        "startLine": 500,
+        "startChar": 1,
+        "endLine": 500,
+        "endChar": 4
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "056cf246_83d39e52",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of this?",
+      "range": {
+        "startLine": 503,
+        "startChar": 0,
+        "endLine": 503,
+        "endChar": 15
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e59a7e77_353dba0d",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "Redundant? Also, consistent error message format would be useful in case we need to parse logs later to collect statistics.",
+      "range": {
+        "startLine": 529,
+        "startChar": 21,
+        "endLine": 529,
+        "endChar": 39
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5599e74_3da65b86",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "This is not really the best way to check for overflow, and note that whether ti-\u003elen is 64 bits depends on CONFIG_LBDAF.\n\nYou should follow dm-verity\u0027s example when verifying these values:\n\nhttps://android.googlesource.com/kernel/common/+/android-3.10/drivers/md/dm-verity-target.c#919\nhttps://android.googlesource.com/kernel/common/+/android-3.10/drivers/md/dm-verity-target.c#939\n\nAs a side note, if you had to test for overflow for arbitrary values, you could simply use something like this:\n\n  static inline bool test_mult_overflow(sector_t a, u32 b)\n  {\n    sector_t r \u003d (sector_t)~0ULL;\n    sector_div(r, b);\n    return a \u003e r:\n  }\n\nBut that\u0027s not needed here.",
+      "range": {
+        "startLine": 580,
+        "startChar": 1,
+        "endLine": 581,
+        "endChar": 22
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5532654_be28a164",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "Note that you need to use do_div to divide 64-bit values in kernel. It\u0027s not necessary here though, see the previous comment.",
+      "range": {
+        "startLine": 582,
+        "startChar": 17,
+        "endLine": 582,
+        "endChar": 61
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c55c9a66_dc5121e1",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "The current dm-verity has different feature arguments.\n\nIn restart mode you should add three arguments (2 restart_on_corruption ignore_zero_blocks) and in EIO mode two (1 ignore_zero_blocks).\n\nIn addition, we need to parse error correction metadata if CONFIG_DM_VERITY_FEC is set and format relevant arguments to dm-verity. See the example here:\nhttps://android.googlesource.com/platform/system/core/+/master/fs_mgr/fs_mgr_verity.cpp#229",
+      "range": {
+        "startLine": 598,
+        "startChar": 1,
+        "endLine": 598,
+        "endChar": 52
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e59a7e77_f552525b",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "How does this work if dm-verity is compiled as a module? I realize we are not doing that at the moment, but very well might in future.",
+      "range": {
+        "startLine": 621,
+        "startChar": 10,
+        "endLine": 621,
+        "endChar": 20
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4568aa02_58fc015f",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "1 \u003c\u003c SECTOR_SHIFT?",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65acceb5_e1a000ba",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2015-12-15T16:58:32Z",
+      "side": 1,
+      "message": "\u003cverity_metadata_32K\u003e \u003cfec_data\u003e \u003cfec_metadata_4K\u003e",
+      "range": {
+        "startLine": 26,
+        "startChar": 31,
+        "endLine": 26,
+        "endChar": 64
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
