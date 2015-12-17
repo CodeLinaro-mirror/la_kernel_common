@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a2f9f8d_2bf3f9c7",
+        "filename": "arch/arm64/include/asm/string.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2015-12-17T21:41:47Z",
+      "side": 1,
+      "message": "You need to provide some kind of #define so that this can be disabled at compile time.",
+      "revId": "a37a2a497675206166939cac16c030204008e53d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a2adb7b_aefdb788",
+        "filename": "lib/memcpy_chk.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2015-12-17T21:41:47Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be __kernel_size_t to match the memcpy declaration?",
+      "range": {
+        "startLine": 12,
+        "startChar": 69,
+        "endLine": 12,
+        "endChar": 75
+      },
+      "revId": "a37a2a497675206166939cac16c030204008e53d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a2f9f8d_8bcc2d8d",
+        "filename": "lib/memcpy_chk.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1003966
+      },
+      "writtenOn": "2015-12-17T21:41:47Z",
+      "side": 1,
+      "message": "You need to be careful to avoid recursive calls. In theory, the compiler is free to replace this memcpy() call with a call to __memcpy_chk(). See, for example, b/12216860 and https://android-review.googlesource.com/73095",
+      "revId": "a37a2a497675206166939cac16c030204008e53d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
