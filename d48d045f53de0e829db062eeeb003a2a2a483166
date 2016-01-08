@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2a52a3ad_56fbd492",
+        "filename": "drivers/md/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5532654_deb91594",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 54
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4568aa02_5851a10a",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2015-12-15T16:58:32Z",
       "side": 1,
       "message": "Why is this necessary?",
+      "range": {
+        "startLine": 73,
+        "startChar": 10,
+        "endLine": 73,
+        "endChar": 53
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a52a3ad_529519f0",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Yes seems to be an overkill.. Will remove this..",
+      "parentUuid": "4568aa02_5851a10a",
       "range": {
         "startLine": 73,
         "startChar": 10,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ea1debf7_8f238581",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85a702bf_52c9722c",
+      "range": {
+        "startLine": 142,
+        "startChar": 3,
+        "endLine": 144,
+        "endChar": 39
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a5532654_beff011a",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2015-12-15T16:58:32Z",
       "side": 1,
       "message": "FEC_BLOCK_SIZE is never larger than the verity block size, which is limited to PAGE_SIZE in verity_ctr. If you want, you can just include this in the BUG_ON.",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 32
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a4357e2_d7c284ab",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5532654_beff011a",
       "range": {
         "startLine": 189,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "8a1aaf01_06176428",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85b2a2f4_7a14751c",
+      "range": {
+        "startLine": 201,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 43
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "65acceb5_41f21493",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
@@ -128,6 +248,30 @@
       "writtenOn": "2015-12-15T16:58:32Z",
       "side": 1,
       "message": "In this function it\u0027s safe to assume that you only need to read one page from the beginning of the metadata. This would make the function (and others) quite a bit simpler since you only need to deal with a single page.",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 38
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a1aaf01_31fe6084",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "I do see that it is really rare for the verity_table to be larger than PAGE_SIZE. But, Is the current code too redundant ?? If yes, I will remove the code that handles the case where the verity_table size exceeds the PAGE_SIZE.",
+      "parentUuid": "65acceb5_41f21493",
       "range": {
         "startLine": 261,
         "startChar": 0,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "6a481bfe_ad6f6990",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e59a7e77_b548caaf",
+      "range": {
+        "startLine": 397,
+        "startChar": 0,
+        "endLine": 398,
+        "endChar": 32
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a5532654_7e7a899d",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
@@ -174,6 +342,30 @@
       "writtenOn": "2015-12-15T16:58:32Z",
       "side": 1,
       "message": "EINVAL?",
+      "range": {
+        "startLine": 406,
+        "startChar": 15,
+        "endLine": 406,
+        "endChar": 21
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a4357e2_1231dade",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5532654_7e7a899d",
       "range": {
         "startLine": 406,
         "startChar": 15,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "8a1aaf01_d1c6041f",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65acceb5_a1aaf893",
+      "range": {
+        "startLine": 420,
+        "startChar": 46,
+        "endLine": 420,
+        "endChar": 47
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "85b2a2f4_fa3c05bd",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
@@ -220,6 +436,30 @@
       "writtenOn": "2015-12-15T16:58:32Z",
       "side": 1,
       "message": "Unsupported version?",
+      "range": {
+        "startLine": 421,
+        "startChar": 19,
+        "endLine": 421,
+        "endChar": 31
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a481bfe_cdac35c6",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85b2a2f4_fa3c05bd",
       "range": {
         "startLine": 421,
         "startChar": 19,
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "aa3e9347_affa05da",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25673634_b7660230",
+      "range": {
+        "startLine": 452,
+        "startChar": 7,
+        "endLine": 452,
+        "endChar": 19
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25673634_37a67286",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
@@ -266,6 +530,30 @@
       "writtenOn": "2015-12-15T16:58:32Z",
       "side": 1,
       "message": "In EIO mode, we should not allow mounting the partition if something fails.",
+      "range": {
+        "startLine": 489,
+        "startChar": 0,
+        "endLine": 489,
+        "endChar": 46
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a41cfd9_74812ee5",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Should be sufficient enough if I just reword this... init would not see /dev/dm-0 if we failed to mount here and hence it would fail to mount the root partition.",
+      "parentUuid": "25673634_37a67286",
       "range": {
         "startLine": 489,
         "startChar": 0,
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "aa3e9347_8f6dc147",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "056cf246_e6b620fc",
+      "range": {
+        "startLine": 500,
+        "startChar": 1,
+        "endLine": 500,
+        "endChar": 4
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "056cf246_83d39e52",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
@@ -312,6 +624,30 @@
       "writtenOn": "2015-12-15T16:58:32Z",
       "side": 1,
       "message": "What\u0027s the purpose of this?",
+      "range": {
+        "startLine": 503,
+        "startChar": 0,
+        "endLine": 503,
+        "endChar": 15
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a41cfd9_348ba607",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Sorry.. Had this for debugging... Will remove this..",
+      "parentUuid": "056cf246_83d39e52",
       "range": {
         "startLine": 503,
         "startChar": 0,
@@ -347,6 +683,30 @@
     },
     {
       "key": {
+        "uuid": "4a4357e2_92864a3c",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e59a7e77_353dba0d",
+      "range": {
+        "startLine": 529,
+        "startChar": 21,
+        "endLine": 529,
+        "endChar": 39
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e5599e74_3da65b86",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
@@ -358,6 +718,30 @@
       "writtenOn": "2015-12-15T16:58:32Z",
       "side": 1,
       "message": "This is not really the best way to check for overflow, and note that whether ti-\u003elen is 64 bits depends on CONFIG_LBDAF.\n\nYou should follow dm-verity\u0027s example when verifying these values:\n\nhttps://android.googlesource.com/kernel/common/+/android-3.10/drivers/md/dm-verity-target.c#919\nhttps://android.googlesource.com/kernel/common/+/android-3.10/drivers/md/dm-verity-target.c#939\n\nAs a side note, if you had to test for overflow for arbitrary values, you could simply use something like this:\n\n  static inline bool test_mult_overflow(sector_t a, u32 b)\n  {\n    sector_t r \u003d (sector_t)~0ULL;\n    sector_div(r, b);\n    return a \u003e r:\n  }\n\nBut that\u0027s not needed here.",
+      "range": {
+        "startLine": 580,
+        "startChar": 1,
+        "endLine": 581,
+        "endChar": 22
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a4357e2_c66f3390",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Shouldn\u0027t I be check for overflow and leave the actual validation of the block size and number of sectors to the dm-verity-target code ? If yes, I am planning to use the test_mult_overflow routine that you pointed out and leave the actual data validation to the dm-verity-target code.",
+      "parentUuid": "e5599e74_3da65b86",
       "range": {
         "startLine": 580,
         "startChar": 1,
@@ -393,6 +777,30 @@
     },
     {
       "key": {
+        "uuid": "ca202730_d3312c96",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Changed data_block_size to u32.",
+      "parentUuid": "a5532654_be28a164",
+      "range": {
+        "startLine": 582,
+        "startChar": 17,
+        "endLine": 582,
+        "endChar": 61
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c55c9a66_dc5121e1",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
@@ -404,6 +812,30 @@
       "writtenOn": "2015-12-15T16:58:32Z",
       "side": 1,
       "message": "The current dm-verity has different feature arguments.\n\nIn restart mode you should add three arguments (2 restart_on_corruption ignore_zero_blocks) and in EIO mode two (1 ignore_zero_blocks).\n\nIn addition, we need to parse error correction metadata if CONFIG_DM_VERITY_FEC is set and format relevant arguments to dm-verity. See the example here:\nhttps://android.googlesource.com/platform/system/core/+/master/fs_mgr/fs_mgr_verity.cpp#229",
+      "range": {
+        "startLine": 598,
+        "startChar": 1,
+        "endLine": 598,
+        "endChar": 52
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa1773d7_82e59b37",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "When CONFIG_DM_VERITY_FEC is enabled, For parsing the error correction metadata, I am planning to follow *** static int parse_ecc_header(fec_handle *f, uint64_t offset) *** function.\n\nThe following seems to be the arguments that I require.\n1. ecc_dev :\u003d same as the system partition\u0027s block device\n2. ecc.start :\u003d header.inp_size\n3. ecc.blocks :\u003d fec_div_round_up(header.inp_size, FEC_BLOCKSIZE)\n4. ecc.roots :\u003d header.roots\n\nIs this correct ? There seems to be a bunch of data validation in parse_ecc_header function. Should I be doing that as well ?",
+      "parentUuid": "c55c9a66_dc5121e1",
       "range": {
         "startLine": 598,
         "startChar": 1,
@@ -439,6 +871,30 @@
     },
     {
       "key": {
+        "uuid": "8a1aaf01_037751b5",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Sorry I am not sure whether I understand the problem.. Why do you think that invoking verity_dtr might be problematic if CONFIG_MODULES is enabled ?",
+      "parentUuid": "e59a7e77_f552525b",
+      "range": {
+        "startLine": 621,
+        "startChar": 10,
+        "endLine": 621,
+        "endChar": 20
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4568aa02_58fc015f",
         "filename": "drivers/md/dm-android-verity.h",
         "patchSetId": 1
@@ -462,6 +918,30 @@
     },
     {
       "key": {
+        "uuid": "ea1debf7_f0a3fdc9",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done... Removed SECTOR_SIZE and substituted it with 1 \u003c\u003c SECTOR_SHIFT",
+      "parentUuid": "4568aa02_58fc015f",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "65acceb5_e1a000ba",
         "filename": "drivers/md/dm-android-verity.h",
         "patchSetId": 1
@@ -473,6 +953,30 @@
       "writtenOn": "2015-12-15T16:58:32Z",
       "side": 1,
       "message": "\u003cverity_metadata_32K\u003e \u003cfec_data\u003e \u003cfec_metadata_4K\u003e",
+      "range": {
+        "startLine": 26,
+        "startChar": 31,
+        "endLine": 26,
+        "endChar": 64
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea1debf7_b086e53b",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-08T00:23:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65acceb5_e1a000ba",
       "range": {
         "startLine": 26,
         "startChar": 31,
