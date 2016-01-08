@@ -849,6 +849,30 @@
     },
     {
       "key": {
+        "uuid": "6a31fb81_3c171933",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-01-08T14:46:09Z",
+      "side": 1,
+      "message": "Is this enough? I\u0027m sure the compiler optimizes this into a shift, but what if it doesn\u0027t? data_sectors * data_block_size results in sector_t, which then leads to a 64-bit division. How about being explicit that you want a shift instead?\n\n  data_sectors *\u003d data_block_size \u003c\u003c SECTOR_SHIFT;",
+      "parentUuid": "ca202730_d3312c96",
+      "range": {
+        "startLine": 582,
+        "startChar": 17,
+        "endLine": 582,
+        "endChar": 61
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c55c9a66_dc5121e1",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
