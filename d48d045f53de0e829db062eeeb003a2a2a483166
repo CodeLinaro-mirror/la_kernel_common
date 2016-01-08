@@ -284,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "6aa2db12_31956a04",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-01-08T14:31:56Z",
+      "side": 1,
+      "message": "I still think it\u0027s safe to assume that verity metadata block fits into PAGE_SIZE, but if you feel it\u0027s prudent to prepare for the alternative despite the more complicated code path, I\u0027m fine with that.",
+      "parentUuid": "8a1aaf01_31fe6084",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 38
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e59a7e77_b548caaf",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
@@ -754,6 +778,30 @@
     },
     {
       "key": {
+        "uuid": "0a54ffaf_89c13d0a",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-01-08T14:31:56Z",
+      "side": 1,
+      "message": "Yes, checking for overflow is sufficient here. Just note that dividing 64-bit numbers should be done with do_div (or sector_div for sector_t).",
+      "parentUuid": "4a4357e2_c66f3390",
+      "range": {
+        "startLine": 580,
+        "startChar": 1,
+        "endLine": 581,
+        "endChar": 22
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a5532654_be28a164",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
@@ -848,6 +896,30 @@
     },
     {
       "key": {
+        "uuid": "0a54ffaf_a9c6791d",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-01-08T14:31:56Z",
+      "side": 1,
+      "message": "That looks correct. You should do at least the basic validation to make sure you are looking at an actual FEC header, and note that there\u0027s a back-up header at the other end of the same block in case this one doesn\u0027t look valid. Validating the hash of the actual FEC data is not necessary here though.",
+      "parentUuid": "aa1773d7_82e59b37",
+      "range": {
+        "startLine": 598,
+        "startChar": 1,
+        "endLine": 598,
+        "endChar": 52
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e59a7e77_f552525b",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
@@ -883,6 +955,30 @@
       "side": 1,
       "message": "Sorry I am not sure whether I understand the problem.. Why do you think that invoking verity_dtr might be problematic if CONFIG_MODULES is enabled ?",
       "parentUuid": "e59a7e77_f552525b",
+      "range": {
+        "startLine": 621,
+        "startChar": 10,
+        "endLine": 621,
+        "endChar": 20
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca6e677a_af9bdd59",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-01-08T14:31:56Z",
+      "side": 1,
+      "message": "Nevermind, you exported all the verity functions. Of course, now that you compile this as part of dm-verity itself, exporting is no longer needed.",
+      "parentUuid": "8a1aaf01_037751b5",
       "range": {
         "startLine": 621,
         "startChar": 10,
