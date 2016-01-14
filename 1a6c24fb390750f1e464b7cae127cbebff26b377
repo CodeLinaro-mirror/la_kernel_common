@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "274e5eac_48e1cc4c",
+        "filename": "drivers/md/Kconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-14T21:14:47Z",
+      "side": 1,
+      "message": "There are certain pieces in the patch that makes it very android specific.. Maybe I should split the patch into two so that we can separate Android specific pieces...",
+      "parentUuid": "07b15a0d_bb4467f9",
+      "range": {
+        "startLine": 427,
+        "startChar": 7,
+        "endLine": 427,
+        "endChar": 24
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47a7d2d1_fd930784",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2016-01-14T17:05:38Z",
       "side": 1,
       "message": "nit: please include a header which explains what the target constructor needs as its argv!",
+      "range": {
+        "startLine": 518,
+        "startChar": 11,
+        "endLine": 518,
+        "endChar": 29
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07623a24_15bd27ee",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-14T21:14:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47a7d2d1_fd930784",
       "range": {
         "startLine": 518,
         "startChar": 11,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "676db610_02ede7aa",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-14T21:14:47Z",
+      "side": 1,
+      "message": "Nothing in the current format blocks the ability to add another parameter. Expected minimum version seems to be the better way to go about it.. As adding a hash of the metadata might bring back the dependency of repacking the boot.img whenever the contents of the verity partition changes. Shouldn\u0027t be a problem doing this in the future.",
+      "parentUuid": "87be2ae1_d7f49cf1",
+      "range": {
+        "startLine": 532,
+        "startChar": 13,
+        "endLine": 532,
+        "endChar": 14
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07b15a0d_3b4057e8",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2016-01-14T17:05:38Z",
       "side": 1,
       "message": "nice being able to reuse the other functions!",
+      "range": {
+        "startLine": 681,
+        "startChar": 0,
+        "endLine": 681,
+        "endChar": 51
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "678e9643_e986eecd",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-14T21:14:47Z",
+      "side": 1,
+      "message": "Yes indeed !!",
+      "parentUuid": "07b15a0d_3b4057e8",
       "range": {
         "startLine": 681,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "274e5eac_8876346d",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-14T21:14:47Z",
+      "side": 1,
+      "message": "removed.. cleaned up others as well..",
+      "parentUuid": "e7c1a66d_1ae11d18",
+      "range": {
+        "startLine": 1,
+        "startChar": 8,
+        "endLine": 1,
+        "endChar": 26
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7c1a66d_dab3a527",
         "filename": "drivers/md/dm-android-verity.h",
         "patchSetId": 4
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "e759a674_28ce0984",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-14T21:14:47Z",
+      "side": 1,
+      "message": "That\u0027s what is actually done in the code.. Forgot to remove it from here... Thanks for pointing this out !!",
+      "parentUuid": "e7c1a66d_dab3a527",
+      "range": {
+        "startLine": 11,
+        "startChar": 27,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7bb2ef1_b8beb91c",
         "filename": "drivers/md/dm-android-verity.h",
         "patchSetId": 4
@@ -151,6 +295,30 @@
       "writtenOn": "2016-01-14T17:05:38Z",
       "side": 1,
       "message": "nit: is this already available via the crypto defines?  I think it\u0027s fine to call it out as a field length, but it could conflict/be confusing later.",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 28
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27673e34_0fceb683",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-14T21:14:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7bb2ef1_b8beb91c",
       "range": {
         "startLine": 16,
         "startChar": 8,
