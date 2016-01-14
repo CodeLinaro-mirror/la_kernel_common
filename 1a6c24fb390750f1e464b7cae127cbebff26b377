@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07b15a0d_bb4467f9",
+        "filename": "drivers/md/Kconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-01-14T17:05:38Z",
+      "side": 1,
+      "message": "not requesting any change, but DM_VERITY_META or something similar, could be used in the future to make this a generic -- load-metadata-from-disk wrapper!",
+      "range": {
+        "startLine": 427,
+        "startChar": 7,
+        "endLine": 427,
+        "endChar": 24
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47a7d2d1_fd930784",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-01-14T17:05:38Z",
+      "side": 1,
+      "message": "nit: please include a header which explains what the target constructor needs as its argv!",
+      "range": {
+        "startLine": 518,
+        "startChar": 11,
+        "endLine": 518,
+        "endChar": 29
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87be2ae1_d7f49cf1",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-01-14T17:05:38Z",
+      "side": 1,
+      "message": "does anything in the current format block the ability to add a hash (or int or ..) to the argument format?\n\nI ask because there is no version index in the android_verity_metadata which means that a formerly vulnerable system image could be reinstalled on a device with old signed metadata unless the signing key is changed.\n\nOne way to solve that is for the kernel to supply the expected version (or version_minimum) for the signed metadata.  Another way could be to just have the hash of the metadata (basically fixed pin between kernel cmdline and rootfs).\n\nI know that it is currently the state of things, so I just want to make sure there could be the option of extending this code and/or the android metadata such that it can be gain rollback protection.",
+      "range": {
+        "startLine": 532,
+        "startChar": 13,
+        "endLine": 532,
+        "endChar": 14
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07b15a0d_3b4057e8",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-01-14T17:05:38Z",
+      "side": 1,
+      "message": "nice being able to reuse the other functions!",
+      "range": {
+        "startLine": 681,
+        "startChar": 0,
+        "endLine": 681,
+        "endChar": 51
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7c1a66d_1ae11d18",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-01-14T17:05:38Z",
+      "side": 1,
+      "message": "nit: boilerplate",
+      "range": {
+        "startLine": 1,
+        "startChar": 8,
+        "endLine": 1,
+        "endChar": 26
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7c1a66d_dab3a527",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-01-14T17:05:38Z",
+      "side": 1,
+      "message": "can this be build-time computed with sizeof()s?",
+      "range": {
+        "startLine": 11,
+        "startChar": 27,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7bb2ef1_b8beb91c",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-01-14T17:05:38Z",
+      "side": 1,
+      "message": "nit: is this already available via the crypto defines?  I think it\u0027s fine to call it out as a field length, but it could conflict/be confusing later.",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 28
+      },
+      "revId": "1a6c24fb390750f1e464b7cae127cbebff26b377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
