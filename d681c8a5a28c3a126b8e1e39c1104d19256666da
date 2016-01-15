@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e759a674_17fc0088",
+        "filename": "arch/arm/kernel/ptrace.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-01-15T17:31:04Z",
+      "side": 0,
+      "message": "Conflicted as this was moved into a helper function at the bottom.",
+      "range": {
+        "startLine": 924,
+        "startChar": 0,
+        "endLine": 925,
+        "endChar": 50
+      },
+      "revId": "d681c8a5a28c3a126b8e1e39c1104d19256666da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07495aa4_cdc32b10",
+        "filename": "arch/arm/kernel/signal.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-01-15T17:31:04Z",
+      "side": 0,
+      "message": "Incoming conflict context only",
+      "range": {
+        "startLine": 672,
+        "startChar": 0,
+        "endLine": 676,
+        "endChar": 47
+      },
+      "revId": "d681c8a5a28c3a126b8e1e39c1104d19256666da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
