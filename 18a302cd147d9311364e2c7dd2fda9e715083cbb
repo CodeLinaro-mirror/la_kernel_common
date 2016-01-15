@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "274e5eac_f45b4ed5",
+        "filename": "arch/arm/kernel/ptrace.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-01-15T17:23:13Z",
+      "side": 1,
+      "message": "This one was actually a conflict, commit message is wrong as merely UPSTREAM. Upstream has this code at the bottom of the file in helper functions.",
+      "range": {
+        "startLine": 924,
+        "startChar": 0,
+        "endLine": 925,
+        "endChar": 50
+      },
+      "revId": "18a302cd147d9311364e2c7dd2fda9e715083cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
