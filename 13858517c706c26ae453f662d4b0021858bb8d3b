@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "676db610_6d7acbc4",
+        "filename": "arch/arm/mm/mmu.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1149,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-01-15T17:35:16Z",
+      "side": 0,
+      "message": "incoming conflict, upstream does not have the second argument.",
+      "range": {
+        "startLine": 1149,
+        "startChar": 0,
+        "endLine": 1149,
+        "endChar": 29
+      },
+      "revId": "13858517c706c26ae453f662d4b0021858bb8d3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
