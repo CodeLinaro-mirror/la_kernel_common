@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07623a24_c137711f",
+        "filename": "arch/arm/kernel/signal.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-01-15T17:26:49Z",
+      "side": 0,
+      "message": "incoming conflict",
+      "range": {
+        "startLine": 689,
+        "startChar": 2,
+        "endLine": 690,
+        "endChar": 33
+      },
+      "revId": "518b40696b5de6b07759ddd40e61cefbf1ee65f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
