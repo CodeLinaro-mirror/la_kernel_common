@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "676db610_8d75a7d7",
+        "filename": "arch/arm/include/asm/mmu.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-01-15T17:34:30Z",
+      "side": 0,
+      "message": "incoming conflict (was not a conflict in N10 kernel though, so it has an upstream patch not represented here)",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 22
+      },
+      "revId": "e4ba1de9b259519e3d24077651eb39596dfbb5fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2752dead_a2a9ba4d",
+        "filename": "arch/arm/kernel/signal.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-01-15T17:34:30Z",
+      "side": 0,
+      "message": "incoming conflict context",
+      "range": {
+        "startLine": 51,
+        "startChar": 1,
+        "endLine": 54,
+        "endChar": 84
+      },
+      "revId": "e4ba1de9b259519e3d24077651eb39596dfbb5fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2752dead_82911e1a",
+        "filename": "arch/arm/kernel/signal.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-01-15T17:34:30Z",
+      "side": 0,
+      "message": "upstream has a more expansive set of checks here, modified comment below to remove associated references to those checks.",
+      "range": {
+        "startLine": 450,
+        "startChar": 1,
+        "endLine": 450,
+        "endChar": 26
+      },
+      "revId": "e4ba1de9b259519e3d24077651eb39596dfbb5fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
