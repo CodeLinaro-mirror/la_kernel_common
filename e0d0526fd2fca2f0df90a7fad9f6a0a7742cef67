@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "676db610_8d9ac786",
+        "filename": "arch/arm/kernel/signal.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-01-15T17:20:09Z",
+      "side": 0,
+      "message": "conflict here because try_to_freeze is upstream",
+      "range": {
+        "startLine": 645,
+        "startChar": 5,
+        "endLine": 645,
+        "endChar": 27
+      },
+      "revId": "e0d0526fd2fca2f0df90a7fad9f6a0a7742cef67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
