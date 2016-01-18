@@ -897,6 +897,30 @@
     },
     {
       "key": {
+        "uuid": "07931a6b_b1aa988b",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-01-18T09:32:55Z",
+      "side": 1,
+      "message": "Oops. Yes, that\u0027s correct.",
+      "parentUuid": "4a74377b_9849d915",
+      "range": {
+        "startLine": 582,
+        "startChar": 17,
+        "endLine": 582,
+        "endChar": 61
+      },
+      "revId": "d48d045f53de0e829db062eeeb003a2a2a483166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c55c9a66_dc5121e1",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
