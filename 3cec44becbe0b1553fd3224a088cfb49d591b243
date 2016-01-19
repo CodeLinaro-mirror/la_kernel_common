@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6777760f_694a0105",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-01-19T08:06:35Z",
+      "side": 1,
+      "message": "Is this correct? do_div needs a 32-bit value as the second parameter and returns the remainder, and x % y would result in 64-bit division.",
+      "range": {
+        "startLine": 170,
+        "startChar": 8,
+        "endLine": 170,
+        "endChar": 29
+      },
+      "revId": "3cec44becbe0b1553fd3224a088cfb49d591b243",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771fe1c_2a7b9ba0",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-01-19T08:06:35Z",
+      "side": 1,
+      "message": "Considering device_size is u64, does this compile in a 32-bit kernel?",
+      "range": {
+        "startLine": 218,
+        "startChar": 40,
+        "endLine": 218,
+        "endChar": 41
+      },
+      "revId": "3cec44becbe0b1553fd3224a088cfb49d591b243",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
