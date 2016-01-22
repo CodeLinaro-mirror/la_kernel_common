@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "54aa2254_4b3bb9a7",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-22T22:27:38Z",
+      "side": 1,
+      "message": "Yeah.. That\u0027s wrong... Thanks for catching that.. I backported https://www.redhat.com/archives/dm-devel/2013-August/msg00120.html.. I am going to use this function here..",
+      "parentUuid": "6777760f_694a0105",
+      "range": {
+        "startLine": 170,
+        "startChar": 8,
+        "endLine": 170,
+        "endChar": 29
+      },
+      "revId": "3cec44becbe0b1553fd3224a088cfb49d591b243",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2771fe1c_2a7b9ba0",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2016-01-19T08:06:35Z",
       "side": 1,
       "message": "Considering device_size is u64, does this compile in a 32-bit kernel?",
+      "range": {
+        "startLine": 218,
+        "startChar": 40,
+        "endLine": 218,
+        "endChar": 41
+      },
+      "revId": "3cec44becbe0b1553fd3224a088cfb49d591b243",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4bb169e_70ca28a2",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-22T22:27:38Z",
+      "side": 1,
+      "message": "It does seem to compile.. I did not notice any issues..",
+      "parentUuid": "2771fe1c_2a7b9ba0",
       "range": {
         "startLine": 218,
         "startChar": 40,
