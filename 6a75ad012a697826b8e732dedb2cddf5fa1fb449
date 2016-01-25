@@ -45,6 +45,30 @@
       "revId": "6a75ad012a697826b8e732dedb2cddf5fa1fb449",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4be1290_fde34f31",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-25T18:16:42Z",
+      "side": 1,
+      "message": "As you may know, VERITY_METADATA_MAGIC_DISABLE bit on the the partition is not a part of the signed metadata.. i.e. Anyone can disable it... Isn\u0027t the bootloader supposed to be flashing the red screen when VERITY is disabled ? How will the bootloader get to know that verity is disabled ?",
+      "parentUuid": "1410aa94_a33a3abd",
+      "range": {
+        "startLine": 441,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 2
+      },
+      "revId": "6a75ad012a697826b8e732dedb2cddf5fa1fb449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
