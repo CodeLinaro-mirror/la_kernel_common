@@ -69,6 +69,30 @@
       "revId": "6a75ad012a697826b8e732dedb2cddf5fa1fb449",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54edc2c8_2d8d8db1",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-01-25T18:25:04Z",
+      "side": 1,
+      "message": "My point is that if someone locks a device that previously had dm-verity disabled, the device should still boot with dm-verity enabled. Right now, the code fails to find verity metadata and bails out. We wouldn\u0027t disable dm-verity on a locked device no matter which of the two metadata magics we read.",
+      "parentUuid": "d4be1290_fde34f31",
+      "range": {
+        "startLine": 441,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 2
+      },
+      "revId": "6a75ad012a697826b8e732dedb2cddf5fa1fb449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
