@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d41292d7_c92871c6",
+        "filename": "net/ipv4/inet_diag.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1093208
+      },
+      "writtenOn": "2016-01-26T04:50:47Z",
+      "side": 1,
+      "message": "No comment about TCPF_NEW_SYN_RECV?",
+      "range": {
+        "startLine": 322,
+        "startChar": 22,
+        "endLine": 322,
+        "endChar": 35
+      },
+      "revId": "9754d63ac110f55426520e7664cc4ce109053576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
