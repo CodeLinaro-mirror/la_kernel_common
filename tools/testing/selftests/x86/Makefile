@@ -9,8 +9,9 @@ TARGETS_C_32BIT_ONLY := entry_from_vm86 syscall_arg_fault sigreturn test_syscall
 			test_FCMOV test_FCOMI test_FISTTP
 
 TARGETS_C_32BIT_ALL := $(TARGETS_C_BOTHBITS) $(TARGETS_C_32BIT_ONLY)
+TARGETS_C_64BIT_ALL := $(TARGETS_C_BOTHBITS) $(TARGETS_C_64BIT_ONLY)
 BINARIES_32 := $(TARGETS_C_32BIT_ALL:%=%_32)
-BINARIES_64 := $(TARGETS_C_BOTHBITS:%=%_64)
+BINARIES_64 := $(TARGETS_C_64BIT_ALL:%=%_64)
 
 CFLAGS := -O2 -g -std=gnu99 -pthread -Wall
 
@@ -38,7 +39,7 @@ clean:
 $(TARGETS_C_32BIT_ALL:%=%_32): %_32: %.c
 	$(CC) -m32 -o $@ $(CFLAGS) $(EXTRA_CFLAGS) $^ -lrt -ldl -lm
 
-$(TARGETS_C_BOTHBITS:%=%_64): %_64: %.c
+$(TARGETS_C_64BIT_ALL:%=%_64): %_64: %.c
 	$(CC) -m64 -o $@ $(CFLAGS) $(EXTRA_CFLAGS) $^ -lrt -ldl
 
 # x86_64 users should be encouraged to install 32-bit libraries
