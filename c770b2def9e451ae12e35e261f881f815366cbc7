@@ -1,0 +1,187 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4b5d6da_70948d29",
+        "filename": "drivers/md/Kconfig",
+        "patchSetId": 10
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2016-01-28T19:20:26Z",
+      "side": 1,
+      "message": "Does it make sense to make this a module at all? Shouldn\u0027t this be boolean only?",
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4b5d6da_5076a9df",
+        "filename": "drivers/md/Makefile",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2016-01-28T19:20:26Z",
+      "side": 1,
+      "message": "This does not work if it\u0027s a module. This only works if you make it a boolean.",
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b4a43ebb_a1fa4196",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2016-01-28T19:20:26Z",
+      "side": 1,
+      "message": "*fec",
+      "range": {
+        "startLine": 233,
+        "startChar": 15,
+        "endLine": 233,
+        "endChar": 32
+      },
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "74f48602_5eb475ee",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2016-01-28T19:20:26Z",
+      "side": 1,
+      "message": "*fec",
+      "range": {
+        "startLine": 241,
+        "startChar": 12,
+        "endLine": 241,
+        "endChar": 29
+      },
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "542ce22d_492fb1c6",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2016-01-28T19:20:26Z",
+      "side": 1,
+      "message": "*fec",
+      "range": {
+        "startLine": 242,
+        "startChar": 10,
+        "endLine": 242,
+        "endChar": 27
+      },
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b4a43ebb_81f53daa",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2016-01-28T19:20:26Z",
+      "side": 1,
+      "message": "*fec",
+      "range": {
+        "startLine": 244,
+        "startChar": 10,
+        "endLine": 244,
+        "endChar": 27
+      },
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "542ce22d_8935c916",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2016-01-28T19:20:26Z",
+      "side": 1,
+      "message": "*header\n\nI\u0027m going to stop leaving comments on these",
+      "range": {
+        "startLine": 310,
+        "startChar": 25,
+        "endLine": 310,
+        "endChar": 55
+      },
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54ef8232_bdeadfcb",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2016-01-28T19:20:26Z",
+      "side": 1,
+      "message": "You have to check DT as well, not just the command line. Same for the next function.",
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34fe8ee6_5cb47dee",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1018087
+      },
+      "writtenOn": "2016-01-28T19:20:26Z",
+      "side": 1,
+      "message": "These 2 functions look very similar... Can you factor the common parts out?",
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
