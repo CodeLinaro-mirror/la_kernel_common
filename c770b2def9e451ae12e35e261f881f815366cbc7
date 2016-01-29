@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5125d4a7_4d41b992",
+        "filename": "drivers/md/Kconfig",
+        "patchSetId": 10
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-01-29T10:54:56Z",
+      "side": 1,
+      "message": "Yes, this should be boolean. Good catch.",
+      "parentUuid": "f4b5d6da_70948d29",
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4b5d6da_5076a9df",
         "filename": "drivers/md/Makefile",
         "patchSetId": 10
