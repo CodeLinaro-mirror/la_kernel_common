@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "d468d2a0_4235837c",
+        "filename": "drivers/md/Kconfig",
+        "patchSetId": 10
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-30T02:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5125d4a7_4d41b992",
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4b5d6da_5076a9df",
         "filename": "drivers/md/Makefile",
         "patchSetId": 10
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "9462dabe_86fdf485",
+        "filename": "drivers/md/Makefile",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-30T02:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4b5d6da_5076a9df",
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4a43ebb_a1fa4196",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 10
@@ -65,6 +101,30 @@
       "writtenOn": "2016-01-28T19:20:26Z",
       "side": 1,
       "message": "*fec",
+      "range": {
+        "startLine": 233,
+        "startChar": 15,
+        "endLine": 233,
+        "endChar": 32
+      },
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f465d6c4_21116d9f",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-30T02:33:20Z",
+      "side": 1,
+      "message": "changed it to pointer dereference in most of the cases.. However, left some of them as such where the code is trying to find the offset.. (Just for the sake of readability !!)",
+      "parentUuid": "b4a43ebb_a1fa4196",
       "range": {
         "startLine": 233,
         "startChar": 15,
@@ -100,6 +160,30 @@
     },
     {
       "key": {
+        "uuid": "d468d2a0_22196f08",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-30T02:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74f48602_5eb475ee",
+      "range": {
+        "startLine": 241,
+        "startChar": 12,
+        "endLine": 241,
+        "endChar": 29
+      },
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "542ce22d_492fb1c6",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 10
@@ -111,6 +195,30 @@
       "writtenOn": "2016-01-28T19:20:26Z",
       "side": 1,
       "message": "*fec",
+      "range": {
+        "startLine": 242,
+        "startChar": 10,
+        "endLine": 242,
+        "endChar": 27
+      },
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d468d2a0_420e63c2",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-30T02:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "542ce22d_492fb1c6",
       "range": {
         "startLine": 242,
         "startChar": 10,
@@ -146,6 +254,30 @@
     },
     {
       "key": {
+        "uuid": "5422228b_59abd3f3",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-30T02:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4a43ebb_81f53daa",
+      "range": {
+        "startLine": 244,
+        "startChar": 10,
+        "endLine": 244,
+        "endChar": 27
+      },
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "542ce22d_8935c916",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 10
@@ -157,6 +289,30 @@
       "writtenOn": "2016-01-28T19:20:26Z",
       "side": 1,
       "message": "*header\n\nI\u0027m going to stop leaving comments on these",
+      "range": {
+        "startLine": 310,
+        "startChar": 25,
+        "endLine": 310,
+        "endChar": 55
+      },
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f465d6c4_014709a7",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-30T02:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "542ce22d_8935c916",
       "range": {
         "startLine": 310,
         "startChar": 25,
@@ -186,6 +342,24 @@
     },
     {
       "key": {
+        "uuid": "349a0eef_266177b5",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-30T02:33:20Z",
+      "side": 1,
+      "message": "Correct me if I am wrong..\nAre you referring to passing parameters through dt\u0027s\"bootargs\" here ? IF yes, they seemed to be copied to the saved_command_line.. __setup seems to also be invoked for \"bootargs\" params",
+      "parentUuid": "54ef8232_bdeadfcb",
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "34fe8ee6_5cb47dee",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 10
@@ -197,6 +371,24 @@
       "writtenOn": "2016-01-28T19:20:26Z",
       "side": 1,
       "message": "These 2 functions look very similar... Can you factor the common parts out?",
+      "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b486fe94_5a8015e3",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-01-30T02:33:20Z",
+      "side": 1,
+      "message": "I actually refactored it quite a bit.. Mainly because there is no code in kernel calling __setup macro for androidboot. command line parameters.. So, instead of parsing the saved_command_line string, I just calling the __setup macro.",
+      "parentUuid": "34fe8ee6_5cb47dee",
       "revId": "c770b2def9e451ae12e35e261f881f815366cbc7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
