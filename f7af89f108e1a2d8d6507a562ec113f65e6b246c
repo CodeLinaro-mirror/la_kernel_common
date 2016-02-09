@@ -1,0 +1,320 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3dacb4b4_9e7e3df1",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "why 20? could a define be used instead of a magic constant?",
+      "range": {
+        "startLine": 43,
+        "startChar": 30,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3dacb4b4_a1a558cc",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "I wish I could say that I\u0027m surprised that there isn\u0027t already a helper function to do this :/",
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1dd0d03a_55940cba",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "There\u0027s a helper (and it avoids a div and a mod):\n    payload-\u003enumber_of_pages \u003d DIV_ROUND_UP(length, PAGE_SIZE);\n(It\u0027s only less good if you need int64 or you think length+PAGE_SIZE could overflow.)",
+      "range": {
+        "startLine": 137,
+        "startChar": 29,
+        "endLine": 137,
+        "endChar": 35
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1da7f0d2_9d54039e",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "total nit:\n\n    if (!submit_bio_wait(READ, bio))\n      /* success! */\n      goto free_bio;\n    DMERR(\"bio read failed\\n\");\n    err \u003d -EIO;\n    \n    free_pages:\n    ...",
+      "range": {
+        "startLine": 171,
+        "startChar": 5,
+        "endLine": 171,
+        "endChar": 20
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5dbec8e3_779710c1",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "DMERR(\"blkdev_get_by_dev failed\");\n\nAlso, none of the DMERR should have \\n should they?",
+      "range": {
+        "startLine": 307,
+        "startChar": 14,
+        "endLine": 307,
+        "endChar": 17
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ddc9d89d_5659b262",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "can you use ERR_CAST for this then let the void auto cast or does that not work?\n\n    return ERR_CAST(bdev);",
+      "range": {
+        "startLine": 308,
+        "startChar": 17,
+        "endLine": 308,
+        "endChar": 33
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bdc1846e_fa82e981",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "The range change below needs to occur prior to this allocation.",
+      "range": {
+        "startLine": 353,
+        "startChar": 42,
+        "endLine": 353,
+        "endChar": 54
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bdc1846e_7a97f9c0",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "move this up!",
+      "range": {
+        "startLine": 363,
+        "startChar": 5,
+        "endLine": 363,
+        "endChar": 17
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7dbb8cf2_78aca1fe",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "\u003c\u003d 0 since table_length is defined as a signed int above. \n\nEven if le32 is unsigned, when it is cast, it will go negative if too high. That would mean the above allocation could be 0\u0027d, then the table length would pass this test looking negative and the check below would also pass as the header+length would wrap to less than a page_size!",
+      "range": {
+        "startLine": 363,
+        "startChar": 18,
+        "endLine": 363,
+        "endChar": 20
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fdb5bcf8_bcd46136",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "Does this include an extra byte for the NUL?",
+      "range": {
+        "startLine": 364,
+        "startChar": 18,
+        "endLine": 364,
+        "endChar": 38
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1dd0d03a_154a14fd",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "so if your phone is unlocked, a new magic is what disabled dm-verity? (Is the kernel still signed at this point or would it be assumed the kernel could be replaced on an unlocked device?)",
+      "range": {
+        "startLine": 466,
+        "startChar": 5,
+        "endLine": 466,
+        "endChar": 16
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7dbb8cf2_18a3650d",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "even though this has been bounds checked earlier, it makes me nervous to re-read the disk-supplied value without re-setting it :/",
+      "range": {
+        "startLine": 509,
+        "startChar": 3,
+        "endLine": 509,
+        "endChar": 14
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9dc4c07e_f969d78b",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "Will this result in a reboot loop for devices? On other systems, we\u0027ve corrupted bits to cause it to fail over to recovery-equivalent modes so users know what\u0027s going on.  Not a blocking question but one worth noting.",
+      "range": {
+        "startLine": 537,
+        "startChar": 2,
+        "endLine": 537,
+        "endChar": 16
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3dacb4b4_be79f90c",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-09T19:51:51Z",
+      "side": 1,
+      "message": "after the data is rearranged, can this be computed in terms of a sizeof()?",
+      "range": {
+        "startLine": 26,
+        "startChar": 34,
+        "endLine": 26,
+        "endChar": 49
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
