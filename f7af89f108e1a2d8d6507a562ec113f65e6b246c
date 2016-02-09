@@ -249,6 +249,30 @@
     },
     {
       "key": {
+        "uuid": "7da46cba_335b12d2",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-02-09T20:18:26Z",
+      "side": 1,
+      "message": "The user can run any kernel when the device is unlocked, there\u0027s no signature verification at that point.",
+      "parentUuid": "1dd0d03a_154a14fd",
+      "range": {
+        "startLine": 466,
+        "startChar": 5,
+        "endLine": 466,
+        "endChar": 16
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7dbb8cf2_18a3650d",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 12
@@ -295,6 +319,30 @@
     },
     {
       "key": {
+        "uuid": "bd9a6476_b5db6a63",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-02-09T20:18:26Z",
+      "side": 1,
+      "message": "This assumes the bootloader will tell us to start dm-verity in a non-restart mode next time to avoid boot loops. It also assumes we somehow inform the bootloader about the restart reason.",
+      "parentUuid": "9dc4c07e_f969d78b",
+      "range": {
+        "startLine": 537,
+        "startChar": 2,
+        "endLine": 537,
+        "endChar": 16
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3dacb4b4_be79f90c",
         "filename": "drivers/md/dm-android-verity.h",
         "patchSetId": 12
@@ -306,6 +354,30 @@
       "writtenOn": "2016-02-09T19:51:51Z",
       "side": 1,
       "message": "after the data is rearranged, can this be computed in terms of a sizeof()?",
+      "range": {
+        "startLine": 26,
+        "startChar": 34,
+        "endLine": 26,
+        "endChar": 49
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd9a6476_f5bc1200",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-02-09T20:18:26Z",
+      "side": 1,
+      "message": "The actual header is nowhere near this large, but this is how much space is allocated for it. Room to grow, I guess.",
+      "parentUuid": "3dacb4b4_be79f90c",
       "range": {
         "startLine": 26,
         "startChar": 34,
