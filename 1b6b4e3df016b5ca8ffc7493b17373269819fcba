@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5dbec8e3_0f11d0a6",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-16T19:54:06Z",
+      "side": 1,
+      "message": "nice catch!",
+      "range": {
+        "startLine": 199,
+        "startChar": 14,
+        "endLine": 199,
+        "endChar": 25
+      },
+      "revId": "1b6b4e3df016b5ca8ffc7493b17373269819fcba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ddc9d89d_217b859f",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-16T19:54:06Z",
+      "side": 1,
+      "message": "use kmalloc above?  It\u0027d be safer to use kzalloc if you can (in case the NUL gets forgotten, info leaks, etc), but obviously not a hard requirement.",
+      "range": {
+        "startLine": 363,
+        "startChar": 9,
+        "endLine": 363,
+        "endChar": 16
+      },
+      "revId": "1b6b4e3df016b5ca8ffc7493b17373269819fcba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3dacb4b4_5961e479",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-16T19:54:06Z",
+      "side": 1,
+      "message": "[just an observation, but it might\u0027ve been easier just to fold the verity table args each independently into the header then build the string here, but maybe not!]",
+      "range": {
+        "startLine": 368,
+        "startChar": 12,
+        "endLine": 368,
+        "endChar": 18
+      },
+      "revId": "1b6b4e3df016b5ca8ffc7493b17373269819fcba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1dd0d03a_bef57836",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-16T19:54:06Z",
+      "side": 1,
+      "message": "would it be worth printing the version received so it might be grabbed from pstore logs?",
+      "range": {
+        "startLine": 482,
+        "startChar": 28,
+        "endLine": 482,
+        "endChar": 31
+      },
+      "revId": "1b6b4e3df016b5ca8ffc7493b17373269819fcba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5dbec8e3_2f1a54b6",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-16T19:54:06Z",
+      "side": 1,
+      "message": "data_sectors will either be u64 (CONFIG_LBDAF) or unsigned long.  Is silent truncation okay? I am guessing that most cases would be caught by the test_mult_overflow case below?",
+      "range": {
+        "startLine": 654,
+        "startChar": 1,
+        "endLine": 654,
+        "endChar": 13
+      },
+      "revId": "1b6b4e3df016b5ca8ffc7493b17373269819fcba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1da7f0d2_5c4d5413",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 13
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1022354
+      },
+      "writtenOn": "2016-02-16T19:54:06Z",
+      "side": 1,
+      "message": "s/to high/too large/\n?",
+      "range": {
+        "startLine": 666,
+        "startChar": 25,
+        "endLine": 666,
+        "endChar": 29
+      },
+      "revId": "1b6b4e3df016b5ca8ffc7493b17373269819fcba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
