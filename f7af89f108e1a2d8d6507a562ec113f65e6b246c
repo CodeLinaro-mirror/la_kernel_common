@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ddbd58cb_b92a97c0",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-02-16T23:33:53Z",
+      "side": 1,
+      "message": "The keywords that we are using here are at most 15 characters length.. I have introduced a #define for this.",
+      "parentUuid": "3dacb4b4_9e7e3df1",
+      "range": {
+        "startLine": 43,
+        "startChar": 30,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3dacb4b4_a1a558cc",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 12
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "ddbd58cb_d97e73b7",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-02-16T23:33:53Z",
+      "side": 1,
+      "message": "I did search for one, but, I couldn\u0027t fine one either.",
+      "parentUuid": "3dacb4b4_a1a558cc",
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1dd0d03a_55940cba",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 12
@@ -53,6 +95,30 @@
       "writtenOn": "2016-02-09T19:51:51Z",
       "side": 1,
       "message": "There\u0027s a helper (and it avoids a div and a mod):\n    payload-\u003enumber_of_pages \u003d DIV_ROUND_UP(length, PAGE_SIZE);\n(It\u0027s only less good if you need int64 or you think length+PAGE_SIZE could overflow.)",
+      "range": {
+        "startLine": 137,
+        "startChar": 29,
+        "endLine": 137,
+        "endChar": 35
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd83441c_3e868106",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-02-16T23:33:53Z",
+      "side": 1,
+      "message": "FEC_BLOCK_SIZE and VERITY_METADATA_SIZE are really small compared to int.. Should be safe to assume that it wouldn\u0027t overflow. I will make the change !",
+      "parentUuid": "1dd0d03a_55940cba",
       "range": {
         "startLine": 137,
         "startChar": 29,
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "ddbd58cb_19d46bbf",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-02-16T23:33:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1da7f0d2_9d54039e",
+      "range": {
+        "startLine": 171,
+        "startChar": 5,
+        "endLine": 171,
+        "endChar": 20
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5dbec8e3_779710c1",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 12
@@ -99,6 +189,30 @@
       "writtenOn": "2016-02-09T19:51:51Z",
       "side": 1,
       "message": "DMERR(\"blkdev_get_by_dev failed\");\n\nAlso, none of the DMERR should have \\n should they?",
+      "range": {
+        "startLine": 307,
+        "startChar": 14,
+        "endLine": 307,
+        "endChar": 17
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd83441c_5ee9759f",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-02-16T23:33:53Z",
+      "side": 1,
+      "message": "Yes.. I will remove the newline characters.",
+      "parentUuid": "5dbec8e3_779710c1",
       "range": {
         "startLine": 307,
         "startChar": 14,
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "dd92b865_5f06db6d",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-02-16T23:33:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddc9d89d_5659b262",
+      "range": {
+        "startLine": 308,
+        "startChar": 17,
+        "endLine": 308,
+        "endChar": 33
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bdc1846e_fa82e981",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 12
@@ -145,6 +283,30 @@
       "writtenOn": "2016-02-09T19:51:51Z",
       "side": 1,
       "message": "The range change below needs to occur prior to this allocation.",
+      "range": {
+        "startLine": 353,
+        "startChar": 42,
+        "endLine": 353,
+        "endChar": 54
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d89b03a_e1a0ce19",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-02-16T23:33:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdc1846e_fa82e981",
       "range": {
         "startLine": 353,
         "startChar": 42,
@@ -203,6 +365,54 @@
     },
     {
       "key": {
+        "uuid": "bd83441c_fe494908",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-02-16T23:33:53Z",
+      "side": 1,
+      "message": "table_length should u32 as the header from the disk is 32-bit unsigned integer.. Corrected it..",
+      "parentUuid": "7dbb8cf2_78aca1fe",
+      "range": {
+        "startLine": 363,
+        "startChar": 18,
+        "endLine": 363,
+        "endChar": 20
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd977c52_326148b1",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-02-16T23:33:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdc1846e_7a97f9c0",
+      "range": {
+        "startLine": 363,
+        "startChar": 5,
+        "endLine": 363,
+        "endChar": 17
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fdb5bcf8_bcd46136",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 12
@@ -214,6 +424,30 @@
       "writtenOn": "2016-02-09T19:51:51Z",
       "side": 1,
       "message": "Does this include an extra byte for the NUL?",
+      "range": {
+        "startLine": 364,
+        "startChar": 18,
+        "endLine": 364,
+        "endChar": 38
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fde93cd0_bc4c4143",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-02-16T23:33:53Z",
+      "side": 1,
+      "message": "I dont think it does..",
+      "parentUuid": "fdb5bcf8_bcd46136",
       "range": {
         "startLine": 364,
         "startChar": 18,
@@ -284,6 +518,30 @@
       "writtenOn": "2016-02-09T19:51:51Z",
       "side": 1,
       "message": "even though this has been bounds checked earlier, it makes me nervous to re-read the disk-supplied value without re-setting it :/",
+      "range": {
+        "startLine": 509,
+        "startChar": 3,
+        "endLine": 509,
+        "endChar": 14
+      },
+      "revId": "f7af89f108e1a2d8d6507a562ec113f65e6b246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd9a6476_7b0c93d4",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-02-16T23:33:53Z",
+      "side": 1,
+      "message": "I am not re-reading from disk again.. I am accessing it from memory.. Is this still a concern ?",
+      "parentUuid": "7dbb8cf2_18a3650d",
       "range": {
         "startLine": 509,
         "startChar": 3,
