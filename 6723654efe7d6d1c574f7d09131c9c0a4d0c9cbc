@@ -70,6 +70,30 @@
       "revId": "6723654efe7d6d1c574f7d09131c9c0a4d0c9cbc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d170cd9_18e905fd",
+        "filename": "net/ipv4/tcp.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3521,
+      "author": {
+        "id": 1086323
+      },
+      "writtenOn": "2016-02-18T01:43:01Z",
+      "side": 1,
+      "message": "This statement \"\u0026rt-\u003edst\" will not dereference the rt pointer actually, it is equal to \"(char *) rt + offsetof(struct rt6_info, dst)\", and there\u0027s a BUILD_BUG_ON to ensure that offsetof(struct rt6_info, dst) is always 0. If rt6 is NULL, \u0026rt-\u003edst is also NULL, so ip[6]_rt_put(NULL); call is safe.",
+      "parentUuid": "fd993cfa_9fde17f8",
+      "range": {
+        "startLine": 3521,
+        "startChar": 1,
+        "endLine": 3521,
+        "endChar": 11
+      },
+      "revId": "6723654efe7d6d1c574f7d09131c9c0a4d0c9cbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
