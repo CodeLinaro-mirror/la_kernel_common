@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2981592_080f8b13",
+        "filename": "drivers/trusty/trusty-virtio.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2016-02-20T04:20:50Z",
+      "side": 1,
+      "message": "What is the value of reserved if this code is not run? Does it need to be conditional?",
+      "revId": "3d534658fb9de51b7bbfc27d187ebd5bcfab0f2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
