@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02e4ed24_6c287b62",
+        "filename": "drivers/trusty/trusty-ipc.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1244,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2016-02-20T04:22:48Z",
+      "side": 1,
+      "message": "can this be NULL?",
+      "range": {
+        "startLine": 1244,
+        "startChar": 21,
+        "endLine": 1244,
+        "endChar": 30
+      },
+      "revId": "b7660e68b044fae0c8c753e15b8c1825b4d8248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
