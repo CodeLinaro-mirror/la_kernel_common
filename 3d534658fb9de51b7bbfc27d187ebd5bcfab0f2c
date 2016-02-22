@@ -16,6 +16,24 @@
       "revId": "3d534658fb9de51b7bbfc27d187ebd5bcfab0f2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e2def959_7a74a5d8",
+        "filename": "drivers/trusty/trusty-virtio.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1045553
+      },
+      "writtenOn": "2016-02-22T23:15:38Z",
+      "side": 1,
+      "message": "it is set to 0 (by secure side though).",
+      "parentUuid": "c2981592_080f8b13",
+      "revId": "3d534658fb9de51b7bbfc27d187ebd5bcfab0f2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
