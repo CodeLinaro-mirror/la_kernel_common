@@ -22,6 +22,30 @@
       "revId": "27bd13ce402a027ca32d3ad4715de3b7d0fe2094",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e89420c3_bbbda7da",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1051574
+      },
+      "writtenOn": "2016-04-20T08:10:40Z",
+      "side": 1,
+      "message": "Good point, I missed that.  Let me double check. Thanks.",
+      "parentUuid": "e86b402f_43b9a63a",
+      "range": {
+        "startLine": 635,
+        "startChar": 2,
+        "endLine": 635,
+        "endChar": 8
+      },
+      "revId": "27bd13ce402a027ca32d3ad4715de3b7d0fe2094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
