@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e87a6032_207b704a",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1042384
+      },
+      "writtenOn": "2016-04-20T20:53:53Z",
+      "side": 1,
+      "message": "android-verity is also downstream of dm\u003d (https://android-review.googlesource.com/#/c/201895) which already does a substitution through name_to_dev_t. do_mounts_dm.c (dm_subsitute_devices).. Maybe move this to else if not in %u:%u%c format ?",
+      "range": {
+        "startLine": 632,
+        "startChar": 20,
+        "endLine": 632,
+        "endChar": 28
+      },
+      "revId": "0399cdcd1bc18ed6b49582c403fe3802c5355926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
