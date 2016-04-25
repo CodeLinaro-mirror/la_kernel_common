@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e87a6032_aa3631da",
+        "filename": "drivers/misc/Kconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1005480
+      },
+      "writtenOn": "2016-04-25T18:11:51Z",
+      "side": 0,
+      "message": "Also remove from https://android.googlesource.com/kernel/common/+/android-4.4/android/configs/android-recommended.cfg",
+      "range": {
+        "startLine": 415,
+        "startChar": 7,
+        "endLine": 415,
+        "endChar": 15
+      },
+      "revId": "42d9422a803afc7c1db3502787fdbe75577bc14d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
