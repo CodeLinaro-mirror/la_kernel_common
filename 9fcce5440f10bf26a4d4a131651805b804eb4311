@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "dc4c878d_64000a5e",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-05-23T14:50:13Z",
+      "side": 1,
+      "message": "default_verity_key_id \u003d\u003d (veritykeyid[0] !\u003d \u0027\\0\u0027)\n\nstatic inline bool default_verity_key_id()\n{\n    return veritykeyid[0] !\u003d \u0027\\0\u0027;\n}\n\nand save a global variable. In the future(tm) one may even add validation here?",
+      "range": {
+        "startLine": 87,
+        "startChar": 1,
+        "endLine": 87,
+        "endChar": 30
+      },
+      "revId": "9fcce5440f10bf26a4d4a131651805b804eb4311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc4c878d_648b6a2c",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-05-23T14:50:13Z",
+      "side": 1,
+      "message": "androidboot.veritykeyid ?",
+      "range": {
+        "startLine": 91,
+        "startChar": 9,
+        "endLine": 91,
+        "endChar": 20
+      },
+      "revId": "9fcce5440f10bf26a4d4a131651805b804eb4311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc4c878d_64b24af6",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-05-23T14:50:13Z",
+      "side": 1,
+      "message": "use a const char * name pointer to hold this; argv[0] (and formerly argv[1]) is meaningless.",
+      "range": {
+        "startLine": 652,
+        "startChar": 20,
+        "endLine": 652,
+        "endChar": 28
+      },
+      "revId": "9fcce5440f10bf26a4d4a131651805b804eb4311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc4c878d_a4a84285",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-05-23T14:50:13Z",
+      "side": 1,
+      "message": "nit: indent, alas outside the scope of this review. also at line 777.",
+      "range": {
+        "startLine": 770,
+        "startChar": 3,
+        "endLine": 775,
+        "endChar": 14
+      },
+      "revId": "9fcce5440f10bf26a4d4a131651805b804eb4311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7ae0ef8_f242bd01",
         "filename": "drivers/md/dm-android-verity.h",
         "patchSetId": 1
@@ -61,6 +153,30 @@
       "side": 1,
       "message": "http://lxr.free-electrons.com/source/crypto/asymmetric_keys/x509_cert_parser.c?v\u003d3.9#L278\nctx-\u003eo_size + 2 + ctx-\u003ecn_size + 1\n\n+ 41 characters for \":\" and sha1 id\n\nso should 64 + 2 + 64 + 1 + 1 + 40 (172)..\nShould I just allocate 200 characters and mention this in the comment ??",
       "parentUuid": "b7ae0ef8_0d100297",
+      "range": {
+        "startLine": 29,
+        "startChar": 37,
+        "endLine": 29,
+        "endChar": 40
+      },
+      "revId": "9fcce5440f10bf26a4d4a131651805b804eb4311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc4c878d_24957246",
+        "filename": "drivers/md/dm-android-verity.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-05-23T14:50:13Z",
+      "side": 1,
+      "message": "You _must_ comment as not intuitively obvious.",
+      "parentUuid": "b7ae0ef8_0dd3e2e5",
       "range": {
         "startLine": 29,
         "startChar": 37,
