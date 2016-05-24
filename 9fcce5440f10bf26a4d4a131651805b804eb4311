@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "9c276ff4_790bd3c9",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-05-24T21:46:10Z",
+      "side": 1,
+      "message": "IDNK, just seemed odd that veritymode was androidboot and this was not. _who_ is supplying this key?",
+      "parentUuid": "9c276ff4_9332e6dd",
+      "range": {
+        "startLine": 91,
+        "startChar": 9,
+        "endLine": 91,
+        "endChar": 20
+      },
+      "revId": "9fcce5440f10bf26a4d4a131651805b804eb4311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc4c878d_64b24af6",
         "filename": "drivers/md/dm-android-verity.c",
         "patchSetId": 1
