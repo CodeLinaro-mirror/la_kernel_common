@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c276ff4_59e6cf24",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-05-24T21:52:25Z",
+      "side": 1,
+      "message": "Is this back by mistake or was the CL rebased?",
+      "range": {
+        "startLine": 694,
+        "startChar": 5,
+        "endLine": 694,
+        "endChar": 6
+      },
+      "revId": "28a3daf095bc8e74cd130754dfdb79abca3eb212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
