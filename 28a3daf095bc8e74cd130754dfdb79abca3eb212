@@ -22,6 +22,29 @@
       "revId": "28a3daf095bc8e74cd130754dfdb79abca3eb212",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c276ff4_9995e755",
+        "filename": "drivers/md/dm-android-verity.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-05-24T21:53:45Z",
+      "side": 1,
+      "message": "Still on _minor_ readability nit, an additional indent appears to be necessary to make this easier to read. Also splitting ecc.start / FEC_BLOCK_SIZE appears ill advised:\n\nerr \u003d snprintf(buf, FEC_ARG_LENGTH,\n  \"%u %s \" VERITY_TABLE_OPT_FEC_FORMAT,\n  1 + VERITY_TABLE_OPT_FEC_ARGS,\n  mode \u003d\u003d DM_VERITY_MODE_RESTART ?\n    VERITY_TABLE_OPT_RESTART :\n    VERITY_TABLE_OPT_LOGGING,\n  target_device,\n  ecc.start / FEC_BLOCK_SIZE,\n  ecc.blocks, ecc.roots);",
+      "range": {
+        "startLine": 776,
+        "startChar": 4,
+        "endLine": 778,
+        "endChar": 29
+      },
+      "revId": "28a3daf095bc8e74cd130754dfdb79abca3eb212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
