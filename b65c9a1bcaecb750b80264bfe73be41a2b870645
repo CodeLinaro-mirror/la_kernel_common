@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "265f52cd_b787a725",
+        "filename": "drivers/md/dm-verity-fec.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-06-06T17:29:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "265f52cd_0f546d42",
+      "range": {
+        "startLine": 445,
+        "startChar": 16,
+        "endLine": 445,
+        "endChar": 18
+      },
+      "revId": "b65c9a1bcaecb750b80264bfe73be41a2b870645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "265f52cd_4fd585c8",
         "filename": "drivers/md/dm-verity-fec.c",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-06-03T21:29:24Z",
       "side": 1,
       "message": "Any chance multiple threads can get here?",
+      "range": {
+        "startLine": 450,
+        "startChar": 1,
+        "endLine": 450,
+        "endChar": 13
+      },
+      "revId": "b65c9a1bcaecb750b80264bfe73be41a2b870645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "265f52cd_977f0bfe",
+        "filename": "drivers/md/dm-verity-fec.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-06-06T17:29:31Z",
+      "side": 1,
+      "message": "No, each I/O is processed in only one thread.",
+      "parentUuid": "265f52cd_4fd585c8",
       "range": {
         "startLine": 450,
         "startChar": 1,
