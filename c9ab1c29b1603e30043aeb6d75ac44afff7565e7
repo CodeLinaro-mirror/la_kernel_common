@@ -22,6 +22,30 @@
       "revId": "c9ab1c29b1603e30043aeb6d75ac44afff7565e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c392e865_f157c016",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-06-07T18:22:56Z",
+      "side": 1,
+      "message": "Done. This was added by the earlier sysfs change.",
+      "parentUuid": "265f52cd_ef9791fb",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 52
+      },
+      "revId": "c9ab1c29b1603e30043aeb6d75ac44afff7565e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
