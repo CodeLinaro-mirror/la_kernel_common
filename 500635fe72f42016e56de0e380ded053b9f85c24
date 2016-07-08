@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5aeb4463_cf611b92",
+        "filename": "fs/sdcardfs/packagelist.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-07-08T23:03:39Z",
+      "side": 1,
+      "message": "very minor nit: I always get nervous about operator precedence:\n\nif ((count + written) \u003d\u003d (PAGE_SIZE - sizeof(errormsg))) {\n\nis very clear to all observers, whereas someone could hiccup and think you wanted:\n\nif (((count + written) \u003d\u003d PAGE_SIZE) - sizeof(errormsg)) {\n\nand give it a double-take ...",
+      "range": {
+        "startLine": 358,
+        "startChar": 6,
+        "endLine": 358,
+        "endChar": 53
+      },
+      "revId": "500635fe72f42016e56de0e380ded053b9f85c24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
