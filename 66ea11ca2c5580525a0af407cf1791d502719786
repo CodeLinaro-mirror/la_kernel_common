@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5aeb4463_6f80d0de",
+        "filename": "fs/sdcardfs/packagelist.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-07-08T22:25:45Z",
+      "side": 1,
+      "message": "\u003ctruncated\u003e\\n\n\nmay stick out more, otherwise someone will match to package Truncated.app?",
+      "range": {
+        "startLine": 353,
+        "startChar": 20,
+        "endLine": 353,
+        "endChar": 29
+      },
+      "revId": "66ea11ca2c5580525a0af407cf1791d502719786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5aeb4463_8f9f941d",
+        "filename": "fs/sdcardfs/packagelist.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-07-08T22:25:45Z",
+      "side": 1,
+      "message": "count -\u003d written might not be enough?\n\nGiven the imprecise nature of determining truncation, and the large size of PAGE_SIZE, why not reserve sizeof(errormsg) to simplify the code.\n\nAll references to PAGE_SIZE for limit should be (PAGE_SIZE - sizeof(errormsg)) and when you hit this artificial limit, just drop it in.",
+      "range": {
+        "startLine": 364,
+        "startChar": 1,
+        "endLine": 368,
+        "endChar": 3
+      },
+      "revId": "66ea11ca2c5580525a0af407cf1791d502719786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
