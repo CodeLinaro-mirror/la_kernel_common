@@ -194,13 +194,6 @@ int __init efi_setup_page_tables(unsigned long pa_memmap, unsigned num_pages)
 	return 0;
 }
 
-void __init efi_cleanup_page_tables(unsigned long pa_memmap, unsigned num_pages)
-{
-	pgd_t *pgd = (pgd_t *)__va(real_mode_header->trampoline_pgd);
-
-	kernel_unmap_pages_in_pgd(pgd, pa_memmap, num_pages);
-}
-
 static void __init __map_region(efi_memory_desc_t *md, u64 va)
 {
 	pgd_t *pgd = (pgd_t *)__va(real_mode_header->trampoline_pgd);
