@@ -416,7 +416,7 @@ struct thread_struct {
 
 	mm_segment_t		addr_limit;
 
-	unsigned int		sig_on_uaccess_error:1;
+	unsigned int		sig_on_uaccess_err:1;
 	unsigned int		uaccess_err:1;  /* uaccess failed */
 
 	/* Floating point and extended processor state */
