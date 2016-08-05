@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b99e1320_a5c5c4a8",
+        "filename": "kernel/power/wakeup_reason.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2016-08-05T18:31:51Z",
+      "side": 1,
+      "message": "Please use define - because you are using it below as well.",
+      "range": {
+        "startLine": 45,
+        "startChar": 41,
+        "endLine": 45,
+        "endChar": 43
+      },
+      "revId": "cebd379c1838d43cda9215bff9da370437944e12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b99e1320_250454e6",
+        "filename": "kernel/power/wakeup_reason.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2016-08-05T18:31:51Z",
+      "side": 1,
+      "message": "Should be protected or at least you need to use memory barriers.",
+      "range": {
+        "startLine": 223,
+        "startChar": 6,
+        "endLine": 223,
+        "endChar": 26
+      },
+      "revId": "cebd379c1838d43cda9215bff9da370437944e12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
