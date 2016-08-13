@@ -389,6 +389,7 @@ struct thread_struct {
 #ifdef CONFIG_X86_32
 	unsigned long		ip;
 #endif
+
 #ifdef CONFIG_X86_64
 	unsigned long		fs;
 #endif
