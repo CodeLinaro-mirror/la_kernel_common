@@ -22,6 +22,30 @@
       "revId": "45b7889b2726977dbca530a577cc83f39c442f70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e83a155_b2eee0b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1100063
+      },
+      "writtenOn": "2016-08-15T01:39:57Z",
+      "side": 1,
+      "message": "It\u0027s already merged by Greg KH in his usb repo",
+      "parentUuid": "ded72d3a_2d294d89",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 8
+      },
+      "revId": "45b7889b2726977dbca530a577cc83f39c442f70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
