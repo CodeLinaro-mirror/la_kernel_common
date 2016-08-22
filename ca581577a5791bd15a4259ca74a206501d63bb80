@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e818b7be_5936d3fc",
+        "filename": "fs/sdcardfs/inode.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2016-08-22T22:58:51Z",
+      "side": 1,
+      "message": "copy_fs_struct() can return NULL on error, which will turn into a NULL pointer dereference in a couple of lines",
+      "range": {
+        "startLine": 83,
+        "startChar": 13,
+        "endLine": 83,
+        "endChar": 27
+      },
+      "revId": "ca581577a5791bd15a4259ca74a206501d63bb80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
