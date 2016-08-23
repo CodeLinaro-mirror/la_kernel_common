@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28f2cfe6_bbca1275",
+        "filename": "fs/sdcardfs/inode.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2016-08-23T22:55:53Z",
+      "side": 1,
+      "message": "$ wc --max-line-length 9a7d82e.diff\n\t260 9a7d82e.diff\n\n:(",
+      "revId": "9a7d82e0e7f9977ec2dfa928b760cef0a231c684",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
