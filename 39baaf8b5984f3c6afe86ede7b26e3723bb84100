@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25a4baca_5169b28e",
+        "filename": "drivers/cpufreq/cpufreq.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2016-08-29T14:42:18Z",
+      "side": 1,
+      "message": "Adding kandoiruchi@ to review, there is likely an adjustment that can go here so that tracing can still occur on non-SMP systems?",
+      "range": {
+        "startLine": 441,
+        "startChar": 0,
+        "endLine": 444,
+        "endChar": 6
+      },
+      "revId": "39baaf8b5984f3c6afe86ede7b26e3723bb84100",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
