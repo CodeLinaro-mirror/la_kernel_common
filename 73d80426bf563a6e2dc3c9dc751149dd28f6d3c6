@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb6db244_042c16a4",
+        "filename": "arch/arm/mm/proc-feroceon.S",
+        "patchSetId": 1
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1018785
+      },
+      "writtenOn": "2016-09-12T20:29:06Z",
+      "side": 1,
+      "message": "This line (605) is incorrect, and needs to be removed. In mainline, we merged a fixup patch on top to remove it, but here you can simply drop it, I suppose.",
+      "revId": "73d80426bf563a6e2dc3c9dc751149dd28f6d3c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
