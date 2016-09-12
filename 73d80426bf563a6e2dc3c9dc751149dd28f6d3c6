@@ -16,6 +16,24 @@
       "revId": "73d80426bf563a6e2dc3c9dc751149dd28f6d3c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb277249_7aa7d15b",
+        "filename": "arch/arm/mm/proc-feroceon.S",
+        "patchSetId": 1
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2016-09-12T20:34:58Z",
+      "side": 1,
+      "message": "Thanks, I\u0027ll cherry pick the fix from upstream.",
+      "parentUuid": "cb6db244_042c16a4",
+      "revId": "73d80426bf563a6e2dc3c9dc751149dd28f6d3c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
