@@ -342,6 +342,7 @@ enum binder_deferred_state {
  * struct binder_buffer objects used to track the user buffers
  */
 struct binder_alloc {
+	struct mutex mutex;
 	struct vm_area_struct *vma;
 	struct mm_struct *vma_vm_mm;
 	void *buffer;
@@ -575,10 +576,11 @@ static void binder_insert_allocated_buffer(struct binder_proc *proc,
 	rb_insert_color(&new_buffer->rb_node, &proc->alloc.allocated_buffers);
 }
 
-static struct binder_buffer *binder_buffer_lookup(struct binder_proc *proc,
-						  uintptr_t user_ptr)
+static struct binder_buffer *binder_buffer_lookup_locked(
+		struct binder_proc *proc,
+		uintptr_t user_ptr)
 {
-	struct rb_node *n = proc->alloc.allocated_buffers.rb_node;
+	struct rb_node *n;
 	struct binder_buffer *buffer;
 	struct binder_buffer *kern_ptr;
 
@@ -586,6 +588,7 @@ static struct binder_buffer *binder_buffer_lookup(struct binder_proc *proc,
 		(user_ptr - proc->alloc.user_buffer_offset -
 			offsetof(struct binder_buffer, data));
 
+	n = proc->alloc.allocated_buffers.rb_node;
 	while (n) {
 		buffer = rb_entry(n, struct binder_buffer, rb_node);
 		BUG_ON(buffer->free);
@@ -598,6 +601,17 @@ static struct binder_buffer *binder_buffer_lookup(struct binder_proc *proc,
 			return buffer;
 	}
 	return NULL;
+}
+
+static struct binder_buffer *binder_buffer_lookup(struct binder_proc *proc,
+						  uintptr_t user_ptr)
+{
+	struct binder_buffer *buffer;
+
+	mutex_lock(&proc->alloc.mutex);
+	buffer = binder_buffer_lookup_locked(proc, user_ptr);
+	mutex_unlock(&proc->alloc.mutex);
+	return buffer;
 }
 
 static int binder_update_page_range(struct binder_proc *proc, int allocate,
@@ -707,13 +721,13 @@ err_no_vma:
 	return -ENOMEM;
 }
 
-static struct binder_buffer *binder_alloc_buf(struct binder_proc *proc,
-					      size_t data_size,
-					      size_t offsets_size,
-					      size_t extra_buffers_size,
-					      int is_async)
+static struct binder_buffer *binder_alloc_buf_locked(struct binder_proc *proc,
+						     size_t data_size,
+						     size_t offsets_size,
+						     size_t extra_buffers_size,
+						     int is_async)
 {
-	struct rb_node *n = proc->alloc.free_buffers.rb_node;
+	struct rb_node *n;
 	struct binder_buffer *buffer;
 	size_t buffer_size;
 	struct rb_node *best_fit = NULL;
@@ -735,12 +749,14 @@ static struct binder_buffer *binder_alloc_buf(struct binder_proc *proc,
 				proc->pid, data_size, offsets_size);
 		return NULL;
 	}
+
 	size = data_offsets_size + ALIGN(extra_buffers_size, sizeof(void *));
 	if (size < data_offsets_size || size < extra_buffers_size) {
 		binder_user_error("%d: got transaction with invalid extra_buffers_size %zd\n",
 				  proc->pid, extra_buffers_size);
 		return NULL;
 	}
+
 	if (is_async &&
 	    proc->alloc.free_async_space <
 			size + sizeof(struct binder_buffer)) {
@@ -750,6 +766,7 @@ static struct binder_buffer *binder_alloc_buf(struct binder_proc *proc,
 		return NULL;
 	}
 
+	n = proc->alloc.free_buffers.rb_node;
 	while (n) {
 		buffer = rb_entry(n, struct binder_buffer, rb_node);
 		BUG_ON(!buffer->free);
@@ -792,8 +809,9 @@ static struct binder_buffer *binder_alloc_buf(struct binder_proc *proc,
 	if (end_page_addr > has_page_addr)
 		end_page_addr = has_page_addr;
 	if (binder_update_page_range(proc, 1,
-	    (void *)PAGE_ALIGN((uintptr_t)buffer->data), end_page_addr, NULL))
+	    (void *)PAGE_ALIGN((uintptr_t)buffer->data), end_page_addr, NULL)) {
 		return NULL;
+	}
 
 	rb_erase(best_fit, &proc->alloc.free_buffers);
 	buffer->free = 0;
@@ -820,6 +838,21 @@ static struct binder_buffer *binder_alloc_buf(struct binder_proc *proc,
 			      proc->pid, size, proc->alloc.free_async_space);
 	}
 
+	return buffer;
+}
+
+static struct binder_buffer *binder_alloc_buf(struct binder_proc *proc,
+					      size_t data_size,
+					      size_t offsets_size,
+					      size_t extra_buffers_size,
+					      int is_async)
+{
+	struct binder_buffer *buffer;
+
+	mutex_lock(&proc->alloc.mutex);
+	buffer = binder_alloc_buf_locked(proc, data_size, offsets_size,
+					 extra_buffers_size, is_async);
+	mutex_unlock(&proc->alloc.mutex);
 	return buffer;
 }
 
@@ -883,6 +916,7 @@ static void binder_free_buf(struct binder_proc *proc,
 {
 	size_t size, buffer_size;
 
+	mutex_lock(&proc->alloc.mutex);
 	buffer_size = binder_buffer_size(proc, buffer);
 
 	size = ALIGN(buffer->data_size, sizeof(void *)) +
@@ -934,6 +968,7 @@ static void binder_free_buf(struct binder_proc *proc,
 		}
 	}
 	binder_insert_free_buffer(proc, buffer);
+	mutex_unlock(&proc->alloc.mutex);
 }
 
 static struct binder_node *binder_get_node(struct binder_proc *proc,
@@ -3509,6 +3544,7 @@ static int binder_open(struct inode *nodp, struct file *filp)
 	proc = kzalloc(sizeof(*proc), GFP_KERNEL);
 	if (proc == NULL)
 		return -ENOMEM;
+	mutex_init(&proc->alloc.mutex);
 	get_task_struct(current->group_leader);
 	proc->tsk = current->group_leader;
 	INIT_LIST_HEAD(&proc->todo);
