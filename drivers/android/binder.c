@@ -3892,12 +3892,14 @@ static void print_binder_transaction(struct seq_file *m, const char *prefix,
 		   t->buffer->data);
 }
 
-static void print_binder_work(struct seq_file *m, const char *prefix,
-			      const char *transaction_prefix,
-			      struct binder_work *w)
+static void print_binder_work_locked(struct seq_file *m, const char *prefix,
+				     const char *transaction_prefix,
+				     struct binder_work *w)
 {
 	struct binder_node *node;
 	struct binder_transaction *t;
+
+	WARN_ON(!spin_is_locked(&w->wlist->proc->list_lock));
 
 	switch (w->type) {
 	case BINDER_WORK_TRANSACTION:
@@ -3935,15 +3937,16 @@ static void print_binder_work(struct seq_file *m, const char *prefix,
 	}
 }
 
-static void print_binder_thread(struct seq_file *m,
-				struct binder_thread *thread,
-				int print_always)
+static void print_binder_thread_locked(struct seq_file *m,
+				       struct binder_thread *thread,
+				       int print_always)
 {
 	struct binder_transaction *t;
 	struct binder_work *w;
 	size_t start_pos = m->count;
 	size_t header_pos;
 
+	WARN_ON(!spin_is_locked(&thread->proc->proc_lock));
 	seq_printf(m, "  thread %d: l %02x need_return %d\n",
 			thread->pid, thread->looper,
 			READ_ONCE(thread->looper_need_return));
@@ -3956,7 +3959,7 @@ static void print_binder_thread(struct seq_file *m,
 			t = t->from_parent;
 		} else if (t->to_thread == thread) {
 			print_binder_transaction(m,
-						 "    incoming transaction", t);
+						"    incoming transaction", t);
 			t = t->to_parent;
 		} else {
 			print_binder_transaction(m, "    bad transaction", t);
@@ -3965,7 +3968,8 @@ static void print_binder_thread(struct seq_file *m,
 	}
 	spin_lock(&thread->proc->list_lock);
 	list_for_each_entry(w, &thread->todo.list, entry) {
-		print_binder_work(m, "    ", "    pending transaction", w);
+		print_binder_work_locked(m, "    ",
+				"    pending transaction", w);
 	}
 	spin_unlock(&thread->proc->list_lock);
 	if (!print_always && m->count == header_pos)
@@ -3999,16 +4003,18 @@ static void print_binder_node_locked(struct seq_file *m,
 	if (node->proc) {
 		spin_lock(&node->proc->list_lock);
 		list_for_each_entry(w, &node->async_todo.list, entry)
-			print_binder_work(m, "    ",
+			print_binder_work_locked(m, "    ",
 					  "    pending async transaction", w);
 		spin_unlock(&node->proc->list_lock);
 	}
 }
 
-static void print_binder_ref(struct seq_file *m, struct binder_ref *ref)
+static void print_binder_ref_locked(struct seq_file *m,
+				    struct binder_ref *ref)
 {
+	WARN_ON(!spin_is_locked(&ref->proc->proc_lock));
 	binder_node_lock(ref->node);
-	seq_printf(m, "  ref %d: desc %d %snode %d s %d w %d d %p\n",
+	seq_printf(m, "  ref %d: desc %d %snode %d s %d w %d d %pK\n",
 		   ref->debug_id, ref->desc, ref->node->proc ? "" : "dead ",
 		   ref->node->debug_id, ref->strong, ref->weak, ref->death);
 	binder_node_unlock(ref->node);
@@ -4025,9 +4031,10 @@ static void print_binder_proc(struct seq_file *m,
 	seq_printf(m, "context %s\n", proc->context->name);
 	header_pos = m->count;
 
+	binder_proc_lock(proc);
 	for (n = rb_first(&proc->threads); n != NULL; n = rb_next(n))
-		print_binder_thread(m, rb_entry(n, struct binder_thread,
-						rb_node), print_all);
+		print_binder_thread_locked(m, rb_entry(n, struct binder_thread,
+				     rb_node), print_all);
 	for (n = rb_first(&proc->nodes); n != NULL; n = rb_next(n)) {
 		struct binder_node *node = rb_entry(n, struct binder_node,
 						    rb_node);
@@ -4040,13 +4047,16 @@ static void print_binder_proc(struct seq_file *m,
 		for (n = rb_first(&proc->refs_by_desc);
 		     n != NULL;
 		     n = rb_next(n))
-			print_binder_ref(m, rb_entry(n, struct binder_ref,
-						     rb_node_desc));
+			print_binder_ref_locked(m, rb_entry(n,
+							    struct binder_ref,
+							    rb_node_desc));
 	}
+	binder_proc_unlock(proc);
+
 	binder_alloc_print_allocated(m, &proc->alloc);
 	spin_lock(&proc->list_lock);
 	list_for_each_entry(w, &proc->todo.list, entry)
-		print_binder_work(m, "  ", "  pending transaction", w);
+		print_binder_work_locked(m, "  ", "  pending transaction", w);
 	list_for_each_entry(w, &proc->delivered_death.list, entry) {
 		seq_puts(m, "  has delivered dead binder\n");
 		break;
@@ -4155,10 +4165,13 @@ static void print_binder_proc_stats(struct seq_file *m,
 	struct binder_work *w;
 	struct rb_node *n;
 	int count, strong, weak;
+	size_t free_async_space =
+		binder_alloc_get_free_async_space(&proc->alloc);
 
 	seq_printf(m, "proc %d\n", proc->pid);
 	seq_printf(m, "context %s\n", proc->context->name);
 	count = 0;
+	binder_proc_lock(proc);
 	for (n = rb_first(&proc->threads); n != NULL; n = rb_next(n))
 		count++;
 	seq_printf(m, "  threads: %d\n", count);
@@ -4169,14 +4182,16 @@ static void print_binder_proc_stats(struct seq_file *m,
 			proc->requested_threads_started,
 			proc->max_threads,
 			atomic_read(&proc->ready_threads),
-			binder_alloc_get_free_async_space(&proc->alloc));
+			free_async_space);
 	count = 0;
 	for (n = rb_first(&proc->nodes); n != NULL; n = rb_next(n))
 		count++;
+	binder_proc_unlock(proc);
 	seq_printf(m, "  nodes: %d\n", count);
 	count = 0;
 	strong = 0;
 	weak = 0;
+	binder_proc_lock(proc);
 	for (n = rb_first(&proc->refs_by_desc); n != NULL; n = rb_next(n)) {
 		struct binder_ref *ref = rb_entry(n, struct binder_ref,
 						  rb_node_desc);
@@ -4184,6 +4199,7 @@ static void print_binder_proc_stats(struct seq_file *m,
 		strong += ref->strong;
 		weak += ref->weak;
 	}
+	binder_proc_unlock(proc);
 	seq_printf(m, "  refs: %d s %d w %d\n", count, strong, weak);
 
 	count = binder_alloc_get_allocated_count(&proc->alloc);
