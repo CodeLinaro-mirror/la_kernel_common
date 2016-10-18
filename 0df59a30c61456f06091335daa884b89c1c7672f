@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "bcc28f6f_7abb797a",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 3164,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2016-10-18T12:21:20Z",
+      "side": 1,
+      "message": "I did this to avoid the warnings around casting pointers to/from int. If those warnings are acceptable, I\u0027ll happily change it back (see earlier comments on this PS for rationale on why to store pid here vs struct binder_proc). Or let me know if you know of a better way.",
+      "parentUuid": "bcc28f6f_bab0f196",
+      "range": {
+        "startLine": 3164,
+        "startChar": 3,
+        "endLine": 3164,
+        "endChar": 31
+      },
+      "revId": "0df59a30c61456f06091335daa884b89c1c7672f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcc28f6f_3abbc1a9",
         "filename": "drivers/android/binder.c",
         "patchSetId": 4
