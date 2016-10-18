@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "bcc28f6f_5adf95c0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 3164,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2016-10-18T12:31:18Z",
+      "side": 1,
+      "message": "The casting is fine, but use \"unsigned long\" instead of \"uintptr_t\" please.",
+      "parentUuid": "bcc28f6f_7abb797a",
+      "range": {
+        "startLine": 3164,
+        "startChar": 3,
+        "endLine": 3164,
+        "endChar": 31
+      },
+      "revId": "0df59a30c61456f06091335daa884b89c1c7672f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcc28f6f_3abbc1a9",
         "filename": "drivers/android/binder.c",
         "patchSetId": 4
