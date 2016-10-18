@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcc28f6f_5aae7567",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 3164,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2016-10-18T08:14:33Z",
+      "side": 1,
+      "message": "does this handle namespaces properly?  Shouldn\u0027t you use get_pid()?",
+      "range": {
+        "startLine": 3164,
+        "startChar": 3,
+        "endLine": 3164,
+        "endChar": 31
+      },
+      "revId": "0df59a30c61456f06091335daa884b89c1c7672f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bcc28f6f_3abbc1a9",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 3806,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2016-10-18T08:14:33Z",
+      "side": 1,
+      "message": "namespace pid comparisons?",
+      "range": {
+        "startLine": 3806,
+        "startChar": 5,
+        "endLine": 3806,
+        "endChar": 22
+      },
+      "revId": "0df59a30c61456f06091335daa884b89c1c7672f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
