@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bcc28f6f_1afd9d49",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 3164,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2016-10-18T09:46:40Z",
+      "side": 1,
+      "message": "Currently this debugfs entry lists all process group ids (independent of their namespace) in proc/ - so I think we need the pids from the \"global namespace\" here.\n\nSimilarly, for kernel debug messages, using the global namespace pids makes more sense to me.\n\nI thought task_struct.pid has the \"global\" pid?",
+      "parentUuid": "bcc28f6f_5aae7567",
+      "range": {
+        "startLine": 3164,
+        "startChar": 3,
+        "endLine": 3164,
+        "endChar": 31
+      },
+      "revId": "0df59a30c61456f06091335daa884b89c1c7672f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcc28f6f_3abbc1a9",
         "filename": "drivers/android/binder.c",
         "patchSetId": 4
