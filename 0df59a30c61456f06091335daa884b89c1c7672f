@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "bcc28f6f_bab0f196",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 3164,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2016-10-18T11:34:34Z",
+      "side": 1,
+      "message": "Yes, you are right about that, if you want to see them in the global namespace all should be fine.\n\nBut that (uintptr_t) cast is really odd, that\u0027s not a \"normal\" kernel type to use.",
+      "parentUuid": "bcc28f6f_1afd9d49",
+      "range": {
+        "startLine": 3164,
+        "startChar": 3,
+        "endLine": 3164,
+        "endChar": 31
+      },
+      "revId": "0df59a30c61456f06091335daa884b89c1c7672f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcc28f6f_3abbc1a9",
         "filename": "drivers/android/binder.c",
         "patchSetId": 4
