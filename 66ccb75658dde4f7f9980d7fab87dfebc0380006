@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "011ed449_274994d1",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1596,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2016-10-28T22:42:55Z",
+      "side": 1,
+      "message": "Yes - Parcel-\u003ecloseFileDescriptors() is called as part of the buffer release in libhwbinder userspace, which cleans up TYPE_FDA objects. BINDER_TYPE_FD is done the same way. But I just realized libbinder will need to deal with TYPE_FDA as well, otherwise a malicious process could easily exceed the number of file descriptors in the target process without ever getting them cleaned up. I\u0027ll add that code to libbinder as well.",
+      "parentUuid": "663c06f3_e8942729",
+      "revId": "66ccb75658dde4f7f9980d7fab87dfebc0380006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "663c06f3_33996056",
         "filename": "drivers/android/binder.c",
         "patchSetId": 5
@@ -30,6 +48,30 @@
       "writtenOn": "2016-10-28T22:32:56Z",
       "side": 1,
       "message": "why do you need this cast? uintptr_t should support adding the parent_offset",
+      "range": {
+        "startLine": 1832,
+        "startChar": 20,
+        "endLine": 1832,
+        "endChar": 26
+      },
+      "revId": "66ccb75658dde4f7f9980d7fab87dfebc0380006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "011ed449_67538c83",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1832,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2016-10-28T22:42:55Z",
+      "side": 1,
+      "message": "you\u0027re right, this is not needed. Fixed.",
+      "parentUuid": "663c06f3_33996056",
       "range": {
         "startLine": 1832,
         "startChar": 20,
