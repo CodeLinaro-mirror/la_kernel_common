@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "011ed449_a74584b3",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1596,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2016-10-28T22:53:00Z",
+      "side": 1,
+      "message": "My first hunch is that might be easier, but then I\u0027m wondering why it was implemented this way - perhaps there are scenarios where it\u0027s better for userspace to clean up.\n\nI\u0027ll do the libbinder change in AOSP before submitting this one, and then perhaps do a follow-up change to let the kernel clean them up. I need to think about it a bit more.",
+      "parentUuid": "663c06f3_534224ad",
+      "revId": "66ccb75658dde4f7f9980d7fab87dfebc0380006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "663c06f3_33996056",
         "filename": "drivers/android/binder.c",
         "patchSetId": 5
