@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "663c06f3_e8942729",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1596,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2016-10-28T22:32:56Z",
+      "side": 1,
+      "message": "Is this correct. Does user-space always close all the files once we are past this point?",
+      "revId": "66ccb75658dde4f7f9980d7fab87dfebc0380006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "663c06f3_33996056",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1832,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2016-10-28T22:32:56Z",
+      "side": 1,
+      "message": "why do you need this cast? uintptr_t should support adding the parent_offset",
+      "range": {
+        "startLine": 1832,
+        "startChar": 20,
+        "endLine": 1832,
+        "endChar": 26
+      },
+      "revId": "66ccb75658dde4f7f9980d7fab87dfebc0380006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
