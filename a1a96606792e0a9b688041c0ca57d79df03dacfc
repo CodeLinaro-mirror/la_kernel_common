@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "663c06f3_a23ec07c",
+        "filename": "drivers/usb/gadget/configfs.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2016-10-28T19:57:59Z",
+      "side": 1,
+      "message": "IS_ERR_OR_NULL()",
+      "range": {
+        "startLine": 428,
+        "startChar": 5,
+        "endLine": 428,
+        "endChar": 11
+      },
+      "revId": "a1a96606792e0a9b688041c0ca57d79df03dacfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "663c06f3_e238c891",
+        "filename": "drivers/usb/gadget/configfs.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2016-10-28T19:57:59Z",
+      "side": 1,
+      "message": "PTR_RET() ?",
+      "range": {
+        "startLine": 429,
+        "startChar": 8,
+        "endLine": 429,
+        "endChar": 15
+      },
+      "revId": "a1a96606792e0a9b688041c0ca57d79df03dacfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "663c06f3_2253d0de",
+        "filename": "drivers/usb/gadget/functions.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2016-10-28T19:57:59Z",
+      "side": 1,
+      "message": "IS_ERR_OR_NULL() ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 5,
+        "endLine": 61,
+        "endChar": 11
+      },
+      "revId": "a1a96606792e0a9b688041c0ca57d79df03dacfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
