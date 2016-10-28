@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "011ed449_e73f7c1b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1596,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2016-10-28T23:35:31Z",
+      "side": 1,
+      "message": "As discussed offline, for TYPE_FDA we\u0027ll always clean the fds up in the kernel.",
+      "parentUuid": "011ed449_a74584b3",
+      "revId": "66ccb75658dde4f7f9980d7fab87dfebc0380006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "663c06f3_33996056",
         "filename": "drivers/android/binder.c",
         "patchSetId": 5
