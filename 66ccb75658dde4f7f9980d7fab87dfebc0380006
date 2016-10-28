@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "663c06f3_534224ad",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1596,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2016-10-28T22:46:31Z",
+      "side": 1,
+      "message": "That change should go into aosp libbinder before this change is merged. Would it be easier to let the driver close them?",
+      "parentUuid": "011ed449_274994d1",
+      "revId": "66ccb75658dde4f7f9980d7fab87dfebc0380006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "663c06f3_33996056",
         "filename": "drivers/android/binder.c",
         "patchSetId": 5
