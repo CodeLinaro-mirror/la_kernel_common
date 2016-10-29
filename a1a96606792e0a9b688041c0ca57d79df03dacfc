@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "468f023e_6e7ccf28",
+        "filename": "drivers/usb/gadget/configfs.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1031448
+      },
+      "writtenOn": "2016-10-29T11:24:56Z",
+      "side": 1,
+      "message": "Thanks for the tip on using IS_ERR_OR_NULL() and PTR_RET() helper routines for future. But I didn\u0027t quite get the point. This is the upstream code and I don\u0027t intend to change/simplify it at all in this patch set.",
+      "parentUuid": "663c06f3_a23ec07c",
+      "range": {
+        "startLine": 428,
+        "startChar": 5,
+        "endLine": 428,
+        "endChar": 11
+      },
+      "revId": "a1a96606792e0a9b688041c0ca57d79df03dacfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "663c06f3_e238c891",
         "filename": "drivers/usb/gadget/configfs.c",
         "patchSetId": 1
@@ -59,6 +83,30 @@
       "writtenOn": "2016-10-28T19:57:59Z",
       "side": 1,
       "message": "IS_ERR_OR_NULL() ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 5,
+        "endLine": 61,
+        "endChar": 11
+      },
+      "revId": "a1a96606792e0a9b688041c0ca57d79df03dacfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "468f023e_8e801be1",
+        "filename": "drivers/usb/gadget/functions.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1031448
+      },
+      "writtenOn": "2016-10-29T11:24:56Z",
+      "side": 1,
+      "message": "Same thing here, I don\u0027t intend to change/simplify the upstream code in this patch set.",
+      "parentUuid": "663c06f3_2253d0de",
       "range": {
         "startLine": 61,
         "startChar": 5,
