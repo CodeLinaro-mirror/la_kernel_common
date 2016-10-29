@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2675ae07_c5fd9a4a",
+        "filename": "drivers/usb/gadget/configfs.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2016-10-29T19:33:34Z",
+      "side": 1,
+      "message": "My point was that if you remove (f \u003d\u003d NULL) check above then you need to fix this code - else you may crash in line 434.",
+      "parentUuid": "468f023e_6e7ccf28",
+      "range": {
+        "startLine": 428,
+        "startChar": 5,
+        "endLine": 428,
+        "endChar": 11
+      },
+      "revId": "a1a96606792e0a9b688041c0ca57d79df03dacfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "663c06f3_e238c891",
         "filename": "drivers/usb/gadget/configfs.c",
         "patchSetId": 1
@@ -107,6 +131,30 @@
       "side": 1,
       "message": "Same thing here, I don\u0027t intend to change/simplify the upstream code in this patch set.",
       "parentUuid": "663c06f3_2253d0de",
+      "range": {
+        "startLine": 61,
+        "startChar": 5,
+        "endLine": 61,
+        "endChar": 11
+      },
+      "revId": "a1a96606792e0a9b688041c0ca57d79df03dacfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2675ae07_e5fa964f",
+        "filename": "drivers/usb/gadget/functions.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2016-10-29T19:33:34Z",
+      "side": 1,
+      "message": "And if f \u003d\u003d NULL?",
+      "parentUuid": "468f023e_8e801be1",
       "range": {
         "startLine": 61,
         "startChar": 5,
