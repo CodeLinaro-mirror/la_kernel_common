@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ebe35fee_aeff9a8a",
+        "filename": "fs/sdcardfs/inode.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1037321
+      },
+      "writtenOn": "2016-11-09T00:19:48Z",
+      "side": 1,
+      "message": "#define for clarity if it\u0027s used multiple times in sdcardfs",
+      "range": {
+        "startLine": 344,
+        "startChar": 32,
+        "endLine": 344,
+        "endChar": 36
+      },
+      "revId": "87f1c6b4f3bde33a833f0a74b6b48700ef262829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
