@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab888773_7d91226a",
+        "filename": "fs/attr.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1037321
+      },
+      "writtenOn": "2016-11-10T07:29:05Z",
+      "side": 1,
+      "message": "Move to 279",
+      "range": {
+        "startLine": 284,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 30
+      },
+      "revId": "303240cf845b0df6db2fbcd6d8df83c9e26d2521",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
