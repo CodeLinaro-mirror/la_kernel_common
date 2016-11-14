@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "8b2ae35e_e8d75306",
+        "filename": "drivers/usb/gadget/configfs.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1031448
+      },
+      "writtenOn": "2016-11-14T14:57:45Z",
+      "side": 1,
+      "message": "No it won\u0027t. Afaik PTP is the only gadget function which runs on top of another function (MTP) instance. And in that particular use case, we return \"ERR_PTR(-EINVAL)\" too early from PTP initialization if MTP instance is not created.",
+      "parentUuid": "2675ae07_c5fd9a4a",
+      "range": {
+        "startLine": 428,
+        "startChar": 5,
+        "endLine": 428,
+        "endChar": 11
+      },
+      "revId": "a1a96606792e0a9b688041c0ca57d79df03dacfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "663c06f3_e238c891",
         "filename": "drivers/usb/gadget/configfs.c",
         "patchSetId": 1
@@ -155,6 +179,30 @@
       "side": 1,
       "message": "And if f \u003d\u003d NULL?",
       "parentUuid": "468f023e_8e801be1",
+      "range": {
+        "startLine": 61,
+        "startChar": 5,
+        "endLine": 61,
+        "endChar": 11
+      },
+      "revId": "a1a96606792e0a9b688041c0ca57d79df03dacfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b2ae35e_08ed87db",
+        "filename": "drivers/usb/gadget/functions.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1031448
+      },
+      "writtenOn": "2016-11-14T14:57:45Z",
+      "side": 1,
+      "message": "We don\u0027t need this check here either for the same reason.",
+      "parentUuid": "2675ae07_e5fa964f",
       "range": {
         "startLine": 61,
         "startChar": 5,
