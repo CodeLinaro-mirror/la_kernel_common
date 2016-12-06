@@ -107,6 +107,8 @@ out:
 	return PTR_ERR_OR_ZERO(ret);
 }
 
+#ifdef CONFIG_KUSER_HELPERS
+
 /* kuser helpers page */
 static struct page *kuser_helpers_page __ro_after_init;
 static const struct vm_special_mapping kuser_helpers_spec = {
@@ -148,6 +150,8 @@ static int kuser_helpers_setup(struct mm_struct *mm)
 	return PTR_ERR_OR_ZERO(ret);
 }
 
+#endif /* CONFIG_KUSER_HELPERS */
+
 int aarch32_setup_additional_pages(struct linux_binprm *bprm, int uses_interp)
 {
 	struct mm_struct *mm = current->mm;
@@ -159,7 +163,9 @@ int aarch32_setup_additional_pages(struct linux_binprm *bprm, int uses_interp)
 	if (ret)
 		goto out;
 
+#ifdef CONFIG_KUSER_HELPERS
 	ret = kuser_helpers_setup(mm);
+#endif
 
 out:
 	up_write(&mm->mmap_sem);
