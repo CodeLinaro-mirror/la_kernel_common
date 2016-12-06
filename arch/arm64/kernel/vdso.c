@@ -1,5 +1,7 @@
 /*
- * VDSO implementation for AArch64 and vector page setup for AArch32.
+ * Additional userspace pages setup for AArch64 and AArch32.
+ * - AArch64: vDSO pages setup, vDSO data page update.
+ * - AArch32: sigreturn and kuser helpers pages setup.
  *
  * Copyright (C) 2012 ARM Limited
  *
@@ -50,63 +52,120 @@ static union {
 struct vdso_data *vdso_data = &vdso_data_store.data;
 
 #ifdef CONFIG_COMPAT
-/*
- * Create and map the vectors page for AArch32 tasks.
- */
-static struct page *vectors_page[1];
 
-static int __init alloc_vectors_page(void)
+/* sigreturn trampolines page */
+static struct page *sigreturn_page __ro_after_init;
+static const struct vm_special_mapping sigreturn_spec = {
+	.name	= "[sigreturn]",
+	.pages	= &sigreturn_page,
+};
+
+static int __init aarch32_sigreturn_init(void)
 {
-	extern char __kuser_helper_start[], __kuser_helper_end[];
-	extern char __aarch32_sigret_code_start[], __aarch32_sigret_code_end[];
+	extern char __aarch32_sigret_code_start, __aarch32_sigret_code_end;
 
-	int kuser_sz = __kuser_helper_end - __kuser_helper_start;
-	int sigret_sz = __aarch32_sigret_code_end - __aarch32_sigret_code_start;
-	unsigned long vpage;
+	size_t sigret_sz =
+		&__aarch32_sigret_code_end - &__aarch32_sigret_code_start;
+	struct page *page;
+	unsigned long page_addr;
 
-	vpage = get_zeroed_page(GFP_ATOMIC);
-
-	if (!vpage)
+	page = alloc_page(GFP_KERNEL | __GFP_ZERO);
+	if (!page)
 		return -ENOMEM;
+	page_addr = (unsigned long)page_address(page);
 
-	/* kuser helpers */
-	memcpy((void *)vpage + 0x1000 - kuser_sz, __kuser_helper_start,
-		kuser_sz);
+	memcpy((void *)page_addr, &__aarch32_sigret_code_start, sigret_sz);
 
-	/* sigreturn code */
-	memcpy((void *)vpage + AARCH32_KERN_SIGRET_CODE_OFFSET,
-               __aarch32_sigret_code_start, sigret_sz);
+	flush_icache_range(page_addr, page_addr + PAGE_SIZE);
 
-	flush_icache_range(vpage, vpage + PAGE_SIZE);
-	vectors_page[0] = virt_to_page(vpage);
-
+	sigreturn_page = page;
 	return 0;
 }
-arch_initcall(alloc_vectors_page);
+arch_initcall(aarch32_sigreturn_init);
 
-int aarch32_setup_vectors_page(struct linux_binprm *bprm, int uses_interp)
+static int sigreturn_setup(struct mm_struct *mm)
 {
-	struct mm_struct *mm = current->mm;
-	unsigned long addr = AARCH32_VECTORS_BASE;
-	static const struct vm_special_mapping spec = {
-		.name	= "[vectors]",
-		.pages	= vectors_page,
-
-	};
+	unsigned long addr;
 	void *ret;
 
-	down_write(&mm->mmap_sem);
-	current->mm->context.vdso = (void *)addr;
+	addr = get_unmapped_area(NULL, 0, PAGE_SIZE, 0, 0);
+	if (IS_ERR_VALUE(addr)) {
+		ret = ERR_PTR(addr);
+		goto out;
+	}
 
-	/* Map vectors page at the high address. */
 	ret = _install_special_mapping(mm, addr, PAGE_SIZE,
-				       VM_READ|VM_EXEC|VM_MAYREAD|VM_MAYEXEC,
-				       &spec);
+				       VM_READ|VM_EXEC|
+				       VM_MAYREAD|VM_MAYWRITE|VM_MAYEXEC,
+				       &sigreturn_spec);
+	if (IS_ERR(ret))
+		goto out;
 
-	up_write(&mm->mmap_sem);
+	mm->context.vdso = (void *)addr;
 
+out:
 	return PTR_ERR_OR_ZERO(ret);
 }
+
+/* kuser helpers page */
+static struct page *kuser_helpers_page __ro_after_init;
+static const struct vm_special_mapping kuser_helpers_spec = {
+	.name	= "[kuserhelpers]",
+	.pages	= &kuser_helpers_page,
+};
+
+static int __init aarch32_kuser_helpers_init(void)
+{
+	extern char __kuser_helper_start, __kuser_helper_end;
+
+	size_t kuser_sz = &__kuser_helper_end - &__kuser_helper_start;
+	struct page *page;
+	unsigned long page_addr;
+
+	page = alloc_page(GFP_KERNEL | __GFP_ZERO);
+	if (!page)
+		return -ENOMEM;
+	page_addr = (unsigned long)page_address(page);
+
+	memcpy((void *)(page_addr + 0x1000 - kuser_sz), &__kuser_helper_start,
+	       kuser_sz);
+
+	flush_icache_range(page_addr, page_addr + PAGE_SIZE);
+
+	kuser_helpers_page = page;
+	return 0;
+}
+arch_initcall(aarch32_kuser_helpers_init);
+
+static int kuser_helpers_setup(struct mm_struct *mm)
+{
+	void *ret;
+
+	/* Map the kuser helpers at the ABI-defined high address */
+	ret = _install_special_mapping(mm, AARCH32_KUSER_HELPERS_BASE, PAGE_SIZE,
+				       VM_READ|VM_EXEC|VM_MAYREAD|VM_MAYEXEC,
+				       &kuser_helpers_spec);
+	return PTR_ERR_OR_ZERO(ret);
+}
+
+int aarch32_setup_additional_pages(struct linux_binprm *bprm, int uses_interp)
+{
+	struct mm_struct *mm = current->mm;
+	int ret;
+
+	down_write(&mm->mmap_sem);
+
+	ret = sigreturn_setup(mm);
+	if (ret)
+		goto out;
+
+	ret = kuser_helpers_setup(mm);
+
+out:
+	up_write(&mm->mmap_sem);
+	return ret;
+}
+
 #endif /* CONFIG_COMPAT */
 
 static struct vm_special_mapping vdso_spec[2];
