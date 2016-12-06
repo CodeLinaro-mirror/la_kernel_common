@@ -140,6 +140,20 @@ out:
 }
 
 #ifdef CONFIG_COMPAT
+#ifdef CONFIG_VDSO32
+
+static struct vdso_mappings vdso32_mappings __ro_after_init;
+
+static int __init vdso32_init(void)
+{
+	extern char vdso32_start, vdso32_end;
+
+	return vdso_mappings_init("vdso32", &vdso32_start, &vdso32_end,
+				  &vdso32_mappings);
+}
+arch_initcall(vdso32_init);
+
+#else /* CONFIG_VDSO32 */
 
 /* sigreturn trampolines page */
 static struct page *sigreturn_page __ro_after_init;
@@ -195,6 +209,8 @@ out:
 	return PTR_ERR_OR_ZERO(ret);
 }
 
+#endif /* CONFIG_VDSO32 */
+
 #ifdef CONFIG_KUSER_HELPERS
 
 /* kuser helpers page */
@@ -247,7 +263,11 @@ int aarch32_setup_additional_pages(struct linux_binprm *bprm, int uses_interp)
 
 	down_write(&mm->mmap_sem);
 
+#ifdef CONFIG_VDSO32
+	ret = vdso_setup(mm, &vdso32_mappings);
+#else
 	ret = sigreturn_setup(mm);
+#endif
 	if (ret)
 		goto out;
 
