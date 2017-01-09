@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57ec163c_9f1a7394",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2017-01-09T12:17:29Z",
+      "side": 1,
+      "message": "I\u0027m not sure this is something the binder driver should have to worry about, as on Android I don\u0027t think this would ever be the case.\n\nThat said, having a flag seemed like a good thing regardless, as we only want this behavior in very specific cases.",
+      "range": {
+        "startLine": 12,
+        "startChar": 33,
+        "endLine": 13,
+        "endChar": 59
+      },
+      "revId": "f9de2999874a4328ef368fa23004d11ce92027c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
