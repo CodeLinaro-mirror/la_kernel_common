@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4f99964_557445b6",
+        "filename": "drivers/cpufreq/cpufreq_interactive.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1031448
+      },
+      "writtenOn": "2017-01-27T13:54:15Z",
+      "side": 1,
+      "message": "@Viresh I don\u0027t see this \"ret\" getting initialised anywhere in this function. Can you please take a look.\n\nCherry-picked your RFC from https://lkml.org/lkml/2016/9/14/208 and folded both the patches into this one.",
+      "range": {
+        "startLine": 296,
+        "startChar": 10,
+        "endLine": 296,
+        "endChar": 11
+      },
+      "revId": "fafa9d4c019789359b120c76fca18182fd8bb5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
