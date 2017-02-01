@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0279fd33_d20021a4",
+        "filename": "arch/arm64/crypto/Kconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2017-02-01T22:03:22Z",
+      "side": 1,
+      "message": "TODO: may want to either add a dependency on CPU_LITTLE_ENDIAN, or test the code in big endian mode.",
+      "revId": "ecb8a0059ae31624b207ff201b66e55e8424f164",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
