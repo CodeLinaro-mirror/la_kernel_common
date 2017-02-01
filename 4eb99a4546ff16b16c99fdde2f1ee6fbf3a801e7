@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4456718_e35d37cc",
+        "filename": "fs/ext4/crypto_key.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1073853
+      },
+      "writtenOn": "2017-02-01T21:12:14Z",
+      "side": 1,
+      "message": "nit: kerneldoc the params as is done for ext4_derive_key_v1().",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 90,
+        "endChar": 15
+      },
+      "revId": "4eb99a4546ff16b16c99fdde2f1ee6fbf3a801e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "859e2955_4c265497",
+        "filename": "fs/ext4/crypto_key.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1073853
+      },
+      "writtenOn": "2017-02-01T21:12:14Z",
+      "side": 1,
+      "message": "Is everything kosher w.r.t. endianness?",
+      "range": {
+        "startLine": 95,
+        "startChar": 53,
+        "endLine": 95,
+        "endChar": 69
+      },
+      "revId": "4eb99a4546ff16b16c99fdde2f1ee6fbf3a801e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eadbdde8_3cf5e292",
+        "filename": "fs/ext4/crypto_key.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1073853
+      },
+      "writtenOn": "2017-02-01T21:12:14Z",
+      "side": 1,
+      "message": "Syntactically inconsistent w/ ext4_derive_key_v1().",
+      "range": {
+        "startLine": 102,
+        "startChar": 36,
+        "endLine": 102,
+        "endChar": 38
+      },
+      "revId": "4eb99a4546ff16b16c99fdde2f1ee6fbf3a801e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f587f972_4752b690",
+        "filename": "fs/ext4/crypto_key.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1073853
+      },
+      "writtenOn": "2017-02-01T21:12:14Z",
+      "side": 1,
+      "message": "You could collapse this assignment into the declaration.",
+      "range": {
+        "startLine": 116,
+        "startChar": 1,
+        "endLine": 116,
+        "endChar": 40
+      },
+      "revId": "4eb99a4546ff16b16c99fdde2f1ee6fbf3a801e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54e85c7b_9a3dc0ae",
+        "filename": "fs/ext4/crypto_key.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1073853
+      },
+      "writtenOn": "2017-02-01T21:12:14Z",
+      "side": 1,
+      "message": "\u003e\n\nIt doesn\u0027t make sense to me to build break if the buffer is bigger than we need it to be.",
+      "range": {
+        "startLine": 120,
+        "startChar": 49,
+        "endLine": 120,
+        "endChar": 51
+      },
+      "revId": "4eb99a4546ff16b16c99fdde2f1ee6fbf3a801e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b353edc_f2a27450",
+        "filename": "fs/ext4/crypto_key.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1073853
+      },
+      "writtenOn": "2017-02-01T21:12:14Z",
+      "side": 1,
+      "message": "We technically only need to memcpy the second noncelen segment.",
+      "range": {
+        "startLine": 123,
+        "startChar": 2,
+        "endLine": 124,
+        "endChar": 50
+      },
+      "revId": "4eb99a4546ff16b16c99fdde2f1ee6fbf3a801e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57c8e0c9_155a6e90",
+        "filename": "fs/ext4/crypto_key.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1073853
+      },
+      "writtenOn": "2017-02-01T21:12:14Z",
+      "side": 1,
+      "message": "\u003c\u003d",
+      "range": {
+        "startLine": 153,
+        "startChar": 40,
+        "endLine": 153,
+        "endChar": 42
+      },
+      "revId": "4eb99a4546ff16b16c99fdde2f1ee6fbf3a801e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
