@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63297bdc_defafe17",
+        "filename": "arch/arm64/crypto/poly-hash-ce-glue.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1137898
+      },
+      "writtenOn": "2017-02-03T20:52:27Z",
+      "side": 1,
+      "message": "In the generic implementation of poly_hash we store the key as a be128.\n\nHere we use le128, and this works in part because we never access the elements of struct le128 by name, so s/le128/be128/ would not change the output of this code.\n\nle128 is more \"correct\" because our GF(2^128) representation is little endian, but I still feel that until we can change everything to le128, its confusing to needlessly store the key in differently named, but identically used structs.\n\nCan we at least add a comment explaining this.",
+      "revId": "0d137bcb97a8de407d4ac56c3afff7b4454f2cce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
