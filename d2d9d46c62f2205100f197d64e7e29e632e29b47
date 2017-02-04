@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8268e6b5_0b82a2f2",
+        "filename": "crypto/heh.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1137898
+      },
+      "writtenOn": "2017-02-04T01:24:19Z",
+      "side": 1,
+      "message": "I think it\u0027s worth considering\n1) moving this to its\u0027 own file\n2) Move poly_hash logic into this algorithm, even if it means duplicating code in the optimized version\n3) Calling this though the same API we call CMAC\n\nThere are some trade offs, and I don\u0027t feel super strongly, but its worth mentioning and considering the alternative.",
+      "revId": "d2d9d46c62f2205100f197d64e7e29e632e29b47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
