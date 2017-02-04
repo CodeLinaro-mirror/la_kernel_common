@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c96e0921_34014813",
+        "filename": "fs/ext4/ext4.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1038033
+      },
+      "writtenOn": "2017-02-04T00:21:23Z",
+      "side": 1,
+      "message": "I get desire to avoid conflicts with upstream, but if the Android kernel is different upstream, this could theoretically cause problems later.   If this code ever gets used with a device with an SD card, for example.\n\nI would much rather check in a code point reservation for HEH in the fscrypt git tree now, even if the HEH code isn\u0027t upstream yet.",
+      "range": {
+        "startLine": 591,
+        "startChar": 40,
+        "endLine": 591,
+        "endChar": 41
+      },
+      "revId": "380104906a40e91d09edcad6ae7212802232c6a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
