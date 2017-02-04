@@ -22,6 +22,30 @@
       "revId": "380104906a40e91d09edcad6ae7212802232c6a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10fecc5a_b49b9ad8",
+        "filename": "fs/ext4/ext4.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2017-02-04T01:05:03Z",
+      "side": 1,
+      "message": "We could, but I am concerned about HEH changing as it gets wider review.  Note that we even made changes fairly recently, from v0 to v1 of the Internet Draft.\n\nAdditionally, the patch after this one makes the non-reversible key derivation method used iff HEH is also used, and this affects the on-disk format for both contents (except when using ICE) and filenames.  Personally I don\u0027t think that is the right approach for upstream; it really should be a flag in the policy \u0027flags\u0027, so that people can use the more secure key derivation algorithm without being forced to use a particular encryption mode.  And I\u0027d like to get it upstream without having it blocked by HEH.  Therefore, if we want to try to be compatible with future changes upstream, then we\u0027d need to reconsider the decision to tie the two changes together as well.\n\nSo since I am skeptical that we will get both format changes \"correct\" right now, I decided to error on the side of putting both changes behind a mode number which is unlikely to be used upstream.  Though any additional insight on this would be appreciated.  (Michael, Alex?)\n\nAlso, are SD cards really a valid concern, given that people generally use FAT32 (and not ext4 or f2fs) on SD cards that are expected to be portable between systems?",
+      "parentUuid": "c96e0921_34014813",
+      "range": {
+        "startLine": 591,
+        "startChar": 40,
+        "endLine": 591,
+        "endChar": 41
+      },
+      "revId": "380104906a40e91d09edcad6ae7212802232c6a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
