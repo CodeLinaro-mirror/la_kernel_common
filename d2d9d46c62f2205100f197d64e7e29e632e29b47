@@ -16,6 +16,24 @@
       "revId": "d2d9d46c62f2205100f197d64e7e29e632e29b47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93a05e29_3ecd532a",
+        "filename": "crypto/heh.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2017-02-06T19:10:05Z",
+      "side": 1,
+      "message": "1.) Yes that would be fine, and for comparison ghash-generic is already in its own file, but for now I skipped it for poly_hash-generic because it would make things a little more complicated, and there isn\u0027t currently a use case for enabling poly_hash but not HEH.  It can always be done later.\n\n2.) Some advantages of doing it the way I\u0027ve proposed are: (a) making the poly_hash algorithm handle switching the last two coefficients would be less efficient and more complicated because poly_hash would have to internally buffer an additional block, since when a block has been passed through -\u003eupdate() it won\u0027t know whether the pending digest needs to be multiplied by the key yet, (b) less duplicated code, and (c) it makes poly_hash be the same as ghash just with a different finite field representation, so the code should be easier to understand by people familiar with both algorithms, and poly_hash could be more easily reused outside of HEH if ever needed.\n\n3.) We cannot use crypto_shash_digest() because the input data for poly_hash is in a scatterlist and is not guaranteed to be in a single virtually contiguous buffer.  So the real question is whether it should use the ahash API.  I didn\u0027t do this yet because it wasn\u0027t necessary and would make things a little more complicated (actually diverging from the API we are using for cmac), and a little less efficient when using shash algorithms.  But it could be done later if ever needed, e.g. if/when we have implementations of poly_hash that require ahash to use.",
+      "parentUuid": "8268e6b5_0b82a2f2",
+      "revId": "d2d9d46c62f2205100f197d64e7e29e632e29b47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
