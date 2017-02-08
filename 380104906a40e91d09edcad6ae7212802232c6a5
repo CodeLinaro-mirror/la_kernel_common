@@ -46,6 +46,30 @@
       "revId": "380104906a40e91d09edcad6ae7212802232c6a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "42ab5718_46b7888f",
+        "filename": "fs/ext4/ext4.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1038033
+      },
+      "writtenOn": "2017-02-08T22:29:27Z",
+      "side": 1,
+      "message": "Makes sense, agreed.\n\nThere has been talk about putting encrypted ext4 on an SDcard in the past, and even at one point an oddball request that we be able to move a file from /data to the SD card and back without having access to the key.  I had some hacky patches that would allow a directory hierarchy to be moved from one file system to another while preserving the encryption nonces, encrypted file names, etc.   It was.... interesting.   Fortunately the userspace feature that was driving this requirement was shelved, so I never had to put that code into production.",
+      "parentUuid": "10fecc5a_b49b9ad8",
+      "range": {
+        "startLine": 591,
+        "startChar": 40,
+        "endLine": 591,
+        "endChar": 41
+      },
+      "revId": "380104906a40e91d09edcad6ae7212802232c6a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
