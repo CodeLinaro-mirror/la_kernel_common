@@ -34,6 +34,24 @@
       "revId": "d2d9d46c62f2205100f197d64e7e29e632e29b47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b0e2cdb_ef2873be",
+        "filename": "crypto/heh.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2017-02-09T20:16:25Z",
+      "side": 1,
+      "message": "I added some explanation for (2) in a comment and (3) in the commit message.",
+      "parentUuid": "93a05e29_3ecd532a",
+      "revId": "d2d9d46c62f2205100f197d64e7e29e632e29b47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
