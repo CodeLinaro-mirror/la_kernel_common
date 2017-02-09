@@ -70,6 +70,30 @@
       "revId": "380104906a40e91d09edcad6ae7212802232c6a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f5bf933_41837dad",
+        "filename": "fs/ext4/ext4.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2017-02-09T23:38:43Z",
+      "side": 1,
+      "message": "Okay, so for now I am leaving the two features behind a special mode number, and I updated the commit messages to clarify the reasoning.\n\nWhen either or both of these features get upstream, I think we\u0027ll just update Android userspace to allow specifying the upstream feature(s) in fstab, as an alternative to this provisional version (which could then be removed from the kernel, for new devices).",
+      "parentUuid": "42ab5718_46b7888f",
+      "range": {
+        "startLine": 591,
+        "startChar": 40,
+        "endLine": 591,
+        "endChar": 41
+      },
+      "revId": "380104906a40e91d09edcad6ae7212802232c6a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
