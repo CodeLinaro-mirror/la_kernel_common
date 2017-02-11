@@ -46,6 +46,29 @@
       "revId": "15e0266d86ec652cae764130187c4c59ea094ab6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7217cd_f202929f",
+        "filename": "fs/squashfs/page_actor.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1105434
+      },
+      "writtenOn": "2017-02-11T01:09:56Z",
+      "side": 1,
+      "message": "1) should this be bh[b] ? i is un-initialized at this point.\n2) bh[b] can be NULL because of the logic in line 238 of block.c. I have to refresh my memory on this part of the code (and I can\u0027t do a quick review without refreshing my memory on how this entire flow works - I can do that Monday).\n3) if bh[b] is NULL, should we simply skip to the next bh in the array ? The logic as here will incorrectly update pgoff and bytes in that case.",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 13
+      },
+      "revId": "15e0266d86ec652cae764130187c4c59ea094ab6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
