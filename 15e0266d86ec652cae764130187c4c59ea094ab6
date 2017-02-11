@@ -22,6 +22,30 @@
       "revId": "15e0266d86ec652cae764130187c4c59ea094ab6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "face4c93_4129bcff",
+        "filename": "fs/squashfs/page_actor.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1045980
+      },
+      "writtenOn": "2017-02-11T00:53:51Z",
+      "side": 1,
+      "message": "No. This is the same as in squashfs_bh_to_buf. The array can have null entries, but is not itself null.",
+      "parentUuid": "005b1a8b_b96ecfee",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 10
+      },
+      "revId": "15e0266d86ec652cae764130187c4c59ea094ab6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
