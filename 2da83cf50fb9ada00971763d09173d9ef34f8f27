@@ -1,0 +1,299 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e55f461c_4d6a8904",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "nit: trailing whitespace. not only on this line.",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7375a311_3ef2cddc",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "document why, not what.\n\nIn this line, for instance, it is clear that the value of R1 is copied to R6. It is not clear that this happens because function calls will clobber R1 (the non-obvious and thus interesting bit).\n\nIn general, I don\u0027t think that you need to comment every line, just code blocks that together perform a logical operation.",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b1ab3c7_78f2ffc9",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "what does this STX do exactly? Stores at some offset -8 from which memory region and stores what in R10? Sorry, I guess I can look this up, but bugging you is less work (for me) ;-)",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8559c95f_d82d819f",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "why this -8?",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e83aad5_b7c0f21d",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "For instance, I would find the following a helpful comment:\n\n /* BPF_FUNC_map_lookup_elem takes two parameters\n  * (R1: map_fd, R2: \u0026socket_cookie)\n  */",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "73ea391d_df0e6af1",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "I thought that this command did not take a full filepath, but a path relative to the BPFFS root. Am I mistaken?",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b5c0a69_2b474887",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "check return value. system(\"\") commands are particularly fragile.\n\nalso, this commands needs an action on packets that match, e.g., -j ACCEPT as a NOOP. Perhaps that is implicit if you don\u0027t specify an action.",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "773fc62c_16cb7abb",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "/mnt/bpf/iptables is used twice. good to deduplicate and use a constant. You can use stringification.\n\nIt is also used in the wrapper shell script. Even better is to let that pass it as an argument, then, again to avoid duplication and possibly inconsistency later on as the files are modified.",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c16791f2_102bb436",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "wrong indentation",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2771d5e6_d637bce9",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "if sending upstream, note that this is not kernel style.",
+      "range": {
+        "startLine": 119,
+        "startChar": 15,
+        "endLine": 119,
+        "endChar": 18
+      },
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1fce5b7_d9916ee0",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "what an odd interface. why pass curN by reference if it is used as input and nextN is used as output? anyway, not your code.",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd656c31_aaded378",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "print key for which it failed",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "870edfcd_3a267adb",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "nit: more concise on a single line without the verbose \"the result socket..\" preamble.",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2591cc53_a3eaba49",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "cleaner to only revert the one line that you added",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa6a6638_8bfeb14d",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "rmdir /mnt/bpf",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0441b5c1_392ca4a1",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "first test [[ -e /mnt/bpf ]] and fail if it exists: don\u0027t trample on other data.",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83096341_8c76b950",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-12T02:09:46Z",
+      "side": 1,
+      "message": "what\u0027s the point of running netperf before inserting the BPF filter?",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
