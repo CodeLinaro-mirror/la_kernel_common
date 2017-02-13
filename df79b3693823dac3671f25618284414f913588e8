@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1330f3ee_6945153d",
+        "filename": "fs/squashfs/page_actor.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2017-02-13T22:46:46Z",
+      "side": 1,
+      "message": "In a separate related review I asked:\n\ndo we want to memset(kaddr + pgoff, 0, avail)\n\nto prevent kernel data exposure?",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 19
+      },
+      "revId": "df79b3693823dac3671f25618284414f913588e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ded07f70_df17df3d",
+        "filename": "fs/squashfs/page_actor.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2017-02-13T22:46:46Z",
+      "side": 1,
+      "message": "In a separate related review I asked:\n\ndo we want to null bh[b] to mark it no longer in use, or is that assumed after the call completes?",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 20
+      },
+      "revId": "df79b3693823dac3671f25618284414f913588e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
