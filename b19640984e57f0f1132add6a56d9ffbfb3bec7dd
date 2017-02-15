@@ -1,0 +1,193 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de71dc4c_43196c03",
+        "filename": "include/trace/events/sched.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-02-15T09:56:07Z",
+      "side": 1,
+      "message": "why not just \"exec:\" ?",
+      "range": {
+        "startLine": 208,
+        "startChar": 25,
+        "endLine": 208,
+        "endChar": 34
+      },
+      "revId": "b19640984e57f0f1132add6a56d9ffbfb3bec7dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1222db0c_9c4e17bf",
+        "filename": "include/trace/events/sched.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-02-15T09:56:07Z",
+      "side": 1,
+      "message": "Isn\u0027t quite odd to expose a user-space interface which depends on configuration.\n\nCan we just always expose this field from the trace event and keep the Kconfig guard just for the updates? This would simplify at least our user-space tools.\n\nAt the end, from user-space we can always know that if we get\na cause\u003dTMC_NONE than the support has not been enabled by\nKconfig.",
+      "revId": "b19640984e57f0f1132add6a56d9ffbfb3bec7dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "831b75d8_3fa5dd1e",
+        "filename": "kernel/sched/core.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2008,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-02-15T09:56:07Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be TMC_NONE?",
+      "range": {
+        "startLine": 2008,
+        "startChar": 22,
+        "endLine": 2008,
+        "endChar": 23
+      },
+      "revId": "b19640984e57f0f1132add6a56d9ffbfb3bec7dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "73301a94_c3f9c238",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 4968,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-02-15T09:56:07Z",
+      "side": 1,
+      "message": "Here is where we should probably set another flag:\n\n    if (eenv-\u003epayoff \u003c 0)\n        set_task_migration_cause(p, TMC_EAWC_STUNE_NP);\n\nWhere the flag is defined as:\n\n   { TMC_EAWC_STUNE_NP,     \"energy_aware_wake_cpu:stune_negative_payoff\" }, \\\n\nThis should override the set of TMC_EAWC_NO_ES at the energy_diff() call site (line 5684) thus reporting that an EAW has been rejected by SchedTune and not because of expected energy increase.",
+      "revId": "b19640984e57f0f1132add6a56d9ffbfb3bec7dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2554bf0d_a6be06aa",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 5372,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-02-15T09:56:07Z",
+      "side": 1,
+      "message": "Maybe this can be moved into kernel/sched/sched.h so that\nwe can use it also form core.c thus avoiding ifdef guards in that file?",
+      "revId": "b19640984e57f0f1132add6a56d9ffbfb3bec7dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2554bf0d_06d03af3",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 5375,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-02-15T09:56:07Z",
+      "side": 1,
+      "message": "Maybe this:\n  BUG_ON(cause \u003e TMC_MAX || cause \u003c TMC_MIN)\ncan save (eventually) some comparisons?",
+      "range": {
+        "startLine": 5375,
+        "startChar": 8,
+        "endLine": 5375,
+        "endChar": 46
+      },
+      "revId": "b19640984e57f0f1132add6a56d9ffbfb3bec7dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f338c07_9963abb6",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 5664,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-02-15T09:56:07Z",
+      "side": 1,
+      "message": "Perhaps this should be better renamed to be IDLE.\n\nThis is actually not really a \"default\" case, it is triggered only for boosted/prefer_idle tasks and if we find an idle CPU.",
+      "range": {
+        "startLine": 5664,
+        "startChar": 40,
+        "endLine": 5664,
+        "endChar": 44
+      },
+      "revId": "b19640984e57f0f1132add6a56d9ffbfb3bec7dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "217b8c77_7f2cd378",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 5685,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-02-15T09:56:07Z",
+      "side": 1,
+      "message": "If SchedTune is enabled, we can end up in this condition even when the EM reports a reduction in energy, but performance are going to be impacted to much for a boosted task.\n\nThus, this flag is ok but we should probably set another one before this check. I\u0027ve added a comment (line 4968) where this SchedTune related flag should be set.",
+      "range": {
+        "startLine": 5685,
+        "startChar": 3,
+        "endLine": 5685,
+        "endChar": 47
+      },
+      "revId": "b19640984e57f0f1132add6a56d9ffbfb3bec7dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28f05f5b_1f3714a8",
+        "filename": "kernel/trace/Kconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-02-15T09:56:07Z",
+      "side": 1,
+      "message": "If we decide to keep the \"cause\" field in the tracepoint, than\nthis should better be written something like:\n\n\"\nIf you say Y here, the \"cause\" field of the sched_migrate_task\ntrace event will provide a description of the migration reason.\n\"",
+      "range": {
+        "startLine": 610,
+        "startChar": 3,
+        "endLine": 610,
+        "endChar": 23
+      },
+      "revId": "b19640984e57f0f1132add6a56d9ffbfb3bec7dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
