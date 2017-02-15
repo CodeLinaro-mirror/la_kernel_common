@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "a4499b0e_c2a1532e",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-15T18:41:48Z",
+      "side": 1,
+      "message": "R10 is a special register in eBPF which is actually a limited size stack. And normally STX is used to copy a memory to the stack register R10, and place it in the stack at the offset. For example in this line, the socket cookie retrieved is copied from R0 to R10 and stored at position R10 -8 byte. The offset need to point to a memory space that have enough space to store the new value and does not overlap with previously placed value. And when you want to access this piece of memory by reference, You need to access the position of the value in the stack which is determined by the offset you set when place it. So that is why I used -8 in the following line. That is basically the address of the socket cookie stored in R10",
+      "parentUuid": "7b1ab3c7_78f2ffc9",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8559c95f_d82d819f",
         "filename": "samples/bpf/helper_bpf.c",
         "patchSetId": 1
@@ -64,6 +82,24 @@
       "writtenOn": "2017-02-12T02:09:46Z",
       "side": 1,
       "message": "why this -8?",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "acfb3b09_7d718083",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-15T18:41:48Z",
+      "side": 1,
+      "message": "See above",
+      "parentUuid": "8559c95f_d82d819f",
       "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -98,6 +134,24 @@
       "writtenOn": "2017-02-12T02:09:46Z",
       "side": 1,
       "message": "I thought that this command did not take a full filepath, but a path relative to the BPFFS root. Am I mistaken?",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6aaca24a_61d34113",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-15T18:41:48Z",
+      "side": 1,
+      "message": "I think it can be a customize path now, the upstream example use path /sys/fs/bpf as the pin place but I think it is not a requirement now. I will switch to it just in case.",
+      "parentUuid": "73ea391d_df0e6af1",
       "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -257,6 +311,24 @@
       "writtenOn": "2017-02-12T02:09:46Z",
       "side": 1,
       "message": "rmdir /mnt/bpf",
+      "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "853e5bf2_81445482",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-15T18:41:48Z",
+      "side": 1,
+      "message": "I will change it to sys/fs/bpf and I think that is used specifically for bpf object, so probably I don\u0027t need to remove it.",
+      "parentUuid": "aa6a6638_8bfeb14d",
       "revId": "2da83cf50fb9ada00971763d09173d9ef34f8f27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
