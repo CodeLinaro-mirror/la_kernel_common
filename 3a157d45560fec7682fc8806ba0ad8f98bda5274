@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "58273204_594da2a1",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae15fc60_b1975881",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9bd703b8_ac88f3e0",
         "filename": "samples/bpf/helper_bpf.c",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2017-02-16T00:11:23Z",
       "side": 1,
       "message": "more brief, because one line, so no need for braces:\n\n  error(1, errno, \"map ....\")",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e28a3468_4910dbc1",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bd703b8_ac88f3e0",
       "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "47dfe852_394b8f5e",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee1c8c15_610640de",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1920f8c5_3e7f01b1",
         "filename": "samples/bpf/helper_bpf.c",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2017-02-16T00:11:23Z",
       "side": 1,
       "message": "BPF_AND is wrong in JMP context?",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "640a48ce_9ac65f95",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Yeah, you are right, should use BPF_JNE instead, don\u0027t remember why I use BPF_AND here to represent not equal, but they are the same value so I didn\u0027t find it incorrect.",
+      "parentUuid": "1920f8c5_3e7f01b1",
       "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "b02a1320_89d4442c",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "BPF_STX_MEM set the stack memory with a value stored in one of the registers and BPF_ST_MEM copy a IMM value into the stack memory. I will add a explain to these lines.",
+      "parentUuid": "57e9b5bb_56994fcc",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79aff52c_718ab374",
         "filename": "samples/bpf/helper_bpf.c",
         "patchSetId": 2
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "81b2f347_c682681e",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79aff52c_718ab374",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6c431bb_cc113086",
         "filename": "samples/bpf/helper_bpf.c",
         "patchSetId": 2
@@ -115,6 +223,24 @@
       "writtenOn": "2017-02-16T00:11:23Z",
       "side": 1,
       "message": "insdead -\u003e instead",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b77f2503_0517069f",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6c431bb_cc113086",
       "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -144,6 +270,30 @@
     },
     {
       "key": {
+        "uuid": "22977322_b6e475fd",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19060316_91c3749d",
+      "range": {
+        "startLine": 145,
+        "startChar": 9,
+        "endLine": 145,
+        "endChar": 11
+      },
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "34a579a4_a6756511",
         "filename": "samples/bpf/helper_bpf.c",
         "patchSetId": 2
@@ -155,6 +305,24 @@
       "writtenOn": "2017-02-16T00:11:23Z",
       "side": 1,
       "message": "UINT32_MAX",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "90b46e42_93ac372b",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34a579a4_a6756511",
       "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -178,6 +346,24 @@
     },
     {
       "key": {
+        "uuid": "959b9ca7_24c4819f",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e490b06_381c1a02",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dfa865a9_7e606f14",
         "filename": "samples/bpf/helper_bpf.c",
         "patchSetId": 2
@@ -195,6 +381,24 @@
     },
     {
       "key": {
+        "uuid": "b3d61ad4_b905c31d",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfa865a9_7e606f14",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab89286f_18621689",
         "filename": "samples/bpf/test_runner.sh",
         "patchSetId": 2
@@ -206,6 +410,24 @@
       "writtenOn": "2017-02-16T00:11:23Z",
       "side": 1,
       "message": "empty line between variables and function would be nice.\n\nconversely, only one empty line between the function and trap, not two.",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "779fbc50_31d9eba9",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab89286f_18621689",
       "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -246,6 +468,24 @@
     },
     {
       "key": {
+        "uuid": "0b7434e3_8879e776",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cde7d6ee_96ff2296",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a15e7a43_23703d6e",
         "filename": "samples/bpf/test_runner.sh",
         "patchSetId": 2
@@ -263,6 +503,24 @@
     },
     {
       "key": {
+        "uuid": "3bc8039b_0e74ef31",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "I think the sys/fs/bpf dir is already there in the newest kernel version. Maybe I should make a dir under it and mount the program there? Thus the dir checking process will make more sense.",
+      "parentUuid": "a15e7a43_23703d6e",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7dd3370a_8283b027",
         "filename": "samples/bpf/test_runner.sh",
         "patchSetId": 2
@@ -274,6 +532,24 @@
       "writtenOn": "2017-02-16T00:11:23Z",
       "side": 1,
       "message": "this process has to run concurrently with netperf, right?\n\n  ./helper_bpf ... \u0026\n  PID\u003d$!\n\n  ./netperf ...\n  \n  wait ${PID}",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f4396f7_d430a1f6",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-02-16T08:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7dd3370a_8283b027",
       "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
