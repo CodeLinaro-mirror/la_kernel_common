@@ -1,0 +1,282 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae15fc60_b1975881",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "weird name for this test binary?",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9bd703b8_ac88f3e0",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "more brief, because one line, so no need for braces:\n\n  error(1, errno, \"map ....\")",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee1c8c15_610640de",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "pc+14",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1920f8c5_3e7f01b1",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "BPF_AND is wrong in JMP context?",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57e9b5bb_56994fcc",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "can you document these four instruction in a bit more detail?\n\nIf I understand correctly, we place a struct stats at offset -32 from the stack pointer.\n\nbut why use STX_MEM here and ST_MEM on the next line?\n\nalso, LDX_MEM from REG_6 uses the \"magic\" skb access path. I know this, but a general reader will not. That\u0027s good to explain in a one-line comment.",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79aff52c_718ab374",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "please document the arguments that this function names, like you did in the previous calls.",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e6c431bb_cc113086",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "insdead -\u003e instead",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "19060316_91c3749d",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "exit(1)",
+      "range": {
+        "startLine": 145,
+        "startChar": 9,
+        "endLine": 145,
+        "endChar": 11
+      },
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34a579a4_a6756511",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "UINT32_MAX",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e490b06_381c1a02",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "actually need to fail with error()?",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dfa865a9_7e606f14",
+        "filename": "samples/bpf/helper_bpf.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "return 1;",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab89286f_18621689",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "empty line between variables and function would be nice.\n\nconversely, only one empty line between the function and trap, not two.",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28927c6d_5a50fa85",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "no need for \"function\" keyword\n\nNB: this is not google3 code, so you don\u0027t have to follow the shell styleguide. But might as well, as it\u0027s pretty good.",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cde7d6ee_96ff2296",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "${mnt_dir}",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a15e7a43_23703d6e",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "no, fail if system state is unexpected. that is, if this directory already exists.\n\nalso, again, ${mnt_dir}. also in other locations.",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7dd3370a_8283b027",
+        "filename": "samples/bpf/test_runner.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1137873
+      },
+      "writtenOn": "2017-02-16T00:11:23Z",
+      "side": 1,
+      "message": "this process has to run concurrently with netperf, right?\n\n  ./helper_bpf ... \u0026\n  PID\u003d$!\n\n  ./netperf ...\n  \n  wait ${PID}",
+      "revId": "3a157d45560fec7682fc8806ba0ad8f98bda5274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
