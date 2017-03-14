@@ -22,6 +22,30 @@
       "revId": "53dae86d3001d6c2b7e4753489f9b48c2d904a8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18c09463_8ba2c708",
+        "filename": "arch/arm64/boot/dts/arm/juno.dts",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1124443
+      },
+      "writtenOn": "2017-03-14T16:05:33Z",
+      "side": 1,
+      "message": "Ah, sorry, the dynamic-power-coefficient and cooling-cells stuff shouldn\u0027t be here. The code that uses dynamic-power-coefficient isn\u0027t in this kernel (upstream it\u0027s used by IPA). Will amend.",
+      "parentUuid": "f4036788_4183120d",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 58
+      },
+      "revId": "53dae86d3001d6c2b7e4753489f9b48c2d904a8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
