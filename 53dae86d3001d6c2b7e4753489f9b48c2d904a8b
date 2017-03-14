@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4036788_4183120d",
+        "filename": "arch/arm64/boot/dts/arm/juno.dts",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-03-14T15:10:07Z",
+      "side": 1,
+      "message": "Maybe I\u0027m missing something here, but doesn\u0027t the dynamic-power-coefficient make EAS use that instead of the \"busy-cost-data\"? It seems you specified that in the other dts (the busy-cost-data) so in that case isn\u0027t it redundant?",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 58
+      },
+      "revId": "53dae86d3001d6c2b7e4753489f9b48c2d904a8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
