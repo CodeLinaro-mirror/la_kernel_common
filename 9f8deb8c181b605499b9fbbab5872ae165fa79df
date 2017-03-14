@@ -22,6 +22,30 @@
       "revId": "9f8deb8c181b605499b9fbbab5872ae165fa79df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52868485_81b833f2",
+        "filename": "arch/arm64/boot/dts/arm/juno.dts",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1124443
+      },
+      "writtenOn": "2017-03-14T16:40:08Z",
+      "side": 1,
+      "message": "Agh yep. Too many context-switches today, thanks for reviewing properly.",
+      "parentUuid": "c3f58b04_3d21333f",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 37
+      },
+      "revId": "9f8deb8c181b605499b9fbbab5872ae165fa79df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
