@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "03948ee0_a301f2c3",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1851,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-03-18T00:24:12Z",
+      "side": 1,
+      "message": "Yes, should grab the mutex here.",
+      "parentUuid": "0385c198_ed598d90",
+      "revId": "f2300615a1332899e86b4432686acbe1cb0bcb6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "024032a1_529b3c9c",
         "filename": "drivers/android/binder.c",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "694a4c00_e0922773",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2784,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-03-18T00:24:12Z",
+      "side": 1,
+      "message": "ok, i\u0027ll change to node.",
+      "parentUuid": "024032a1_529b3c9c",
+      "range": {
+        "startLine": 2784,
+        "startChar": 21,
+        "endLine": 2784,
+        "endChar": 25
+      },
+      "revId": "f2300615a1332899e86b4432686acbe1cb0bcb6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80be3fc9_7e38c116",
         "filename": "drivers/android/binder.c",
         "patchSetId": 1
@@ -53,6 +95,24 @@
       "writtenOn": "2017-03-18T00:11:21Z",
       "side": 1,
       "message": "This is not needed, and it is unrelated to this change. If a new node cannot be allocated that does not mean that another uid should now be allowed to set the context manager node.",
+      "revId": "f2300615a1332899e86b4432686acbe1cb0bcb6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "798d5edd_690afdd0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2810,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-03-18T00:24:12Z",
+      "side": 1,
+      "message": "Hmm. Shouldn\u0027t a failure undo the uid set at line 2805? If we don\u0027t restore it, we are leaving it as a partial. Or are you saying we should cache the original value since it might not be INVALID_UID and restore that on failure?",
+      "parentUuid": "80be3fc9_7e38c116",
       "revId": "f2300615a1332899e86b4432686acbe1cb0bcb6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
