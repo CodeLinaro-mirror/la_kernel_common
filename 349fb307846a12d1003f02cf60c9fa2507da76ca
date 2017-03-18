@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dc2d5cf7_3021e6a2",
+        "filename": "drivers/android/binder_alloc.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-03-18T00:08:29Z",
+      "side": 1,
+      "message": "I didn\u0027t have this in the original code. Seems like it would be safe to remove as in the original code (and guarantee that vma is always set and visible first)",
+      "parentUuid": "e150841f_6f5309a1",
+      "revId": "349fb307846a12d1003f02cf60c9fa2507da76ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "74cf2d34_449902a3",
         "filename": "drivers/android/binder_alloc.h",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-03-17T23:53:48Z",
       "side": 1,
       "message": "why are you using this header for an internal api?",
+      "revId": "349fb307846a12d1003f02cf60c9fa2507da76ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4135d921_d6cc4b09",
+        "filename": "drivers/android/binder_alloc.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-03-18T00:08:29Z",
+      "side": 1,
+      "message": "Copied from binder.h. I\u0027ll trim it down to a header like binder.c",
+      "parentUuid": "74cf2d34_449902a3",
       "revId": "349fb307846a12d1003f02cf60c9fa2507da76ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
