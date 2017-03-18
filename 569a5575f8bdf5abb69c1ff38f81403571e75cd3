@@ -1,0 +1,186 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1a180a3_1d69e4bc",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T02:23:25Z",
+      "side": 1,
+      "message": "It might be useful to add kerneldoc headers for the structs you add or significantly modify. e.g. explain what last_line is used for.",
+      "revId": "569a5575f8bdf5abb69c1ff38f81403571e75cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cc95aba4_6fd084b3",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T02:23:25Z",
+      "side": 1,
+      "message": "is it useful to specify inline here?",
+      "range": {
+        "startLine": 380,
+        "startChar": 7,
+        "endLine": 380,
+        "endChar": 13
+      },
+      "revId": "569a5575f8bdf5abb69c1ff38f81403571e75cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c6ed3ae_57b15866",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T02:23:25Z",
+      "side": 1,
+      "message": "what does _ mean here?",
+      "range": {
+        "startLine": 380,
+        "startChar": 19,
+        "endLine": 380,
+        "endChar": 20
+      },
+      "revId": "569a5575f8bdf5abb69c1ff38f81403571e75cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "81e33a34_fc80921e",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T02:23:25Z",
+      "side": 1,
+      "message": "you did not delete anything if this line is reached.",
+      "revId": "569a5575f8bdf5abb69c1ff38f81403571e75cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "404dccad_754832b1",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T02:23:25Z",
+      "side": 1,
+      "message": "this seems unrelated to the rest of this patch",
+      "revId": "569a5575f8bdf5abb69c1ff38f81403571e75cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "868df2d3_e0c776c8",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2296,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T02:23:25Z",
+      "side": 1,
+      "message": "the old code was correct",
+      "revId": "569a5575f8bdf5abb69c1ff38f81403571e75cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f137ab6_b58ad357",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2416,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T02:23:25Z",
+      "side": 1,
+      "message": "why did this change here?",
+      "revId": "569a5575f8bdf5abb69c1ff38f81403571e75cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b5a53ffa_13e0849a",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2474,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T02:23:25Z",
+      "side": 1,
+      "message": "you don\u0027t need to lock the proc todo list if wait_for_proc_work is false.",
+      "revId": "569a5575f8bdf5abb69c1ff38f81403571e75cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62c44697_600202d2",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2724,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T02:23:25Z",
+      "side": 1,
+      "message": "add helper to pop first entry so you don\u0027t need to touch the lock here?",
+      "revId": "569a5575f8bdf5abb69c1ff38f81403571e75cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c90d867_19fd57c0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3529,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T02:23:25Z",
+      "side": 1,
+      "message": "is the lock held?",
+      "revId": "569a5575f8bdf5abb69c1ff38f81403571e75cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
