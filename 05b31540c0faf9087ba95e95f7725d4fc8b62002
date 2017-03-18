@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2419cc9f_7df9f18f",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T00:28:21Z",
+      "side": 1,
+      "message": "This looks suspicious. If you need a strong ref, is is not safe to check it this way as you could lose it before you increment it later. It might be better to rework the code to use atomic_inc_not_zero.",
+      "revId": "05b31540c0faf9087ba95e95f7725d4fc8b62002",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2be57699_5af228fe",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T00:28:21Z",
+      "side": 1,
+      "message": "why not use the same scheme to get the argument to inc?",
+      "revId": "05b31540c0faf9087ba95e95f7725d4fc8b62002",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "902f7368_2150fadb",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T00:28:21Z",
+      "side": 1,
+      "message": "newval + 1 might be less confusing if the value changes",
+      "range": {
+        "startLine": 751,
+        "startChar": 18,
+        "endLine": 751,
+        "endChar": 43
+      },
+      "revId": "05b31540c0faf9087ba95e95f7725d4fc8b62002",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29d69114_097a6205",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T00:28:21Z",
+      "side": 1,
+      "message": "see above",
+      "range": {
+        "startLine": 767,
+        "startChar": 7,
+        "endLine": 767,
+        "endChar": 18
+      },
+      "revId": "05b31540c0faf9087ba95e95f7725d4fc8b62002",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1571ab8a_9df6e028",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T00:28:21Z",
+      "side": 1,
+      "message": "This does not look safe. If two threads release the last two references at the same time, they would both delete the ref.",
+      "revId": "05b31540c0faf9087ba95e95f7725d4fc8b62002",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
