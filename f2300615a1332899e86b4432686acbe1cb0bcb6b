@@ -116,6 +116,24 @@
       "revId": "f2300615a1332899e86b4432686acbe1cb0bcb6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64f8e6ca_49db0fbb",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2810,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T00:32:23Z",
+      "side": 1,
+      "message": "There is no need to restore it at all. It is not allowed to set the context manager from a different uid than the first one. It does not matter if the first one was successful or not.",
+      "parentUuid": "798d5edd_690afdd0",
+      "revId": "f2300615a1332899e86b4432686acbe1cb0bcb6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
