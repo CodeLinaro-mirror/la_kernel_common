@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0385c198_ed598d90",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1851,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T00:11:21Z",
+      "side": 1,
+      "message": "You don\u0027t get the lock here, and there is no barrier when this gets set, so how do you know binder_context_mgr_node is valid (assuming the global lock is removed)?",
+      "revId": "f2300615a1332899e86b4432686acbe1cb0bcb6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "024032a1_529b3c9c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2784,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T00:11:21Z",
+      "side": 1,
+      "message": "node?",
+      "range": {
+        "startLine": 2784,
+        "startChar": 21,
+        "endLine": 2784,
+        "endChar": 25
+      },
+      "revId": "f2300615a1332899e86b4432686acbe1cb0bcb6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "80be3fc9_7e38c116",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2810,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-18T00:11:21Z",
+      "side": 1,
+      "message": "This is not needed, and it is unrelated to this change. If a new node cannot be allocated that does not mean that another uid should now be allowed to set the context manager node.",
+      "revId": "f2300615a1332899e86b4432686acbe1cb0bcb6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
