@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "a1d20d7c_f2995706",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-03-20T20:25:11Z",
+      "side": 1,
+      "message": "put this in a local .h file, and make it a #define, then you don\u0027t have to have __LINE__ in all callers, it can be just used automatically.",
+      "range": {
+        "startLine": 400,
+        "startChar": 0,
+        "endLine": 400,
+        "endChar": 52
+      },
+      "revId": "4b8ad03fdbff7ee81eb3a6b0650a81a8df0c2548",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "41e071a9_55d3825d",
         "filename": "drivers/android/binder.c",
         "patchSetId": 1
