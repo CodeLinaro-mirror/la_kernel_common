@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "939ba88e_4f9dda74",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-03-20T20:21:46Z",
+      "side": 1,
+      "message": "can you use \u0027struct klist\u0027 here instead?  I think it provides the same functionality you want, and you don\u0027t have to audit the implementation of it.",
+      "range": {
+        "startLine": 252,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 24
+      },
+      "revId": "569a5575f8bdf5abb69c1ff38f81403571e75cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c1a180a3_1d69e4bc",
         "filename": "drivers/android/binder.c",
         "patchSetId": 1
