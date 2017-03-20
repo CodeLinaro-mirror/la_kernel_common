@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0cc097ac_da600138",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-20T23:04:07Z",
+      "side": 1,
+      "message": "This is not consistent with how the created/deleted starts work. If all objects now go through the zombie state then there is no need to decrement the count.",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5640a19_59bd6b34",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-20T23:04:07Z",
+      "side": 1,
+      "message": "Does this compile without warnings on 32 bit systems. You are converting from a pointer to a mismatching integer size.",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0353147_0ca241a3",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 890,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-20T23:04:07Z",
+      "side": 1,
+      "message": "This seems to be in the wrong patch.",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "780b6c71_4e063ca1",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 928,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-20T23:04:07Z",
+      "side": 1,
+      "message": "Is the code path you deleted no longer reachable?",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a64ca5af_6554e979",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1762,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-20T23:04:07Z",
+      "side": 1,
+      "message": "why did you change this?",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ab6d42e_d4391dc6",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2642,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-20T23:04:07Z",
+      "side": 1,
+      "message": "what is the purpose of this? The current thread can\u0027t go away here.",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
