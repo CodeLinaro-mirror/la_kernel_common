@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "52ea198c_b92bcdbd",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T03:49:08Z",
+      "side": 1,
+      "message": "I think referenced nodes from dead processes should be distinguishable from nodes that are in your new zombie state because they are not referenced.",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0353147_0ca241a3",
         "filename": "drivers/android/binder.c",
         "patchSetId": 1
@@ -98,6 +115,171 @@
       "writtenOn": "2017-03-20T23:04:07Z",
       "side": 1,
       "message": "what is the purpose of this? The current thread can\u0027t go away here.",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "162ad494_1000b05b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2778,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T03:49:08Z",
+      "side": 1,
+      "message": "how does this happen?",
+      "range": {
+        "startLine": 2778,
+        "startChar": 29,
+        "endLine": 2778,
+        "endChar": 44
+      },
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1760c963_05b1fba2",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3012,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T03:49:08Z",
+      "side": 1,
+      "message": "is that true. On a 32 bit system, the value you get could be higher or lower than what you expect.",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1a16860_576bbd20",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3135,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T03:49:08Z",
+      "side": 1,
+      "message": "which lock protects this, and what is it used for?",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "01de756d_5c2758d0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3168,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T03:49:08Z",
+      "side": 1,
+      "message": "how does this happen? This function removes it from the thread list, so it should be invisible to binder_deferred_release",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23cc61a2_ca02a762",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3237,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T03:49:08Z",
+      "side": 1,
+      "message": "this should not happen",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87f9b0c0_b66511be",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3775,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T03:49:08Z",
+      "side": 1,
+      "message": "why did this change?",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "510cea97_b756da14",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3776,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T03:49:08Z",
+      "side": 1,
+      "message": "what is this used for and why is it no changed with the proc lock held?",
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cbc067a3_b7cbfc66",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3897,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T03:49:08Z",
+      "side": 1,
+      "message": "when is this false?",
+      "range": {
+        "startLine": 3897,
+        "startChar": 14,
+        "endLine": 3897,
+        "endChar": 23
+      },
+      "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c832331_bebfd5d0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3932,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T03:49:08Z",
+      "side": 1,
+      "message": "Does this need to be done twice?",
       "revId": "739bcc0fd4d4eedc4ab62a0f6ee97acf2cf0f34a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
