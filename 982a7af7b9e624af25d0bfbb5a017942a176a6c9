@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f0c82a3_3194a6f6",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2508,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T23:37:02Z",
+      "side": 1,
+      "message": "why did you move this?",
+      "revId": "982a7af7b9e624af25d0bfbb5a017942a176a6c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "793d043f_4020896f",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3771,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T23:37:02Z",
+      "side": 1,
+      "message": "are you locking the correct process here?",
+      "revId": "982a7af7b9e624af25d0bfbb5a017942a176a6c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
