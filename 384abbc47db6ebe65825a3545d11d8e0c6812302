@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5a12363_95b75df8",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T23:14:41Z",
+      "side": 1,
+      "message": "why did this move?",
+      "revId": "384abbc47db6ebe65825a3545d11d8e0c6812302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a7f337d_c6f2fa25",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2163,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-21T23:14:41Z",
+      "side": 1,
+      "message": "this seems like an unrelated bug fix. ref should only be NULL if we run out of memory while allocating a reference to the context manager node. With this change you report an unrelated user-error below instead of crashing.",
+      "revId": "384abbc47db6ebe65825a3545d11d8e0c6812302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
