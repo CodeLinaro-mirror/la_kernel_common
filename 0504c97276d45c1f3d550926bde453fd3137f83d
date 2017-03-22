@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d431a45a_2c06012b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1486,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-22T00:14:39Z",
+      "side": 1,
+      "message": "Passing in the reference type here would avoid the inc_ref below and avoid any other threads seeing an inconsistent state.",
+      "revId": "0504c97276d45c1f3d550926bde453fd3137f83d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ca393db_f4b934ee",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1520,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-22T00:14:39Z",
+      "side": 1,
+      "message": "Changing this to a get-node-from-ref may be simpler better as we don\u0027t need a new reference here.",
+      "revId": "0504c97276d45c1f3d550926bde453fd3137f83d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fca0b5fd_280af3b8",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-22T00:14:39Z",
+      "side": 1,
+      "message": "Same comment as binder_translate_binder",
+      "range": {
+        "startLine": 1548,
+        "startChar": 12,
+        "endLine": 1548,
+        "endChar": 35
+      },
+      "revId": "0504c97276d45c1f3d550926bde453fd3137f83d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e30c0fc4_032de1df",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1815,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-03-22T00:14:39Z",
+      "side": 1,
+      "message": "this also need a node",
+      "revId": "0504c97276d45c1f3d550926bde453fd3137f83d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
