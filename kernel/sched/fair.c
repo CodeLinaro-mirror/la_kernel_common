@@ -5788,6 +5788,7 @@ out:
 	ret = -eenv->payoff;
 
 	trace_sched_energy_diff(eenv);
+	trace_sched_energy_perf_deltas(eenv);
 
 	return ret;
 }
