@@ -877,6 +877,76 @@ TRACE_EVENT(sched_boost_task,
 		  __entry->margin)
 );
 
+/*
+ * Tracepoint for accounting sched group energy
+ */
+TRACE_EVENT(sched_energy_diff,
+
+	TP_PROTO(struct energy_env *eenv),
+
+	TP_ARGS(eenv),
+
+	TP_STRUCT__entry(
+		__array( char,	comm,	TASK_COMM_LEN	)
+		__field( pid_t,		pid	)
+		__field( int,		cpu_s	)
+		__field( int,		cpu_d	)
+		__field( int,		utl_d	)
+
+		__field( unsigned,	nrg_b	)
+		__field( unsigned,	cap_b	)
+		__field( unsigned,	sgu_b	)
+		__field( int,		prf_b	)
+
+		__field( unsigned,	nrg_a	)
+		__field( unsigned,	cap_a	)
+		__field( unsigned,	sgu_a	)
+		__field( int,		prf_a	)
+
+		__field( int,		nrg_d	)
+		__field( int,		prf_d	)
+
+		__field( int,		payoff	)
+	),
+
+	TP_fast_assign(
+		memcpy(__entry->comm,	  eenv->task->comm, TASK_COMM_LEN);
+		__entry->pid	= eenv->task->pid;
+		__entry->cpu_s 	= eenv->src_cpu;
+		__entry->cpu_d 	= eenv->dst_cpu;
+		__entry->utl_d  = eenv->util_delta;
+
+		__entry->nrg_b 	= eenv->before.energy;
+		__entry->cap_b  = eenv->before.capacity;
+		__entry->sgu_b  = eenv->before.group_util;
+		__entry->prf_b 	= eenv->before.perf_idx;
+
+		__entry->nrg_a 	= eenv->after.energy;
+		__entry->cap_a 	= eenv->after.capacity;
+		__entry->sgu_a  = eenv->after.group_util;
+		__entry->prf_a 	= eenv->after.perf_idx;
+
+		__entry->nrg_d	= eenv->nrg_delta;
+		__entry->prf_d	= eenv->prf_delta;
+
+		__entry->payoff	= eenv->payoff;
+	),
+
+	TP_printk("pid=%d comm=%s cpu_src=%d cpu_dst=%d utl_dlt=%d "
+		  "sgu_bfr=%u sgu_aft=%u "
+		  "cap_bfr=%u cap_aft=%u "
+		  "prf_dlt=%d nrg_dlt=%d "
+		  "payoff=%d",
+		__entry->pid,   __entry->comm,
+		__entry->cpu_s, __entry->cpu_d,
+		__entry->utl_d,
+		__entry->sgu_b, __entry->sgu_a,
+		__entry->cap_b, __entry->cap_a,
+		__entry->prf_d,
+		__entry->nrg_d,
+		__entry->payoff)
+
+);
 
 /*
  * Tracepoint for schedtune_tasks_update
