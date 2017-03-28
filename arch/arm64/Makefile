@@ -29,9 +29,9 @@ ifeq ($(CONFIG_COMPAT_VDSO), y)
   # config (if needed). Any warning appearing before the config has been
   # regenerated should be ignored.
   ifeq ($(CROSS_COMPILE_ARM32),)
-    $(warning CROSS_COMPILE_ARM32 not defined or empty, the compat vDSO will not be built)
+    $(error CROSS_COMPILE_ARM32 not defined or empty, the compat vDSO will not be built)
   else ifeq ($(shell which $(CROSS_COMPILE_ARM32)gcc 2> /dev/null),)
-    $(warning $(CROSS_COMPILE_ARM32)gcc not found, the compat vDSO will not be built)
+    $(error $(CROSS_COMPILE_ARM32)gcc not found, the compat vDSO will not be built)
   else
     export CROSS_COMPILE_ARM32
     export CONFIG_VDSO32 := y
