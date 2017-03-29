@@ -70,6 +70,30 @@
       "revId": "9eedd001e6facf37cfb0aa9a7aa6469fc0927b07",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26d313e2_6127b6ed",
+        "filename": "net/netfilter/xt_qtaguid_internal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-03-29T22:13:23Z",
+      "side": 1,
+      "message": "Ok, no problem. Besides this, is the overall approach of this patch okay?",
+      "parentUuid": "be4be174_fad17df6",
+      "range": {
+        "startLine": 258,
+        "startChar": 1,
+        "endLine": 258,
+        "endChar": 16
+      },
+      "revId": "9eedd001e6facf37cfb0aa9a7aa6469fc0927b07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
