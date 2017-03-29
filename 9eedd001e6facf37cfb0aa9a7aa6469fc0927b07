@@ -46,6 +46,30 @@
       "revId": "9eedd001e6facf37cfb0aa9a7aa6469fc0927b07",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be4be174_fad17df6",
+        "filename": "net/netfilter/xt_qtaguid_internal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-03-29T22:10:27Z",
+      "side": 1,
+      "message": "Not just that, but also when matching the sockets to tag and untag.",
+      "parentUuid": "905003e7_d0ddc95e",
+      "range": {
+        "startLine": 258,
+        "startChar": 1,
+        "endLine": 258,
+        "endChar": 16
+      },
+      "revId": "9eedd001e6facf37cfb0aa9a7aa6469fc0927b07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
