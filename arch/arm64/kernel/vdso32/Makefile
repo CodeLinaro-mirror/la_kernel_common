@@ -95,10 +95,8 @@ VDSO_LDFLAGS += $(call cc32-ldoption,-Wl$(comma)--hash-style=sysv)
 VDSO_LDFLAGS += $(call cc32-ldoption,-Wl$(comma)--build-id)
 VDSO_LDFLAGS += $(call cc32-ldoption,-fuse-ld=bfd)
 
-
-# Borrow vdsomunge.c from the arm vDSO
-munge := arch/arm/vdso/vdsomunge
-hostprogs-y := $(srctree)/$(munge)
+munge := vdsomunge
+hostprogs-y := ${munge}
 
 c-obj-vdso := vgettimeofday.o
 asm-obj-vdso := sigreturn.o
@@ -124,7 +122,7 @@ $(obj)/vdso.so: OBJCOPYFLAGS := -S
 $(obj)/vdso.so: $(obj)/vdso.so.dbg FORCE
 	$(call if_changed,objcopy)
 
-$(obj)/vdso.so.dbg: $(obj)/vdso.so.raw $(objtree)/$(munge) FORCE
+$(obj)/vdso.so.dbg: $(obj)/vdso.so.raw $(obj)/$(munge) FORCE
 	$(call if_changed,vdsomunge)
 
 # Link rule for the .so file, .lds has to be first
@@ -147,7 +145,7 @@ quiet_cmd_vdsoas = VDSOA   $@
       cmd_vdsoas = $(CC_ARM32) -Wp,-MD,$(depfile) $(VDSO_AFLAGS) -c -o $@ $<
 
 quiet_cmd_vdsomunge = MUNGE   $@
-      cmd_vdsomunge = $(objtree)/$(munge) $< $@
+      cmd_vdsomunge = $(objtree)/$(obj)/$(munge) $< $@
 
 # Generate vDSO offsets using helper script (borrowed from the 64-bit vDSO)
 gen-vdsosym := $(srctree)/$(src)/../vdso/gen_vdso_offsets.sh
