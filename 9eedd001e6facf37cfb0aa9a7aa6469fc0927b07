@@ -22,6 +22,30 @@
       "revId": "9eedd001e6facf37cfb0aa9a7aa6469fc0927b07",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "905003e7_d0ddc95e",
+        "filename": "net/netfilter/xt_qtaguid_internal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-03-29T22:02:54Z",
+      "side": 1,
+      "message": "Okay I see, so when a packet comes in, we need to check both the net as well as the cookie matches. Is that right?",
+      "parentUuid": "da11d77c_c44a9060",
+      "range": {
+        "startLine": 258,
+        "startChar": 1,
+        "endLine": 258,
+        "endChar": 16
+      },
+      "revId": "9eedd001e6facf37cfb0aa9a7aa6469fc0927b07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
