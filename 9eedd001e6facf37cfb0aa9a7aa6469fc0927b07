@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da11d77c_c44a9060",
+        "filename": "net/netfilter/xt_qtaguid_internal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-03-29T21:31:50Z",
+      "side": 1,
+      "message": "I don\u0027t think we can use the cookie by itself because it\u0027s a per-namespace value. On a multi-namespace system, that means that multiple sockets will have the same cookie. Can we store the pointer to net here as well?",
+      "range": {
+        "startLine": 258,
+        "startChar": 1,
+        "endLine": 258,
+        "endChar": 16
+      },
+      "revId": "9eedd001e6facf37cfb0aa9a7aa6469fc0927b07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
