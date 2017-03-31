@@ -930,19 +930,22 @@ static int binder_dec_ref(struct binder_ref *ref, int strong)
 	return 0;
 }
 
-static void binder_pop_transaction(struct binder_thread *target_thread,
-				   struct binder_transaction *t)
+static void binder_pop_transaction_locked(struct binder_thread *target_thread,
+					  struct binder_transaction *t)
 {
-	if (target_thread) {
-		BUG_ON(target_thread->transaction_stack != t);
-		BUG_ON(target_thread->transaction_stack->from != target_thread);
-		target_thread->transaction_stack =
-			target_thread->transaction_stack->from_parent;
-		t->from = NULL;
-	}
-	t->need_reply = 0;
-	if (t->buffer)
-		t->buffer->transaction = NULL;
+	BUG_ON(!target_thread);
+	BUG_ON(target_thread->transaction_stack != t);
+	BUG_ON(target_thread->transaction_stack->from != target_thread);
+	target_thread->transaction_stack =
+		target_thread->transaction_stack->from_parent;
+	t->from = NULL;
+}
+
+static void binder_free_transaction(struct binder_transaction *t)
+{
+ 	t->need_reply = 0;
+ 	if (t->buffer)
+ 		t->buffer->transaction = NULL;
 	kfree(t);
 	binder_stats_deleted(BINDER_STAT_TRANSACTION);
 }
@@ -970,9 +973,10 @@ static void binder_send_failed_reply(struct binder_transaction *t,
 					      target_thread->proc->pid,
 					      target_thread->pid);
 
-				binder_pop_transaction(target_thread, t);
+				binder_pop_transaction_locked(target_thread, t);
 				target_thread->return_error = error_code;
 				wake_up_interruptible(&target_thread->wait);
+				binder_free_transaction(t);
 			} else {
 				pr_err("reply failed, target thread, %d:%d, has error code %d already\n",
 					target_thread->proc->pid,
@@ -987,7 +991,7 @@ static void binder_send_failed_reply(struct binder_transaction *t,
 			     "send failed reply for transaction %d, target dead\n",
 			     t->debug_id);
 
-		binder_pop_transaction(target_thread, t);
+		binder_free_transaction(t);
 		if (next == NULL) {
 			binder_debug(BINDER_DEBUG_DEAD_BINDER,
 				     "reply failed, no target thread at root\n");
@@ -1946,7 +1950,9 @@ static void binder_transaction(struct binder_proc *proc,
 	}
 	if (reply) {
 		BUG_ON(t->buffer->async_transaction != 0);
-		binder_pop_transaction(target_thread, in_reply_to);
+		binder_pop_transaction_locked(target_thread, in_reply_to);
+		binder_enqueue_work(target_proc, &t->work, target_list);
+		binder_free_transaction(in_reply_to);
 	} else if (!(t->flags & TF_ONE_WAY)) {
 		BUG_ON(t->buffer->async_transaction != 0);
 		t->need_reply = 1;
@@ -2780,9 +2786,7 @@ retry:
 			t->to_thread = thread;
 			thread->transaction_stack = t;
 		} else {
-			t->buffer->transaction = NULL;
-			kfree(t);
-			binder_stats_deleted(BINDER_STAT_TRANSACTION);
+			binder_free_transaction(t);
 		}
 		break;
 	}
