@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "82a9162a_43878cd9",
+        "filename": "net/netfilter/xt_qtaguid.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-04-12T17:14:18Z",
+      "side": 1,
+      "message": "Okay, I see.",
+      "parentUuid": "2940d6ce_0dc374d0",
+      "range": {
+        "startLine": 1744,
+        "startChar": 21,
+        "endLine": 1744,
+        "endChar": 34
+      },
+      "revId": "b80dc73f28ec1921b181be03ffe1f6f65588d5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56c6083f_265d30ac",
         "filename": "net/netfilter/xt_qtaguid.c",
         "patchSetId": 7
@@ -105,6 +129,30 @@
       "writtenOn": "2017-04-12T17:00:07Z",
       "side": 1,
       "message": "This won\u0027t help. If sk_socket is not NULL, then we will already have the correct UID from filp. If sk_socket is NULL, then we\u0027ll never get here because we\u0027ll have returned from the match_no_sk path above.",
+      "range": {
+        "startLine": 1783,
+        "startChar": 1,
+        "endLine": 1783,
+        "endChar": 23
+      },
+      "revId": "b80dc73f28ec1921b181be03ffe1f6f65588d5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2bbe22ff_e7832219",
+        "filename": "net/netfilter/xt_qtaguid.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1783,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-04-12T17:14:18Z",
+      "side": 1,
+      "message": "Ok, so what we want is get sk_uid as long as sk!\u003dnull, and just ignore sk_socket totally, is that right?",
+      "parentUuid": "56c6083f_265d30ac",
       "range": {
         "startLine": 1783,
         "startChar": 1,
@@ -140,6 +188,30 @@
     },
     {
       "key": {
+        "uuid": "a917c9b9_5993e025",
+        "filename": "net/netfilter/xt_qtaguid.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1973,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-04-12T17:14:18Z",
+      "side": 1,
+      "message": "Yeah, I agree it is safer. Though I don\u0027t think any userspace program read this so far but just in case. For the f_count field. I will just write 0 to it since qtaguid doesn\u0027t hold the socket file any more",
+      "parentUuid": "93ee5db2_9a49fd28",
+      "range": {
+        "startLine": 1973,
+        "startChar": 17,
+        "endLine": 1973,
+        "endChar": 64
+      },
+      "revId": "b80dc73f28ec1921b181be03ffe1f6f65588d5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fbd74b71_c1022c78",
         "filename": "net/netfilter/xt_qtaguid_print.c",
         "patchSetId": 7
@@ -151,6 +223,30 @@
       "writtenOn": "2017-04-12T17:00:07Z",
       "side": 1,
       "message": "If this is read by userspace then we should try not to change it.",
+      "range": {
+        "startLine": 240,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 23
+      },
+      "revId": "b80dc73f28ec1921b181be03ffe1f6f65588d5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "46056989_174f864f",
+        "filename": "net/netfilter/xt_qtaguid_print.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1121354
+      },
+      "writtenOn": "2017-04-12T17:14:18Z",
+      "side": 1,
+      "message": "This file is for debugging print only. I don\u0027t think it is even enabled in any build.",
+      "parentUuid": "fbd74b71_c1022c78",
       "range": {
         "startLine": 240,
         "startChar": 4,
