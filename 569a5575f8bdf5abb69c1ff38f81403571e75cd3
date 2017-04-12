@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2e1a93af_8a41af9d",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-12T22:08:20Z",
+      "side": 1,
+      "message": "I\u0027ve been looking at \u0027struct klist\u0027 for this, but it seems like its really not intended for cases where items are frequently added/removed from the klist. In particular, the dequeue operation (klist_del/klist_put) has a global spinlock (klist_remove_lock) which seems likely to be contended in this case (and that lock provides no value for us since we won\u0027t have any threads waiting for removal).\n\nIt might be better suited to our other refcounted objects (binder_ref, binder_node), but I don\u0027t think its worth refactoring those this time around.",
+      "parentUuid": "939ba88e_4f9dda74",
+      "range": {
+        "startLine": 252,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 24
+      },
+      "revId": "569a5575f8bdf5abb69c1ff38f81403571e75cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c1a180a3_1d69e4bc",
         "filename": "drivers/android/binder.c",
         "patchSetId": 1
