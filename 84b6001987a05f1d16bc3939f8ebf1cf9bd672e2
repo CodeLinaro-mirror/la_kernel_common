@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "980e4681_399526c5",
+        "filename": "net/netfilter/xt_qtaguid_print.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-04-12T17:00:07Z",
+      "side": 0,
+      "message": "Add this line back?",
+      "revId": "84b6001987a05f1d16bc3939f8ebf1cf9bd672e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}

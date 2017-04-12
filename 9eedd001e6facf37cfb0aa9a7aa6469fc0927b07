@@ -94,6 +94,30 @@
       "revId": "9eedd001e6facf37cfb0aa9a7aa6469fc0927b07",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d77753b_7c53ea9b",
+        "filename": "net/netfilter/xt_qtaguid_internal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-04-12T17:00:07Z",
+      "side": 1,
+      "message": "Seems reasonable, but I haven\u0027t looked in enough detail yet to say for sure. I\u0027m not very familiar with this code, either.",
+      "parentUuid": "26d313e2_6127b6ed",
+      "range": {
+        "startLine": 258,
+        "startChar": 1,
+        "endLine": 258,
+        "endChar": 16
+      },
+      "revId": "9eedd001e6facf37cfb0aa9a7aa6469fc0927b07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }

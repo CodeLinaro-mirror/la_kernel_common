@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41359827_1aae7ae7",
+        "filename": "net/netfilter/xt_qtaguid.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-04-12T17:00:07Z",
+      "side": 1,
+      "message": "Any reason these are indented differently from the previous lines? Could they just be\n\n    if (...)  {\n    } else if (...) {\n    } else if (...) {\n...\n    } else if (...) {\n    } else {\n        return data;\n    }",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 288,
+        "endChar": 16
+      },
+      "revId": "b80dc73f28ec1921b181be03ffe1f6f65588d5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cba0477b_be9beb17",
+        "filename": "net/netfilter/xt_qtaguid.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-04-12T17:00:07Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 308,
+        "startChar": 0,
+        "endLine": 313,
+        "endChar": 10
+      },
+      "revId": "b80dc73f28ec1921b181be03ffe1f6f65588d5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4c82501_0c029d9d",
+        "filename": "net/netfilter/xt_qtaguid.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-04-12T17:00:07Z",
+      "side": 1,
+      "message": "Do you need the check for net? If you find a socket, its cookie will never be zero because sock_gen_cookie never returns zero. So I think you could just do \"if (!cookie) return;\"",
+      "range": {
+        "startLine": 1089,
+        "startChar": 16,
+        "endLine": 1089,
+        "endChar": 20
+      },
+      "revId": "b80dc73f28ec1921b181be03ffe1f6f65588d5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2940d6ce_0dc374d0",
+        "filename": "net/netfilter/xt_qtaguid.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-04-12T17:00:07Z",
+      "side": 1,
+      "message": "Why do you need sk-\u003esocket? If you only need it to access sk_socket-\u003efile so that you can get the UID, just delete this code and use sk_uid instead. Then you can avoid taking sk_callback_lock and possibly improve performance.",
+      "range": {
+        "startLine": 1744,
+        "startChar": 21,
+        "endLine": 1744,
+        "endChar": 34
+      },
+      "revId": "b80dc73f28ec1921b181be03ffe1f6f65588d5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56c6083f_265d30ac",
+        "filename": "net/netfilter/xt_qtaguid.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1783,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-04-12T17:00:07Z",
+      "side": 1,
+      "message": "This won\u0027t help. If sk_socket is not NULL, then we will already have the correct UID from filp. If sk_socket is NULL, then we\u0027ll never get here because we\u0027ll have returned from the match_no_sk path above.",
+      "range": {
+        "startLine": 1783,
+        "startChar": 1,
+        "endLine": 1783,
+        "endChar": 23
+      },
+      "revId": "b80dc73f28ec1921b181be03ffe1f6f65588d5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93ee5db2_9a49fd28",
+        "filename": "net/netfilter/xt_qtaguid.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 1973,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-04-12T17:00:07Z",
+      "side": 1,
+      "message": "Is it safe to change the format of this file? Particularly, we\u0027re adding an extra field, and if something is parsing the file, it might fail. What if you just used kept the same \"sk\u003d%p\" format but printed the cookie instead of the socket? net is not interesting since on most android devices there\u0027s only one network namespace for the whole system.",
+      "range": {
+        "startLine": 1973,
+        "startChar": 17,
+        "endLine": 1973,
+        "endChar": 64
+      },
+      "revId": "b80dc73f28ec1921b181be03ffe1f6f65588d5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fbd74b71_c1022c78",
+        "filename": "net/netfilter/xt_qtaguid_print.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-04-12T17:00:07Z",
+      "side": 1,
+      "message": "If this is read by userspace then we should try not to change it.",
+      "range": {
+        "startLine": 240,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 23
+      },
+      "revId": "b80dc73f28ec1921b181be03ffe1f6f65588d5ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
