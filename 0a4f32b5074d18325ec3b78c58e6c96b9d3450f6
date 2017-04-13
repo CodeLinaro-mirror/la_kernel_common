@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4d5eae8_1d17449f",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-04-13T17:17:46Z",
+      "side": 1,
+      "message": "I thought I mentioned this on a previous patch, but you can just do:\n\n#define binder_lock   __binder_lock(__func__)\nstatic inline void binder_lock(const char *tag)\n{...}\n\nThat way you don\u0027t have the __func__ everywhere, as that\u0027s all you are using it for...",
+      "range": {
+        "startLine": 429,
+        "startChar": 0,
+        "endLine": 429,
+        "endChar": 47
+      },
+      "revId": "0a4f32b5074d18325ec3b78c58e6c96b9d3450f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
