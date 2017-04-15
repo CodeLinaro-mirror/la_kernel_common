@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32913c8e_9ecb9fa9",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-04-15T09:01:55Z",
+      "side": 1,
+      "message": "crash the whole system?  Isn\u0027t that a bit harsh?",
+      "range": {
+        "startLine": 398,
+        "startChar": 1,
+        "endLine": 398,
+        "endChar": 7
+      },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "221e06bb_278211f3",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-04-15T09:01:55Z",
+      "side": 1,
+      "message": "this can change (the list can be not empty) after this returns, as you don\u0027t have a lock held.  So is this really a good thing to be checking?",
+      "range": {
+        "startLine": 415,
+        "startChar": 8,
+        "endLine": 415,
+        "endChar": 11
+      },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9864ac3d_55bf006b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-04-15T09:01:55Z",
+      "side": 1,
+      "message": "Don\u0027t use BUG_ON for coding \"contracts\", as we never want to crash a kernel.",
+      "range": {
+        "startLine": 437,
+        "startChar": 1,
+        "endLine": 437,
+        "endChar": 7
+      },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3df8c7f_0ef09dc4",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-04-15T09:01:55Z",
+      "side": 1,
+      "message": "coding style, needs another indent.",
+      "range": {
+        "startLine": 466,
+        "startChar": 2,
+        "endLine": 466,
+        "endChar": 14
+      },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b723474_e115e4fa",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-04-15T09:01:55Z",
+      "side": 1,
+      "message": "why not just return a pointer to the item, or PTR_ERR() if there is a problem?  That\u0027s the \"normal\" kernel style, right?",
+      "range": {
+        "startLine": 490,
+        "startChar": 12,
+        "endLine": 490,
+        "endChar": 36
+      },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
