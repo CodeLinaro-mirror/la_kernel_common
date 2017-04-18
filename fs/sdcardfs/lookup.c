@@ -91,10 +91,12 @@ struct inode *sdcardfs_iget(struct super_block *sb, struct inode *lower_inode, u
 	struct sdcardfs_inode_info *info;
 	struct inode_data data;
 	struct inode *inode; /* the new inode to return */
-	int err;
 
 	data.id = id;
 	data.lower_inode = lower_inode;
+
+	if (!igrab(lower_inode))
+		return ERR_PTR(-ESTALE);
 	inode = iget5_locked(sb, /* our superblock */
 			     /*
 			      * hashval: we use inode number, but we can
@@ -106,22 +108,19 @@ struct inode *sdcardfs_iget(struct super_block *sb, struct inode *lower_inode, u
 			     sdcardfs_inode_set, /* inode init function */
 			     &data); /* data passed to test+set fxns */
 	if (!inode) {
-		err = -EACCES;
 		iput(lower_inode);
-		return ERR_PTR(err);
+		return ERR_PTR(-ENOMEM);
 	}
-	/* if found a cached inode, then just return it */
-	if (!(inode->i_state & I_NEW))
+	/* if found a cached inode, then just return it (after iput) */
+	if (!(inode->i_state & I_NEW)) {
+		iput(lower_inode);
 		return inode;
+	}
 
 	/* initialize new inode */
 	info = SDCARDFS_I(inode);
 
 	inode->i_ino = lower_inode->i_ino;
-	if (!igrab(lower_inode)) {
-		err = -ESTALE;
-		return ERR_PTR(err);
-	}
 	sdcardfs_set_lower_inode(inode, lower_inode);
 
 	inode->i_version++;
