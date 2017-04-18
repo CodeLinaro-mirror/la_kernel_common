@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "39922d8c_a542519c",
+        "filename": "kernel/trace/trace.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1112163
+      },
+      "writtenOn": "2017-04-18T22:34:25Z",
+      "side": 1,
+      "message": "was following same convention as above 2 functions. But will change",
+      "parentUuid": "a965324b_2b5d8a8f",
+      "range": {
+        "startLine": 1582,
+        "startChar": 11,
+        "endLine": 1582,
+        "endChar": 28
+      },
+      "revId": "9e9b8437cbd4f211c3bc88a386ae20e743ce9115",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f989a2a0_be91a369",
         "filename": "kernel/trace/trace.c",
         "patchSetId": 1
@@ -71,6 +95,53 @@
     },
     {
       "key": {
+        "uuid": "d7ec1da1_5a74ca25",
+        "filename": "kernel/trace/trace.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3910,
+      "author": {
+        "id": 1112163
+      },
+      "writtenOn": "2017-04-18T22:34:25Z",
+      "side": 1,
+      "message": "agree it would\u0027ve been better handled by using atomic instead, but that involved too many changes for the scope of this change. Using local variable and printing outside is a good compromise",
+      "parentUuid": "f989a2a0_be91a369",
+      "range": {
+        "startLine": 3906,
+        "startChar": 0,
+        "endLine": 3910,
+        "endChar": 18
+      },
+      "revId": "9e9b8437cbd4f211c3bc88a386ae20e743ce9115",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f134f13_000919ec",
+        "filename": "kernel/trace/trace.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3987,
+      "author": {
+        "id": 1112163
+      },
+      "writtenOn": "2017-04-18T22:34:25Z",
+      "side": 1,
+      "message": "should be saved-\u003ecmdline_num instead",
+      "range": {
+        "startLine": 3987,
+        "startChar": 20,
+        "endLine": 3987,
+        "endChar": 42
+      },
+      "revId": "9e9b8437cbd4f211c3bc88a386ae20e743ce9115",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "018ec56a_e279ae11",
         "filename": "kernel/trace/trace.c",
         "patchSetId": 1
@@ -82,6 +153,30 @@
       "writtenOn": "2017-04-18T22:26:09Z",
       "side": 1,
       "message": "My previous nit regarding sprintf during preempt_disable can not be voiced here :-( required operations unless you grab and copy to a local buffer then run sprintf afterwards. Ouch.\n\nHowever, the really should be an scnprintf here to make sure you do not go beyond the end of the buffer.",
+      "range": {
+        "startLine": 4004,
+        "startChar": 0,
+        "endLine": 4004,
+        "endChar": 41
+      },
+      "revId": "9e9b8437cbd4f211c3bc88a386ae20e743ce9115",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47a4a7d8_205e3221",
+        "filename": "kernel/trace/trace.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 4004,
+      "author": {
+        "id": 1112163
+      },
+      "writtenOn": "2017-04-18T22:34:25Z",
+      "side": 1,
+      "message": "valid concern, mmm will give it a try by keeping a local array. Things this brought to light concern at line 3987",
+      "parentUuid": "018ec56a_e279ae11",
       "range": {
         "startLine": 4004,
         "startChar": 0,
