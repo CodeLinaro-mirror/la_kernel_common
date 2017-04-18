@@ -142,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "1bee757c_021fcf33",
+        "filename": "kernel/trace/trace.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3987,
+      "author": {
+        "id": 1137906
+      },
+      "writtenOn": "2017-04-18T23:21:51Z",
+      "side": 1,
+      "message": "if you use \"saved-\u003ecmdline_num\", make sure moving it into the locked block.",
+      "parentUuid": "2f134f13_000919ec",
+      "range": {
+        "startLine": 3987,
+        "startChar": 20,
+        "endLine": 3987,
+        "endChar": 42
+      },
+      "revId": "9e9b8437cbd4f211c3bc88a386ae20e743ce9115",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "018ec56a_e279ae11",
         "filename": "kernel/trace/trace.c",
         "patchSetId": 1
