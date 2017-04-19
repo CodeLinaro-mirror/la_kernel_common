@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3541abf2_fc6d5a6a",
+        "filename": "fs/sdcardfs/multiuser.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1006166
+      },
+      "writtenOn": "2017-04-19T19:56:28Z",
+      "side": 1,
+      "message": "Note that the upstream code in system/core/ is careful to not let UID values stray outside of the START/END ranges.\n\nI\u0027d strongly encourage you to add the same bounds checking here.\n\nhttps://android-review.googlesource.com/#/c/374119/2/libcutils/multiuser.c\n\nFor example, notice how the unit tests in that CL verify that \"UID 1000\" does not accidentally stray outside of the 40000-49999 range.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 54
+      },
+      "revId": "109a9e9c43c953fc279c0f898cfdc6fd97746e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
