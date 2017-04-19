@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79876c4b_6eae9b73",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-19T23:52:32Z",
+      "side": 1,
+      "message": "Did you touch the mmap_lock in this change?",
+      "revId": "a25ef229febdfbcfa86b311a2a362304e0a2d0e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "91f75575_ee1951e0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1844,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-19T23:52:32Z",
+      "side": 1,
+      "message": "The old code called binder_get_ref if the context manager node has disappeared which will succeed if you already have a reference to it. Now you fail in that case (with no way to report the failure to user-space). It is possible this does not happen though. I might be better to remove this code path and add implement one of the option listed in ProcessState::getStrongProxyForHandle instead.",
+      "revId": "a25ef229febdfbcfa86b311a2a362304e0a2d0e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8145c4f_cb9f914b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 2999,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-19T23:52:32Z",
+      "side": 1,
+      "message": "it is not safe to call this without a lock held yet.",
+      "revId": "a25ef229febdfbcfa86b311a2a362304e0a2d0e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
