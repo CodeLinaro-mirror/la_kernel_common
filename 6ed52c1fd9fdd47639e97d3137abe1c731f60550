@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00642804_ad71f2be",
+        "filename": "fs/sdcardfs/lookup.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1051712
+      },
+      "writtenOn": "2017-04-19T19:37:07Z",
+      "side": 1,
+      "message": "move this before line 95? ok to keep if this is from the wrapfs commit.",
+      "range": {
+        "startLine": 98,
+        "startChar": 24,
+        "endLine": 99,
+        "endChar": 26
+      },
+      "revId": "6ed52c1fd9fdd47639e97d3137abe1c731f60550",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
