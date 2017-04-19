@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ad3d297_c016da74",
+        "filename": "fs/sdcardfs/multiuser.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1051712
+      },
+      "writtenOn": "2017-04-19T19:34:37Z",
+      "side": 1,
+      "message": "do we need to change the function to ..._get_ext_cache_...?",
+      "range": {
+        "startLine": 38,
+        "startChar": 34,
+        "endLine": 38,
+        "endChar": 39
+      },
+      "revId": "937da4055518b41353b6deba35a46a8d1b24b814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
