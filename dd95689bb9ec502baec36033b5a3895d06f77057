@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "1a83cd15_3157861c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-20T02:55:35Z",
+      "side": 1,
+      "message": "I think some of these BUG_ON calls are useful. The crash you get if you trip this BUG_ON is easier to debug than that crash you get if you just remove this BUG_ON and the same condition occurs.",
+      "parentUuid": "9864ac3d_55bf006b",
+      "range": {
+        "startLine": 437,
+        "startChar": 1,
+        "endLine": 437,
+        "endChar": 7
+      },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3df8c7f_0ef09dc4",
         "filename": "drivers/android/binder.c",
         "patchSetId": 2
@@ -111,6 +135,81 @@
         "endLine": 490,
         "endChar": 36
       },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2524f2a4_c3cf4ee3",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-20T02:55:35Z",
+      "side": 1,
+      "message": "Since there are no error paths here, returning NULL when the list is empty would also work (like list_first_entry_or_null)",
+      "parentUuid": "8b723474_e115e4fa",
+      "range": {
+        "startLine": 490,
+        "startChar": 12,
+        "endLine": 490,
+        "endChar": 36
+      },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3eceace4_e4355cad",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2157,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-20T02:55:35Z",
+      "side": 1,
+      "message": "binder_dequeue_work_head?",
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "01ac75d3_20eeb5cd",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2319,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-20T02:55:35Z",
+      "side": 1,
+      "message": "Which lock do you plan to protect this with? You now have three separate lock types that you hold when linking this entry.",
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "661861bd_1568c40c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2349,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-20T02:55:35Z",
+      "side": 1,
+      "message": "what is the point of this lock? You need to protect the binder_ref_death state with a outer lock anyway as you move it between lists.",
       "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
