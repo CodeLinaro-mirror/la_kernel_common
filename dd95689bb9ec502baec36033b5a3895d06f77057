@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e44f3265_6eb88bc8",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-21T19:47:44Z",
+      "side": 1,
+      "message": "It seems like in general, not holding a required lock is very bad. This \"list_empty\" check is probably benign, but others could lead to corruption and I think BUG_ON is appropriate. I\u0027ll change this particular one to WARN_ON.",
+      "parentUuid": "32913c8e_9ecb9fa9",
+      "range": {
+        "startLine": 398,
+        "startChar": 1,
+        "endLine": 398,
+        "endChar": 7
+      },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "221e06bb_278211f3",
         "filename": "drivers/android/binder.c",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-04-15T09:01:55Z",
       "side": 1,
       "message": "this can change (the list can be not empty) after this returns, as you don\u0027t have a lock held.  So is this really a good thing to be checking?",
+      "range": {
+        "startLine": 415,
+        "startChar": 8,
+        "endLine": 415,
+        "endChar": 11
+      },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d9eb26cb_27c0e4ea",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-21T19:47:44Z",
+      "side": 1,
+      "message": "In the cases where this function is called, there is no harm in the semantic being \"was it empty at some point during the call\" since a new worker would be wake\u0027d if new work was produced so no harm in missing it.\n\nIn the cases where we really need it to be the right answer, we acquire the lock and use the _binder_worklist_empty() version.",
+      "parentUuid": "221e06bb_278211f3",
       "range": {
         "startLine": 415,
         "startChar": 8,
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "e17faedf_a9e5694d",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-21T19:47:44Z",
+      "side": 1,
+      "message": "If our basic assumptions are invalid, we can get corruption etc which seems worse than crashing.",
+      "parentUuid": "1a83cd15_3157861c",
+      "range": {
+        "startLine": 437,
+        "startChar": 1,
+        "endLine": 437,
+        "endChar": 7
+      },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3df8c7f_0ef09dc4",
         "filename": "drivers/android/binder.c",
         "patchSetId": 2
@@ -106,6 +178,30 @@
       "writtenOn": "2017-04-15T09:01:55Z",
       "side": 1,
       "message": "coding style, needs another indent.",
+      "range": {
+        "startLine": 466,
+        "startChar": 2,
+        "endLine": 466,
+        "endChar": 14
+      },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "40e3835e_53a51b01",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-21T19:47:44Z",
+      "side": 1,
+      "message": "Indeed. Fixed.",
+      "parentUuid": "e3df8c7f_0ef09dc4",
       "range": {
         "startLine": 466,
         "startChar": 2,
@@ -165,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "c3062b0e_a485edcb",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-21T19:47:44Z",
+      "side": 1,
+      "message": "Changed.",
+      "parentUuid": "2524f2a4_c3cf4ee3",
+      "range": {
+        "startLine": 490,
+        "startChar": 12,
+        "endLine": 490,
+        "endChar": 36
+      },
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3eceace4_e4355cad",
         "filename": "drivers/android/binder.c",
         "patchSetId": 2
@@ -176,6 +296,24 @@
       "writtenOn": "2017-04-20T02:55:35Z",
       "side": 1,
       "message": "binder_dequeue_work_head?",
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "60a665ee_969fc1f0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2157,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-21T19:47:44Z",
+      "side": 1,
+      "message": "Changed.",
+      "parentUuid": "3eceace4_e4355cad",
       "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -199,6 +337,24 @@
     },
     {
       "key": {
+        "uuid": "5deda9ad_2c492f0c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2319,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-21T19:47:44Z",
+      "side": 1,
+      "message": "The proc lock associated with ref will be used (later in the patch series)",
+      "parentUuid": "01ac75d3_20eeb5cd",
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "661861bd_1568c40c",
         "filename": "drivers/android/binder.c",
         "patchSetId": 2
@@ -210,6 +366,24 @@
       "writtenOn": "2017-04-20T02:55:35Z",
       "side": 1,
       "message": "what is the point of this lock? You need to protect the binder_ref_death state with a outer lock anyway as you move it between lists.",
+      "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db30e373_8c6ca9c5",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2349,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-21T19:47:44Z",
+      "side": 1,
+      "message": "The \"outer lock\" is the proc lock which isn\u0027t introduced yet in the patch set. Perhaps we should discuss this when we get to that patch.\n\nI guess your point is that when we lock this with the proc lock, using the lock in the work_list is redundant?",
+      "parentUuid": "661861bd_1568c40c",
       "revId": "dd95689bb9ec502baec36033b5a3895d06f77057",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
