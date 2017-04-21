@@ -22,6 +22,30 @@
       "revId": "0a4f32b5074d18325ec3b78c58e6c96b9d3450f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d968aba9_6860f10b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-21T18:57:23Z",
+      "side": 1,
+      "message": "This is from the original code and will be removed later in the patchset.\n\nAt Arve\u0027s suggestion, I removed all the new uses of these in the patchset (I was releasing when calling into binder_alloc and then reacquiring).",
+      "parentUuid": "f4d5eae8_1d17449f",
+      "range": {
+        "startLine": 429,
+        "startChar": 0,
+        "endLine": 429,
+        "endChar": 47
+      },
+      "revId": "0a4f32b5074d18325ec3b78c58e6c96b9d3450f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }

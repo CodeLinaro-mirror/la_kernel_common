@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "36065d86_9f5ef4dd",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-21T18:57:23Z",
+      "side": 1,
+      "message": "should have been in one of the previous patches (changed)",
+      "parentUuid": "79876c4b_6eae9b73",
+      "revId": "a25ef229febdfbcfa86b311a2a362304e0a2d0e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "91f75575_ee1951e0",
         "filename": "drivers/android/binder.c",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "23157a70_30c6acfb",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1844,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-21T18:57:23Z",
+      "side": 1,
+      "message": "Added that case back here so no new failure cases added.",
+      "parentUuid": "91f75575_ee1951e0",
+      "revId": "a25ef229febdfbcfa86b311a2a362304e0a2d0e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8145c4f_cb9f914b",
         "filename": "drivers/android/binder.c",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2017-04-19T23:52:32Z",
       "side": 1,
       "message": "it is not safe to call this without a lock held yet.",
+      "revId": "a25ef229febdfbcfa86b311a2a362304e0a2d0e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2c1f9a3_ec320fd7",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 2999,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-21T18:57:23Z",
+      "side": 1,
+      "message": "Keeping the old lock stuff until it is removed later in the patch set.",
+      "parentUuid": "c8145c4f_cb9f914b",
       "revId": "a25ef229febdfbcfa86b311a2a362304e0a2d0e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
