@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac5e278e_b6945680",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1861,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-21T22:30:06Z",
+      "side": 1,
+      "message": "it might be simpler to just change the else below to if (!ref). If binder_get_ref_for_node returns NULL the old code would have crashed, so a change in behavior for that case should be harmless.",
+      "range": {
+        "startLine": 1861,
+        "startChar": 5,
+        "endLine": 1861,
+        "endChar": 12
+      },
+      "revId": "db6f71f38fc1f776c9d33b6f3b00262dcffa91d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
