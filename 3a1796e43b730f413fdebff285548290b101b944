@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55b25365_dbd1d51c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-24T21:21:48Z",
+      "side": 1,
+      "message": "Did you touch the mmap_lock in this change?",
+      "revId": "3a1796e43b730f413fdebff285548290b101b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c9039ade_590c78c4",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 1863,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-24T21:21:48Z",
+      "side": 1,
+      "message": "!ref ?",
+      "range": {
+        "startLine": 1863,
+        "startChar": 7,
+        "endLine": 1863,
+        "endChar": 18
+      },
+      "revId": "3a1796e43b730f413fdebff285548290b101b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c252e67_bc1163aa",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2811,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-24T21:21:48Z",
+      "side": 1,
+      "message": "are any of the non-locking changes here needed?",
+      "revId": "3a1796e43b730f413fdebff285548290b101b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
