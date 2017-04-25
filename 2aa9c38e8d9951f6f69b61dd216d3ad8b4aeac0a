@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53c2ab7a_152e0a45",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-25T02:07:58Z",
+      "side": 1,
+      "message": "this lock is not needed for all the lists. You may want to describe when it is needed.",
+      "revId": "2aa9c38e8d9951f6f69b61dd216d3ad8b4aeac0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f619867_9e2c85fb",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-25T02:07:58Z",
+      "side": 1,
+      "message": "and proc-\u003edelivered_death",
+      "revId": "2aa9c38e8d9951f6f69b61dd216d3ad8b4aeac0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "74987695_612089b6",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-25T02:07:58Z",
+      "side": 1,
+      "message": "would a single list lock per process be simpler?",
+      "revId": "2aa9c38e8d9951f6f69b61dd216d3ad8b4aeac0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
