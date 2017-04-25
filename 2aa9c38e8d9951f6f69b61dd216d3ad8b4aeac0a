@@ -104,6 +104,24 @@
       "revId": "2aa9c38e8d9951f6f69b61dd216d3ad8b4aeac0a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "abc01a7a_7c1f4b6c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-25T19:06:01Z",
+      "side": 1,
+      "message": "When checking multiple lists or moving entries between lists, the separate lock per list is inconvenient and require additional outer locks.",
+      "parentUuid": "af5d2452_128e5869",
+      "revId": "2aa9c38e8d9951f6f69b61dd216d3ad8b4aeac0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
