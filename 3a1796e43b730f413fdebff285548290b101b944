@@ -66,6 +66,30 @@
     },
     {
       "key": {
+        "uuid": "d515c4ad_3ec4f98d",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 1863,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-26T00:57:07Z",
+      "side": 1,
+      "message": "Does is not trigger the COMPARISON_TO_NULL checkpatch check?",
+      "parentUuid": "b3dcccd7_1b0f2bdf",
+      "range": {
+        "startLine": 1863,
+        "startChar": 7,
+        "endLine": 1863,
+        "endChar": 18
+      },
+      "revId": "3a1796e43b730f413fdebff285548290b101b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9c252e67_bc1163aa",
         "filename": "drivers/android/binder.c",
         "patchSetId": 6
