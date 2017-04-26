@@ -140,6 +140,24 @@
       "revId": "2aa9c38e8d9951f6f69b61dd216d3ad8b4aeac0a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f09b53f_2b2b4083",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-26T01:52:02Z",
+      "side": 1,
+      "message": "1, but with _locked version without the proc argument instead of passing NULL.",
+      "parentUuid": "e5328caf_a5a6d208",
+      "revId": "2aa9c38e8d9951f6f69b61dd216d3ad8b4aeac0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
