@@ -122,6 +122,24 @@
       "revId": "2aa9c38e8d9951f6f69b61dd216d3ad8b4aeac0a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5328caf_a5a6d208",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-26T01:00:50Z",
+      "side": 1,
+      "message": "Which would you prefer for the enqueue case if I switch to a single list lock per proc:\n\n1) specify the proc to use for the list lock as an argument (NULL would mean locking is done externally):\n\n  binder_enqueue_work(proc, \u0026node-\u003ework, target_list);\n\nor\n\n2) abandon the enqueue/dequeue wrappers which means they would look like:\n\n  spin_lock(\u0026proc-\u003elist_lock);\n  list_add_tail(\u0026node-\u003ework.entry, target_list);\n  spin_unlock(\u0026proc-\u003elist_lock);\n\n(I prefer #1 of these)",
+      "parentUuid": "abc01a7a_7c1f4b6c",
+      "revId": "2aa9c38e8d9951f6f69b61dd216d3ad8b4aeac0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
