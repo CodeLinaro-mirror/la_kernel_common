@@ -90,6 +90,30 @@
     },
     {
       "key": {
+        "uuid": "d2f31674_e2fc4fd4",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 1863,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-26T21:11:07Z",
+      "side": 1,
+      "message": "No, it doesn\u0027t. Here is the output for this patch:\n\nscripts/checkpatch.pl 0008-ANDROID-binder-use-mutexes-for-non-perf-cases.patch\nERROR: Remove Gerrit Change-Id\u0027s before submitting upstream.\n#10: \nChange-Id: I9d1158536783763e0fa93b18e19fba2c488d8cfc\n\nWARNING: line over 80 characters\n#76: FILE: drivers/android/binder.c:1854:\n+\t\t\t\t\t\tbinder_user_error(\"%d:%d tried to acquire reference to desc 0, got %d instead\\n\",\n\ntotal: 1 errors, 1 warnings, 187 lines checked",
+      "parentUuid": "d515c4ad_3ec4f98d",
+      "range": {
+        "startLine": 1863,
+        "startChar": 7,
+        "endLine": 1863,
+        "endChar": 18
+      },
+      "revId": "3a1796e43b730f413fdebff285548290b101b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9c252e67_bc1163aa",
         "filename": "drivers/android/binder.c",
         "patchSetId": 6
