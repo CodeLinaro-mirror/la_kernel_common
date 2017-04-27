@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "908b3aa1_ac264e37",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-27T23:58:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33a8a948_45e705c4",
+      "revId": "6db9f2585e38052111bacb3db6a4e0e88b79735b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5bf922f_63c7881e",
         "filename": "drivers/android/binder.c",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2017-04-27T22:20:06Z",
       "side": 1,
       "message": "space",
+      "revId": "6db9f2585e38052111bacb3db6a4e0e88b79735b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb47b57f_006d5132",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-27T23:58:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5bf922f_63c7881e",
       "revId": "6db9f2585e38052111bacb3db6a4e0e88b79735b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "b0379bb1_669b3518",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-27T23:58:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a3d8775_054e1534",
+      "range": {
+        "startLine": 445,
+        "startChar": 60,
+        "endLine": 445,
+        "endChar": 63
+      },
+      "revId": "6db9f2585e38052111bacb3db6a4e0e88b79735b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80ce4ff3_515f680b",
         "filename": "drivers/android/binder.c",
         "patchSetId": 6
@@ -70,6 +130,24 @@
       "writtenOn": "2017-04-27T22:20:06Z",
       "side": 1,
       "message": "can you get the lock first and avoid the loop? Do any work items move between procs?",
+      "revId": "6db9f2585e38052111bacb3db6a4e0e88b79735b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "000d9712_cafe2956",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-04-27T23:58:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80ce4ff3_515f680b",
       "revId": "6db9f2585e38052111bacb3db6a4e0e88b79735b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
