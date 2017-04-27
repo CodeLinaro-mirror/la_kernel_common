@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "495de160_9e7f2f97",
+        "filename": "drivers/android/binder_alloc.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-27T21:53:25Z",
+      "side": 1,
+      "message": "the user_ptr is the user version of the data ptr not of the buffer object returned here",
+      "revId": "42355162797a5588d5ff74561c69c9720b75ab58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37e5e561_7034a8f2",
+        "filename": "drivers/android/binder_alloc.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-27T21:53:25Z",
+      "side": 1,
+      "message": "this does not look accurate",
+      "revId": "42355162797a5588d5ff74561c69c9720b75ab58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cdb1579e_52764d7a",
+        "filename": "drivers/android/binder_alloc.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-27T21:53:25Z",
+      "side": 1,
+      "message": "%NULL",
+      "range": {
+        "startLine": 394,
+        "startChar": 35,
+        "endLine": 394,
+        "endChar": 39
+      },
+      "revId": "42355162797a5588d5ff74561c69c9720b75ab58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afdf2e44_8c9cdc76",
+        "filename": "drivers/android/binder_alloc.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-27T21:53:25Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 695,
+        "startChar": 6,
+        "endLine": 695,
+        "endChar": 7
+      },
+      "revId": "42355162797a5588d5ff74561c69c9720b75ab58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bbd5628_9cae7995",
+        "filename": "drivers/android/binder_alloc.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-27T21:53:25Z",
+      "side": 1,
+      "message": "delete",
+      "revId": "42355162797a5588d5ff74561c69c9720b75ab58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b1513c1f_4bb7d916",
+        "filename": "drivers/android/binder_alloc.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-27T21:53:25Z",
+      "side": 1,
+      "message": "it returns a count",
+      "revId": "42355162797a5588d5ff74561c69c9720b75ab58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70df6fe3_5dd2cf0c",
+        "filename": "drivers/android/binder_alloc.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-27T21:53:25Z",
+      "side": 1,
+      "message": "Clears alloc-\u003evma to prevent new incoming transactions from allocating more buffers.",
+      "revId": "42355162797a5588d5ff74561c69c9720b75ab58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
