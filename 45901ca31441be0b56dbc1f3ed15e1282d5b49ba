@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24fa2865_1df821a5",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 3349,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-28T23:12:04Z",
+      "side": 1,
+      "message": "what does this lock now protect?",
+      "revId": "45901ca31441be0b56dbc1f3ed15e1282d5b49ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
