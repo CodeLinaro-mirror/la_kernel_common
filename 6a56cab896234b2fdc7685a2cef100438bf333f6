@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "afb2cf12_18f8400c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-28T23:09:13Z",
+      "side": 1,
+      "message": "and possibly abort",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0564c3ab_3e54fe88",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-28T23:09:13Z",
+      "side": 1,
+      "message": "you don\u0027t need this if node is NULL, also adding a lock around a list update where you don\u0027t always hold that lock makes it difficult to validate your locking.",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28887056_dd66f26c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-28T23:09:13Z",
+      "side": 1,
+      "message": "see above",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65307742_a0522216",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-28T23:09:13Z",
+      "side": 1,
+      "message": "I don\u0027t know if this is safe if user-space sends invalid commands. Could you use the inner lock on the node process to get a reference to the node before dropping the lock on the ref process?",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4cfc2da9_8191c44a",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2634,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-28T23:09:13Z",
+      "side": 1,
+      "message": "which lock protects this?",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
