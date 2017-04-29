@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a5d4c3ca_6062cc8b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-29T00:57:07Z",
+      "side": 1,
+      "message": "do you need this?",
+      "revId": "bac59657d594a78bb0987ec6ee98b038a0897712",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "145b62bc_4317dd42",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 2151,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-29T00:57:07Z",
+      "side": 1,
+      "message": "BUG_ON(buf_node-\u003eproc !\u003d proc);",
+      "revId": "bac59657d594a78bb0987ec6ee98b038a0897712",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7df470ad_cc0d3d2a",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-29T00:57:07Z",
+      "side": 1,
+      "message": "proc",
+      "range": {
+        "startLine": 2152,
+        "startChar": 15,
+        "endLine": 2152,
+        "endChar": 29
+      },
+      "revId": "bac59657d594a78bb0987ec6ee98b038a0897712",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b43315cd_cf52ea14",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-29T00:57:07Z",
+      "side": 1,
+      "message": "proc",
+      "range": {
+        "startLine": 2152,
+        "startChar": 15,
+        "endLine": 2152,
+        "endChar": 29
+      },
+      "revId": "bac59657d594a78bb0987ec6ee98b038a0897712",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70024aed_4a9e6623",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 2508,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-04-29T00:57:07Z",
+      "side": 1,
+      "message": "now that you use the same lock there is no need to rewrite the original \"else if\" here.",
+      "revId": "bac59657d594a78bb0987ec6ee98b038a0897712",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
