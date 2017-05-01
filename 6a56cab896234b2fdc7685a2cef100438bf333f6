@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "2fd657c7_12707b82",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-01T22:12:28Z",
+      "side": 1,
+      "message": "I don\u0027t remember. Looking at the message is seems that it allowed creating references to dead nodes without linking to a specific node. This could make two unrelated nodes in a dead process look like a single node to a remote process so, I think it is best to just remove this.",
+      "parentUuid": "c71496b5_eb278600",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "28887056_dd66f26c",
         "filename": "drivers/android/binder.c",
         "patchSetId": 2
@@ -135,6 +153,24 @@
       "side": 1,
       "message": "The next patch in the series will refactor the inc_ref/inc_node to make it atomic. I can do it in this patch if you want, but it would make this patch much more complex so I had it in a separate patch.\n\nThis is safe given the global lock is still in force.",
       "parentUuid": "65307742_a0522216",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6fdc299d_b3a101e0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-01T22:12:28Z",
+      "side": 1,
+      "message": "I think a separate patch is preferred, but if it is possible to reorder them that might be better.",
+      "parentUuid": "52d09ffe_70adce0b",
       "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
