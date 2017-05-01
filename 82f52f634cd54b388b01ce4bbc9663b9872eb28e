@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "956237f1_35642854",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 3833,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-01T22:48:03Z",
+      "side": 1,
+      "message": "Which lock protects this list? Should it be skipped if the lock is not held?",
+      "revId": "82f52f634cd54b388b01ce4bbc9663b9872eb28e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
