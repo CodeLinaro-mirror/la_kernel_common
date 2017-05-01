@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "978d68d3_f198ed82",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-01T17:01:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afb2cf12_18f8400c",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0564c3ab_3e54fe88",
         "filename": "drivers/android/binder.c",
         "patchSetId": 2
@@ -30,6 +48,41 @@
       "writtenOn": "2017-04-28T23:09:13Z",
       "side": 1,
       "message": "you don\u0027t need this if node is NULL, also adding a lock around a list update where you don\u0027t always hold that lock makes it difficult to validate your locking.",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5c4c3aa4_7d2332b9",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-01T17:01:34Z",
+      "side": 1,
+      "message": "node can\u0027t be NULL here.\n\nLater in the series we make sure that node-\u003eproc is always valid... do you think I need to introduce that before (or as part of) this change?",
+      "parentUuid": "0564c3ab_3e54fe88",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c71496b5_eb278600",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-01T17:01:34Z",
+      "side": 1,
+      "message": "Since node can\u0027t be NULL, I guess this conditional can be removed along with the \"else\" clause.\n\nI guess there must have been cases in the past where this could be NULL -- do you remember the case? Looking at the call sites, it can\u0027t now.",
       "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -70,6 +123,24 @@
     },
     {
       "key": {
+        "uuid": "52d09ffe_70adce0b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-01T17:01:34Z",
+      "side": 1,
+      "message": "The next patch in the series will refactor the inc_ref/inc_node to make it atomic. I can do it in this patch if you want, but it would make this patch much more complex so I had it in a separate patch.\n\nThis is safe given the global lock is still in force.",
+      "parentUuid": "65307742_a0522216",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cfc2da9_8191c44a",
         "filename": "drivers/android/binder.c",
         "patchSetId": 2
@@ -81,6 +152,24 @@
       "writtenOn": "2017-04-28T23:09:13Z",
       "side": 1,
       "message": "which lock protects this?",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c717dbd_21b2e771",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2634,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-01T17:01:34Z",
+      "side": 1,
+      "message": "Should be the proc lock... it is in a later patch, but I agree it should be here.\n\nFixed.",
+      "parentUuid": "4cfc2da9_8191c44a",
       "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
