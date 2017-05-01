@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8957ac8a_97b2f1e4",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-01T16:46:42Z",
+      "side": 1,
+      "message": "We don\u0027t strictly \"need\" it, but I\u0027m nervous about future code holding the wrong lock and since we know the \"right\" lock at init time, having this field lets us assert that the correct lock is being used (as in line 466). Do see harm in having this here? Do you foresee any cases where the \"correct\" lock would ever change after binder_init_worklist()?",
+      "parentUuid": "a5d4c3ca_6062cc8b",
+      "revId": "bac59657d594a78bb0987ec6ee98b038a0897712",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "145b62bc_4317dd42",
         "filename": "drivers/android/binder.c",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2017-04-29T00:57:07Z",
       "side": 1,
       "message": "BUG_ON(buf_node-\u003eproc !\u003d proc);",
+      "revId": "bac59657d594a78bb0987ec6ee98b038a0897712",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b08190c8_068c00a5",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 2151,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-01T16:46:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "145b62bc_4317dd42",
       "revId": "bac59657d594a78bb0987ec6ee98b038a0897712",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -82,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "c67dce6e_f3712678",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-01T16:46:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b43315cd_cf52ea14",
+      "range": {
+        "startLine": 2152,
+        "startChar": 15,
+        "endLine": 2152,
+        "endChar": 29
+      },
+      "revId": "bac59657d594a78bb0987ec6ee98b038a0897712",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "70024aed_4a9e6623",
         "filename": "drivers/android/binder.c",
         "patchSetId": 7
@@ -93,6 +153,24 @@
       "writtenOn": "2017-04-29T00:57:07Z",
       "side": 1,
       "message": "now that you use the same lock there is no need to rewrite the original \"else if\" here.",
+      "revId": "bac59657d594a78bb0987ec6ee98b038a0897712",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae1df9df_6c0f21f3",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 2508,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-01T16:46:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70024aed_4a9e6623",
       "revId": "bac59657d594a78bb0987ec6ee98b038a0897712",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
