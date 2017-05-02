@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "22132875_aadc1c40",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-02T00:24:32Z",
+      "side": 1,
+      "message": "I put in a comment here:\n\n  /*\n   * TODO(tkjos): this conditional will be removed when\n   * patch to persist node-\u003eproc is ready and rebased\n   * ahead of this patch.\n   */\n\nSo the final review on this CL needs to wait for that.",
+      "parentUuid": "5c4c3aa4_7d2332b9",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c71496b5_eb278600",
         "filename": "drivers/android/binder.c",
         "patchSetId": 2
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "I don\u0027t remember. Looking at the message is seems that it allowed creating references to dead nodes without linking to a specific node. This could make two unrelated nodes in a dead process look like a single node to a remote process so, I think it is best to just remove this.",
       "parentUuid": "c71496b5_eb278600",
+      "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5cca89b_0ae653a6",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-02T00:24:32Z",
+      "side": 1,
+      "message": "Added a patch to remove this dead code.",
+      "parentUuid": "2fd657c7_12707b82",
       "revId": "6a56cab896234b2fdc7685a2cef100438bf333f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
