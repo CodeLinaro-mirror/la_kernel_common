@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe3d3114_40b16cb4",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-02T02:18:12Z",
+      "side": 1,
+      "message": "WARN_ON(proc !\u003d wlist-\u003eproc);",
+      "revId": "a38f65c4879aa79d6c26f634e20e23fe81621fca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "247e8426_a112409f",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-02T02:18:12Z",
+      "side": 1,
+      "message": "This should move down to the function it documents.",
+      "revId": "a38f65c4879aa79d6c26f634e20e23fe81621fca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14ec7e9b_04cb1a04",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-02T02:18:12Z",
+      "side": 1,
+      "message": "WARN_ON(proc !\u003d wlist-\u003eproc);",
+      "revId": "a38f65c4879aa79d6c26f634e20e23fe81621fca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d49d377_84e35b39",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 2293,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-02T02:18:12Z",
+      "side": 1,
+      "message": "proc",
+      "range": {
+        "startLine": 2293,
+        "startChar": 7,
+        "endLine": 2293,
+        "endChar": 16
+      },
+      "revId": "a38f65c4879aa79d6c26f634e20e23fe81621fca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "440fa0df_4d55a8ab",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 2298,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-02T02:18:12Z",
+      "side": 1,
+      "message": "proc",
+      "range": {
+        "startLine": 2298,
+        "startChar": 7,
+        "endLine": 2298,
+        "endChar": 16
+      },
+      "revId": "a38f65c4879aa79d6c26f634e20e23fe81621fca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2fe34dfa_0b656bc0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 2326,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-02T02:18:12Z",
+      "side": 1,
+      "message": "proc",
+      "range": {
+        "startLine": 2326,
+        "startChar": 8,
+        "endLine": 2326,
+        "endChar": 17
+      },
+      "revId": "a38f65c4879aa79d6c26f634e20e23fe81621fca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff493c35_11e6aa36",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 2331,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-02T02:18:12Z",
+      "side": 1,
+      "message": "proc",
+      "range": {
+        "startLine": 2331,
+        "startChar": 8,
+        "endLine": 2331,
+        "endChar": 17
+      },
+      "revId": "a38f65c4879aa79d6c26f634e20e23fe81621fca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
