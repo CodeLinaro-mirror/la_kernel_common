@@ -16,6 +16,24 @@
       "revId": "82f52f634cd54b388b01ce4bbc9663b9872eb28e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2bb7c3ce_5b14eaee",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 3833,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-02T00:28:01Z",
+      "side": 1,
+      "message": "node-\u003erefs is protected by node-\u003eproc-\u003eproc_lock, so it should be fine (once node-\u003eproc is persistent)",
+      "parentUuid": "956237f1_35642854",
+      "revId": "82f52f634cd54b388b01ce4bbc9663b9872eb28e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
