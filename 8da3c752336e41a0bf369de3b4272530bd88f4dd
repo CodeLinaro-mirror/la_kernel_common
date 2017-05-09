@@ -46,6 +46,30 @@
       "revId": "8da3c752336e41a0bf369de3b4272530bd88f4dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4837f31_a0b2a845",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2421,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-09T23:43:14Z",
+      "side": 1,
+      "message": "I\u0027m not sure the READ_ONCE does anything useful here though.",
+      "parentUuid": "930422b8_7b520b55",
+      "range": {
+        "startLine": 2421,
+        "startChar": 2,
+        "endLine": 2421,
+        "endChar": 40
+      },
+      "revId": "8da3c752336e41a0bf369de3b4272530bd88f4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
