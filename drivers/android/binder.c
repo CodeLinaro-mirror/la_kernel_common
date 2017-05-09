@@ -2045,6 +2045,9 @@ static void binder_transaction(struct binder_proc *proc,
 			goto err_bad_object_type;
 		}
 	}
+	tcomplete->type = BINDER_WORK_TRANSACTION_COMPLETE;
+	binder_enqueue_work(proc, tcomplete, &thread->todo);
+
 	if (reply) {
 		BUG_ON(t->buffer->async_transaction != 0);
 		binder_pop_transaction(target_thread, in_reply_to);
@@ -2067,10 +2070,8 @@ static void binder_transaction(struct binder_proc *proc,
 	}
 	t->work.type = BINDER_WORK_TRANSACTION;
 	binder_enqueue_work(target_proc, &t->work, target_list);
-	tcomplete->type = BINDER_WORK_TRANSACTION_COMPLETE;
-	binder_enqueue_work(proc, tcomplete, &thread->todo);
 	if (target_wait) {
-		if (reply || !(t->flags & TF_ONE_WAY))
+		if (reply || !(tr->flags & TF_ONE_WAY))
 			wake_up_interruptible_sync(target_wait);
 		else
 			wake_up_interruptible(target_wait);
