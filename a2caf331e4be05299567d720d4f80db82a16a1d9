@@ -22,6 +22,30 @@
       "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecde9bfc_d1298b69",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-09T23:54:33Z",
+      "side": 1,
+      "message": "Yes, I should have done that initially. Is \"inline\" recommended these days or is it better to assume that the compiler knows best?",
+      "parentUuid": "909e32a4_1f0a7778",
+      "range": {
+        "startLine": 27,
+        "startChar": 25,
+        "endLine": 27,
+        "endChar": 52
+      },
+      "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
