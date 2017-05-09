@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4169993f_99b27722",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2421,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-05-09T18:27:48Z",
+      "side": 1,
+      "message": "this all works properly?  READ_ONCE/WRITE_ONCE do not imply a memory barrier at all, so how is this working correctly?",
+      "range": {
+        "startLine": 2421,
+        "startChar": 2,
+        "endLine": 2421,
+        "endChar": 40
+      },
+      "revId": "8da3c752336e41a0bf369de3b4272530bd88f4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
