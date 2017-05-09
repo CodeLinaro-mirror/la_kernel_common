@@ -680,7 +680,21 @@ static void binder_set_nice(long nice)
 	binder_user_error("%d RLIMIT_NICE not set\n", current->pid);
 }
 
+static void binder_init_tmp_ref(struct binder_ref *tmp_ref,
+				struct binder_node *node)
+{
+	tmp_ref->proc = node->proc;
+	tmp_ref->node = node;
+	tmp_ref->data.debug_id = 0;
+	tmp_ref->data.weak = 0;
+	tmp_ref->data.strong = 0;
+	tmp_ref->data.desc = 0;
+	tmp_ref->death = NULL;
+	INIT_HLIST_NODE(&tmp_ref->node_entry);
+}
+
 static struct binder_node *binder_get_node(struct binder_proc *proc,
+					   struct binder_ref *tmp_ref,
 					   binder_uintptr_t ptr)
 {
 	struct rb_node *n = proc->nodes.rb_node;
@@ -693,13 +707,17 @@ static struct binder_node *binder_get_node(struct binder_proc *proc,
 			n = n->rb_left;
 		else if (ptr > node->ptr)
 			n = n->rb_right;
-		else
+		else {
+			binder_init_tmp_ref(tmp_ref, node);
+			hlist_add_head(&tmp_ref->node_entry, &node->refs);
 			return node;
+		}
 	}
 	return NULL;
 }
 
 static struct binder_node *binder_new_node(struct binder_proc *proc,
+					   struct binder_ref *tmp_ref,
 					   binder_uintptr_t ptr,
 					   binder_uintptr_t cookie)
 {
@@ -723,6 +741,8 @@ static struct binder_node *binder_new_node(struct binder_proc *proc,
 	if (node == NULL)
 		return NULL;
 	binder_stats_created(BINDER_STAT_NODE);
+	binder_init_tmp_ref(tmp_ref, node);
+	hlist_add_head(&tmp_ref->node_entry, &node->refs);
 	rb_link_node(&node->rb_node, parent, p);
 	rb_insert_color(&node->rb_node, &proc->nodes);
 	node->debug_id = atomic_inc_return(&binder_last_id);
@@ -866,6 +886,20 @@ static void binder_dec_node(struct binder_node *node, int strong, int internal)
 		binder_free_node(node);
 }
 
+static void binder_put_node(struct binder_node *node,
+			    struct binder_ref *tmp_ref)
+{
+	bool delete_node;
+
+	if (node->proc)
+		binder_inner_proc_lock(node->proc);
+	hlist_del(&tmp_ref->node_entry);
+	delete_node = binder_dec_node_ilocked(node, 0, 1);
+	if (node->proc)
+		binder_inner_proc_unlock(node->proc);
+	if (delete_node)
+		binder_free_node(node);
+}
 
 static struct binder_ref *binder_get_ref(struct binder_proc *proc,
 					 u32 desc, bool need_strong_ref)
@@ -1109,6 +1143,7 @@ static bool binder_dec_ref(struct binder_ref *ref, int strong)
  */
 static struct binder_node *binder_get_node_from_ref(
 		struct binder_proc *proc,
+		struct binder_ref *tmp_ref,
 		u32 desc, bool need_strong_ref,
 		struct binder_ref_data *rdata)
 {
@@ -1119,6 +1154,8 @@ static struct binder_node *binder_get_node_from_ref(
 	if (!ref)
 		goto err_no_ref;
 	node = ref->node;
+	binder_init_tmp_ref(tmp_ref, node);
+	hlist_add_head(&tmp_ref->node_entry, &node->refs);
 	if (rdata)
 		*rdata = ref->data;
 
@@ -1498,9 +1535,10 @@ static void binder_transaction_buffer_release(struct binder_proc *proc,
 		case BINDER_TYPE_WEAK_BINDER: {
 			struct flat_binder_object *fp;
 			struct binder_node *node;
+			struct binder_ref tmp_ref;
 
 			fp = to_flat_binder_object(hdr);
-			node = binder_get_node(proc, fp->binder);
+			node = binder_get_node(proc, &tmp_ref, fp->binder);
 			if (node == NULL) {
 				pr_err("transaction release %d bad node %016llx\n",
 				       debug_id, (u64)fp->binder);
@@ -1511,6 +1549,7 @@ static void binder_transaction_buffer_release(struct binder_proc *proc,
 				     node->debug_id, (u64)node->ptr);
 			binder_dec_node(node, hdr->type == BINDER_TYPE_BINDER,
 					0);
+			binder_put_node(node, &tmp_ref);
 		} break;
 		case BINDER_TYPE_HANDLE:
 		case BINDER_TYPE_WEAK_HANDLE: {
@@ -1604,11 +1643,12 @@ static int binder_translate_binder(struct flat_binder_object *fp,
 	struct binder_proc *proc = thread->proc;
 	struct binder_proc *target_proc = t->to_proc;
 	struct binder_ref_data rdata;
-	int ret;
+	struct binder_ref tmp_ref;
+	int ret = 0;
 
-	node = binder_get_node(proc, fp->binder);
+	node = binder_get_node(proc, &tmp_ref, fp->binder);
 	if (!node) {
-		node = binder_new_node(proc, fp->binder, fp->cookie);
+		node = binder_new_node(proc, &tmp_ref, fp->binder, fp->cookie);
 		if (!node)
 			return -ENOMEM;
 
@@ -1620,16 +1660,19 @@ static int binder_translate_binder(struct flat_binder_object *fp,
 				  proc->pid, thread->pid, (u64)fp->binder,
 				  node->debug_id, (u64)fp->cookie,
 				  (u64)node->cookie);
-		return -EINVAL;
+		ret = -EINVAL;
+		goto done;
 	}
-	if (security_binder_transfer_binder(proc->tsk, target_proc->tsk))
-		return -EPERM;
+	if (security_binder_transfer_binder(proc->tsk, target_proc->tsk)) {
+		ret = -EPERM;
+		goto done;
+	}
 
 	ret = binder_inc_ref_for_node(target_proc, node,
 			fp->hdr.type == BINDER_TYPE_BINDER,
 			&thread->todo, &rdata);
 	if (ret)
-		return ret;
+		goto done;
 
 	if (fp->hdr.type == BINDER_TYPE_BINDER)
 		fp->hdr.type = BINDER_TYPE_HANDLE;
@@ -1644,7 +1687,9 @@ static int binder_translate_binder(struct flat_binder_object *fp,
 		     "        node %d u%016llx -> ref %d desc %d\n",
 		     node->debug_id, (u64)node->ptr,
 		     rdata.debug_id, rdata.desc);
-	return 0;
+done:
+	binder_put_node(node, &tmp_ref);
+	return ret;
 }
 
 static int binder_translate_handle(struct flat_binder_object *fp,
@@ -1655,16 +1700,19 @@ static int binder_translate_handle(struct flat_binder_object *fp,
 	struct binder_proc *target_proc = t->to_proc;
 	struct binder_node *node;
 	struct binder_ref_data src_rdata;
+	struct binder_ref tmp_ref;
 
-	node = binder_get_node_from_ref(proc, fp->handle,
+	node = binder_get_node_from_ref(proc, &tmp_ref, fp->handle,
 			fp->hdr.type == BINDER_TYPE_HANDLE, &src_rdata);
 	if (!node) {
 		binder_user_error("%d:%d got transaction with invalid handle, %d\n",
 				  proc->pid, thread->pid, fp->handle);
 		return -EINVAL;
 	}
-	if (security_binder_transfer_binder(proc->tsk, target_proc->tsk))
+	if (security_binder_transfer_binder(proc->tsk, target_proc->tsk)) {
+		binder_put_node(node, &tmp_ref);
 		return -EPERM;
+	}
 
 	if (node->proc == target_proc) {
 		if (fp->hdr.type == BINDER_TYPE_HANDLE)
@@ -1688,8 +1736,10 @@ static int binder_translate_handle(struct flat_binder_object *fp,
 		ret = binder_inc_ref_for_node(target_proc, node,
 				fp->hdr.type == BINDER_TYPE_HANDLE,
 				NULL, &dest_rdata);
-		if (ret)
+		if (ret) {
+			binder_put_node(node, &tmp_ref);
 			return ret;
+		}
 
 		fp->binder = 0;
 		fp->handle = dest_rdata.desc;
@@ -1702,6 +1752,7 @@ static int binder_translate_handle(struct flat_binder_object *fp,
 			     dest_rdata.debug_id, dest_rdata.desc,
 			     node->debug_id);
 	}
+	binder_put_node(node, &tmp_ref);
 	return 0;
 }
 
@@ -2471,6 +2522,7 @@ static int binder_thread_write(struct binder_proc *proc,
 			binder_uintptr_t node_ptr;
 			binder_uintptr_t cookie;
 			struct binder_node *node;
+			struct binder_ref tmp_ref;
 
 			if (get_user(node_ptr, (binder_uintptr_t __user *)ptr))
 				return -EFAULT;
@@ -2478,7 +2530,7 @@ static int binder_thread_write(struct binder_proc *proc,
 			if (get_user(cookie, (binder_uintptr_t __user *)ptr))
 				return -EFAULT;
 			ptr += sizeof(binder_uintptr_t);
-			node = binder_get_node(proc, node_ptr);
+			node = binder_get_node(proc, &tmp_ref, node_ptr);
 			if (node == NULL) {
 				binder_user_error("%d:%d %s u%016llx no match\n",
 					proc->pid, thread->pid,
@@ -2495,6 +2547,7 @@ static int binder_thread_write(struct binder_proc *proc,
 					"BC_INCREFS_DONE" : "BC_ACQUIRE_DONE",
 					(u64)node_ptr, node->debug_id,
 					(u64)cookie, (u64)node->cookie);
+				binder_put_node(node, &tmp_ref);
 				break;
 			}
 			binder_inner_proc_lock(proc);
@@ -2504,6 +2557,7 @@ static int binder_thread_write(struct binder_proc *proc,
 						proc->pid, thread->pid,
 						node->debug_id);
 					binder_inner_proc_unlock(proc);
+					binder_put_node(node, &tmp_ref);
 					break;
 				}
 				node->pending_strong_ref = 0;
@@ -2513,6 +2567,7 @@ static int binder_thread_write(struct binder_proc *proc,
 						proc->pid, thread->pid,
 						node->debug_id);
 					binder_inner_proc_unlock(proc);
+					binder_put_node(node, &tmp_ref);
 					break;
 				}
 				node->pending_weak_ref = 0;
@@ -2524,6 +2579,7 @@ static int binder_thread_write(struct binder_proc *proc,
 				     proc->pid, thread->pid,
 				     cmd == BC_INCREFS_DONE ? "BC_INCREFS_DONE" : "BC_ACQUIRE_DONE",
 				     node->debug_id, node->local_strong_refs, node->local_weak_refs);
+			binder_put_node(node, &tmp_ref);
 			break;
 		}
 		case BC_ATTEMPT_ACQUIRE:
@@ -3460,6 +3516,7 @@ static int binder_ioctl_set_ctx_mgr(struct file *filp)
 	struct binder_context *context = proc->context;
 	struct binder_node *new_node;
 	kuid_t curr_euid = current_euid();
+	struct binder_ref tmp_ref;
 
 	mutex_lock(&context->context_mgr_node_lock);
 	if (context->binder_context_mgr_node) {
@@ -3482,7 +3539,7 @@ static int binder_ioctl_set_ctx_mgr(struct file *filp)
 	} else {
 		context->binder_context_mgr_uid = curr_euid;
 	}
-	new_node = binder_new_node(proc, 0, 0);
+	new_node = binder_new_node(proc, &tmp_ref, 0, 0);
 	if (!new_node) {
 		ret = -ENOMEM;
 		goto out;
@@ -3492,6 +3549,7 @@ static int binder_ioctl_set_ctx_mgr(struct file *filp)
 	new_node->has_strong_ref = 1;
 	new_node->has_weak_ref = 1;
 	context->binder_context_mgr_node = new_node;
+	binder_put_node(new_node, &tmp_ref);
 out:
 	mutex_unlock(&context->context_mgr_node_lock);
 	return ret;
