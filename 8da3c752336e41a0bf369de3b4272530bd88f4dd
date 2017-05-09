@@ -22,6 +22,30 @@
       "revId": "8da3c752336e41a0bf369de3b4272530bd88f4dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "930422b8_7b520b55",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2421,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-09T22:34:39Z",
+      "side": 1,
+      "message": "It works because it is not sensitive to \"missing\" the write. If another thread writes this to 1, we\u0027ll see it next time we poll (and only this thread sets it to 0 so we\u0027ll see it for sure next time)",
+      "parentUuid": "4169993f_99b27722",
+      "range": {
+        "startLine": 2421,
+        "startChar": 2,
+        "endLine": 2421,
+        "endChar": 40
+      },
+      "revId": "8da3c752336e41a0bf369de3b4272530bd88f4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }

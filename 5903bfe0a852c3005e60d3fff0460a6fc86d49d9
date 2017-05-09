@@ -22,6 +22,30 @@
       "revId": "5903bfe0a852c3005e60d3fff0460a6fc86d49d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "727caa96_3c89e517",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-09T22:34:39Z",
+      "side": 0,
+      "message": "Good suggestion. For now, I\u0027m just following the existing style.",
+      "parentUuid": "2a7724f3_a3c24601",
+      "range": {
+        "startLine": 364,
+        "startChar": 35,
+        "endLine": 364,
+        "endChar": 39
+      },
+      "revId": "5903bfe0a852c3005e60d3fff0460a6fc86d49d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
