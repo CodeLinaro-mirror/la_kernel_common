@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "636ebed5_89f9f035",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 3830,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-10T15:54:24Z",
+      "side": 1,
+      "message": "It doesn\u0027t (yet). I\u0027ll change the name back.",
+      "parentUuid": "e86c2b11_d3a2b7ce",
+      "range": {
+        "startLine": 3830,
+        "startChar": 36,
+        "endLine": 3830,
+        "endChar": 43
+      },
+      "revId": "eba5cf79d4d00425887362e8ef2041fd581c0967",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b63c7c58_14a26640",
         "filename": "drivers/android/binder.c",
         "patchSetId": 6
@@ -36,6 +60,24 @@
       "writtenOn": "2017-05-10T02:25:36Z",
       "side": 1,
       "message": "why do you drop the lock here?",
+      "revId": "eba5cf79d4d00425887362e8ef2041fd581c0967",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f16161e_b206e78b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4135,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-10T15:54:24Z",
+      "side": 1,
+      "message": "Because binder_alloc_get_free_async_space() acquires a mutex (generally don\u0027t like to hold spinlock over external calls).\n\nMaybe better to call that before acquiring the lock above and hold the lock here...",
+      "parentUuid": "b63c7c58_14a26640",
       "revId": "eba5cf79d4d00425887362e8ef2041fd581c0967",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
