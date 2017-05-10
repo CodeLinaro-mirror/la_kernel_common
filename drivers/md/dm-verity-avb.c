@@ -12,8 +12,9 @@
 
 #define DM_MSG_PREFIX "verity-avb"
 
-/* Set via module parameter. */
+/* Set via module parameters. */
 static char avb_vbmeta_device[64];
+static char avb_invalidate_on_error[64];
 
 static void invalidate_vbmeta_endio(struct bio *bio)
 {
@@ -173,6 +174,10 @@ void dm_verity_avb_error_handler(void)
 {
 	dev_t dev;
 
+	if (strcmp(avb_invalidate_on_error, "yes") != 0) {
+		return;
+	}
+
 	DMINFO("AVB error handler called for %s", avb_vbmeta_device);
 
 	if (avb_vbmeta_device[0] == '\0') {
@@ -215,3 +220,5 @@ MODULE_LICENSE("GPL");
 #undef MODULE_PARAM_PREFIX
 #define MODULE_PARAM_PREFIX	"androidboot.vbmeta."
 module_param_string(device, avb_vbmeta_device, sizeof(avb_vbmeta_device), 0);
+module_param_string(invalidate_on_error, avb_invalidate_on_error,
+                    sizeof(avb_invalidate_on_error), 0);
