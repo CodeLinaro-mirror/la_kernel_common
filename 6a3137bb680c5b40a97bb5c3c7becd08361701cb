@@ -22,6 +22,30 @@
       "revId": "6a3137bb680c5b40a97bb5c3c7becd08361701cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8473bf5e_7c2c7984",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 1467,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-10T21:14:24Z",
+      "side": 1,
+      "message": "The access to the node will be safe due to reference on the node (coming soon in node persistence patch). It will of course be possible that binder_context_mgr_node could become NULL immediately after this access so our target_node is now a \"dead node\"... this will result in a failed transaction.",
+      "parentUuid": "f31e4549_aeaaa12e",
+      "range": {
+        "startLine": 1467,
+        "startChar": 26,
+        "endLine": 1467,
+        "endChar": 49
+      },
+      "revId": "6a3137bb680c5b40a97bb5c3c7becd08361701cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
