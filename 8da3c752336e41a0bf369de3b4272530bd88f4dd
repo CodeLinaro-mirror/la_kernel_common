@@ -70,6 +70,30 @@
       "revId": "8da3c752336e41a0bf369de3b4272530bd88f4dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfa971a6_207dd577",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2421,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-10T00:32:51Z",
+      "side": 1,
+      "message": "I thought it was recommended practice to use READ_ONCE/WRITE_ONCE in cases where we know there is possible concurrent access. I agree that this is unlikely to help in any way other than to document that this field is concurrently accessed w/o a lock.\n\nGreg- what do you recommend?",
+      "parentUuid": "d4837f31_a0b2a845",
+      "range": {
+        "startLine": 2421,
+        "startChar": 2,
+        "endLine": 2421,
+        "endChar": 40
+      },
+      "revId": "8da3c752336e41a0bf369de3b4272530bd88f4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
