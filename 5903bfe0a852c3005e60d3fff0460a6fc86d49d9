@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96c48922_2297cfbe",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2017-05-10T17:44:11Z",
+      "side": 1,
+      "message": "I think node-\u003eproc can be NULL - at least when the global lock goes away. Will this be changed by future patches?",
+      "range": {
+        "startLine": 693,
+        "startChar": 20,
+        "endLine": 693,
+        "endChar": 24
+      },
+      "revId": "5903bfe0a852c3005e60d3fff0460a6fc86d49d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f1b477a9_7d7faebf",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 2522,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2017-05-10T17:44:11Z",
+      "side": 1,
+      "message": "w \u003d dequeue_work_head_locked(...)\n\nif (!w) {\n   ...\n}\n?",
+      "range": {
+        "startLine": 2519,
+        "startChar": 2,
+        "endLine": 2522,
+        "endChar": 17
+      },
+      "revId": "5903bfe0a852c3005e60d3fff0460a6fc86d49d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6a01206_3b5ab188",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 2773,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2017-05-10T17:44:11Z",
+      "side": 1,
+      "message": "when the global lock is gone, what will prevent another thread from adding work after you drop the lock? Or is this already prevented in the current code by some other means?",
+      "range": {
+        "startLine": 2773,
+        "startChar": 2,
+        "endLine": 2773,
+        "endChar": 44
+      },
+      "revId": "5903bfe0a852c3005e60d3fff0460a6fc86d49d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
