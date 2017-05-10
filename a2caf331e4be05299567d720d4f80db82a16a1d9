@@ -386,6 +386,24 @@
       "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c0adfbd_39cb50d2",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2913,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-10T23:59:04Z",
+      "side": 1,
+      "message": "What prevents new references to the node before you lock and erase it here?",
+      "parentUuid": "e4cc1667_692fc061",
+      "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
