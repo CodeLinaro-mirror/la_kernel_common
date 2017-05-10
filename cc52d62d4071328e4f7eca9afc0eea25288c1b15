@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2620a8bb_cd1d66df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1073546
+      },
+      "writtenOn": "2017-05-10T22:32:51Z",
+      "side": 1,
+      "message": "\"Too big of a change to the kernel. It could break vendor 4.9 kernels. Needs to be removed and patches depending on it need to be rebased\" - ghackmann@google.com",
+      "revId": "cc52d62d4071328e4f7eca9afc0eea25288c1b15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
