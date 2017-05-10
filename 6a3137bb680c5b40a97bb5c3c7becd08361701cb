@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f31e4549_aeaaa12e",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 1467,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2017-05-10T16:35:52Z",
+      "side": 1,
+      "message": "there are cases like this one where you read the node without holding the lock; are these all cases where it\u0027s ok to read the old value, or can you never read the old value because of other reasons?",
+      "range": {
+        "startLine": 1467,
+        "startChar": 26,
+        "endLine": 1467,
+        "endChar": 49
+      },
+      "revId": "6a3137bb680c5b40a97bb5c3c7becd08361701cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
