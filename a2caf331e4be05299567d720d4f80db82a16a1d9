@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "93237e56_77169d70",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-10T15:37:41Z",
+      "side": 1,
+      "message": "Because this is the macro wrapper for the actual function and I\u0027m in the habit of using macro arg names that are unlikely to match underlying symbols, but I don\u0027t care much if you think it should be \"proc\"",
+      "parentUuid": "2651fd40_facf04a6",
+      "range": {
+        "startLine": 437,
+        "startChar": 25,
+        "endLine": 437,
+        "endChar": 30
+      },
+      "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e4302f7_3c06927c",
         "filename": "drivers/android/binder.c",
         "patchSetId": 6
@@ -83,6 +107,30 @@
       "writtenOn": "2017-05-10T02:18:35Z",
       "side": 1,
       "message": "ref could be freed before you read it here as you no longer hold the lock.",
+      "range": {
+        "startLine": 1096,
+        "startChar": 24,
+        "endLine": 1096,
+        "endChar": 29
+      },
+      "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c9f19ba6_531313f1",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-10T15:37:41Z",
+      "side": 1,
+      "message": "ref, node, proc, thread persistence is dealt with in later patches. I\u0027m planning not to use the zombie mechanism, but its not complete yet. The specific case of ref is handled in the ref inc/dec refactoring in this patch set... but that patch doesn\u0027t make sense without the locking going before it.",
+      "parentUuid": "4e4302f7_3c06927c",
       "range": {
         "startLine": 1096,
         "startChar": 24,
@@ -118,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "8b020773_990ec18e",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2150,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-10T15:37:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcaa8471_2dd892be",
+      "range": {
+        "startLine": 2150,
+        "startChar": 19,
+        "endLine": 2150,
+        "endChar": 38
+      },
+      "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fbf8827d_74638452",
         "filename": "drivers/android/binder.c",
         "patchSetId": 6
@@ -129,6 +201,30 @@
       "writtenOn": "2017-05-10T02:18:35Z",
       "side": 1,
       "message": "target_proc",
+      "range": {
+        "startLine": 2154,
+        "startChar": 21,
+        "endLine": 2154,
+        "endChar": 40
+      },
+      "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e736113_310ed80a",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2154,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-10T15:37:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbf8827d_74638452",
       "range": {
         "startLine": 2154,
         "startChar": 21,
@@ -164,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "3e8706fb_e694aa95",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2167,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-10T15:37:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c38d783_817ffc98",
+      "range": {
+        "startLine": 2167,
+        "startChar": 19,
+        "endLine": 2167,
+        "endChar": 36
+      },
+      "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08fb9a90_3c423c7e",
         "filename": "drivers/android/binder.c",
         "patchSetId": 6
@@ -175,6 +295,30 @@
       "writtenOn": "2017-05-10T02:18:35Z",
       "side": 1,
       "message": "target_proc",
+      "range": {
+        "startLine": 2181,
+        "startChar": 21,
+        "endLine": 2181,
+        "endChar": 38
+      },
+      "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02b4c753_65a6e79c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2181,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-10T15:37:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08fb9a90_3c423c7e",
       "range": {
         "startLine": 2181,
         "startChar": 21,
@@ -221,6 +365,24 @@
       "writtenOn": "2017-05-10T02:18:35Z",
       "side": 1,
       "message": "how does this work?",
+      "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4cc1667_692fc061",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2913,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-10T15:37:41Z",
+      "side": 1,
+      "message": "proc-\u003enodes (the rb_tree in the binder_proc structure) is protected by the proc lock. What looks wrong to you here?",
+      "parentUuid": "6f7d45f4_bfe03fdf",
       "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
