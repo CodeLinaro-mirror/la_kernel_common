@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "b9733868_d34f0510",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-11T17:22:05Z",
+      "side": 1,
+      "message": "Fixed deref of ref outside of lock.",
+      "parentUuid": "063ee77b_281b33d9",
+      "range": {
+        "startLine": 1096,
+        "startChar": 24,
+        "endLine": 1096,
+        "endChar": 29
+      },
+      "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcaa8471_2dd892be",
         "filename": "drivers/android/binder.c",
         "patchSetId": 6
@@ -425,6 +449,24 @@
       "side": 1,
       "message": "What prevents new references to the node before you lock and erase it here?",
       "parentUuid": "e4cc1667_692fc061",
+      "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a3c72ca_890f8e11",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 2913,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-11T17:22:05Z",
+      "side": 1,
+      "message": "Yes, you are right. I used to hold the proc lock through this whole section (prior to setting weak/strong until removed from rb_tree). That doesn\u0027t work with the proc lock / node lock split. Will fix in next rev.",
+      "parentUuid": "3c0adfbd_39cb50d2",
       "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
