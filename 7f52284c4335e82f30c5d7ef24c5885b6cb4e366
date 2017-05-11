@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5b65c5a_64fe04fe",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 4189,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-11T02:47:03Z",
+      "side": 1,
+      "message": "why drop the lock here?",
+      "range": {
+        "startLine": 4189,
+        "startChar": 1,
+        "endLine": 4189,
+        "endChar": 19
+      },
+      "revId": "7f52284c4335e82f30c5d7ef24c5885b6cb4e366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
