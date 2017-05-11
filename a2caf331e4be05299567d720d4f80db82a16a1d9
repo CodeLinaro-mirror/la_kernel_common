@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "063ee77b_281b33d9",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-11T02:44:10Z",
+      "side": 1,
+      "message": "That change reverts this move though.",
+      "parentUuid": "c9f19ba6_531313f1",
+      "range": {
+        "startLine": 1096,
+        "startChar": 24,
+        "endLine": 1096,
+        "endChar": 29
+      },
+      "revId": "a2caf331e4be05299567d720d4f80db82a16a1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcaa8471_2dd892be",
         "filename": "drivers/android/binder.c",
         "patchSetId": 6
