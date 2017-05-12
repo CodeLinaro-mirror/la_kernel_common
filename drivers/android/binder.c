@@ -378,6 +378,7 @@ struct binder_proc {
 	struct files_struct *files;
 	struct hlist_node deferred_work_node;
 	int deferred_work;
+	bool is_dead;
 
 	struct binder_worklist todo;
 	wait_queue_head_t wait;
@@ -387,6 +388,7 @@ struct binder_proc {
 	int requested_threads;
 	int requested_threads_started;
 	int ready_threads;
+	atomic_t txn_in_progress;
 	long default_priority;
 	struct dentry *debugfs_entry;
 	struct binder_alloc alloc;
@@ -414,6 +416,8 @@ struct binder_thread {
 	struct binder_error reply_error;
 	wait_queue_head_t wait;
 	struct binder_stats stats;
+	atomic_t txn_in_progress;
+	bool is_dead;
 };
 
 
@@ -588,6 +592,9 @@ struct binder_transaction {
 	struct binder_transaction *to_parent;
 	unsigned need_reply:1;
 	/* unsigned is_dead:1; */	/* not used at the moment */
+	unsigned to_thread_invalid:1;
+	unsigned to_proc_invalid:1;
+	unsigned from_invalid:1;
 
 	struct binder_buffer *buffer;
 	unsigned int	code;
@@ -599,6 +606,9 @@ struct binder_transaction {
 
 static void
 binder_defer_work(struct binder_proc *proc, enum binder_deferred_state defer);
+static int binder_free_thread(struct binder_proc *proc,
+			      struct binder_thread *thread);
+static void binder_free_proc(struct binder_proc *proc);
 
 static int task_get_unused_fd_flags(struct binder_proc *proc, int flags)
 {
@@ -1291,13 +1301,41 @@ static void binder_pop_transaction(struct binder_thread *target_thread,
 	BUG_ON(target_thread->transaction_stack->from != target_thread);
 	target_thread->transaction_stack =
 		target_thread->transaction_stack->from_parent;
-	t->from = NULL;
+}
+
+static void binder_dec_thread_txn(struct binder_thread *thread)
+{
+	atomic_dec(&thread->txn_in_progress);
+	if (thread->is_dead && !atomic_read(&thread->txn_in_progress)) {
+		binder_free_thread(thread->proc, thread);
+		return;
+	}
+}
+
+static void binder_dec_proc_txn(struct binder_proc *proc)
+{
+	atomic_dec(&proc->txn_in_progress);
+	if (proc->is_dead && RB_EMPTY_ROOT(&proc->threads) &&
+			!atomic_read(&proc->txn_in_progress)) {
+		binder_free_proc(proc);
+		return;
+	}
 }
 
 static void binder_free_transaction(struct binder_transaction *t)
 {
+	struct binder_thread *from = t->from;
+	struct binder_thread *to_thread = t->to_thread;
+	struct binder_proc *to_proc = t->to_proc;
+
 	if (t->buffer)
 		t->buffer->transaction = NULL;
+	if (from)
+		binder_dec_thread_txn(from);
+	if (to_thread)
+		binder_dec_thread_txn(to_thread);
+	if (to_proc)
+		binder_dec_proc_txn(to_proc);
 	kfree(t);
 	binder_stats_deleted(BINDER_STAT_TRANSACTION);
 }
@@ -1931,7 +1969,7 @@ static void binder_transaction(struct binder_proc *proc,
 	binder_size_t *offp, *off_end, *off_start;
 	binder_size_t off_min;
 	u8 *sg_bufp, *sg_buf_end;
-	struct binder_proc *target_proc;
+	struct binder_proc *target_proc = NULL;
 	struct binder_thread *target_thread = NULL;
 	struct binder_node *target_node = NULL;
 	struct binder_worklist *target_list;
@@ -1985,6 +2023,7 @@ static void binder_transaction(struct binder_proc *proc,
 			return_error_line = __LINE__;
 			goto err_dead_binder;
 		}
+		atomic_inc(&target_thread->txn_in_progress);
 		if (target_thread->transaction_stack != in_reply_to) {
 			binder_user_error("%d:%d got reply transaction with bad target transaction stack %d, expected %d\n",
 				proc->pid, thread->pid,
@@ -1999,6 +2038,7 @@ static void binder_transaction(struct binder_proc *proc,
 			goto err_dead_binder;
 		}
 		target_proc = target_thread->proc;
+		atomic_inc(&target_proc->txn_in_progress);
 	} else {
 		if (tr->target.handle) {
 			struct binder_ref *ref;
@@ -2036,7 +2076,9 @@ static void binder_transaction(struct binder_proc *proc,
 		}
 		e->to_node = target_node->debug_id;
 		target_proc = target_node->proc;
-		if (target_proc == NULL) {
+		if (target_proc)
+			atomic_inc(&target_proc->txn_in_progress);
+		else {
 			return_error = BR_DEAD_REPLY;
 			return_error_line = __LINE__;
 			goto err_dead_binder;
@@ -2069,6 +2111,8 @@ static void binder_transaction(struct binder_proc *proc,
 				tmp = tmp->from_parent;
 			}
 		}
+		if (target_thread)
+			atomic_inc(&target_thread->txn_in_progress);
 	}
 	if (target_thread) {
 		e->to_thread = target_thread->pid;
@@ -2121,9 +2165,10 @@ static void binder_transaction(struct binder_proc *proc,
 			     (u64)tr->data_size, (u64)tr->offsets_size,
 			     (u64)extra_buffers_size);
 
-	if (!reply && !(tr->flags & TF_ONE_WAY))
+	if (!reply && !(tr->flags & TF_ONE_WAY)) {
 		t->from = thread;
-	else
+		atomic_inc(&thread->txn_in_progress);
+	} else
 		t->from = NULL;
 	t->sender_euid = task_euid(proc->tsk);
 	t->to_proc = target_proc;
@@ -2385,6 +2430,8 @@ err_copy_data_failed:
 	target_node = NULL;
 	t->buffer->transaction = NULL;
 	binder_alloc_free_buf(&target_proc->alloc, t->buffer);
+	if (t->from)
+		binder_dec_thread_txn(thread);
 err_binder_alloc_buf_failed:
 	kfree(tcomplete);
 	binder_stats_deleted(BINDER_STAT_TRANSACTION_COMPLETE);
@@ -2397,6 +2444,10 @@ err_empty_call_stack:
 err_dead_binder:
 err_invalid_target_handle:
 err_no_context_mgr_node:
+	if (target_thread)
+		binder_dec_thread_txn(target_thread);
+	if (target_proc)
+		binder_dec_proc_txn(target_proc);
 	if (target_node)
 		binder_dec_node(target_node, 1, 0);
 
@@ -3247,8 +3298,13 @@ retry:
 		t->buffer->allow_user_free = 1;
 		if (cmd == BR_TRANSACTION && !(t->flags & TF_ONE_WAY)) {
 			t->to_parent = thread->transaction_stack;
-			t->to_thread = thread;
+			BUG_ON(t->to_thread && t->to_thread != thread);
+			if (!t->to_thread) {
+				t->to_thread = thread;
+				atomic_inc(&thread->txn_in_progress);
+			}
 			thread->transaction_stack = t;
+
 		} else {
 			binder_free_transaction(t);
 		}
@@ -3296,9 +3352,8 @@ static void binder_release_work(struct binder_proc *proc,
 				binder_debug(BINDER_DEBUG_DEAD_TRANSACTION,
 					"undelivered transaction %d\n",
 					t->debug_id);
-				t->buffer->transaction = NULL;
-				kfree(t);
-				binder_stats_deleted(BINDER_STAT_TRANSACTION);
+				BUG_ON(t->to_proc != proc);
+				binder_free_transaction(t);
 			}
 		} break;
 		case BINDER_WORK_RETURN_ERROR: {
@@ -3359,6 +3414,7 @@ static struct binder_thread *binder_get_thread(struct binder_proc *proc)
 		binder_stats_created(BINDER_STAT_THREAD);
 		thread->proc = proc;
 		thread->pid = current->pid;
+		atomic_set(&thread->txn_in_progress, 0);
 		init_waitqueue_head(&thread->wait);
 		binder_init_worklist(proc, &thread->todo);
 		rb_link_node(&thread->rb_node, parent, p);
@@ -3372,18 +3428,30 @@ static struct binder_thread *binder_get_thread(struct binder_proc *proc)
 	return thread;
 }
 
+static void binder_free_proc(struct binder_proc *proc)
+{
+	binder_release_work(proc, &proc->todo);
+	binder_release_work(proc, &proc->delivered_death);
+	binder_alloc_deferred_release(&proc->alloc);
+	put_task_struct(proc->tsk);
+	binder_stats_deleted(BINDER_STAT_PROC);
+	kfree(proc);
+}
+
 static int binder_free_thread(struct binder_proc *proc,
 			      struct binder_thread *thread)
 {
 	struct binder_transaction *t;
 	struct binder_transaction *send_reply = NULL;
 	int active_transactions = 0;
+	bool free_thread = false;
 
-	rb_erase(&thread->rb_node, &proc->threads);
 	t = thread->transaction_stack;
-	if (t && t->to_thread == thread)
+	if (t && t->to_thread == thread && !thread->is_dead)
 		send_reply = t;
-	while (t) {
+	thread->is_dead = true;
+
+	while (t && !t->to_thread_invalid && !t->from_invalid) {
 		active_transactions++;
 		binder_debug(BINDER_DEBUG_DEAD_TRANSACTION,
 			     "release %d:%d transaction %d %s, still active\n",
@@ -3392,24 +3460,32 @@ static int binder_free_thread(struct binder_proc *proc,
 			     (t->to_thread == thread) ? "in" : "out");
 
 		if (t->to_thread == thread) {
-			t->to_proc = NULL;
-			t->to_thread = NULL;
+			t->to_thread_invalid = 1;
+			t->to_proc_invalid = 1;
 			if (t->buffer) {
 				t->buffer->transaction = NULL;
 				t->buffer = NULL;
 			}
 			t = t->to_parent;
 		} else if (t->from == thread) {
-			t->from = NULL;
+			t->from_invalid = 1;
 			t = t->from_parent;
 		} else
 			BUG();
 	}
+	if (!thread->transaction_stack &&
+			!atomic_read(&thread->txn_in_progress)) {
+		rb_erase(&thread->rb_node, &proc->threads);
+		free_thread = true;
+	}
+
 	if (send_reply)
 		binder_send_failed_reply(send_reply, BR_DEAD_REPLY);
-	binder_release_work(proc, &thread->todo);
-	kfree(thread);
-	binder_stats_deleted(BINDER_STAT_THREAD);
+	if (free_thread) {
+		binder_release_work(proc, &thread->todo);
+		kfree(thread);
+		binder_stats_deleted(BINDER_STAT_THREAD);
+	}
 	return active_transactions;
 }
 
@@ -3735,6 +3811,7 @@ static int binder_open(struct inode *nodp, struct file *filp)
 	binder_stats_created(BINDER_STAT_PROC);
 	proc->pid = current->group_leader->pid;
 	binder_init_worklist(proc, &proc->delivered_death);
+	atomic_set(&proc->txn_in_progress, 0);
 	filp->private_data = proc;
 
 	binder_unlock(__func__);
@@ -3876,10 +3953,20 @@ static void binder_deferred_release(struct binder_proc *proc)
 
 	threads = 0;
 	active_transactions = 0;
-	while ((n = rb_first(&proc->threads))) {
+	n = rb_first(&proc->threads);
+	while (n) {
 		struct binder_thread *thread;
 
 		thread = rb_entry(n, struct binder_thread, rb_node);
+		if (thread->is_dead) {
+			/*
+			 * Can't remove from tree yet since
+			 * thread is part of an in-progress
+			 * transaction
+			 */
+			n = rb_next(n);
+			continue;
+		}
 		threads++;
 		active_transactions += binder_free_thread(proc, thread);
 	}
@@ -3905,20 +3992,17 @@ static void binder_deferred_release(struct binder_proc *proc)
 		binder_free_ref(ref);
 	}
 
-	binder_release_work(proc, &proc->todo);
-	binder_release_work(proc, &proc->delivered_death);
-
-	binder_alloc_deferred_release(&proc->alloc);
-	binder_stats_deleted(BINDER_STAT_PROC);
-
-	put_task_struct(proc->tsk);
-
 	binder_debug(BINDER_DEBUG_OPEN_CLOSE,
 		     "%s: %d threads %d, nodes %d (ref %d), refs %d, active transactions %d\n",
 		     __func__, proc->pid, threads, nodes, incoming_refs,
 		     outgoing_refs, active_transactions);
 
-	kfree(proc);
+	if (RB_EMPTY_ROOT(&proc->threads) &&
+			!atomic_read(&proc->txn_in_progress)) {
+		binder_free_proc(proc);
+		return;
+	}
+	proc->is_dead = true;
 }
 
 static void binder_deferred_func(struct work_struct *work)
@@ -4054,9 +4138,11 @@ static void print_binder_thread_ilocked(struct seq_file *m,
 	size_t header_pos;
 
 	WARN_ON(!spin_is_locked(&thread->proc->inner_lock));
-	seq_printf(m, "  thread %d: l %02x need_return %d\n",
+	seq_printf(m, "  thread %d: l %02x need_return %d tip %d%s\n",
 			thread->pid, thread->looper,
-			READ_ONCE(thread->looper_need_return));
+			READ_ONCE(thread->looper_need_return),
+			atomic_read(&thread->txn_in_progress),
+			thread->is_dead ? "(dead)" : "");
 	header_pos = m->count;
 	t = thread->transaction_stack;
 	while (t) {
@@ -4127,7 +4213,8 @@ static void print_binder_proc(struct seq_file *m,
 	size_t start_pos = m->count;
 	size_t header_pos;
 
-	seq_printf(m, "proc %d\n", proc->pid);
+	seq_printf(m, "proc %d%s\n", proc->pid,
+			proc->is_dead ? " (dead)" : "");
 	seq_printf(m, "context %s\n", proc->context->name);
 	header_pos = m->count;
 
