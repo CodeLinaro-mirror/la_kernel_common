@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4e47c87a_2db9ac9c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2017-05-12T21:37:07Z",
+      "side": 1,
+      "message": "Ah k - will you move those patches before or after this one?",
+      "parentUuid": "10959f6e_aae167c7",
+      "range": {
+        "startLine": 693,
+        "startChar": 20,
+        "endLine": 693,
+        "endChar": 24
+      },
+      "revId": "5903bfe0a852c3005e60d3fff0460a6fc86d49d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f1b477a9_7d7faebf",
         "filename": "drivers/android/binder.c",
         "patchSetId": 11
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "a21b7914_11e36cfe",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 2522,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2017-05-12T21:37:07Z",
+      "side": 1,
+      "message": "Yeah I was talking to Arve about this yesterday - for future improvements it would be nice if we could dequeue the work and do the required part of the administration with the lock held, then drop the lock before writing back to userspace.",
+      "parentUuid": "727bccca_fd47243f",
+      "range": {
+        "startLine": 2519,
+        "startChar": 2,
+        "endLine": 2522,
+        "endChar": 17
+      },
+      "revId": "5903bfe0a852c3005e60d3fff0460a6fc86d49d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6a01206_3b5ab188",
         "filename": "drivers/android/binder.c",
         "patchSetId": 11
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "This is addressed in the upcoming patches handling proc/node/thread persistence. In marlin, binder_release_work is called from zombie handling to guarantee that the cleanup is after anyone else could add anything.",
       "parentUuid": "b6a01206_3b5ab188",
+      "range": {
+        "startLine": 2773,
+        "startChar": 2,
+        "endLine": 2773,
+        "endChar": 44
+      },
+      "revId": "5903bfe0a852c3005e60d3fff0460a6fc86d49d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e9f95787_5f51397a",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 2773,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2017-05-12T21:37:07Z",
+      "side": 1,
+      "message": "ack.",
+      "parentUuid": "9510c548_71b0d7f8",
       "range": {
         "startLine": 2773,
         "startChar": 2,
