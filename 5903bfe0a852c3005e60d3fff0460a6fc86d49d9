@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "d1b58d35_e2770a5f",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 2522,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-15T16:23:46Z",
+      "side": 1,
+      "message": "yes, I have a patch that does this now. I\u0027ll try to post the series again today.",
+      "parentUuid": "a21b7914_11e36cfe",
+      "range": {
+        "startLine": 2519,
+        "startChar": 2,
+        "endLine": 2522,
+        "endChar": 17
+      },
+      "revId": "5903bfe0a852c3005e60d3fff0460a6fc86d49d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6a01206_3b5ab188",
         "filename": "drivers/android/binder.c",
         "patchSetId": 11
