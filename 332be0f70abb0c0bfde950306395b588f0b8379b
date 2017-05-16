@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "94a04ca0_c75cf155",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-16T22:07:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca38ca5f_6e8c697c",
+      "range": {
+        "startLine": 366,
+        "startChar": 1,
+        "endLine": 367,
+        "endChar": 22
+      },
+      "revId": "332be0f70abb0c0bfde950306395b588f0b8379b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e97f0d8c_a9a2604d",
         "filename": "drivers/android/binder.c",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2017-05-12T23:17:01Z",
       "side": 1,
       "message": "Do you actually need to hold a proc lock for binder_enqueue_work()? If so, I think this is the wrong one.",
+      "range": {
+        "startLine": 2204,
+        "startChar": 2,
+        "endLine": 2204,
+        "endChar": 21
+      },
+      "revId": "332be0f70abb0c0bfde950306395b588f0b8379b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f45f5c29_0330e122",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 2204,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-16T22:07:34Z",
+      "side": 1,
+      "message": "No. We take this proc lock for thread-\u003etransaction_stack. Not needed for the enqueue (which is protected by target_proc-\u003einner_lock).",
+      "parentUuid": "e97f0d8c_a9a2604d",
       "range": {
         "startLine": 2204,
         "startChar": 2,
