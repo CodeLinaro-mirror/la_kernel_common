@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "d1f08c7e_e95eeba8",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-16T21:38:46Z",
+      "side": 1,
+      "message": "I moved those patches ahead of the node/proc lock patches but after this one.",
+      "parentUuid": "4e47c87a_2db9ac9c",
+      "range": {
+        "startLine": 693,
+        "startChar": 20,
+        "endLine": 693,
+        "endChar": 24
+      },
+      "revId": "5903bfe0a852c3005e60d3fff0460a6fc86d49d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f1b477a9_7d7faebf",
         "filename": "drivers/android/binder.c",
         "patchSetId": 11
