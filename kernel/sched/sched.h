@@ -795,6 +795,12 @@ static inline u64 rq_clock_task(struct rq *rq)
 	return rq->clock_task;
 }
 
+void update_load_avg_rt_se(u64 now,
+			   int cpu,
+			   struct sched_rt_entity *rt_se,
+			   int running);
+int update_rt_rq_load_avg(u64 now, int cpu, struct rt_rq *rt_rq, int running);
+
 #define RQCF_REQ_SKIP	0x01
 #define RQCF_ACT_SKIP	0x02
 
@@ -1098,6 +1104,25 @@ static inline u64 global_rt_runtime(void)
 
 	return (u64)sysctl_sched_rt_runtime * NSEC_PER_USEC;
 }
+
+#ifdef CONFIG_RT_GROUP_SCHED
+#define rt_entity_is_task(rt_se) (!(rt_se)->my_q)
+
+static inline struct task_struct *rt_task_of(struct sched_rt_entity *rt_se)
+{
+#ifdef CONFIG_SCHED_DEBUG
+	WARN_ON_ONCE(!rt_entity_is_task(rt_se));
+#endif
+	return container_of(rt_se, struct task_struct, rt);
+}
+#else
+#define rt_entity_is_task(rt_se) (1)
+
+static inline struct task_struct *rt_task_of(struct sched_rt_entity *rt_se)
+{
+	return container_of(rt_se, struct task_struct, rt);
+}
+#endif /* CONFIG_RT_GROUP_SCHED */
 
 static inline int task_current(struct rq *rq, struct task_struct *p)
 {
@@ -1411,6 +1436,7 @@ extern void init_dl_task_timer(struct sched_dl_entity *dl_se);
 unsigned long to_ratio(u64 period, u64 runtime);
 
 extern void init_entity_runnable_average(struct sched_entity *se);
+extern void init_rt_entity_runnable_average(struct sched_rt_entity *rt_se);
 extern void post_init_entity_util_avg(struct sched_entity *se);
 
 static inline void __add_nr_running(struct rq *rq, unsigned count)

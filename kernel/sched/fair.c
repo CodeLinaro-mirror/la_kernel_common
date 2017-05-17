@@ -3167,11 +3167,16 @@ update_cfs_rq_load_avg(u64 now, struct cfs_rq *cfs_rq, bool update_freq)
 	return decayed || removed;
 }
 
+void update_load_avg_rt_se(u64 now, int cpu, struct sched_rt_entity *rt_se, int running)
+{
+	__update_load_avg(now, cpu, &rt_se->avg, 0, running, NULL);
+}
+
 int update_rt_rq_load_avg(u64 now, int cpu, struct rt_rq *rt_rq, int running)
 {
 	int ret;
 
-	ret = ___update_load_avg(now, cpu, &rt_rq->avg, 0, running, NULL);
+	ret = __update_load_avg(now, cpu, &rt_rq->avg, 0, running, NULL);
 
 	return ret;
 }
@@ -3379,6 +3384,11 @@ int update_rt_rq_load_avg(u64 now, int cpu, struct rt_rq *rt_rq, int running)
 {
 	return 0;
 }
+
+void update_load_avg_rt_se(u64 now,
+			   int cpu,
+			   struct sched_rt_entity *rt_se,
+			   int running) { }
 
 #define UPDATE_TG	0x0
 #define SKIP_AGE_LOAD	0x0
