@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "747b5248_ee506825",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-17T03:46:41Z",
+      "side": 1,
+      "message": "Any lock under procA must never be nested under any lock at the same level or below in procB.",
+      "revId": "29504827a52742e01128cac3ef37960aec041e07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
