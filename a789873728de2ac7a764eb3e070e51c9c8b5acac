@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02916dac_dccf9224",
+        "filename": "drivers/dma-buf/fence.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2017-05-18T23:09:31Z",
+      "side": 1,
+      "message": "Signature change to extern function, will it affect downstream product kernel drivers?",
+      "range": {
+        "startLine": 443,
+        "startChar": 36,
+        "endLine": 443,
+        "endChar": 51
+      },
+      "revId": "a789873728de2ac7a764eb3e070e51c9c8b5acac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
