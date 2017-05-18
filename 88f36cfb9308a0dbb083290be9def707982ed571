@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7bd0eb86_99812849",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2017-05-18T23:21:22Z",
+      "side": 1,
+      "message": "Could change behavior for existing callers.  Maybe leave 4.9 behavior at 4.9 default is safest?  Would need to watch for incompatible calls in this and future backports.",
+      "range": {
+        "startLine": 9,
+        "startChar": 42,
+        "endLine": 10,
+        "endChar": 28
+      },
+      "revId": "88f36cfb9308a0dbb083290be9def707982ed571",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
