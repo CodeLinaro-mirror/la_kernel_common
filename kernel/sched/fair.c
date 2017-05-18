@@ -3093,23 +3093,6 @@ static inline void cfs_rq_util_change(struct cfs_rq *cfs_rq)
 
 static inline u64 cfs_rq_clock_task(struct cfs_rq *cfs_rq);
 
-/*
- * Unsigned subtract and clamp on underflow.
- *
- * Explicitly do a load-store to ensure the intermediate value never hits
- * memory. This allows lockless observations without ever seeing the negative
- * values.
- */
-#define sub_positive(_ptr, _val) do {				\
-	typeof(_ptr) ptr = (_ptr);				\
-	typeof(*ptr) val = (_val);				\
-	typeof(*ptr) res, var = READ_ONCE(*ptr);		\
-	res = var - val;					\
-	if (res > var)						\
-		res = 0;					\
-	WRITE_ONCE(*ptr, res);					\
-} while (0)
-
 /**
  * update_cfs_rq_load_avg - update the cfs_rq's load/util averages
  * @now: current time, as per cfs_rq_clock_task()
@@ -3167,6 +3150,16 @@ update_cfs_rq_load_avg(u64 now, struct cfs_rq *cfs_rq, bool update_freq)
 	return decayed || removed;
 }
 
+int
+__update_load_avg_blocked_rt_se(u64 now, int cpu, struct sched_rt_entity *rt_se)
+{
+	int ret;
+
+	ret = __update_load_avg(now, cpu, &rt_se->avg, 0, 0, NULL);
+
+	return ret;
+}
+
 void update_load_avg_rt_se(u64 now, int cpu, struct sched_rt_entity *rt_se, int running)
 {
 	__update_load_avg(now, cpu, &rt_se->avg, 0, running, NULL);
@@ -3175,9 +3168,16 @@ void update_load_avg_rt_se(u64 now, int cpu, struct sched_rt_entity *rt_se, int 
 int update_rt_rq_load_avg(u64 now, int cpu, struct rt_rq *rt_rq, int running)
 {
 	int ret;
+	struct sched_avg *sa = &rt_rq->avg;
 
-	ret = __update_load_avg(now, cpu, &rt_rq->avg, 0, running, NULL);
+	if (atomic_long_read(&rt_rq->removed_util_avg)) {
+		long r = atomic_long_xchg(&rt_rq->removed_util_avg, 0);
+		sub_positive(&sa->util_avg, r);
+		sub_positive(&sa->util_sum, r * LOAD_AVG_MAX);
+	}
 
+	ret = __update_load_avg(now, cpu, sa, 0, running, NULL);
+	trace_printk("sched_load_rt_rq: cpu=%d util=%lu", cpu, rt_rq->avg.util_avg);
 	return ret;
 }
 
@@ -3310,7 +3310,7 @@ static inline u64 cfs_rq_last_update_time(struct cfs_rq *cfs_rq)
  * Synchronize entity load avg of dequeued entity without locking
  * the previous rq.
  */
-void sync_entity_load_avg(struct sched_entity *se)
+static void sync_entity_load_avg(struct sched_entity *se)
 {
 	struct cfs_rq *cfs_rq = cfs_rq_of(se);
 	u64 last_update_time;
@@ -3323,7 +3323,7 @@ void sync_entity_load_avg(struct sched_entity *se)
  * Task first catches up with cfs_rq, and then subtract
  * itself from the cfs_rq (task must be off the queue now).
  */
-void remove_entity_load_avg(struct sched_entity *se)
+static void remove_entity_load_avg(struct sched_entity *se)
 {
 	struct cfs_rq *cfs_rq = cfs_rq_of(se);
 
