@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a65b7c3a_4959ab4a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2017-05-18T23:46:36Z",
+      "side": 1,
+      "message": "Doesn\u0027t seem to describe this patch, but the above may be involved in the helper function called.",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 49
+      },
+      "revId": "e7083142674885f2f2eba532c1ae5f237c8d7017",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
