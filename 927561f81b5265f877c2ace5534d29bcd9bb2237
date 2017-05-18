@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4b8cec1_af58d088",
+        "filename": "drivers/dma-buf/sync_file.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1004277
+      },
+      "writtenOn": "2017-05-18T23:29:00Z",
+      "side": 1,
+      "message": "should have been \"an\", but no need to fix in our kernel.",
+      "range": {
+        "startLine": 70,
+        "startChar": 63,
+        "endLine": 70,
+        "endChar": 66
+      },
+      "revId": "927561f81b5265f877c2ace5534d29bcd9bb2237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
