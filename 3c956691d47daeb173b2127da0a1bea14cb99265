@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39f6a841_e2cb5182",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2017-05-19T17:04:13Z",
+      "side": 1,
+      "message": "The upstream commit applied cleanly, did not add or remove any fragments, so title should read:\n\nUPSTREAM: cgroup: add support for eBPF programs",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 58
+      },
+      "revId": "3c956691d47daeb173b2127da0a1bea14cb99265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6662ebd9_b342aada",
+        "filename": "init/Kconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 1242,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2017-05-19T17:04:13Z",
+      "side": 1,
+      "message": "Since this is a new config, is there an Android recommendation or requirement for it?\n\nPlease add a commit to this series to adjust kernel/config/android-base.config or kernel/config/android-recommended.config as appropriate.\n\nBy default it is OFF based on this fragment.",
+      "range": {
+        "startLine": 1242,
+        "startChar": 7,
+        "endLine": 1242,
+        "endChar": 17
+      },
+      "revId": "3c956691d47daeb173b2127da0a1bea14cb99265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
