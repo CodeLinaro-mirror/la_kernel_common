@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2f44c25_fec457b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2017-05-19T17:19:52Z",
+      "side": 1,
+      "message": "ditto, clean, UPSTREAM: net: ipv4, ipv6: run cgroup eBPF egress programs",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "9184666961835ab1cc647bf997dfc78ab51dfc98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
