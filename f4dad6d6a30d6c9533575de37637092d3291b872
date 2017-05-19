@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53226452_62ab5077",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2017-05-19T16:58:13Z",
+      "side": 1,
+      "message": "I checked, this is not a BACKPORT as it applied cleanly and did not drop (or add) any fragments.\n\nUpdate the commit message to:\n\nUPSTREAM: bpf: add new prog type for cgroup socket filtering\n\nto comply with our commit standards.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "f4dad6d6a30d6c9533575de37637092d3291b872",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
