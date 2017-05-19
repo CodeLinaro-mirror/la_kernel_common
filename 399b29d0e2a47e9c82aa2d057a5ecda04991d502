@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5471a99d_65ea3609",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2017-05-19T17:16:47Z",
+      "side": 1,
+      "message": "This commit applied cleanly using the upstream cherry-pick, please replace commit message with:\n\nUPSTREAM: bpf: add BPF_PROG_ATTACH and BPF_PROG_DETACH commands",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 74
+      },
+      "revId": "399b29d0e2a47e9c82aa2d057a5ecda04991d502",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
