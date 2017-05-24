@@ -197,13 +197,14 @@ struct binder_transaction_log_entry {
 	int data_size;
 	int offsets_size;
 	int return_error_line;
+	bool complete;
 	uint32_t return_error;
 	uint32_t return_error_param;
 	const char *context_name;
 };
 struct binder_transaction_log {
-	int next;
-	int full;
+	atomic_t cur;
+	bool full;
 	struct binder_transaction_log_entry entry[32];
 };
 static struct binder_transaction_log binder_transaction_log;
@@ -213,14 +214,14 @@ static struct binder_transaction_log_entry *binder_transaction_log_add(
 	struct binder_transaction_log *log)
 {
 	struct binder_transaction_log_entry *e;
+	unsigned cur = atomic_inc_return(&log->cur);
 
-	e = &log->entry[log->next];
-	memset(e, 0, sizeof(*e));
-	log->next++;
-	if (log->next == ARRAY_SIZE(log->entry)) {
-		log->next = 0;
+	if (cur >= ARRAY_SIZE(log->entry)) {
 		log->full = 1;
+		smp_mb();
 	}
+	e = &log->entry[cur % ARRAY_SIZE(log->entry)];
+	memset(e, 0, sizeof(*e));
 	return e;
 }
 
@@ -1822,6 +1823,7 @@ static void binder_transaction(struct binder_proc *proc,
 		else
 			wake_up_interruptible(target_wait);
 	}
+	e->complete = true;
 	return;
 
 err_translate_failed:
@@ -1857,6 +1859,7 @@ err_no_context_mgr_node:
 		e->return_error = return_error;
 		e->return_error_param = return_error_param;
 		e->return_error_line = return_error_line;
+		e->complete = true;
 		fe = binder_transaction_log_add(&binder_transaction_log_failed);
 		*fe = *e;
 	}
@@ -3718,26 +3721,39 @@ static void print_binder_transaction_log_entry(struct seq_file *m,
 					struct binder_transaction_log_entry *e)
 {
 	seq_printf(m,
-		   "%d: %s from %d:%d to %d:%d context %s node %d handle %d size %d:%d ret %d/%d l=%d\n",
+		   "%d: %s from %d:%d to %d:%d context %s node %d handle %d size %d:%d ret %d/%d l=%d%s\n",
 		   e->debug_id, (e->call_type == 2) ? "reply" :
 		   ((e->call_type == 1) ? "async" : "call "), e->from_proc,
 		   e->from_thread, e->to_proc, e->to_thread, e->context_name,
 		   e->to_node, e->target_handle, e->data_size, e->offsets_size,
 		   e->return_error, e->return_error_param,
-		   e->return_error_line);
+		   e->return_error_line,
+		   e->complete ? "" : " (incomplete)");
 }
 
 static int binder_transaction_log_show(struct seq_file *m, void *unused)
 {
 	struct binder_transaction_log *log = m->private;
+	unsigned log_cur = atomic_read(&log->cur);
+	unsigned count;
+	unsigned cur;
 	int i;
 
-	if (log->full) {
-		for (i = log->next; i < ARRAY_SIZE(log->entry); i++)
-			print_binder_transaction_log_entry(m, &log->entry[i]);
+	count = log_cur + 1;
+	cur = count < ARRAY_SIZE(log->entry) ?
+		0 : count % ARRAY_SIZE(log->entry);
+	smp_mb();
+	if (count > ARRAY_SIZE(log->entry) || log->full)
+		count = ARRAY_SIZE(log->entry);
+	for (i = 0; i < count; i++) {
+		unsigned index = cur++ % ARRAY_SIZE(log->entry);
+		print_binder_transaction_log_entry(m, &log->entry[index]);
 	}
-	for (i = 0; i < log->next; i++)
-		print_binder_transaction_log_entry(m, &log->entry[i]);
+	/* print new records that were logged while we were printing */
+	while (log_cur++ != atomic_read(&log->cur)) {
+		unsigned index = cur++ % ARRAY_SIZE(log->entry);
+		print_binder_transaction_log_entry(m, &log->entry[index]);
+	}
 	return 0;
 }
 
@@ -3792,6 +3808,8 @@ static int __init binder_init(void)
 	struct binder_device *device;
 	struct hlist_node *tmp;
 
+	atomic_set(&binder_transaction_log.cur, ~0U);
+	atomic_set(&binder_transaction_log_failed.cur, ~0U);
 	binder_deferred_workqueue = create_singlethread_workqueue("binder");
 	if (!binder_deferred_workqueue)
 		return -ENOMEM;
