@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "18daf939_1856e852",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 14
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-25T16:48:03Z",
+      "side": 1,
+      "message": "In binder_dequeue_work it is used to tell whether or not it is actually queued, but the list entry could be used for that, so this is really here just for BUG/WARN cases.",
+      "parentUuid": "f0e5072a_f8d70c22",
+      "revId": "c37b94e09cf761c7c722f6d98bebebfa550c60a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0d0e727_4b1ec20b",
         "filename": "drivers/android/binder.c",
         "patchSetId": 14
@@ -30,6 +48,24 @@
       "writtenOn": "2017-05-25T02:24:11Z",
       "side": 1,
       "message": "It would be better to apply the patch to restructure the dequeue first as this locking scheme does not seem to work.",
+      "revId": "c37b94e09cf761c7c722f6d98bebebfa550c60a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0a21a86_8b44f7c6",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 14
+      },
+      "lineNbr": 2558,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-25T16:48:03Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "a0d0e727_4b1ec20b",
       "revId": "c37b94e09cf761c7c722f6d98bebebfa550c60a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
