@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfea416f_97a6c348",
+        "filename": "drivers/misc/uid_sys_stats.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1051712
+      },
+      "writtenOn": "2017-05-25T18:00:39Z",
+      "side": 1,
+      "message": "I\u0027d use define for now since they\u0027re not simple enumeration of indices. The first two are also reused as values that userspace send to switch proc state. That\u0027s just my preference for explicity.",
+      "revId": "d475e7a48dcceaeb2e133665dbd16b80c8d4e645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
