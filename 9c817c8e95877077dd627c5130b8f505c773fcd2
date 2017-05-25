@@ -16,6 +16,24 @@
       "revId": "9c817c8e95877077dd627c5130b8f505c773fcd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e6ad3b4a_842a7f7a",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2654,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-25T16:26:58Z",
+      "side": 1,
+      "message": "Hmm. The next CL fixes up the locking for the queue and node inc/dec. I guess for this CL, the lock goes right here. Fixing.",
+      "parentUuid": "c41de489_6e76dca4",
+      "revId": "9c817c8e95877077dd627c5130b8f505c773fcd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
