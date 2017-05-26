@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "467349b6_8fb2cab1",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2017-05-26T22:25:05Z",
+      "side": 1,
+      "message": "this can become a BUG_ON here (you change this to BUG_ON later in the series)",
+      "range": {
+        "startLine": 726,
+        "startChar": 3,
+        "endLine": 726,
+        "endChar": 10
+      },
+      "revId": "10d82ddc3602122e8f07efce23f7780434412f6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
