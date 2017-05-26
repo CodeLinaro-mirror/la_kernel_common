@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f04f6ba0_f2362fa1",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2489,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-05-26T20:42:03Z",
+      "side": 1,
+      "message": "you could do this without adding a state_changed variable if you move this after the put_node_cmd calls by looking at the ptr value.",
+      "revId": "ed02791c38c5540bab489bc3c93c1762b0e4457e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
