@@ -60,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "54200812_3aff28f6",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2672,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-26T15:31:00Z",
+      "side": 1,
+      "message": "Yes, those should be here. Fixed.",
+      "parentUuid": "d634344a_8ba9944e",
+      "range": {
+        "startLine": 2672,
+        "startChar": 3,
+        "endLine": 2672,
+        "endChar": 22
+      },
+      "revId": "9c817c8e95877077dd627c5130b8f505c773fcd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25437968_f0b79360",
         "filename": "drivers/android/binder.c",
         "patchSetId": 1
@@ -71,6 +95,30 @@
       "writtenOn": "2017-05-25T22:47:04Z",
       "side": 1,
       "message": "this now also prints in cases where the state did change?",
+      "range": {
+        "startLine": 2732,
+        "startChar": 43,
+        "endLine": 2732,
+        "endChar": 62
+      },
+      "revId": "9c817c8e95877077dd627c5130b8f505c773fcd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "53574904_03b229bb",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2732,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-26T15:31:00Z",
+      "side": 1,
+      "message": "Good point. Fixed.",
+      "parentUuid": "25437968_f0b79360",
       "range": {
         "startLine": 2732,
         "startChar": 43,
