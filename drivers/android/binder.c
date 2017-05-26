@@ -515,7 +515,7 @@ struct binder_proc {
 	int max_threads;
 	int requested_threads;
 	int requested_threads_started;
-	int ready_threads;
+	atomic_t ready_threads;
 	int tmp_ref;
 	long default_priority;
 	struct dentry *debugfs_entry;
@@ -3481,7 +3481,7 @@ retry:
 
 	thread->looper |= BINDER_LOOPER_STATE_WAITING;
 	if (wait_for_proc_work)
-		proc->ready_threads++;
+		atomic_inc(&proc->ready_threads);
 
 	binder_unlock(__func__);
 
@@ -3513,7 +3513,7 @@ retry:
 	binder_lock(__func__);
 
 	if (wait_for_proc_work)
-		proc->ready_threads--;
+		atomic_dec(&proc->ready_threads);
 	thread->looper &= ~BINDER_LOOPER_STATE_WAITING;
 
 	if (ret)
@@ -3793,11 +3793,13 @@ retry:
 done:
 
 	*consumed = ptr - buffer;
-	if (proc->requested_threads + proc->ready_threads == 0 &&
-	    proc->requested_threads_started < proc->max_threads &&
-	    (thread->looper & (BINDER_LOOPER_STATE_REGISTERED |
-	     BINDER_LOOPER_STATE_ENTERED)) /* the user-space code fails to */
-	     /*spawn a new thread if we leave this out */) {
+	if (proc->requested_threads +
+			atomic_read(&proc->ready_threads) == 0 &&
+			proc->requested_threads_started < proc->max_threads &&
+			(thread->looper & (BINDER_LOOPER_STATE_REGISTERED |
+					   BINDER_LOOPER_STATE_ENTERED))
+			/* the user-space code fails to */
+			/* spawn a new thread if we leave this out */) {
 		proc->requested_threads++;
 		binder_debug(BINDER_DEBUG_THREADS,
 			     "%d:%d BR_SPAWN_LOOPER\n",
@@ -4336,6 +4338,7 @@ static int binder_open(struct inode *nodp, struct file *filp)
 	binder_stats_created(BINDER_STAT_PROC);
 	proc->pid = current->group_leader->pid;
 	INIT_LIST_HEAD(&proc->delivered_death);
+	atomic_set(&proc->ready_threads, 0);
 	filp->private_data = proc;
 
 	binder_unlock(__func__);
@@ -4942,7 +4945,7 @@ static void print_binder_proc_stats(struct seq_file *m,
 			"  ready threads %d\n"
 			"  free async space %zd\n", proc->requested_threads,
 			proc->requested_threads_started, proc->max_threads,
-			proc->ready_threads,
+			atomic_read(&proc->ready_threads),
 			binder_alloc_get_free_async_space(&proc->alloc));
 	count = 0;
 	for (n = rb_first(&proc->nodes); n != NULL; n = rb_next(n))
