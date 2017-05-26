@@ -475,13 +475,13 @@ enum binder_deferred_state {
  * @delivered_death:      list of delivered death notification
  *                        (protected by inner lock)
  * @max_threads:          cap on number of binder threads
- *                        (protected by outer lock)
+ *                        (protected by inner lock)
  * @requested_threads:    number of binder threads requested
- *                        (protected by outer lock)
+ *                        (protected by inner lock)
  * @requested_threads_started: number binder threads started
- *                        (protected by outer lock)
+ *                        (protected by inner lock)
  * @ready_threads:        number of threads waiting for proc work
- *                        (atomic since inner not always held)
+ *                        (protected by inner lock)
  * @tmp_ref:              temporary reference to indicate proc is in use
  *                        (protected by inner_lock)
  * @default_priority:     default scheduler priority
@@ -3199,6 +3199,7 @@ static int binder_thread_write(struct binder_proc *proc,
 			binder_debug(BINDER_DEBUG_THREADS,
 				     "%d:%d BC_REGISTER_LOOPER\n",
 				     proc->pid, thread->pid);
+			binder_inner_proc_lock(proc);
 			if (thread->looper & BINDER_LOOPER_STATE_ENTERED) {
 				thread->looper |= BINDER_LOOPER_STATE_INVALID;
 				binder_user_error("%d:%d ERROR: BC_REGISTER_LOOPER called after BC_ENTER_LOOPER\n",
@@ -3212,6 +3213,7 @@ static int binder_thread_write(struct binder_proc *proc,
 				proc->requested_threads_started++;
 			}
 			thread->looper |= BINDER_LOOPER_STATE_REGISTERED;
+			binder_inner_proc_unlock(proc);
 			break;
 		case BC_ENTER_LOOPER:
 			binder_debug(BINDER_DEBUG_THREADS,
@@ -3486,11 +3488,11 @@ retry:
 	binder_inner_proc_lock(proc);
 	wait_for_proc_work = thread->transaction_stack == NULL &&
 		binder_worklist_empty_ilocked(&thread->todo);
+	if (wait_for_proc_work)
+		proc->ready_threads++;
 	binder_inner_proc_unlock(proc);
 
 	thread->looper |= BINDER_LOOPER_STATE_WAITING;
-	if (wait_for_proc_work)
-		proc->ready_threads++;
 
 	binder_unlock(__func__);
 
@@ -3521,8 +3523,10 @@ retry:
 
 	binder_lock(__func__);
 
+	binder_inner_proc_lock(proc);
 	if (wait_for_proc_work)
 		proc->ready_threads--;
+	binder_inner_proc_unlock(proc);
 	thread->looper &= ~BINDER_LOOPER_STATE_WAITING;
 
 	if (ret)
@@ -3802,19 +3806,23 @@ retry:
 done:
 
 	*consumed = ptr - buffer;
+	binder_inner_proc_lock(proc);
 	if (proc->requested_threads + proc->ready_threads == 0 &&
-	    proc->requested_threads_started < proc->max_threads &&
-	    (thread->looper & (BINDER_LOOPER_STATE_REGISTERED |
-	     BINDER_LOOPER_STATE_ENTERED)) /* the user-space code fails to */
-	     /*spawn a new thread if we leave this out */) {
+			proc->requested_threads_started < proc->max_threads &&
+			(thread->looper & (BINDER_LOOPER_STATE_REGISTERED |
+					   BINDER_LOOPER_STATE_ENTERED))
+			/* the user-space code fails to */
+			/* spawn a new thread if we leave this out */) {
 		proc->requested_threads++;
+		binder_inner_proc_unlock(proc);
 		binder_debug(BINDER_DEBUG_THREADS,
 			     "%d:%d BR_SPAWN_LOOPER\n",
 			     proc->pid, thread->pid);
 		if (put_user(BR_SPAWN_LOOPER, (uint32_t __user *)buffer))
 			return -EFAULT;
 		binder_stat_br(proc, thread, BR_SPAWN_LOOPER);
-	}
+	} else
+		binder_inner_proc_unlock(proc);
 	return 0;
 }
 
@@ -4194,12 +4202,19 @@ static long binder_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		if (ret)
 			goto err;
 		break;
-	case BINDER_SET_MAX_THREADS:
-		if (copy_from_user(&proc->max_threads, ubuf, sizeof(proc->max_threads))) {
+	case BINDER_SET_MAX_THREADS: {
+		int max_threads;
+
+		if (copy_from_user(&max_threads, ubuf,
+				   sizeof(max_threads))) {
 			ret = -EINVAL;
 			goto err;
 		}
+		binder_inner_proc_lock(proc);
+		proc->max_threads = max_threads;
+		binder_inner_proc_unlock(proc);
 		break;
+	}
 	case BINDER_SET_CONTEXT_MGR:
 		ret = binder_ioctl_set_ctx_mgr(filp);
 		if (ret)
@@ -4939,6 +4954,8 @@ static void print_binder_proc_stats(struct seq_file *m,
 	struct binder_work *w;
 	struct rb_node *n;
 	int count, strong, weak;
+	size_t free_async_space =
+		binder_alloc_get_free_async_space(&proc->alloc);
 
 	seq_printf(m, "proc %d\n", proc->pid);
 	seq_printf(m, "context %s\n", proc->context->name);
@@ -4952,7 +4969,7 @@ static void print_binder_proc_stats(struct seq_file *m,
 			"  free async space %zd\n", proc->requested_threads,
 			proc->requested_threads_started, proc->max_threads,
 			proc->ready_threads,
-			binder_alloc_get_free_async_space(&proc->alloc));
+			free_async_space);
 	count = 0;
 	for (n = rb_first(&proc->nodes); n != NULL; n = rb_next(n))
 		count++;
