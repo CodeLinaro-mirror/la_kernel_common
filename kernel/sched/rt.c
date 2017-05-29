@@ -2380,6 +2380,9 @@ void __init init_sched_rt_class(void)
 }
 #endif /* CONFIG_SMP */
 
+extern
+void copy_sched_avg(struct task_struct *p, enum from_class from);
+
 /*
  * When switching a task to RT, we may overload the runqueue
  * with RT tasks. In this case we try to push them off to
@@ -2387,6 +2390,7 @@ void __init init_sched_rt_class(void)
  */
 static void switched_to_rt(struct rq *rq, struct task_struct *p)
 {
+	copy_sched_avg(p, FAIR);
 	/*
 	 * If we are already running, then there's nothing
 	 * that needs to be done. But if we are not running

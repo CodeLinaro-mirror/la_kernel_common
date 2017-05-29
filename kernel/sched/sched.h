@@ -813,6 +813,11 @@ static inline u64 rq_clock_task(struct rq *rq)
 	return rq->clock_task;
 }
 
+enum from_class {
+	FAIR,
+	RT,
+};
+
 void update_load_avg_rt_se(u64 now,
 			   int cpu,
 			   struct sched_rt_entity *rt_se,

@@ -10093,6 +10093,21 @@ static void attach_task_cfs_rq(struct task_struct *p)
 		se->vruntime += cfs_rq->min_vruntime;
 }
 
+#ifdef CONFIG_SMP
+void copy_sched_avg(struct task_struct *p, enum from_class from)
+{
+	if (from == FAIR) {
+		p->rt.avg.last_update_time = p->se.avg.last_update_time;
+		p->rt.avg.util_avg = p->se.avg.util_avg;
+	} else {
+		p->se.avg.last_update_time = p->rt.avg.last_update_time;
+		p->se.avg.util_avg = p->rt.avg.util_avg;
+	}
+}
+#else
+void copy_sched_avg(struct task_struct *p, enum from_class from) { }
+#endif
+
 static void switched_from_fair(struct rq *rq, struct task_struct *p)
 {
 	detach_task_cfs_rq(p);
@@ -10100,6 +10115,7 @@ static void switched_from_fair(struct rq *rq, struct task_struct *p)
 
 static void switched_to_fair(struct rq *rq, struct task_struct *p)
 {
+	copy_sched_avg(p, RT);
 	attach_task_cfs_rq(p);
 
 	if (task_on_rq_queued(p)) {
