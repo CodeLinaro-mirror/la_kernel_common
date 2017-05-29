@@ -15,6 +15,39 @@
  *
  */
 
+/*
+ * Locking overview
+ *
+ * There are 3 main spinlocks which must be acquired in the
+ * order shown:
+ *
+ * 1) proc->outer_lock : protects most fields of binder_ref and
+ * 	some fields of binder_proc. binder_proc_lock()
+ * 	and binder_proc_unlock() are used to acq/rel.
+ * 2) node->lock : protects most fields of binder_node.
+ * 	binder_node_lock() and binder_node_unlock() are
+ * 	used to acq/rel
+ * 3) proc->inner_lock : protects the thread and node lists
+ * 	(proc->threads, proc->nodes) and all todo lists associated
+ * 	with the binder_proc (proc->todo, thread->todo,
+ * 	proc->delivered_death and node->async_todo).
+ * 	binder_inner_proc_lock() and binder_inner_proc_unlock()
+ * 	are used to acq/rel
+ *
+ * Any lock under procA must never be nested under any lock at the same
+ * level or below on procB.
+ *
+ * Functions that require a lock held on entry indicate which lock
+ * in the suffix of the function name:
+ *
+ * foo_olocked() : requires node->outer_lock
+ * foo_nlocked() : requires node->lock
+ * foo_ilocked() : requires proc->inner_lock
+ * foo_oilocked(): requires proc->outer_lock and proc->inner_lock
+ * foo_nilocked(): requires node->lock and proc->inner_lock
+ * ...
+ */
+
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #include <asm/cacheflush.h>
@@ -35,6 +68,7 @@
 #include <linux/uaccess.h>
 #include <linux/pid_namespace.h>
 #include <linux/security.h>
+#include <linux/spinlock.h>
 
 #ifdef CONFIG_ANDROID_BINDER_IPC_32BIT
 #define BINDER_IPC_32BIT 1
@@ -106,6 +140,7 @@ enum {
 	BINDER_DEBUG_FREE_BUFFER            = 1U << 11,
 	BINDER_DEBUG_INTERNAL_REFS          = 1U << 12,
 	BINDER_DEBUG_PRIORITY_CAP           = 1U << 13,
+	BINDER_DEBUG_SPINLOCKS              = 1U << 14,
 };
 static uint32_t binder_debug_mask = BINDER_DEBUG_USER_ERROR |
 	BINDER_DEBUG_FAILED_TRANSACTION | BINDER_DEBUG_DEAD_TRANSACTION;
@@ -255,8 +290,70 @@ struct binder_error {
 	uint32_t cmd;
 };
 
+/**
+ * struct binder_node - binder node bookkeeping
+ * @debug_id:             unique ID for debugging
+ *                        (invariant after initialized)
+ * @lock:                 lock for node fields
+ * @work:                 worklist element for node work
+ *                        (protected by inner lock)
+ * @rb_node:              element for proc->nodes tree
+ *                        (protected by inner lock)
+ * @dead_node:            element for binder_dead_nodes list
+ *                        (protected by binder_nodes_lock mutex)
+ * @proc:                 binder_proc that owns this node
+ *                        (invariant after initialized)
+ * @refs:                 list of references on this node
+ *                        (protected by node->lock)
+ * @internal_strong_refs: used to take strong references when
+ *                        initiating a transaction
+ *                        (protected by proc->inner_lock if node->proc
+ *                         and by node->lock)
+ * @local_weak_refs:      weak user refs
+ *                        (protected by proc->inner_lock if node->proc
+ *                         and by node->lock)
+ * @local_strong_refs:    strong user refs
+ *                        (protected by proc->inner_lock if node->proc
+ *                         and by node->lock)
+ * @tmp_refs:             temporary kernel refs
+ *                        (protected by proc->inner_lock while node->proc
+ *                        is valid, and by binder_dead_nodes_lock and
+ *                        node->lock when node->proc is NULL)
+ * @ptr:                  userspace pointer for node
+ *                        (invariant, no lock needed)
+ * @cookie:               userspace cookie for node
+ *                        (invariant, no lock needed)
+ * @has_strong_ref:       userspace notified of strong ref
+ *                        (protected by proc->inner_lock if node->proc
+ *                         and by node->lock)
+ * @pending_strong_ref:   userspace has acked notification of strong ref
+ *                        (protected by proc->inner_lock if node->proc
+ *                         and by node->lock)
+ * @has_weak_ref:         userspace notified of weak ref
+ *                        (protected by proc->inner_lock if node->proc
+ *                         and by node->lock)
+ * @pending_weak_ref:     userspace has acked notification of weak ref
+ *                        (protected by proc->inner_lock if node->proc
+ *                         and by node->lock)
+ * @has_async_transaction: async transaction to node in progress
+ *                        (protected by node->lock)
+ * @accept_fds:           file descriptor operations supported for node
+ *                        (protected by node->lock)
+ * @min_priority:         minimum scheduling priority
+ *                        (protected by node->lock)
+ * @async_todo:           list of async work items
+ *                        (protected by inner lock)
+ *
+ * Bookkeeping structure for binder nodes. Fields used when
+ * handling node work in binder_thread_read are protected by
+ * the node->lock and if node->proc is set, they are also protected
+ * by proc->inner_lock to provide serialization with the todo work
+ * queue handling. Unless otherwise noted, elements are protected
+ * by node->lock.
+ */
 struct binder_node {
 	int debug_id;
+	spinlock_t lock;
 	struct binder_work work;
 	union {
 		struct rb_node rb_node;
@@ -340,6 +437,56 @@ enum binder_deferred_state {
 	BINDER_DEFERRED_RELEASE      = 0x04,
 };
 
+/**
+ * struct binder_proc - binder process bookkeeping
+ * @proc_node:            element for binder_procs list
+ * @threads:              rbtree of binder_threads in this proc
+ *                        (protected by inner_lock)
+ * @nodes:                rbtree of binder nodes associated with
+ *                        this proc (protected by inner_lock)
+ * @refs_by_desc:         rbtree of refs ordered by ref->desc
+ *                        (protected by outer lock)
+ * @refs_by_node:         rbtree of refs ordered by ref->node
+ *                        (protected by outer lock)
+ * @pid                   PID of group_leader of process
+ *                        (invariant after initialized)
+ * @tsk                   task_struct for group_leader of process
+ *                        (invariant after initialized)
+ * @files                 files_struct for process
+ *                        (invariant after initialized)
+ * @deferred_work_node:   element for binder_deferred_list
+ * @deferred_work:        bitmap of deferred work to perform
+ * @is_dead:              process is dead and awaiting free
+ *                        when outstanding transactions are cleaned up
+ *                        (protected by inner lock)
+ * @todo:                 list of work for this process
+ *                        (protected by inner lock)
+ * @wait:                 wait queue head to wait for proc work
+ *                        (invariant after initialized)
+ * @stats:                per-process binder statistics
+ * @delivered_death:      list of delivered death notification
+ *                        (protected by inner lock)
+ * @max_threads:          cap on number of binder threads
+ *                        (protected by outer lock)
+ * @requested_threads:    number of binder threads requested
+ *                        (protected by outer lock)
+ * @requested_threads_started: number binder threads started
+ *                        (protected by outer lock)
+ * @ready_threads:        number of threads waiting for proc work
+ *                        (atomic since inner not always held)
+ * @tmp_ref:              temporary reference to indicate proc is in use
+ *                        (protected by inner_lock)
+ * @default_priority:     default scheduler priority
+ *                        (invariant after initialized)
+ * @debugfs_entry:        debugfs node
+ * @alloc:                binder allocator bookkeeping
+ * @context:              binder_context for this proc
+ *                        (invariant after initialized)
+ * @inner_lock:           inner lock (threads, nodes, worklists)
+ * @outer_lock:           outer lock (refs, proc)
+ *
+ * Bookkeeping structure for binder processes
+ */
 struct binder_proc {
 	struct hlist_node proc_node;
 	struct rb_root threads;
@@ -366,6 +513,9 @@ struct binder_proc {
 	struct dentry *debugfs_entry;
 	struct binder_alloc alloc;
 	struct binder_context *context;
+	spinlock_t inner_lock; /* can nest under outer_lock and/or node lock*/
+	spinlock_t outer_lock; /* no nesting under inner or node lock */
+			       /* Order: 1) outer, 2) node, 3) inner  */
 };
 
 enum {
@@ -376,6 +526,36 @@ enum {
 	BINDER_LOOPER_STATE_WAITING     = 0x10,
 };
 
+/**
+ * struct binder_thread - binder thread bookkeeping
+ * @proc:                 binder process for this thread
+ *                        (invariant after initialization)
+ * @rb_node:              element for proc->threads rbtree
+ *                        (protected by thread->proc->inner_lock)
+ * @pid:                  PID for this thread
+ *                        (invariant after initialization)
+ * @looper:               bitmap of looping state
+ *                        (only accessed by this thread)
+ * @looper_needs_return:  looping thread needs to exit driver
+ *                        (no lock needed)
+ * @transaction_stack:    stack of in-progress transactions for this thread
+ *                        (protected by inner lock)
+ * @todo:                 list of work to do for this thread
+ *                        (protected by thread->proc->inner_lock)
+ * @return_error:         transaction errors reported by this thread
+ *                        (only accessed by this thread)
+ * @reply_error:          transaction errors reported by target thread
+ *                        (protected by inner lock)
+ * @wait:                 wait queue for thread work
+ * @stats:                per-thread statistics
+ * @tmp_ref:              temporary reference to indicate thread is in use
+ *                        (atomic since inner lock cannot always be acquired)
+ * @is_dead:              thread is dead and awaiting free
+ *                        when outstanding transactions are cleaned up
+ *                        (protected by inner lock)
+ *
+ * Bookkeeping structure for binder threads.
+ */
 struct binder_thread {
 	struct binder_proc *proc;
 	struct rb_node rb_node;
@@ -412,6 +592,98 @@ struct binder_transaction {
 	spinlock_t lock; /* protects from, to_proc, and to_thread since they */
 	                 /* can be set to NULL during thread teardown        */
 };
+
+/**
+ * binder_proc_lock() - Acquire outer lock for given binder_proc
+ * @proc:         struct binder_proc to acquire
+ *
+ * Acquires proc->outer_lock. Used to protect binder_proc,
+ * binder_node, binder_ref structures associated with the
+ * given proc.
+ */
+#define binder_proc_lock(proc) _binder_proc_lock(proc, __LINE__)
+static void
+_binder_proc_lock(struct binder_proc *proc, int line)
+{
+	binder_debug(BINDER_DEBUG_SPINLOCKS,
+		     "%s: line=%d\n", __func__, line);
+	spin_lock(&proc->outer_lock);
+}
+
+/**
+ * binder_proc_unlock() - Release spinlock for given binder_proc
+ * @proc:         struct binder_proc to acquire
+ *
+ * Release lock acquired via binder_proc_lock()
+ */
+#define binder_proc_unlock(_proc) _binder_proc_unlock(_proc, __LINE__)
+static void
+_binder_proc_unlock(struct binder_proc *proc, int line)
+{
+	binder_debug(BINDER_DEBUG_SPINLOCKS,
+		     "%s: line=%d\n", __func__, line);
+	spin_unlock(&proc->outer_lock);
+}
+
+/**
+ * binder_inner_proc_lock() - Acquire inner lock for given binder_proc
+ * @proc:         struct binder_proc to acquire
+ *
+ * Acquires proc->inner_lock. Used to protect todo lists
+ */
+#define binder_inner_proc_lock(proc) _binder_inner_proc_lock(proc, __LINE__)
+static void
+_binder_inner_proc_lock(struct binder_proc *proc, int line)
+{
+	binder_debug(BINDER_DEBUG_SPINLOCKS,
+		     "%s: line=%d\n", __func__, line);
+	spin_lock(&proc->inner_lock);
+}
+
+/**
+ * binder_inner_proc_unlock() - Release inner lock for given binder_proc
+ * @proc:         struct binder_proc to acquire
+ *
+ * Release lock acquired via binder_inner_proc_lock()
+ */
+#define binder_inner_proc_unlock(proc) _binder_inner_proc_unlock(proc, __LINE__)
+static void
+_binder_inner_proc_unlock(struct binder_proc *proc, int line)
+{
+	binder_debug(BINDER_DEBUG_SPINLOCKS,
+		     "%s: line=%d\n", __func__, line);
+	spin_unlock(&proc->inner_lock);
+}
+
+/**
+ * binder_node_lock() - Acquire spinlock for given binder_node
+ * @node:         struct binder_node to acquire
+ *
+ * Acquires node->lock. Used to protect binder_node fields
+ */
+#define binder_node_lock(node) _binder_node_lock(node, __LINE__)
+static void
+_binder_node_lock(struct binder_node *node, int line)
+{
+	binder_debug(BINDER_DEBUG_SPINLOCKS,
+		     "%s: line=%d\n", __func__, line);
+	spin_lock(&node->lock);
+}
+
+/**
+ * binder_node_unlock() - Release spinlock for given binder_proc
+ * @node:         struct binder_node to acquire
+ *
+ * Release lock acquired via binder_node_lock()
+ */
+#define binder_node_unlock(node) _binder_node_unlock(node, __LINE__)
+static void
+_binder_node_unlock(struct binder_node *node, int line)
+{
+	binder_debug(BINDER_DEBUG_SPINLOCKS,
+		     "%s: line=%d\n", __func__, line);
+	spin_unlock(&node->lock);
+}
 
 static void
 binder_defer_work(struct binder_proc *proc, enum binder_deferred_state defer);
@@ -557,6 +829,7 @@ static struct binder_node *binder_new_node(struct binder_proc *proc,
 	node->ptr = ptr;
 	node->cookie = cookie;
 	node->work.type = BINDER_WORK_NODE;
+	spin_lock_init(&node->lock);
 	INIT_LIST_HEAD(&node->work.entry);
 	INIT_LIST_HEAD(&node->async_todo);
 	binder_debug(BINDER_DEBUG_INTERNAL_REFS,
@@ -3578,6 +3851,8 @@ static int binder_open(struct inode *nodp, struct file *filp)
 	proc = kzalloc(sizeof(*proc), GFP_KERNEL);
 	if (proc == NULL)
 		return -ENOMEM;
+	spin_lock_init(&proc->inner_lock);
+	spin_lock_init(&proc->outer_lock);
 	get_task_struct(current->group_leader);
 	proc->tsk = current->group_leader;
 	INIT_LIST_HEAD(&proc->todo);
