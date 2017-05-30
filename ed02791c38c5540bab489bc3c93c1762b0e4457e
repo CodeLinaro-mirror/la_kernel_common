@@ -16,6 +16,24 @@
       "revId": "ed02791c38c5540bab489bc3c93c1762b0e4457e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7579ad09_8e4f237b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 2489,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-30T22:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f04f6ba0_f2362fa1",
+      "revId": "ed02791c38c5540bab489bc3c93c1762b0e4457e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
