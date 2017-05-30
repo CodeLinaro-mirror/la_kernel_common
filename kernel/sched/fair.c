@@ -2932,6 +2932,9 @@ void set_task_rq_fair(struct sched_entity *se,
 		se->avg.last_update_time = n_last_update_time;
 	}
 }
+#else /* CONFIG_FAIR_GROUP_SCHED */
+static inline void update_tg_load_avg(struct cfs_rq *cfs_rq, int force) {}
+#endif /* CONFIG_FAIR_GROUP_SCHED */
 
 /* Take into account change of utilization of a child task group */
 static inline void
