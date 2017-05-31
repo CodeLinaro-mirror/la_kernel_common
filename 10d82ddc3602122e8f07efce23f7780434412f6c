@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8e327786_ca41e0f0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-31T21:59:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "467349b6_8fb2cab1",
+      "range": {
+        "startLine": 726,
+        "startChar": 3,
+        "endLine": 726,
+        "endChar": 10
+      },
+      "revId": "10d82ddc3602122e8f07efce23f7780434412f6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce4b4b73_51d6587a",
         "filename": "drivers/android/binder.c",
         "patchSetId": 15
@@ -36,6 +60,30 @@
       "writtenOn": "2017-05-26T22:46:55Z",
       "side": 1,
       "message": "should you also hold the lock here?",
+      "range": {
+        "startLine": 734,
+        "startChar": 29,
+        "endLine": 734,
+        "endChar": 58
+      },
+      "revId": "10d82ddc3602122e8f07efce23f7780434412f6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de6f1a5e_4d075993",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-31T21:59:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce4b4b73_51d6587a",
       "range": {
         "startLine": 734,
         "startChar": 29,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "46f8a833_383d337f",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-31T21:59:25Z",
+      "side": 1,
+      "message": "removed this from this patch since it gets refactored in an upcoming patch and will have the lock then",
+      "parentUuid": "99d8d468_ffea1206",
+      "range": {
+        "startLine": 783,
+        "startChar": 4,
+        "endLine": 783,
+        "endChar": 43
+      },
+      "revId": "10d82ddc3602122e8f07efce23f7780434412f6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "af0c3a92_008edc01",
         "filename": "drivers/android/binder.c",
         "patchSetId": 15
@@ -82,6 +154,30 @@
       "writtenOn": "2017-05-26T22:46:55Z",
       "side": 1,
       "message": "need the lock here? Otherwise binder_node_release can enqueue something at the same time.",
+      "range": {
+        "startLine": 2420,
+        "startChar": 4,
+        "endLine": 2420,
+        "endChar": 41
+      },
+      "revId": "10d82ddc3602122e8f07efce23f7780434412f6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0fdb5f8f_388810a2",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 2420,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-31T21:59:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af0c3a92_008edc01",
       "range": {
         "startLine": 2420,
         "startChar": 4,
@@ -111,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "1b92ec11_eb0162ee",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 2654,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-31T21:59:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b3683d5_4678707f",
+      "revId": "10d82ddc3602122e8f07efce23f7780434412f6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "791cd990_846bd0af",
         "filename": "drivers/android/binder.c",
         "patchSetId": 15
@@ -128,6 +242,24 @@
     },
     {
       "key": {
+        "uuid": "fb4d7dcb_48bc7d2c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 2667,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-31T21:59:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "791cd990_846bd0af",
+      "revId": "10d82ddc3602122e8f07efce23f7780434412f6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6da3a2fe_ccbb5670",
         "filename": "drivers/android/binder.c",
         "patchSetId": 15
@@ -139,6 +271,30 @@
       "writtenOn": "2017-05-26T22:46:55Z",
       "side": 1,
       "message": "So this would need the lock, too.",
+      "range": {
+        "startLine": 3456,
+        "startChar": 2,
+        "endLine": 3456,
+        "endChar": 44
+      },
+      "revId": "10d82ddc3602122e8f07efce23f7780434412f6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25b71f26_0044cad4",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 3456,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-05-31T21:59:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6da3a2fe_ccbb5670",
       "range": {
         "startLine": 3456,
         "startChar": 2,
