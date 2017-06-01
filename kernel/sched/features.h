@@ -85,3 +85,9 @@ SCHED_FEAT(ENERGY_AWARE, false)
  * previous and next candidate CPUs.
  */
 SCHED_FEAT(ENERGY_FILTER, true)
+
+/*
+ * UtilEstimation. Use estimated utilization to filter PELT reported CPU and
+ * TASKs utilization.
+ */
+SCHED_FEAT(UTIL_EST, true)
