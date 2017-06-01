@@ -6327,7 +6327,6 @@ static inline int find_best_target(struct task_struct *p, bool boosted, bool pre
 	}
 
 	sd = rcu_dereference(per_cpu(sd_ea, cpu));
-
 	if (!sd) {
 		schedstat_inc(p, se.statistics.nr_wakeups_fbt_no_sd);
 		schedstat_inc(this_rq(), eas_stats.fbt_no_sd);
@@ -6335,7 +6334,6 @@ static inline int find_best_target(struct task_struct *p, bool boosted, bool pre
 	}
 
 	sg = sd->groups;
-
 	do {
 		int i;
 
@@ -6454,7 +6452,6 @@ static int wake_cap(struct task_struct *p, int cpu, int prev_cpu)
 
 static int select_energy_cpu_brute(struct task_struct *p, int prev_cpu, int sync)
 {
-	struct sched_domain *sd;
 	int target_cpu = prev_cpu, tmp_target;
 	bool boosted, prefer_idle;
 
@@ -6471,7 +6468,6 @@ static int select_energy_cpu_brute(struct task_struct *p, int prev_cpu, int sync
 		}
 	}
 
-	rcu_read_lock();
 #ifdef CONFIG_CGROUP_SCHEDTUNE
 	boosted = schedtune_task_boost(p) > 0;
 	prefer_idle = schedtune_prefer_idle(p) > 0;
@@ -6480,12 +6476,13 @@ static int select_energy_cpu_brute(struct task_struct *p, int prev_cpu, int sync
 	prefer_idle = 0;
 #endif
 
-	sd = rcu_dereference(per_cpu(sd_ea, prev_cpu));
+	/*
+	 * Both find_best_target() and energy_diff() walk SDs.
+	 */
+	rcu_read_lock();
+
 	/* Find a cpu with sufficient capacity */
 	tmp_target = find_best_target(p, boosted, prefer_idle);
-
-	if (!sd)
-		goto unlock;
 	if (tmp_target >= 0) {
 		target_cpu = tmp_target;
 		if ((boosted || prefer_idle) && idle_cpu(target_cpu)) {
