@@ -51,6 +51,24 @@
       "revId": "7ec894cf15d19cb12281ef5b518d60317da5e4c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4679fd47_ab8e859a",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 14
+      },
+      "lineNbr": 4415,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-01T18:28:25Z",
+      "side": 1,
+      "message": "No other thread can find this ref anymore since it isn\u0027t in the rbtrees. outer lock is held whenever refs are being accessed, so the fact that we had the lock when we removed it from the trees is enough. There shouldn\u0027t be any cases where a thread gets a ref, drops the outer lock, and later accesses that ref.",
+      "parentUuid": "2a7a7323_a82e31ed",
+      "revId": "7ec894cf15d19cb12281ef5b518d60317da5e4c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
