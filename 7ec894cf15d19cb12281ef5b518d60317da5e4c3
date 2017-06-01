@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6bd4d7ce_32d469f8",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 14
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-01T03:34:14Z",
+      "side": 1,
+      "message": "why did these move?",
+      "revId": "7ec894cf15d19cb12281ef5b518d60317da5e4c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a7a7323_a82e31ed",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 14
+      },
+      "lineNbr": 4415,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-01T03:34:14Z",
+      "side": 1,
+      "message": "what prevents other threads from freeing ref here?",
+      "revId": "7ec894cf15d19cb12281ef5b518d60317da5e4c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
