@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d74451f1_1b5b6095",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-01T16:43:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d35a3f64_f8ad51bc",
+      "revId": "f50630864ecf986bef8824a08adb6ce329cd4c78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "41ecde2c_e653ac77",
         "filename": "drivers/android/binder.c",
         "patchSetId": 16
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "efa9666a_22d298ac",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 3240,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-01T16:43:29Z",
+      "side": 1,
+      "message": "Hmm. Never. Obviously got some pieces spread across patches. Fix coming.",
+      "parentUuid": "41ecde2c_e653ac77",
+      "revId": "f50630864ecf986bef8824a08adb6ce329cd4c78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0beec97_a2be4f8c",
         "filename": "drivers/android/binder.c",
         "patchSetId": 16
@@ -47,6 +83,24 @@
       "writtenOn": "2017-06-01T01:01:54Z",
       "side": 1,
       "message": "this can go in the patch that adds the lock",
+      "revId": "f50630864ecf986bef8824a08adb6ce329cd4c78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b515cdc6_4ab020be",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 3951,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-01T16:43:29Z",
+      "side": 1,
+      "message": "Indeed :(",
+      "parentUuid": "a0beec97_a2be4f8c",
       "revId": "f50630864ecf986bef8824a08adb6ce329cd4c78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
