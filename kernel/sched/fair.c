@@ -763,6 +763,10 @@ void init_entity_runnable_average(struct sched_entity *se)
 	sa->util_avg = 0;
 	sa->util_sum = 0;
 	/* when this task enqueue'ed, it will contribute to its cfs_rq's load_avg */
+
+	ewma_util_init(&sa->util_ewma);
+	sa->util_est.ewma = 0;
+	sa->util_est.last = 0;
 }
 
 static inline u64 cfs_rq_clock_task(struct cfs_rq *cfs_rq);
@@ -4776,6 +4780,15 @@ enqueue_task_fair(struct rq *rq, struct task_struct *p, int flags)
 	}
 
 #endif /* CONFIG_SMP */
+
+	/*
+	 * Update (top level CFS) RQ estimated utilization.
+	 * NOTE: the following code assume that we never change the
+	 *       utilization estimation policy at run-time.
+	 */
+	cfs_rq = &(task_rq(p)->cfs);
+	cfs_rq->avg.util_est.last += task_util_est(p);
+
 	hrtick_update(rq);
 }
 
@@ -4868,6 +4881,24 @@ static void dequeue_task_fair(struct rq *rq, struct task_struct *p, int flags)
 	}
 
 #endif /* CONFIG_SMP */
+
+	/*
+	 * Update (top level CFS) RQ estimated utilization
+	 * NOTE: for RQs we alwasy use util_est.last since we do not track an
+	 *       EWMA, which is tracked only for Tasks.
+	 */
+	cfs_rq = &(task_rq(p)->cfs);
+	cfs_rq->avg.util_est.last = max_t(long,
+			cfs_rq->avg.util_est.last - task_util_est(p), 0);
+
+	/* Update Task's estimated utilization */
+	if (task_sleep) {
+		/* Keep track of the utilization for the last activation */
+		p->se.avg.util_est.last = task_util(p);
+		/* Update EWMA for Task utilization */
+		ewma_util_add(&p->se.avg.util_ewma, task_util(p));
+		p->se.avg.util_est.ewma = ewma_util_read(&p->se.avg.util_ewma);
+	}
 
 	hrtick_update(rq);
 }
