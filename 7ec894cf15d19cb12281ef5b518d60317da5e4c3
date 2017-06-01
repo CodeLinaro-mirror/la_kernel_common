@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bb45ac01_b831c242",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 14
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-01T17:51:54Z",
+      "side": 1,
+      "message": "Ah, I meant to ask you for a suggestion here. The issue is that the bitfield above these are protected by inner lock and the bitfields below are protected by node lock. I know this isn\u0027t sufficient. Should I split them out as a struct of bitfields?",
+      "parentUuid": "6bd4d7ce_32d469f8",
+      "revId": "7ec894cf15d19cb12281ef5b518d60317da5e4c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a7a7323_a82e31ed",
         "filename": "drivers/android/binder.c",
         "patchSetId": 14
