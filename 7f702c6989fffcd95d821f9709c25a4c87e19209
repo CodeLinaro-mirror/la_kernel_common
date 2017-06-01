@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "621c1b50_03d8996a",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 2504,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-01T15:20:47Z",
+      "side": 1,
+      "message": "Sigh. Thanks.",
+      "parentUuid": "2a2ac46f_c9cbdf75",
+      "range": {
+        "startLine": 2504,
+        "startChar": 16,
+        "endLine": 2504,
+        "endChar": 18
+      },
+      "revId": "7f702c6989fffcd95d821f9709c25a4c87e19209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27da1d1c_e8d2c4a8",
         "filename": "drivers/android/binder.c",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2017-05-31T23:42:39Z",
       "side": 1,
       "message": "this needs to happen before you free the memory above",
+      "revId": "7f702c6989fffcd95d821f9709c25a4c87e19209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7be12c6b_d3d357b1",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 2511,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-01T15:20:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27da1d1c_e8d2c4a8",
       "revId": "7f702c6989fffcd95d821f9709c25a4c87e19209",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
