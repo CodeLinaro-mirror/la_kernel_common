@@ -1575,6 +1575,9 @@ static inline unsigned long task_util_est(struct task_struct *p)
 {
 	struct sched_avg *sa = &p->se.avg;
 
+	if (!sched_feat(UTIL_EST))
+		return task_util(p);
+
 	return util_est(sa, UTIL_EST_POLICY);
 }
 
@@ -1625,6 +1628,22 @@ static inline unsigned long __cpu_util(int cpu, int delta)
 static inline unsigned long cpu_util(int cpu)
 {
 	return __cpu_util(cpu, 0);
+}
+
+static inline int cpu_util_est(int cpu)
+{
+	struct sched_avg *sa = &cpu_rq(cpu)->cfs.avg;
+	unsigned long util = cpu_util(cpu);
+
+	/*
+	 * NOTE: for RQs we do not track an EWMA, thus the estimated
+	 *       utilization is always defined just by the sum of the
+	 *       task_util_est() for each RUNNABLE task.
+	 * The eventually non zero blocked utilization related to tasks
+	 * currently not running on the CPU is accounted considering the
+	 * PELT signal.
+	 */
+	return max(util, util_est(sa, UTIL_EST_LAST));
 }
 
 #endif
