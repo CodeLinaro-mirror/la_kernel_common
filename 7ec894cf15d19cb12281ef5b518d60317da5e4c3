@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "5f5e97c4_d313d4c4",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 14
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-05T20:43:19Z",
+      "side": 1,
+      "message": "u8 inside the unnamed struct might be smaller on 32 bit systems.",
+      "parentUuid": "ce44097f_a2f730e3",
+      "revId": "7ec894cf15d19cb12281ef5b518d60317da5e4c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a7a7323_a82e31ed",
         "filename": "drivers/android/binder.c",
         "patchSetId": 14
