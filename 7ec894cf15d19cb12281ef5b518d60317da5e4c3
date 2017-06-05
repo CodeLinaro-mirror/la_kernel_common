@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "ce44097f_a2f730e3",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 14
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-05T18:20:14Z",
+      "side": 1,
+      "message": "I took a look at the generated code (for pixel) and found that unnamed structs appear to do what we want. With this decl:\n\n  struct binder_node {\n\tint debug_id;\n\tspinlock_t lock;\n\tstruct binder_work work;\n\tunion {\n\t\tstruct rb_node rb_node;\n\t\tstruct hlist_node dead_node;\n\t};\n\tstruct binder_proc *proc;\n\tstruct hlist_head refs;\n\tint internal_strong_refs;\n\tint local_weak_refs;\n\tint local_strong_refs;\n\tint tmp_refs;\n\tbinder_uintptr_t ptr;\n\tbinder_uintptr_t cookie;\n\tstruct {\n\t\tunsigned has_strong_ref:1;\n\t\tunsigned pending_strong_ref:1;\n\t\tunsigned has_weak_ref:1;\n\t\tunsigned pending_weak_ref:1;\n\t};\n\tstruct {\n\t\tunsigned has_async_transaction:1;\n\t\tunsigned accept_fds:1;\n\t\tunsigned min_priority:8;\n\t};\n\tstruct binder_worklist async_todo;\n  };\n\nThe compiler code placed the second unnamed struct at an offset of 4 bytes from the first one and used 1-byte ld/st to manipulate the single-bit bitfields.\n\nLooking at structure size... the struct binder_node was 144 bytes for all three declarations that I tried:\n\n1) original declaration with no unnamed structs and the bitfields grouped together\n2) declaration shown above with unnamed structs and elements declared as \"unsigned\"\n3) same as #2, but elements declared as uint8_t",
+      "parentUuid": "bb45ac01_b831c242",
+      "revId": "7ec894cf15d19cb12281ef5b518d60317da5e4c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a7a7323_a82e31ed",
         "filename": "drivers/android/binder.c",
         "patchSetId": 14
