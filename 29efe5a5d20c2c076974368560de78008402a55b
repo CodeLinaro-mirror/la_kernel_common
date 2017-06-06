@@ -22,6 +22,30 @@
       "revId": "29efe5a5d20c2c076974368560de78008402a55b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0ff3ef7_1e486940",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 2736,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-06T20:57:37Z",
+      "side": 1,
+      "message": "You are right. It used to protect has_async_transaction, but not any more.",
+      "parentUuid": "6bcf2494_2d4f8584",
+      "range": {
+        "startLine": 2736,
+        "startChar": 0,
+        "endLine": 2736,
+        "endChar": 32
+      },
+      "revId": "29efe5a5d20c2c076974368560de78008402a55b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
