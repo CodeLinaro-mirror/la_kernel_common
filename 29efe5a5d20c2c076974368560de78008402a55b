@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6bcf2494_2d4f8584",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 16
+      },
+      "lineNbr": 2736,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2017-06-06T00:24:20Z",
+      "side": 1,
+      "message": "what does the proc lock protect here? When reading has_async_transaction and dequeueing from async_todo, the proc lock is not held (but the node lock is).",
+      "range": {
+        "startLine": 2736,
+        "startChar": 0,
+        "endLine": 2736,
+        "endChar": 32
+      },
+      "revId": "29efe5a5d20c2c076974368560de78008402a55b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
