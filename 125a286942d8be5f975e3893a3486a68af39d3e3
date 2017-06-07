@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ce9007f_19cd79f4",
+        "filename": "kernel/trace/trace.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 4037,
+      "author": {
+        "id": 1112163
+      },
+      "writtenOn": "2017-06-07T20:29:30Z",
+      "side": 1,
+      "message": "should be removed",
+      "revId": "125a286942d8be5f975e3893a3486a68af39d3e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
