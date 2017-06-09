@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8262697e_cb9d416a",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 1760,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-09T21:45:08Z",
+      "side": 1,
+      "message": "I think this can be simplified to:\n\nif (!from)\n\treturn NULL;\nbinder_inner_proc_lock(from-\u003eproc);\nif (t-\u003efrom) {\n\tBUG_ON(from !\u003d t-\u003efrom);\n\treturn from;\n}\nbinder_inner_proc_unlock(from-\u003eproc);\nbinder_dec_thread_txn(from);",
+      "range": {
+        "startLine": 1746,
+        "startChar": 0,
+        "endLine": 1760,
+        "endChar": 2
+      },
+      "revId": "60aba4c4ea3da08c839d91d9c1ea617c0567fa4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
