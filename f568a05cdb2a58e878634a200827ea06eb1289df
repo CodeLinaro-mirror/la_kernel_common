@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b157ba68_316951e4",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6206,
+      "author": {
+        "id": 1118133
+      },
+      "writtenOn": "2017-06-09T16:45:56Z",
+      "side": 1,
+      "message": "would this lead to a crash (calling ttwu_queue with cpu \u003d -1)?  if yes, then should this be BUG()? (we should always have a root domain and hence valid max_cap_orig_cpu and min_cap_orig_cpu used in start_cpu())",
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
