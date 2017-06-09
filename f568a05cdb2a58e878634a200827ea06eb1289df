@@ -16,6 +16,24 @@
       "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7424f82d_d3f6054f",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6206,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-09T17:29:33Z",
+      "side": 1,
+      "message": "We have:\n\nselect_energy_cpu_brute(struct task_struct *p, int prev_cpu, int sync)\n{\n    int target_cpu \u003d prev_cpu, tmp_target;\n\n    //....\n    tmp_target \u003d find_best_target(p, boosted, prefer_idle);\n    if (tmp_target \u003e\u003d 0) {\n        target_cpu \u003d tmp_target;\n    }\n    //....\n    return target_cpu;\n}\n\nThus we should be safe, eventually we return the prev_cpu.\n\nActually, this found myself a little bit confused at first glance... and perhaps this default can be improved.\nHowever, the intent of this patch is to change code as little as possible, there is already complexity on checking that we\nare preserving the original behaviours.\n\nWe should add improvements on top of that in a second step.",
+      "parentUuid": "b157ba68_316951e4",
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
