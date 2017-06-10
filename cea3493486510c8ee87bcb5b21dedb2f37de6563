@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bb61792_33bd69ec",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 6352,
+      "author": {
+        "id": 1113735
+      },
+      "writtenOn": "2017-06-10T22:29:29Z",
+      "side": 1,
+      "message": "I didn\u0027t follow this statement, it sounded to me like both cases described here are referring to relatively idle.\n\nAlso, this sounded like a paradox to me \"lightly idle CPUs with many tasks sleeping on it\". \"lightly idle sounds to me like \"heavily loaded\", and \"many tasks sleeping\" would mean the cpu is not \"heavily loaded\", Could you clarify the comment a bit more?\n\nCorrect if I\u0027m wrong but this is what I follow:\n\nIf a CPU has several tasks in blocked state and is heavily loaded, then the blocked load (PELT) is a better estimate of the cpu_util. On the other hand if its lightly loaded with a single task waking up another one, then util_est will better track things since it is a better estimate. Is that correct? If its correct, then could you clarify a bit more in the comment why util_est better tracks a single task\u0027s utilization better? I didn\u0027t get that part.",
+      "range": {
+        "startLine": 6345,
+        "startChar": 1,
+        "endLine": 6352,
+        "endChar": 40
+      },
+      "revId": "cea3493486510c8ee87bcb5b21dedb2f37de6563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
