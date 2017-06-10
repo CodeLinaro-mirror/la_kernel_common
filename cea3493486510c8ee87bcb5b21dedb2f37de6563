@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "a4f52653_c0b7f267",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 6342,
+      "author": {
+        "id": 1113735
+      },
+      "writtenOn": "2017-06-10T22:32:20Z",
+      "side": 1,
+      "message": "Since this comment is more related to the removal of PELT contribution introduced in another patch and not specifically UTIL_EST I think, could it be moved to a separate patch?",
+      "range": {
+        "startLine": 6336,
+        "startChar": 0,
+        "endLine": 6342,
+        "endChar": 44
+      },
+      "revId": "cea3493486510c8ee87bcb5b21dedb2f37de6563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bb61792_33bd69ec",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 1
