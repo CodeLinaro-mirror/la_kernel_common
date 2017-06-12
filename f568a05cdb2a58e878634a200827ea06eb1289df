@@ -34,6 +34,24 @@
       "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a27e7a49_5e8e64dd",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6206,
+      "author": {
+        "id": 1118133
+      },
+      "writtenOn": "2017-06-12T17:27:04Z",
+      "side": 1,
+      "message": "got it, thanks",
+      "parentUuid": "7424f82d_d3f6054f",
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
