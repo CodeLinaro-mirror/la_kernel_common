@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "8a69b641_53ac31f8",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 6342,
+      "author": {
+        "id": 1113735
+      },
+      "writtenOn": "2017-06-12T18:00:39Z",
+      "side": 1,
+      "message": "Hmm now that I look at it again, yes I think since you\u0027re changing the code related to the comment anyway so its Ok to add the comment in there.",
+      "parentUuid": "a6885757_3651ca33",
+      "range": {
+        "startLine": 6336,
+        "startChar": 0,
+        "endLine": 6342,
+        "endChar": 44
+      },
+      "revId": "cea3493486510c8ee87bcb5b21dedb2f37de6563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bb61792_33bd69ec",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Agree, the comment can be improved, what about:\n\n---8\u003c---\nWhen a CPU is lightly idle, e.g. it has some tasks which recently completed an activation on it, the PELT\u0027s blocked\nload properly tracks the estimated utilization of a CPU.\n\nHowever, since the blocked load is decayed over time, for long sleeping CPUs the blocked load of tasks which used to run on these CPUs some time ago is almost completely decayed.\nMoreover, when one of such long sleeping tasks wakeup up again on one of these CPUs, its utilization is also almost completely decayed. Thus, it happens that in these scenarios we are underestimating the CPU utilization.\nFor example we can consider almost 0 the cpu_util_wake() of a CPU where a \"big long-sleeping task\" just waken up when the CPU was idle since a long time.\n\nIn these scenarios, using the CPU\u0027s util_est gives a better estimation of what will likely be the CPU utilization. Indeed, while the PELT\u0027s utilization of the \"big long-sleeping task\" is building up we already know how much this task will likely use.\nIndeed, the task\u0027s estimated utilization is added to the CPU\u0027s estimated utilization as soon as the task is enqueue in that CPU and it can be conveniently be used to define a minimum capping for the cpu_util_wake() for that CPU.\n\nThese scenarios are more likely to happen on systems where the number of available CPUs is such that most of the tasks can be conveniently scheduled on a subset of these CPUs and only sometimes a task is moved to run on an almost always idle CPU.\n---8\u003c---",
       "parentUuid": "4bb61792_33bd69ec",
+      "range": {
+        "startLine": 6345,
+        "startChar": 1,
+        "endLine": 6352,
+        "endChar": 40
+      },
+      "revId": "cea3493486510c8ee87bcb5b21dedb2f37de6563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c24671e_54353146",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 6352,
+      "author": {
+        "id": 1113735
+      },
+      "writtenOn": "2017-06-12T18:00:39Z",
+      "side": 1,
+      "message": "s/waken/woken/\n\nYes that sounds a lot more clearer and explains why util_est is better. Would be good to add this. thanks",
+      "parentUuid": "6e88285b_15dac49b",
       "range": {
         "startLine": 6345,
         "startChar": 1,
