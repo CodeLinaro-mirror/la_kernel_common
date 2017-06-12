@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a6885757_3651ca33",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 6342,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-12T10:45:29Z",
+      "side": 1,
+      "message": "The code does not change, this chunk just add a comment to better describe what we are doing here... and hopefully better correlate it with the next statement.\n\nDo you really think we should better have a separate patch just to add this comment?",
+      "parentUuid": "a4f52653_c0b7f267",
+      "range": {
+        "startLine": 6336,
+        "startChar": 0,
+        "endLine": 6342,
+        "endChar": 44
+      },
+      "revId": "cea3493486510c8ee87bcb5b21dedb2f37de6563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bb61792_33bd69ec",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-06-10T22:29:29Z",
       "side": 1,
       "message": "I didn\u0027t follow this statement, it sounded to me like both cases described here are referring to relatively idle.\n\nAlso, this sounded like a paradox to me \"lightly idle CPUs with many tasks sleeping on it\". \"lightly idle sounds to me like \"heavily loaded\", and \"many tasks sleeping\" would mean the cpu is not \"heavily loaded\", Could you clarify the comment a bit more?\n\nCorrect if I\u0027m wrong but this is what I follow:\n\nIf a CPU has several tasks in blocked state and is heavily loaded, then the blocked load (PELT) is a better estimate of the cpu_util. On the other hand if its lightly loaded with a single task waking up another one, then util_est will better track things since it is a better estimate. Is that correct? If its correct, then could you clarify a bit more in the comment why util_est better tracks a single task\u0027s utilization better? I didn\u0027t get that part.",
+      "range": {
+        "startLine": 6345,
+        "startChar": 1,
+        "endLine": 6352,
+        "endChar": 40
+      },
+      "revId": "cea3493486510c8ee87bcb5b21dedb2f37de6563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e88285b_15dac49b",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 6352,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-12T10:45:29Z",
+      "side": 1,
+      "message": "Agree, the comment can be improved, what about:\n\n---8\u003c---\nWhen a CPU is lightly idle, e.g. it has some tasks which recently completed an activation on it, the PELT\u0027s blocked\nload properly tracks the estimated utilization of a CPU.\n\nHowever, since the blocked load is decayed over time, for long sleeping CPUs the blocked load of tasks which used to run on these CPUs some time ago is almost completely decayed.\nMoreover, when one of such long sleeping tasks wakeup up again on one of these CPUs, its utilization is also almost completely decayed. Thus, it happens that in these scenarios we are underestimating the CPU utilization.\nFor example we can consider almost 0 the cpu_util_wake() of a CPU where a \"big long-sleeping task\" just waken up when the CPU was idle since a long time.\n\nIn these scenarios, using the CPU\u0027s util_est gives a better estimation of what will likely be the CPU utilization. Indeed, while the PELT\u0027s utilization of the \"big long-sleeping task\" is building up we already know how much this task will likely use.\nIndeed, the task\u0027s estimated utilization is added to the CPU\u0027s estimated utilization as soon as the task is enqueue in that CPU and it can be conveniently be used to define a minimum capping for the cpu_util_wake() for that CPU.\n\nThese scenarios are more likely to happen on systems where the number of available CPUs is such that most of the tasks can be conveniently scheduled on a subset of these CPUs and only sometimes a task is moved to run on an almost always idle CPU.\n---8\u003c---",
+      "parentUuid": "4bb61792_33bd69ec",
       "range": {
         "startLine": 6345,
         "startChar": 1,
