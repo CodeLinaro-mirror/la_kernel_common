@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1f74cba_8ebc8f17",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-13T00:26:27Z",
+      "side": 1,
+      "message": "I don\u0027t see an assert. You can add one using list_empty",
+      "revId": "d86ca989d7f8a6c344c5855f434a5e0560c3c807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56ae5ad4_fd2d8019",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-13T00:26:27Z",
+      "side": 1,
+      "message": "You could use list_first_entry_or_null since you return NULL when the list is empty anyway.",
+      "revId": "d86ca989d7f8a6c344c5855f434a5e0560c3c807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ff5ffc1_ac0dc544",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 1496,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-13T00:26:27Z",
+      "side": 1,
+      "message": "target_list, but fix in original patch",
+      "range": {
+        "startLine": 1496,
+        "startChar": 4,
+        "endLine": 1496,
+        "endChar": 8
+      },
+      "revId": "d86ca989d7f8a6c344c5855f434a5e0560c3c807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af60c99f_03e477f3",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 3825,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-13T00:26:27Z",
+      "side": 1,
+      "message": "remove trailing whitespace",
+      "range": {
+        "startLine": 3825,
+        "startChar": 45,
+        "endLine": 3825,
+        "endChar": 46
+      },
+      "revId": "d86ca989d7f8a6c344c5855f434a5e0560c3c807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
