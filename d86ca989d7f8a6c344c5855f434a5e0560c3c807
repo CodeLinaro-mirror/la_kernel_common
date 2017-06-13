@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "30053562_cf4fed27",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-13T19:29:55Z",
+      "side": 1,
+      "message": "Actually, removed the assert before uploading since it was giving false positives (using list_empty for the assert requires either testing entry pointers for NULL or initializing the entries prior to first enqueue).",
+      "parentUuid": "1198886a_a834b046",
+      "revId": "d86ca989d7f8a6c344c5855f434a5e0560c3c807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56ae5ad4_fd2d8019",
         "filename": "drivers/android/binder.c",
         "patchSetId": 24
