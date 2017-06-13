@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3524aed_59d37d2f",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-13T01:09:55Z",
+      "side": 1,
+      "message": "why did this change?",
+      "revId": "83da573f89dada01a5551bf41c29e9e888432e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4524eef_2d6cf099",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 2967,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-13T01:09:55Z",
+      "side": 1,
+      "message": "wrong patch",
+      "revId": "83da573f89dada01a5551bf41c29e9e888432e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5960f71e_9df666c5",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 3210,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-13T01:09:55Z",
+      "side": 1,
+      "message": "It may be better to use the inner lock here since a later patch adds a waiting thread list that needs to be used from other processes.",
+      "revId": "83da573f89dada01a5551bf41c29e9e888432e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e40d0897_3812334c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 3834,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-13T01:09:55Z",
+      "side": 1,
+      "message": "see above",
+      "revId": "83da573f89dada01a5551bf41c29e9e888432e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0cd3eb31_ea119ad2",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 23
+      },
+      "lineNbr": 4241,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-13T01:09:55Z",
+      "side": 1,
+      "message": "see above",
+      "revId": "83da573f89dada01a5551bf41c29e9e888432e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
