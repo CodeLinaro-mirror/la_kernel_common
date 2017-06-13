@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32623fe8_8dd06843",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 1714,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-13T00:59:00Z",
+      "side": 1,
+      "message": "unlock?",
+      "range": {
+        "startLine": 1714,
+        "startChar": 42,
+        "endLine": 1714,
+        "endChar": 46
+      },
+      "revId": "e23acb1d3fd505ee16c810bd278283b2564d395b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
