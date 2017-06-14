@@ -16,6 +16,24 @@
       "revId": "16671f9d6c66c04ce8313efaffec86eeb0f6806d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b37372e_cd8a8979",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 25
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-14T04:58:14Z",
+      "side": 1,
+      "message": "Hmm. No. It seemed related when this patch wasn\u0027t narrowed down to just binder_refs.\n\nProbably should go to the patch where the has*/pending* fields were protected by the inner lock.",
+      "parentUuid": "e68d2c1a_7e19fc2a",
+      "revId": "16671f9d6c66c04ce8313efaffec86eeb0f6806d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
