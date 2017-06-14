@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "6e197ee8_a6a33115",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 24
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-14T15:26:01Z",
+      "side": 1,
+      "message": "added the assert back as:\n  BUG_ON(work-\u003eentry.next \u0026\u0026 !list_empty(\u0026work-\u003eentry));",
+      "parentUuid": "30053562_cf4fed27",
+      "revId": "d86ca989d7f8a6c344c5855f434a5e0560c3c807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56ae5ad4_fd2d8019",
         "filename": "drivers/android/binder.c",
         "patchSetId": 24
