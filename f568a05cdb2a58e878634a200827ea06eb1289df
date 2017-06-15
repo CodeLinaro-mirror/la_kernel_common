@@ -149,6 +149,30 @@
     },
     {
       "key": {
+        "uuid": "a2377535_134ca0f1",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6272,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-06-15T20:04:15Z",
+      "side": 1,
+      "message": "Hi Patrick,\n\nRegarding the first comment, I still didn\u0027t see how in the new code we are handling this scenario:\n1. task is prefer_idle\n2. all cpus are ACTIVE\n3. We should consider all CPUs and pick one with the most reserved capacity\n4. We should skip CPUs who\u0027s capacity_cur (which considers frequency scaling of current CPU) is not enough from consideration.\n\nTaking an example:\n\n Say a prefer_idle task wakes up and has task_util of 300\n Say the cpu_util of all CPUs in little cluster is 300\n Say the cpu_util of all CPUs in BIG    cluster is 200\n (no CPU is idle)\n new_util for all little CPUs will be 600.\n new_util for all BIG    CPUs will be 500.\n\n spare capacity for little CPUs is 200  (800-600)\n spare capacity for BIG    CPUs is 524  (1024-500)\n (My definition of spare capacity here is capacity_orig_off - new_util)\n\n Say the following is the scenario of capacities:\n\n CPU#  capacity_cur_off capacity_orig_off\n 0     700              800\n 1     700              800\n 2     700              800\n 3     700              800\n 4     300              1024\n 5     300              1024\n 6     300              1024\n 7     300              1024\n\nThe previous code was handling this by skipping all CPUs in the big cluster because they didn\u0027t fit (new_util \u003e capacity_cur_off) and then select a CPU from the little cluster.\n\nHowever the new code would pick a CPU from the BIG cluster because they have lower new_util than the little cluster and frequency scaling wasn\u0027t considered to skip the BIGs.\n\nInfact I think this brings up a point, we should actually check \u0027spare capacity\u0027 instead of highest/lowest new_util because the spare capacity changes depending on the maximum capacity of the cluster.\nIn the above example, spare capacity delta between little and BIG cluster is 324 (524 - 200), where as new_util delta is 100 (600-500).\nLet me know if I\u0027m missing something and thanks.",
+      "parentUuid": "c112e284_4639501b",
+      "range": {
+        "startLine": 6272,
+        "startChar": 0,
+        "endLine": 6272,
+        "endChar": 21
+      },
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c9e8230_63b46ba3",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 2
