@@ -78,6 +78,30 @@
     },
     {
       "key": {
+        "uuid": "6c9cf80f_dfaacad6",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6225,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-15T11:17:37Z",
+      "side": 1,
+      "message": "You right, I was considering this as a scoped initialization  but instead these var are reset at each new loop.\nI\u0027ll have to move them back at the beginning of the function.",
+      "parentUuid": "50c5a4e3_fa9da8f2",
+      "range": {
+        "startLine": 6220,
+        "startChar": 0,
+        "endLine": 6225,
+        "endChar": 33
+      },
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2da4a534_ce8f2a19",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 2
@@ -89,6 +113,30 @@
       "writtenOn": "2017-06-15T05:32:28Z",
       "side": 1,
       "message": "I think this code is different than the old code as in we don\u0027t consider current CPU frequency (capacity_curr_of) when selecting best idle CPU right?\n\nI think that should be factored too to account for the latency induced due to the fact that it may be running at low frequency and now needs to start ramping right?\n\nI know if its a big task, the frequency will be setup but the load-tracking still needs to catch up. Basically this looks to me like changing the behavior of the old code I think.",
+      "range": {
+        "startLine": 6272,
+        "startChar": 0,
+        "endLine": 6272,
+        "endChar": 21
+      },
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c112e284_4639501b",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6272,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-15T11:17:37Z",
+      "side": 1,
+      "message": "Let\u0027s try to compare old with new code step-by-step.\n\nFor prefer_idle tasks, in the old code we just went for the first idle CPU we find. Code was:\n\n    if (idle_cpu(i) \u0026\u0026 prefer_idle) {\n        schedstat_inc(p, se.statistics.nr_wakeups_fbt_pref_idle);\n        schedstat_inc(this_rq(), eas_stats.fbt_pref_idle);\n        return i;\n    }\n\nand this was the really first block in the original do{}while() loop (line 6259). In the new code I\u0027ve just moved the check on idle_cpu(i) inside what I called \"case A\".\n\nIf there are not IDLE CPUs, then you say we should still pick the CPU with the highest capacity_curr_of. This case (prefer_idle task on non idle CPUs) was covered in lines 6273-6281:\n\n    if (prefer_idle) {\n        /* Favor the CPU that last ran the task */\n        if (new_util \u003e target_util ||\n            wake_util \u003e min_wake_util)\n            continue;\n        min_wake_util \u003d wake_util;\n        target_util \u003d new_util;\n        target_cpu \u003d i;\n    }\n\nWhich is what the new code is doing in the remaining of \"case A\", lines 6281-6296.\n\nRemaining bits of the original code are:\n\n    cur_capacity \u003d capacity_curr_of(i);\n    if (new_util \u003c cur_capacity) {\n      // This case is covered because of previous explanations\n      // thus we are not looking at the next branch:\n    } else if (backup_capacity \u003e cur_capacity) {\n        /* Find a backup cpu with least capacity. */\n        backup_capacity \u003d cur_capacity;\n        backup_cpu \u003d i;\n    }\n\nSo, under all these conditions:\na) current CPU not IDLE\nb) new_util \u003e\u003d cur_capacity \u003d\u003d capacity_curr_of(i); // to skip the first branch\nc) backup_capacity \u003e cur_capacity // to get the second branch\n\nthen for all tasks (prefer_idle or not) we keep track of the current CPU as a backup.\n\nDoes that not means that the backup CPU for a prefer_idle task, if we do not get a chance to find an idle CPU before, is just the one with the lower capacity in the system (i.e. a LITTLE CPU)?\nThis match also with what the original comment says.\n\nAccording to this analysis, I cannot find a path where we used to favour higher OPP non-idle CPUs for idle task... but the original code is so convoluted which maybe I\u0027ve missed a code-path.\n\nIn any case I would say that favouring higher capacity_curr_of() should be better for prefer_idle tasks. But if we cannot find it in the old code we should probably add it on top as a separate improvement patch.\nNotice that in the new code structure we know exactly that what we do for prefer_idle tasks is completely defined within the \"case A\" block, thus it should be easy to add such an improvement.",
+      "parentUuid": "2da4a534_ce8f2a19",
       "range": {
         "startLine": 6272,
         "startChar": 0,
@@ -175,6 +223,30 @@
     },
     {
       "key": {
+        "uuid": "0b175f3a_cb3b5c69",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6362,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-15T11:17:37Z",
+      "side": 1,
+      "message": "This is just a break-down of the above comment:\n\n    Keep track of CPU with smallest capacity and highest \n    utilization (task packing).\n\nBut you are right, maybe it can be better described using something like:\n\nA task packing strategy requires to put as many tasks as possible in a given capacity. Thus, assuming two CPUs have the same capacity, a task should be put in the one of the two CPUs where:\n a) it fits in its current capacity\n b) it uses most of its spare capacity\nIndeed, in task packing we do not want to increase the current OPP (a) while, at the same time, a reducing the spare capacity (b) allows to maximize the compute efficiency.\n\nThis last point is however a bit sensible for boosted tasks.\nIn this case indeed we can potentially add an optimization patch on top where we go for the CPU with maximum spare capacity in the attempt to reduce the risk of performance penalties on the task due to co-scheduling latencies.\n\nI\u0027ll update the comment an possible add this optimization patch on top.",
+      "parentUuid": "750c5895_f9c066d3",
+      "range": {
+        "startLine": 6362,
+        "startChar": 4,
+        "endLine": 6362,
+        "endChar": 45
+      },
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c67faccb_3ee08d39",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 2
@@ -220,6 +292,30 @@
       "writtenOn": "2017-06-15T05:32:28Z",
       "side": 1,
       "message": "per this logic, to me it looks like for non-prefer_idle tasks, we will always select a best_idle_cpu if atleast one of the CPUs were in a idle state. Shouldn\u0027t the approach be the other way around, for non-prefer_idle tasks - we should try to pack the task on an available CPU before looking into idle ones?",
+      "range": {
+        "startLine": 6376,
+        "startChar": 0,
+        "endLine": 6377,
+        "endChar": 29
+      },
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "101a3aae_3ad97266",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6377,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-15T11:17:37Z",
+      "side": 1,
+      "message": "As I reported in the comment of \"case B\" for non latency sensitive tasks:\n\n   If idle CPUs are available, favour these CPUs to improve \n   performances by spreading tasks. Indeed, the energy_diff() \n   computed by the caller will take care to ensure the \n   minimization of energy consumption without affecting \n   performance.\n\nThe point here is that we can try to pick a more spreading strategy to favour performance for these tasks as well and then be assured that the energy_diff will filter out all placements which are estimated to be to aggressive in energy.\n\nBut I reckon this is a variation wrt the previous code and thus I should probably better split it out on a different patch for better testing. Moreover, this optimization should be probably reserved to boosted tasks, while we can go for a more strict packing strategy for !boosted and !prefer_idle tasks.",
+      "parentUuid": "9f62fb93_9490523c",
       "range": {
         "startLine": 6376,
         "startChar": 0,
