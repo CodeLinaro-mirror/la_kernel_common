@@ -52,6 +52,183 @@
       "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50c5a4e3_fa9da8f2",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6225,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-06-15T05:32:28Z",
+      "side": 1,
+      "message": "seems to me these variables are being reset for each iteration of a schedgroup. Wouldn\u0027t that mean that we would reset them when starting to look at the next cluster? Is that intended?\nPrevious code kept target_util outside the do {..} while loop.",
+      "range": {
+        "startLine": 6220,
+        "startChar": 0,
+        "endLine": 6225,
+        "endChar": 33
+      },
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2da4a534_ce8f2a19",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6272,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-06-15T05:32:28Z",
+      "side": 1,
+      "message": "I think this code is different than the old code as in we don\u0027t consider current CPU frequency (capacity_curr_of) when selecting best idle CPU right?\n\nI think that should be factored too to account for the latency induced due to the fact that it may be running at low frequency and now needs to start ramping right?\n\nI know if its a big task, the frequency will be setup but the load-tracking still needs to catch up. Basically this looks to me like changing the behavior of the old code I think.",
+      "range": {
+        "startLine": 6272,
+        "startChar": 0,
+        "endLine": 6272,
+        "endChar": 21
+      },
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c9e8230_63b46ba3",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6273,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-06-15T05:32:28Z",
+      "side": 1,
+      "message": "unneeded new line here.",
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5c7631cb_fd5ebec9",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6297,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-06-15T05:32:28Z",
+      "side": 1,
+      "message": "same here, this new line not needed.",
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a9c2c302_eed6f266",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6342,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-06-15T05:32:28Z",
+      "side": 1,
+      "message": "unneeded new line",
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "750c5895_f9c066d3",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6362,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-06-15T05:32:28Z",
+      "side": 1,
+      "message": "can we add a comment here that we\u0027re trying to pack the task on a CPU (also its a bit confusing to me, could we phrase to \"Favor CPU that has minimum reserved capacity\" or something like that)\nBasically what I understand (correct me if I\u0027m wrong) is that we want to find a CPU that is packed the most by this task.",
+      "range": {
+        "startLine": 6362,
+        "startChar": 4,
+        "endLine": 6362,
+        "endChar": 45
+      },
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c67faccb_3ee08d39",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6371,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-06-15T05:32:28Z",
+      "side": 1,
+      "message": "I think this new line also should be dropped",
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6477510c_b28bee3c",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6373,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-06-15T05:32:28Z",
+      "side": 1,
+      "message": "newline can be dropped",
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f62fb93_9490523c",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6377,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-06-15T05:32:28Z",
+      "side": 1,
+      "message": "per this logic, to me it looks like for non-prefer_idle tasks, we will always select a best_idle_cpu if atleast one of the CPUs were in a idle state. Shouldn\u0027t the approach be the other way around, for non-prefer_idle tasks - we should try to pack the task on an available CPU before looking into idle ones?",
+      "range": {
+        "startLine": 6376,
+        "startChar": 0,
+        "endLine": 6377,
+        "endChar": 29
+      },
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
