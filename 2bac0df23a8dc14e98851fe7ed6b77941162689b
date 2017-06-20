@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83b664b6_b6951f11",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-20T00:50:01Z",
+      "side": 1,
+      "message": "Why is the BUG_ON here and not in binder_enqueue_work_ilocked?",
+      "revId": "2bac0df23a8dc14e98851fe7ed6b77941162689b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
