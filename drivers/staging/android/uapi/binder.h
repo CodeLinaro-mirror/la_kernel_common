@@ -185,6 +185,22 @@ struct binder_version {
 #define BINDER_CURRENT_PROTOCOL_VERSION 8
 #endif
 
+/* Use with BINDER_GET_REFERENCES */
+struct binder_references {
+	/*
+	 * input: number of entries in buffer pointed to by buf.
+	 * output: number of entries needed in buffer pointed to by buf to hold
+	 * all the references.  If out <= in, all references are in buf.
+	 * Otherwise, reallocate a larger buf and try again with a larger in.
+	 */
+	__u64 count;
+	/* pointer to array of size `count` that will be filled in by driver.
+	 * may be NULL, in which case count is updated to the necessary size,
+	 * but the buffer is not updated.
+	 */
+	binder_uintptr_t __user *buf;
+};
+
 #define BINDER_WRITE_READ		_IOWR('b', 1, struct binder_write_read)
 #define BINDER_SET_IDLE_TIMEOUT		_IOW('b', 3, __s64)
 #define BINDER_SET_MAX_THREADS		_IOW('b', 5, __u32)
@@ -192,6 +208,7 @@ struct binder_version {
 #define BINDER_SET_CONTEXT_MGR		_IOW('b', 7, __s32)
 #define BINDER_THREAD_EXIT		_IOW('b', 8, __s32)
 #define BINDER_VERSION			_IOWR('b', 9, struct binder_version)
+#define BINDER_GET_REFERENCES           _IOWR('b', 11, struct binder_references)
 
 /*
  * NOTE: Two special error codes you should check for when calling
