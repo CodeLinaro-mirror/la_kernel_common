@@ -3241,6 +3241,37 @@ out:
 	return ret;
 }
 
+static int binder_ioctl_get_references(struct binder_proc *proc,
+				struct binder_references *ref) {
+	int ret;
+	size_t buf_size = ref->count;
+	size_t buf_needed = 0;
+	binder_uintptr_t __user *buf = ref->buf;
+	struct rb_node *n;
+
+	for (n = rb_first(&proc->nodes); n != NULL; n = rb_next(n)) {
+		struct binder_node *node = rb_entry(n, struct binder_node,
+						    rb_node);
+		if (buf_needed++ < buf_size) {
+			if (buf != NULL) {
+				ret = put_user(node->ptr, buf++);
+				if (ret < 0)
+					return ret;
+			}
+		}
+		if (buf_needed++ < buf_size) {
+			if (buf != NULL) {
+				ret = put_user(node->cookie, buf++);
+				if (ret < 0)
+					return ret;
+			}
+		}
+	}
+
+	ref->count = buf_needed;
+	return 0;
+}
+
 static long binder_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 {
 	int ret;
@@ -3302,6 +3333,22 @@ static long binder_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		if (put_user(BINDER_CURRENT_PROTOCOL_VERSION,
 			     &ver->protocol_version)) {
 			ret = -EINVAL;
+			goto err;
+		}
+		break;
+	}
+	case BINDER_GET_REFERENCES: {
+		struct binder_references ref;
+
+		if (copy_from_user(&ref, ubuf, sizeof(ref))) {
+			ret = -EFAULT;
+			goto err;
+		}
+
+		ret = binder_ioctl_get_references(proc, &ref);
+
+		if (copy_to_user(ubuf, &ref, sizeof(ref))) {
+			ret = -EFAULT;
 			goto err;
 		}
 		break;
