@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "96478ad4_964d960c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 1414,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-21T16:52:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82f94b98_cd919cc5",
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abdc0e7_bc6839fa",
         "filename": "drivers/android/binder.c",
         "patchSetId": 28
@@ -30,6 +48,30 @@
       "writtenOn": "2017-06-21T03:02:19Z",
       "side": 1,
       "message": "death is initialized to NULL, so you don\u0027t need the if here.",
+      "range": {
+        "startLine": 3304,
+        "startChar": 4,
+        "endLine": 3304,
+        "endChar": 45
+      },
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "46fe27e8_6f96802e",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 3304,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-21T16:52:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9abdc0e7_bc6839fa",
       "range": {
         "startLine": 3304,
         "startChar": 4,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "9a757c16_bed9bdf3",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 3758,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-21T16:52:41Z",
+      "side": 1,
+      "message": "Yes, you are right. This must be an artifact from an earlier implementation. Removed.",
+      "parentUuid": "32587864_f19ce56f",
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c9d6615_9c36fd48",
         "filename": "drivers/android/binder.c",
         "patchSetId": 28
@@ -70,6 +130,24 @@
       "writtenOn": "2017-06-21T03:02:19Z",
       "side": 1,
       "message": "what does this protect?",
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72d81144_6c62d43b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 4766,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-21T16:52:41Z",
+      "side": 1,
+      "message": "I think this is also an artifact from when the transaction_stack was protected by the outer lock. Removed it and made this function ilocked.",
+      "parentUuid": "2c9d6615_9c36fd48",
       "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "e7da39f0_2ded023b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 4855,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-21T16:52:41Z",
+      "side": 1,
+      "message": "It was needed for print_binder_thread_oilocked -- but now that it no longer requires the outer, I\u0027m removing this acq",
+      "parentUuid": "294a0ab6_37ee2f63",
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c37554f_90cd79bc",
         "filename": "drivers/android/binder.c",
         "patchSetId": 28
@@ -110,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "830521ed_cfbbc88a",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 4904,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-21T16:52:41Z",
+      "side": 1,
+      "message": "It moved to avoid being called under the outer lock, but the outer lock only needs to be held for the first loop, so this can move back.",
+      "parentUuid": "2c37554f_90cd79bc",
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63eaee33_ee0962ea",
         "filename": "drivers/android/binder.c",
         "patchSetId": 28
@@ -121,6 +235,24 @@
       "writtenOn": "2017-06-21T03:02:19Z",
       "side": 1,
       "message": "do you need this before looking at the refs?",
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "053b136f_6cda1aff",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 5016,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2017-06-21T16:52:41Z",
+      "side": 1,
+      "message": "Nope.",
+      "parentUuid": "63eaee33_ee0962ea",
       "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
