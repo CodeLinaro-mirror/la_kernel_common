@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82f94b98_cd919cc5",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 1414,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-21T03:02:19Z",
+      "side": 1,
+      "message": "@ref-\u003e",
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abdc0e7_bc6839fa",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 3304,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-21T03:02:19Z",
+      "side": 1,
+      "message": "death is initialized to NULL, so you don\u0027t need the if here.",
+      "range": {
+        "startLine": 3304,
+        "startChar": 4,
+        "endLine": 3304,
+        "endChar": 45
+      },
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "32587864_f19ce56f",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 3758,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-21T03:02:19Z",
+      "side": 1,
+      "message": "what is this protecting? You remove it in a later patch where inner lock is used instead.",
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c9d6615_9c36fd48",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 4766,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-21T03:02:19Z",
+      "side": 1,
+      "message": "what does this protect?",
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "294a0ab6_37ee2f63",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 4855,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-21T03:02:19Z",
+      "side": 1,
+      "message": "why do you need this here?",
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c37554f_90cd79bc",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 4904,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-21T03:02:19Z",
+      "side": 1,
+      "message": "why did this move here?",
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "63eaee33_ee0962ea",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 28
+      },
+      "lineNbr": 5016,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-21T03:02:19Z",
+      "side": 1,
+      "message": "do you need this before looking at the refs?",
+      "revId": "2ef5d4c24dc970538748e67f607600a6bbde60cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
