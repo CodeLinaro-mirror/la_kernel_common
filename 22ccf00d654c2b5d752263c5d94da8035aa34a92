@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca3856b1_54e132ba",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 3256,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2017-06-22T18:17:04Z",
+      "side": 1,
+      "message": "Why you can not check for buf !\u003d NULL from the beginning. buf++ will not change it to NULL, right?",
+      "range": {
+        "startLine": 3256,
+        "startChar": 7,
+        "endLine": 3256,
+        "endChar": 10
+      },
+      "revId": "22ccf00d654c2b5d752263c5d94da8035aa34a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}

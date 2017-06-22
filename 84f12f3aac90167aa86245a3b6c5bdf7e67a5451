@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6cbbaae3_98b1bbfe",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 3256,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2017-06-22T18:17:04Z",
+      "side": 1,
+      "message": "Maybe it makes sense to test it for NULL from the beginning \u003d\u003e buf++ will not make it NULL, right?",
+      "range": {
+        "startLine": 3256,
+        "startChar": 7,
+        "endLine": 3256,
+        "endChar": 10
+      },
+      "revId": "84f12f3aac90167aa86245a3b6c5bdf7e67a5451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
