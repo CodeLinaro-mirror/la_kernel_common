@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "66486250_aef4a493",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 3264,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2017-06-22T18:41:24Z",
+      "side": 1,
+      "message": "libmemunreachable doesn\u0027t care, as long as one is reachable from the other.  I originally wrote it with just ptr (which is the weakrefs object).  Then when I tried to write a test to verify that libmemunreachable could find a binder object with a remote reference was in the list returned by the kernel, and found that the binder object address was not returned, only the weakref was returned.  Rather than try to specify in the kernel interface exactly which object was returned, I figured it was better to make it simple and return every userspace address that the kernel has a pointer to.",
+      "parentUuid": "05f8b97e_461a241d",
+      "range": {
+        "startLine": 3264,
+        "startChar": 25,
+        "endLine": 3264,
+        "endChar": 31
+      },
+      "revId": "22ccf00d654c2b5d752263c5d94da8035aa34a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07091edb_ca915e7a",
         "filename": "drivers/staging/android/binder.c",
         "patchSetId": 2
@@ -83,6 +107,30 @@
       "writtenOn": "2017-06-22T18:27:35Z",
       "side": 1,
       "message": "I don\u0027t think you want to try copy_to_user() again if ret !\u003d 0? Though it seems unlikely this one would succeed if the previous has failed...",
+      "range": {
+        "startLine": 3350,
+        "startChar": 6,
+        "endLine": 3350,
+        "endChar": 18
+      },
+      "revId": "22ccf00d654c2b5d752263c5d94da8035aa34a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca3d10dc_4eb8b7d7",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 3350,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2017-06-22T18:41:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07091edb_ca915e7a",
       "range": {
         "startLine": 3350,
         "startChar": 6,
