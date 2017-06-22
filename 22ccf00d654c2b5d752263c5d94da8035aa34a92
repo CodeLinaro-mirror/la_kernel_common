@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "885282d6_4bba9997",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 3264,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2017-06-22T22:14:12Z",
+      "side": 1,
+      "message": "Ok. The tricky part is that the cookie doesn\u0027t have to be an address - its opaque to the kernel what it is, it\u0027s just that in our case userspace has decided to put the address of the RefBase object in there (for reasons I still don\u0027t understand BTW). One alternative could be to only return weakrefs from the kernel and map back to RefBase in userspace (where you call the ioctl). But I guess that may be dangerous too since there\u0027s no guarantee the weakrefs object stays around.",
+      "parentUuid": "66486250_aef4a493",
+      "range": {
+        "startLine": 3264,
+        "startChar": 25,
+        "endLine": 3264,
+        "endChar": 31
+      },
+      "revId": "22ccf00d654c2b5d752263c5d94da8035aa34a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07091edb_ca915e7a",
         "filename": "drivers/staging/android/binder.c",
         "patchSetId": 2
