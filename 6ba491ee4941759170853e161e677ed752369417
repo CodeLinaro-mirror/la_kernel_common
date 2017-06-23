@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a828280_93f119f2",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 31
+      },
+      "lineNbr": 4865,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-23T22:53:53Z",
+      "side": 1,
+      "message": "why did this change?",
+      "revId": "6ba491ee4941759170853e161e677ed752369417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
