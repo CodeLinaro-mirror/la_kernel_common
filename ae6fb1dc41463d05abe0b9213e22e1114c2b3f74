@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed2d30a2_47ebb508",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-23T22:38:51Z",
+      "side": 1,
+      "message": "The nodes are sorted by ptr value, so there is no need to return them all at once.",
+      "revId": "ae6fb1dc41463d05abe0b9213e22e1114c2b3f74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54315116_00e9c62d",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2017-06-23T22:38:51Z",
+      "side": 1,
+      "message": "This is not a good name. The driver keeps track of references each process has, and this api returns something else.",
+      "revId": "ae6fb1dc41463d05abe0b9213e22e1114c2b3f74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
