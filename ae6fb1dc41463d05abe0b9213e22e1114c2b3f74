@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "855718ea_5cf90f9b",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2017-06-26T20:40:57Z",
+      "side": 1,
+      "message": "I\u0027m returning ptr and cookie, and cookies may not be sorted.",
+      "parentUuid": "2dae2350_ad46dedc",
+      "revId": "ae6fb1dc41463d05abe0b9213e22e1114c2b3f74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54315116_00e9c62d",
         "filename": "drivers/staging/android/uapi/binder.h",
         "patchSetId": 4
