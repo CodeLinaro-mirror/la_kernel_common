@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2dae2350_ad46dedc",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2017-06-26T14:56:56Z",
+      "side": 1,
+      "message": "Are you suggesting passing in a buffer, size, and last seen pointer value, and then returning the next N pointers?  How is that better?",
+      "parentUuid": "ed2d30a2_47ebb508",
+      "revId": "ae6fb1dc41463d05abe0b9213e22e1114c2b3f74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54315116_00e9c62d",
         "filename": "drivers/staging/android/uapi/binder.h",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2017-06-23T22:38:51Z",
       "side": 1,
       "message": "This is not a good name. The driver keeps track of references each process has, and this api returns something else.",
+      "revId": "ae6fb1dc41463d05abe0b9213e22e1114c2b3f74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05d1077e_e904c6bf",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2017-06-26T14:56:56Z",
+      "side": 1,
+      "message": "How about BINDER_GET_USER_POINTERS?",
+      "parentUuid": "54315116_00e9c62d",
       "revId": "ae6fb1dc41463d05abe0b9213e22e1114c2b3f74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
