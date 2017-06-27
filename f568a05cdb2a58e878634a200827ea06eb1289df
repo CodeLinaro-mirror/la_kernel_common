@@ -173,6 +173,54 @@
     },
     {
       "key": {
+        "uuid": "7a66b967_4393c5cc",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6272,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-27T17:01:53Z",
+      "side": 1,
+      "message": "You right, in the scenario you described, when there are not IDLE CPUs, in the original code we end up setting target_cpu to a LITTLE CPU because of this path:\n\n    if (new_util \u003c cur_capacity)                   // 600 \u003c 700\n        if (cpu_rq(i)-\u003enr_running)                 // True\n            if (prefer_idle)                       // True\n                if (new_util \u003c\u003d target_util  \u0026\u0026    // A\n                    wake_util \u003c\u003d min_wake_util)    // B\n                    target_util \u003d new_util\n                    target_cpu \u003d i\n\nConditions marked as A and B are the only one checked by the new code. Thus I should add an additional check considering the current capacity.\n\nHowever the original code is at the same time not consistent in they way it tries to select the best CPU for a prefer_idle task.\nIn the case you described we pick a CPU with an higher OPP, because the task fits in. However, if you consider a slightly different scenario where, again all the CPUs are not idle but also the task does not fit in any of the current capacity, then in this case it seems that we wanna go for the minimum OPP.\n\nIndeed, in this scenario we have:\n\n    if (new_util \u003c cur_capacity) {                 // False\n    } else if (backup_capacity \u003e cur_capacity) {   // Minimize OPP\n        backup_capacity \u003d cur_capacity;\n        backup_cpu \u003d i;\n    }\n\nThese seems to be in contradiction with the previous policy.\n\nOverall I\u0027ve got the impression we should try to relax the constraint to have exactly the same behaviours of the original code and instead focusing on convincing our-self, on the base of the better experience we have got so far, that the new version is:\n  1) simpler to read/maintain\n  2) reasonably good to replace the current one\n\nI\u0027ll post anyway an update which address this comment trying to add the concept of \"favouring a CPU which has the maximum spare capacity\" for prefer_idle tasks waking up on all busy CPUs.",
+      "parentUuid": "a2377535_134ca0f1",
+      "range": {
+        "startLine": 6272,
+        "startChar": 0,
+        "endLine": 6272,
+        "endChar": 21
+      },
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fdf8336a_e45a6756",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6272,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-27T17:01:53Z",
+      "side": 1,
+      "message": "You right, in the scenario you described, when there are not IDLE CPUs, in the original code we end up setting target_cpu to a LITTLE CPU because of this path:\n\n    if (new_util \u003c cur_capacity)                   // 600 \u003c 700\n        if (cpu_rq(i)-\u003enr_running)                 // True\n            if (prefer_idle)                       // True\n                if (new_util \u003c\u003d target_util  \u0026\u0026    // A\n                    wake_util \u003c\u003d min_wake_util)    // B\n                    target_util \u003d new_util\n                    target_cpu \u003d i\n\nConditions marked as A and B are the only one checked by the new code. Thus I should add the additional check considering\nthe current capacity.\n\nHowever the original code is at the same time not consistent in they way it tries to select the best CPU for a prefer_idle task\nin case there is not IDLE CPUs.\n\nIn the case you described we pick a CPU with an higher OPP (because the task fits in). However, if you consider a slightly different one where, again all the CPUs are not idle but also the task does not fit in any of the current capacity, then in this case it seems that we wanna go for the minimum OPP.\n\nIndeed, in this scenario we have:\n\n    if (new_util \u003c cur_capacity) {                 // False\n    } else if (backup_capacity \u003e cur_capacity) {\n        // Find a backup cpu with least capacity\n        backup_capacity \u003d cur_capacity;\n        backup_cpu \u003d i;\n    }",
+      "parentUuid": "a2377535_134ca0f1",
+      "range": {
+        "startLine": 6272,
+        "startChar": 0,
+        "endLine": 6272,
+        "endChar": 21
+      },
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c9e8230_63b46ba3",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 2
@@ -207,6 +255,24 @@
     },
     {
       "key": {
+        "uuid": "91c8e035_e5c65a5d",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6297,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-27T17:01:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c7631cb_fd5ebec9",
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a9c2c302_eed6f266",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 2
@@ -218,6 +284,24 @@
       "writtenOn": "2017-06-15T05:32:28Z",
       "side": 1,
       "message": "unneeded new line",
+      "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ec725ce5_0c74ab3a",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6342,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-27T17:01:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9c2c302_eed6f266",
       "revId": "f568a05cdb2a58e878634a200827ea06eb1289df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
