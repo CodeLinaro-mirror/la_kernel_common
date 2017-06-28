@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "c934d7b1_118384f9",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 6322,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-28T16:38:39Z",
+      "side": 1,
+      "message": "Right before case C, i.e. for non prefer_idle tasks, we should probably always skip the task\u0027s prev_cpu.\n\nThis should allow us to always pick a next_cpu !\u003d prev_cpu and then use the energy_diff to select among the two, thus increasing the chances to do Energy Efficient allocations for non latency-sensitive tasks.",
+      "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9808e871_f573b7fd",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 4
