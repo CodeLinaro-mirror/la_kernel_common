@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9808e871_f573b7fd",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 6357,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-28T12:48:40Z",
+      "side": 1,
+      "message": "Here we can probably add an extra condition to prefer lower cap_orig CPUs, i.e. prefer a deep IDLE LITTLE vs a shallow idle big CPU. Something like that should be up to the job:\n\n/*\n *  Skip CPUs in deeper idle state, but only\n *  if they are also less energy efficient.\n */\nif (sysctl_sched_cstate_aware \u0026\u0026\n    cap_orig \u003e best_idle_min_cap_orig \u0026\u0026\n    best_idle_cstate \u003c\u003d idle_idx)\n    continue;",
+      "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
