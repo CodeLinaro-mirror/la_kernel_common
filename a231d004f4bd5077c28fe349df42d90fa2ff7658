@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3de3a6c2_4a649d74",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 6296,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-06-29T03:39:33Z",
+      "side": 1,
+      "message": "I feel like the meaning of spare capacity here can be refined to also consider the maximum capacity of the cluster. For example, say the big cluster and little cluster both have a cur_capacity of 500. But the max capacity (capacity_orig_of) will be different. \n\nSay the max capacity of the BIG is 1024 and the max capacity of the little is 800. Then the spare will be 524 on the big and 300 on the little. In this case we may not be comparing spare capacity correctly. So IMO the definition of \u0027spare\u0027 can be refined as: max capacity of CPU - cur_capacity.\n\nFurther I feel, shouldn\u0027t the \"spare capacity\" more correctly be actually:\n(max capacity - new_util)?\n\nI feel calculation of spare capacity shouldn\u0027t consider cur_capacity because the OPP will change anyway once new_util comes into effect. So spare_capacity \u003d (max_capacity - new_util) sounds more accurate to me. What do you say?",
+      "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c934d7b1_118384f9",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 4
