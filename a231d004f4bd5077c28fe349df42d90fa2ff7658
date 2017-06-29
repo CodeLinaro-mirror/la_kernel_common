@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0fe0825a_80cc59d6",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 6286,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-29T10:11:30Z",
+      "side": 1,
+      "message": "You right, according to checkpatch at least... but to me the code is more readable that way. If it\u0027s not a big issue I would prefer to keep it as it is.",
+      "parentUuid": "38050081_5484301b",
+      "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3de3a6c2_4a649d74",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "57bb01d3_c62989c7",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 6296,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-29T10:11:30Z",
+      "side": 1,
+      "message": "In principle I agree with you, however I have the impression we are chasing two different optimization goals here.\n\nDo we wanna to \"improve speedup margins\" or \"reduce latency\"?\n\nWhat you propose here seems like selecting a CPU to \"improve the potential speedup\":\n\n  IF the task fits in the current capacity\n  THEN opt for the CPU with the bigger _potential_ capacity\n       (i.e. capacity_orig_of)\n\nHowever, here we are selecting a target for a \"prefer_idle\" task, i.e. a latency sensitive task. If we consider latency reduction as our main goal, the a policy like:\n\n  IF the task fits in the current capacity\n  THEN opt for the CPU with the bigger _current_ capacity\n       (i.e. capacity_curr_of)\n\nseems to be a sensible choice too.\n\nHowever, such a policy would prefer a LITTLE cpu in the scenario you depicted. Moreover, we can argue that by picking the CPU with the maximum _current_ spare capacity, we increase the chances to put the task on a CPU where other tasks are likely to be scheduler (just because we have spare capacity)?\n\nDon\u0027t really know which policy is really the best, we should experiment a bit to find out.\n\nAs a final comment, I think this topic is already in the domain of the improvements. I cannot see in the original code any attempt to use capacity_orig_of for placement of prefer_idle tasks on a system without IDLE cpus.\nThus, we should probably start by convincing our self if the current implementation is a good enough starting point and merge it. This will make definitively more simple to experiment on devices with small modifications/updates on top of a more clean and easy to understand code-base.",
+      "parentUuid": "3de3a6c2_4a649d74",
+      "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec038b20_2bf7d9dd",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 4
@@ -47,6 +83,24 @@
       "writtenOn": "2017-06-29T09:29:34Z",
       "side": 1,
       "message": "I\u0027d add a newline there",
+      "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb4cba61_b7ca7b31",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 6301,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-29T10:11:30Z",
+      "side": 1,
+      "message": "Here instead I wanted to not have a new-line to show that this continue is related to a state variable changed by the previous statement.\nThis and the previous statement works together to achieve the goal described in the previous comment:\n\n   \"Favor CPUs with higher spare capacity\"",
+      "parentUuid": "ec038b20_2bf7d9dd",
       "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -82,6 +136,24 @@
       "side": 1,
       "message": "I believe you meant case B, as that\u0027s where you inserted the comment. Otherwise, as we discussed offline, I agree with that.",
       "parentUuid": "c934d7b1_118384f9",
+      "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de4c813b_13f58be7",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 6322,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-29T10:11:30Z",
+      "side": 1,
+      "message": "You right, the check should be added right here, before Case B.",
+      "parentUuid": "232d451f_916c2c43",
       "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
