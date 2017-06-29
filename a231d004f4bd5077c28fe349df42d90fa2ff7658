@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "5624ee17_237ce492",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 6296,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-06-29T16:23:24Z",
+      "side": 1,
+      "message": "I think the comment should be changed then, its mentioned \"Favor CPUs with higher spare capacity\". Because what you\u0027re doing here is \"Favor CPUs with higher current capacity\" no?\nAlso I think this can lead to having misplacements depending on whether the bigs or littles have higher cur_capacity at any given time. The previous code just checked if cur_capacity is \u0027good enough\u0027 for fitting the task, then after than we just use new_util for further selection of where the task should be placed.  For ex, you can have a CPU that has more current capacity than another but lesser spare capacity because it has more heavier tasks running.\n\nWhy are we changing this behavior in the new code? Also, I feel that old behavior can just be refined as I mentioned in my last comment. We should choose CPU that has minimum new_util (but as a further optimization, also consider max capacity to refine the definition of \u0027spare\u0027).",
+      "parentUuid": "57bb01d3_c62989c7",
+      "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec038b20_2bf7d9dd",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 4
