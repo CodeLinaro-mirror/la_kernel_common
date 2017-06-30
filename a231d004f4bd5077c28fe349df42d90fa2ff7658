@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "e930ae40_4891adda",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 6296,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-30T09:22:08Z",
+      "side": 1,
+      "message": "RE1: spare capacity definition\n\nAs per phone chat, \"spare capacity\" does not have a definition by its own. We should add an adjective to better specify it, thus we can have:\n- spare current capacity (SCC)\n- spare maximum capacity (SMC)\nThe comment above refers to SCC and you right we \"favor CPUs with higher __current__ capacity\".\n\n\n\nRE2: possible misplacement depending on current capacity\n\nRegarding \"misplacement\" they was possible also in the previous code as well as using what you propose (i.e. \"we should choose CPU that has minimum new_util\").\n\nConsider the example where let\u0027s way we have a prefer_idle task waking up on a system with only 2 CPUs: a big and a LITTLE which are both busy and with the following values:\n\n              big         LITTLE\n\nwake_util     300         200\ncap_curr      700         600\n\ntask_util     200         200       (it\u0027s the same task)\n\nnew_util      500         400       (wake_util + task_util)\n\nFor both CPUs we have:\n\n      new_util \u003c wake_util\n             !idle\n          prefer_idle\n\nand thus we enter the statement in lines 6275-6280 (of the original version) where essentially we pick the CPU which:\n\n        minimize both new_util and wake_util\n\nThus, in the example above that CPU will be the LITTLE one.\nIn you proposal as well, the CPU which has the minimum new_util is the LITTLE one.\n\n\nThe current proposal intent is this:\n\n since this is a latency_sensitive task\n then go for the CPU which has the highest current OPP\n\nWe don\u0027t really care if its a LITTLE or a BIG, if its current capacity is higher that CPU should now be faster.\n\nWe can argue that this is not an optimal policy because of other possible side-effects, e.g. due to future tasks waking up on that CPU, but I don\u0027t see the \"inversion\" as a problem... as well as it\u0027s in any case a gamble to guess the future.",
+      "parentUuid": "5624ee17_237ce492",
+      "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec038b20_2bf7d9dd",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 4
@@ -189,6 +207,24 @@
       "writtenOn": "2017-06-28T12:48:40Z",
       "side": 1,
       "message": "Here we can probably add an extra condition to prefer lower cap_orig CPUs, i.e. prefer a deep IDLE LITTLE vs a shallow idle big CPU. Something like that should be up to the job:\n\n/*\n *  Skip CPUs in deeper idle state, but only\n *  if they are also less energy efficient.\n */\nif (sysctl_sched_cstate_aware \u0026\u0026\n    cap_orig \u003e best_idle_min_cap_orig \u0026\u0026\n    best_idle_cstate \u003c\u003d idle_idx)\n    continue;",
+      "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "75837b16_f5739c5f",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 6357,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-06-30T09:22:08Z",
+      "side": 1,
+      "message": "Ok, this is actually not required... since this check is already provided by the previous statement and we unconditionally skip CPUs with higher cap_orig.",
+      "parentUuid": "9808e871_f573b7fd",
       "revId": "a231d004f4bd5077c28fe349df42d90fa2ff7658",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
