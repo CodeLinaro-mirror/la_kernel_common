@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "162d0db1_db51d69b",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2017-06-30T02:24:25Z",
+      "side": 1,
+      "message": "Switch to returning nodes one at a time with their ptr and cookie separately.",
+      "parentUuid": "855718ea_5cf90f9b",
+      "revId": "ae6fb1dc41463d05abe0b9213e22e1114c2b3f74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54315116_00e9c62d",
         "filename": "drivers/staging/android/uapi/binder.h",
         "patchSetId": 4
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "How about BINDER_GET_USER_POINTERS?",
       "parentUuid": "54315116_00e9c62d",
+      "revId": "ae6fb1dc41463d05abe0b9213e22e1114c2b3f74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ffb5f404_3839b1c3",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2017-06-30T02:24:25Z",
+      "side": 1,
+      "message": "Changed to BINDER_GET_NODE_DEBUG_INFO",
+      "parentUuid": "05d1077e_e904c6bf",
       "revId": "ae6fb1dc41463d05abe0b9213e22e1114c2b3f74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
