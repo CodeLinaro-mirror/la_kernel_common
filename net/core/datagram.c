@@ -240,7 +240,7 @@ struct sk_buff *__skb_try_recv_datagram(struct sock *sk, unsigned int flags,
 					goto no_packet;
 				}
 
-				atomic_inc(&skb->users);
+				refcount_inc(&skb->users);
 			} else
 				__skb_unlink(skb, queue);
 
@@ -351,7 +351,7 @@ int skb_kill_datagram(struct sock *sk, struct sk_buff *skb, unsigned int flags)
 		spin_lock_bh(&sk->sk_receive_queue.lock);
 		if (skb == skb_peek(&sk->sk_receive_queue)) {
 			__skb_unlink(skb, &sk->sk_receive_queue);
-			atomic_dec(&skb->users);
+			refcount_dec(&skb->users);
 			err = 0;
 		}
 		spin_unlock_bh(&sk->sk_receive_queue.lock);
