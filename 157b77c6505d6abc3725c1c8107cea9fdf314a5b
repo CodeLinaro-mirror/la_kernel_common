@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "1206c99d_47e019cc",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 3247,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2017-06-30T03:40:21Z",
+      "side": 1,
+      "message": "This reads the old value",
+      "revId": "157b77c6505d6abc3725c1c8107cea9fdf314a5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcf46957_efed83b0",
         "filename": "drivers/staging/android/binder.c",
         "patchSetId": 5
@@ -30,6 +47,24 @@
       "writtenOn": "2017-06-30T03:14:37Z",
       "side": 1,
       "message": "has weak/strong ref might also be useful as one of the returned pointers could be invalid if there are no strong references left.",
+      "revId": "157b77c6505d6abc3725c1c8107cea9fdf314a5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be773b1d_86a0d707",
+        "filename": "drivers/staging/android/uapi/binder.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2017-06-30T03:40:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d19ef3a_d74b5414",
       "revId": "157b77c6505d6abc3725c1c8107cea9fdf314a5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
