@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "3d691291_94c44505",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 6339,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2017-07-12T07:41:41Z",
+      "side": 1,
+      "message": "capacity_margin is added so that if we push a task down, it doesn\u0027t immediately push that CPU into overutilized. We use the same capacity_margin as the overutilized detection does, so we can pass this test and we know for sure that right now the task is not going to overutilize the target CPU. However, we\u0027re doing this at wakeup and it\u0027s going to run on the target CPU for at least some time.. which leads to a later patch\n(https://android-review.googlesource.com/c/428748/1).\n\nI added that one since we discovered that we can avoid going overutilized with this for many tasks but when we place a task which has utilization just under this margin on a particular CPU and it runs for a little while, utilization rises. Since we use the same margin for detection and limiting CPU targets, tasks close to the margin can cause the system to be overutilized in the first few ms of runtime which then kicks us out of EAS entirely again which is what we\u0027re trying to avoid if there is a \u0027better\u0027 option. I\u0027d like to review that separately though, rather than add more changes here.",
+      "parentUuid": "98f752b3_410200e2",
+      "range": {
+        "startLine": 6339,
+        "startChar": 7,
+        "endLine": 6339,
+        "endChar": 35
+      },
+      "revId": "6d44a2bb3148ed6e7bf9dfa3c7f7681c934bade8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ac88b748_ae3cd485",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 5
