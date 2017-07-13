@@ -143,6 +143,29 @@
     },
     {
       "key": {
+        "uuid": "6d8c2941_d3dacfdb",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 6401,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-07-13T17:39:13Z",
+      "side": 1,
+      "message": "spare current capacity",
+      "range": {
+        "startLine": 6401,
+        "startChar": 30,
+        "endLine": 6401,
+        "endChar": 44
+      },
+      "revId": "6d44a2bb3148ed6e7bf9dfa3c7f7681c934bade8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ff77c67_c0767e25",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 5
