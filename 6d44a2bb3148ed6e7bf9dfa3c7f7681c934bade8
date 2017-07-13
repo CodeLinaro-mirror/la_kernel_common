@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "e46bf836_6e0e96cf",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 6323,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-07-13T15:57:21Z",
+      "side": 1,
+      "message": "You probably right here, AFAIR wake_util has been added in the original policy only alter... at that time we should have removed the new_util.\n\nSo, for example, if we have two ACTIVE CPUs (A and B), and A has the lower wake_util, then the A\u0027s new_util cannot be bigger than B\u0027s one. Indeed as you are observing:\n\n   new_util :\u003d wake_util + task_util(p)\n\nwhich is a constant here.\n\nThis should also get rid of best_active_util ;-)",
+      "parentUuid": "ed996928_f73608ac",
+      "range": {
+        "startLine": 6319,
+        "startChar": 7,
+        "endLine": 6323,
+        "endChar": 14
+      },
+      "revId": "6d44a2bb3148ed6e7bf9dfa3c7f7681c934bade8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98f752b3_410200e2",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 5
@@ -153,6 +177,30 @@
       "writtenOn": "2017-07-06T16:28:19Z",
       "side": 1,
       "message": "It seems though that here you will lean towards increasing the OPP if you have 2 CPUs where task fits, but one has greater new_util than the other, then in that case it means you\u0027re close to saturating the current OPP. So I think either the comment or a logic a change.\nAlso I think here we\u0027re still not considering the max capacity when comparing big and LITTLE to compute the spare unlike the prefer_idle case.",
+      "range": {
+        "startLine": 6403,
+        "startChar": 5,
+        "endLine": 6406,
+        "endChar": 41
+      },
+      "revId": "6d44a2bb3148ed6e7bf9dfa3c7f7681c934bade8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "975f41c1_f04d72eb",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 6406,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-07-13T15:57:21Z",
+      "side": 1,
+      "message": "In the prefer_idle case we wanna to favour big CPUs over LITTLE, that\u0027s why we decided at the end to go for the \"spare max capacity\"... here instead we want to pack, possible on LITTLE CPUs. That\u0027s the aim of the check at line 6414.\n\nOverall:\n   6414 \u003d\u003e smaller capacity\n   6418 \u003d\u003e highest utilization\nthis should lead to a maximum number of tasks in the minimum number of CPUs.\n\nIs that not what we want?",
+      "parentUuid": "ac88b748_ae3cd485",
       "range": {
         "startLine": 6403,
         "startChar": 5,
