@@ -213,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "d2416e23_4d06c795",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 6406,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2017-07-13T16:02:23Z",
+      "side": 1,
+      "message": "Yes, I believe that\u0027s what we want. My point is, say for example, capacity_curr is lower for a big and high for a little, then in that case the next check \"Favor CPUs with highest utilization\" doesn\u0027t consider the maximum capacity of the core/cluster into account when considering the big and the little. So the same point I made a few weeks ago about spare capacity not using the max capacity. Right?",
+      "parentUuid": "975f41c1_f04d72eb",
+      "range": {
+        "startLine": 6403,
+        "startChar": 5,
+        "endLine": 6406,
+        "endChar": 41
+      },
+      "revId": "6d44a2bb3148ed6e7bf9dfa3c7f7681c934bade8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "888937e0_823fe570",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 5
