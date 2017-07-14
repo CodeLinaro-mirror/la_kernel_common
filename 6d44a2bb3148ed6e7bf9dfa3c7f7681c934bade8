@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "49049615_f1a380c0",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 6291,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-07-14T17:53:03Z",
+      "side": 1,
+      "message": "I would prefer to keep consistency with respect to the following comments, which are longer and required more lines.\n\nAt the end what we are after is \"clear code and patterns\"... if that costs us couple of lines more IMO it\u0027s not a big deal.\n\nI\u0027ll remove the empty line but still keep the text in two separate lines, which also fits into the 80 cols margin.",
+      "parentUuid": "00cb45df_f91cbe20",
+      "range": {
+        "startLine": 6287,
+        "startChar": 0,
+        "endLine": 6291,
+        "endChar": 7
+      },
+      "revId": "6d44a2bb3148ed6e7bf9dfa3c7f7681c934bade8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed996928_f73608ac",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 5
@@ -272,6 +296,30 @@
       "side": 1,
       "message": "Just taking example:\n\nsay capacity_curr for little is 400 and capacity curr of BIG is 500, and task fits on both, then little will be preferred. However say there are other candidate BIGs, then we are comparing BIGs and LITTLEs in the target_util \u003e new_util check without considering the maximum capacity, in this patch. Its probably a minor point and if I\u0027m missing something, sorry.",
       "parentUuid": "d2416e23_4d06c795",
+      "range": {
+        "startLine": 6403,
+        "startChar": 5,
+        "endLine": 6406,
+        "endChar": 41
+      },
+      "revId": "6d44a2bb3148ed6e7bf9dfa3c7f7681c934bade8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0aa9dc0c_2677f0e0",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 6406,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-07-14T17:53:03Z",
+      "side": 1,
+      "message": "Current code tries to minimize the _current_ capacity, thus you right that we can end up favouring a big CPU running on a lower capacity versus a LITTLE on a relatively higher capacity.\n\nSpeaking with Chris as well we was thinking we should probably go better for a \"mixed packing/spreading\" strategy. Where, for !prefer_idle tasks on active CPUS, we try to:\n- pack them on LITTLE CPUs\n- spread them across active LITTLE CPUs\n\nThis should be optimal from an energy stanpoint under the assumption that it\u0027s more energy efficient to run two tasks on two CPUs at a lower OPP than packing both on a single CPU but running that CPU at an higher OPP.\n\nIndeed, the second option would eventually imply an higher energy consumption both because we are running the cluster at an higher frequency thus consuming more energy also for the second IDLE CPU, in case it should stay in WFI.\n\nThus, what about something like?\n\n    if (capacity_orig \u003e target_capacity)\n        continue;\n    if ((capacity_orig - new_util) \u003c target_max_spare_cap)\n        continue;\n    target_max_spare_cap \u003d capacity_orig - new_util;\n    target_capacity \u003d capacity_orig;\n    target_util \u003d new_util;\n    target_cpu \u003d i\n\nI already a version implementing this idea but, since it\u0027s going to be a major change I need to run all the synthetics (and some other) tests before posting it here.\nWill do it beginning next week.",
+      "parentUuid": "4a1ebe38_383b9d2c",
       "range": {
         "startLine": 6403,
         "startChar": 5,
