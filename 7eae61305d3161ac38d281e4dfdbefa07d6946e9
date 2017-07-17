@@ -22,6 +22,30 @@
       "revId": "7eae61305d3161ac38d281e4dfdbefa07d6946e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e081cc96_bf22e435",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 3340,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2017-07-17T21:47:17Z",
+      "side": 1,
+      "message": "Yeah, but its still better to have correct error handling in place.",
+      "parentUuid": "2a930ba2_06c68139",
+      "range": {
+        "startLine": 3340,
+        "startChar": 6,
+        "endLine": 3340,
+        "endChar": 9
+      },
+      "revId": "7eae61305d3161ac38d281e4dfdbefa07d6946e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
