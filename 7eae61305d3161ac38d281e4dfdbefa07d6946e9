@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a930ba2_06c68139",
+        "filename": "drivers/staging/android/binder.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 3340,
+      "author": {
+        "id": 1000414
+      },
+      "writtenOn": "2017-07-17T21:37:48Z",
+      "side": 1,
+      "message": "Your latest version is not failing anymore.",
+      "range": {
+        "startLine": 3340,
+        "startChar": 6,
+        "endLine": 3340,
+        "endChar": 9
+      },
+      "revId": "7eae61305d3161ac38d281e4dfdbefa07d6946e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
