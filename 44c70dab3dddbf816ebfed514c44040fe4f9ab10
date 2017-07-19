@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9020e238_08e98a84",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 3061,
+      "author": {
+        "id": 1124443
+      },
+      "writtenOn": "2017-07-19T15:35:50Z",
+      "side": 1,
+      "message": "This line is already here, don\u0027t need the hunk above.",
+      "revId": "44c70dab3dddbf816ebfed514c44040fe4f9ab10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
