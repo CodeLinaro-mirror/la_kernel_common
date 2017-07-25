@@ -24,6 +24,7 @@
 #include <linux/socket.h>
 
 #include <linux/atomic.h>
+#include <linux/refcount.h>
 #include <asm/types.h>
 #include <linux/spinlock.h>
 #include <linux/net.h>
