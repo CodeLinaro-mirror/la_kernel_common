@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18fb6018_0c6b6d04",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-07-30T03:27:22Z",
+      "side": 1,
+      "message": "no signed-off-by by the owner of this patch?  That\u0027s not ok...",
+      "revId": "7fe7619fc27ce80e0810867cab21c027ca686a5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
