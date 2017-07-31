@@ -5560,6 +5560,11 @@ end:
  *
  * This works in iterations to compute the SG's energy for each CPU
  * candidate defined by the energy_env's cpu array.
+ *
+ * NOTE: in the following computations for busy_energy and idle_energy we do
+ * not shift by SCHED_CAPACITY_SHIFT in order to reduce rounding errors.
+ * The required scaling will be performed just one time, by the calling
+ * functions, once we accumulated the contributons for all the SGs.
  */
 static void calc_sg_energy(struct energy_env *eenv)
 {
@@ -5581,7 +5586,6 @@ static void calc_sg_energy(struct energy_env *eenv)
 		busy_power = sg->sge->cap_states[cap_idx].power;
 
 		busy_energy   = sg_util * busy_power;
-		busy_energy >>= SCHED_CAPACITY_SHIFT;
 
 		/* Compute IDLE energy */
 		idle_idx = group_idle_state(eenv, cpu_idx);
@@ -5589,7 +5593,6 @@ static void calc_sg_energy(struct energy_env *eenv)
 
 		idle_energy   = SCHED_CAPACITY_SCALE - sg_util;
 		idle_energy  *= idle_power;
-		idle_energy >>= SCHED_CAPACITY_SHIFT;
 
 		total_energy = busy_energy + idle_energy;
 		eenv->cpu[cpu_idx].energy += total_energy;
@@ -5608,7 +5611,7 @@ static int compute_energy(struct energy_env *eenv)
 	struct sched_domain *sd;
 	struct cpumask visit_cpus;
 	struct sched_group *sg;
-	int cpu;
+	int cpu, cpu_idx;
 
 	WARN_ON(!eenv->sg_top->sge);
 
@@ -5666,6 +5669,10 @@ next_cpu:
 		cpumask_clear_cpu(cpu, &visit_cpus);
 		continue;
 	}
+
+	/* Scale SG's total energy now to reduce rounding errors */
+	for (cpu_idx = EAS_CPU_PRV; cpu_idx < EAS_CPU_CNT; ++cpu_idx)
+		eenv->cpu[cpu_idx].energy >>= SCHED_CAPACITY_SHIFT;
 
 	return 0;
 }
