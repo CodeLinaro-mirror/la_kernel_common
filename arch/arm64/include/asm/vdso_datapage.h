@@ -25,7 +25,7 @@ struct vdso_data {
 	__u64 raw_time_sec;	/* Raw time */
 	__u64 raw_time_nsec;
 	__u64 xtime_clock_sec;	/* Kernel time */
-	__u64 xtime_clock_nsec;
+	__u64 xtime_clock_snsec;
 	__u64 xtime_coarse_sec;	/* Coarse time */
 	__u64 xtime_coarse_nsec;
 	__u64 wtm_clock_sec;	/* Wall to monotonic time */
