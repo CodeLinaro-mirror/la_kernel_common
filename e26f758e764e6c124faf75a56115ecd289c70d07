@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7479bfb4_bf8f5e0f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2017-08-09T13:19:01Z",
+      "side": 1,
+      "message": "I would move this above the Bug: line to make it easier to compare to the upstream commit.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 13
+      },
+      "revId": "e26f758e764e6c124faf75a56115ecd289c70d07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
