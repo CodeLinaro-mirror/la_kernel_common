@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b26ca8d_2e3125ff",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 4446,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2017-08-10T10:42:53Z",
+      "side": 0,
+      "message": "I think this code was anyway incorrect; we should also have returned POLLIN if there was proc work here. Since binder_has_work includes thread work, just used that in the patch.",
+      "range": {
+        "startLine": 4446,
+        "startChar": 1,
+        "endLine": 4446,
+        "endChar": 36
+      },
+      "revId": "4ca3c2cf00be2fa1cd9cc576dd53adef96640701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
