@@ -22,6 +22,30 @@
       "revId": "80f5cdd269461ec9c64dd3d40c06163eea7dad7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "89b5a431_8561aa68",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 5389,
+      "author": {
+        "id": 1118600
+      },
+      "writtenOn": "2017-08-15T00:04:50Z",
+      "side": 1,
+      "message": "If with upper change, we cannot distinguish between two cases: one case is the highest OPP can meet the capacity requirement, another case is overflow then roll back to highest capacity. \n\nSo the code is a bit redundant but IMHO it has more clear code logic.",
+      "parentUuid": "ece6bb28_a4a0951d",
+      "range": {
+        "startLine": 5389,
+        "startChar": 1,
+        "endLine": 5389,
+        "endChar": 49
+      },
+      "revId": "80f5cdd269461ec9c64dd3d40c06163eea7dad7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
