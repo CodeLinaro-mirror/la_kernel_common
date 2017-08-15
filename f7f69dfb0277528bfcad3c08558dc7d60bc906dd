@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f404fd8d_de65dacc",
+        "filename": "arch/arm64/include/asm/smp.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1010110
+      },
+      "writtenOn": "2017-08-15T03:00:15Z",
+      "side": 1,
+      "message": "This also seems confusing/circular, as this_cpu_ptr calls smp_processor_id, which can be defined as raw_smp_processor_id().",
+      "range": {
+        "startLine": 32,
+        "startChar": 33,
+        "endLine": 32,
+        "endChar": 45
+      },
+      "revId": "f7f69dfb0277528bfcad3c08558dc7d60bc906dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08590df5_701a5738",
+        "filename": "arch/arm64/kernel/smp.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1010110
+      },
+      "writtenOn": "2017-08-15T03:00:15Z",
+      "side": 1,
+      "message": "This seems to be busted, as above this in the same function on line #590, we\u0027re calling smp_processor_id() which can map to raw_smp_processor_id(), which will give uninitialized data?",
+      "range": {
+        "startLine": 614,
+        "startChar": 2,
+        "endLine": 614,
+        "endChar": 33
+      },
+      "revId": "f7f69dfb0277528bfcad3c08558dc7d60bc906dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
