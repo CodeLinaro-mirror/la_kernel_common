@@ -99,7 +99,7 @@ static notrace int do_monotonic_coarse(const struct vdso_data *vd,
 
 #ifdef CONFIG_ARM_ARCH_TIMER
 
-static notrace u64 get_ns(const struct vdso_data *vd)
+static __always_inline notrace u64 get_ns(const struct vdso_data *vd)
 {
 	u64 cycle_delta;
 	u64 cycle_now;
@@ -115,7 +115,9 @@ static notrace u64 get_ns(const struct vdso_data *vd)
 	return nsec;
 }
 
-static notrace int do_realtime(const struct vdso_data *vd, struct timespec *ts)
+/* Code size doesn't matter (vdso is 4k/16k/64k anyway) and this is faster. */
+static __always_inline notrace int do_realtime(const struct vdso_data *vd,
+					       struct timespec *ts)
 {
 	u64 nsecs;
 	u32 seq;
@@ -137,7 +139,8 @@ static notrace int do_realtime(const struct vdso_data *vd, struct timespec *ts)
 	return 0;
 }
 
-static notrace int do_monotonic(const struct vdso_data *vd, struct timespec *ts)
+static __always_inline notrace int do_monotonic(const struct vdso_data *vd,
+						struct timespec *ts)
 {
 	struct timespec tomono;
 	u64 nsecs;
