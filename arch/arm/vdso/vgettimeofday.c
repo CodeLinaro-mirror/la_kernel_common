@@ -31,6 +31,7 @@
 
 DEFINE_FALLBACK(gettimeofday, struct timeval *, tv, struct timezone *, tz)
 DEFINE_FALLBACK(clock_gettime, clockid_t, clock, struct timespec *, ts)
+DEFINE_FALLBACK(clock_getres, clockid_t, clock, struct timespec *, ts)
 
 static notrace u32 vdso_read_begin(const struct vdso_data *vd)
 {
@@ -316,6 +317,28 @@ notrace int __vdso_gettimeofday(struct timeval *tv, struct timezone *tz)
 	if (unlikely(tz != NULL)) {
 		tz->tz_minuteswest = vd->tz_minuteswest;
 		tz->tz_dsttime = vd->tz_dsttime;
+	}
+
+	return 0;
+}
+
+int __vdso_clock_getres(clockid_t clock_id, struct timespec *res)
+{
+	typeof(res->tv_nsec) nsec;
+
+	if (clock_id == CLOCK_REALTIME ||
+	    clock_id == CLOCK_MONOTONIC ||
+	    clock_id == CLOCK_MONOTONIC_RAW)
+		nsec = MONOTONIC_RES_NSEC;
+	else if (clock_id == CLOCK_REALTIME_COARSE ||
+		 clock_id == CLOCK_MONOTONIC_COARSE)
+		nsec = LOW_RES_NSEC;
+	else
+		return clock_getres_fallback(clock_id, res);
+
+	if (likely(res != NULL)) {
+		res->tv_sec = 0;
+		res->tv_nsec = nsec;
 	}
 
 	return 0;
