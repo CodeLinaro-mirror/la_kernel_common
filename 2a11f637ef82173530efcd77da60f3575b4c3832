@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e296153_c615035a",
+        "filename": "kernel/sched/cpufreq_schedutil.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1124443
+      },
+      "writtenOn": "2017-08-21T13:33:24Z",
+      "side": 1,
+      "message": "Hmm monday thought: maybe we should split transition_delay_us in two too? up_transition_delay_us and down_transition_delay_us?",
+      "revId": "2a11f637ef82173530efcd77da60f3575b4c3832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
