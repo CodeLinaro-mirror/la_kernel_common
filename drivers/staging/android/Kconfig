@@ -123,6 +123,8 @@ source "drivers/staging/android/fiq_debugger/Kconfig"
 
 source "drivers/staging/android/pkglist/Kconfig"
 
+source "drivers/staging/android/esdfs/Kconfig"
+
 endif # if ANDROID
 
 endmenu
