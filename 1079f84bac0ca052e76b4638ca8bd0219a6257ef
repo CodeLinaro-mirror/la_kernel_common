@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c418baa6_fe32504c",
+        "filename": "kernel/sched/rt.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2141,
+      "author": {
+        "id": 1118133
+      },
+      "writtenOn": "2017-09-01T23:48:24Z",
+      "side": 1,
+      "message": "is this not part of 3ea94de15ce9f3a217f6d0a7e9e0f48388902bb7 \"sched/core: Fix incorrect wait time and wait count statistics\" upstream because PELT does not currently track RT?",
+      "revId": "1079f84bac0ca052e76b4638ca8bd0219a6257ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
