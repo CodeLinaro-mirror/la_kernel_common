@@ -16,6 +16,24 @@
       "revId": "1079f84bac0ca052e76b4638ca8bd0219a6257ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87297a6c_e837bfe9",
+        "filename": "kernel/sched/rt.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2141,
+      "author": {
+        "id": 1209348
+      },
+      "writtenOn": "2017-09-02T00:31:44Z",
+      "side": 1,
+      "message": "Right.  upstream doesn\u0027t set migration state for RT class.",
+      "parentUuid": "c418baa6_fe32504c",
+      "revId": "1079f84bac0ca052e76b4638ca8bd0219a6257ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
