@@ -5452,6 +5452,9 @@ long group_norm_util(struct energy_env *eenv, struct sched_group *sg)
 	for_each_cpu(cpu, sched_group_cpus(sg)) {
 		util = cpu_util_wake(cpu, eenv->task);
 
+		/* apply 3% margin when calculating energy as well */
+		if (util < 30)
+			util = 0;
 		/*
 		 * If we are looking at the target CPU specified by the eenv,
 		 * then we should add the (estimated) utilization of the task
