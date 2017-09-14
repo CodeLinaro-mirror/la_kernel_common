@@ -1680,6 +1680,8 @@ static inline unsigned long cpu_util_est(int cpu)
 			util_est(sa, UTIL_EST_LAST) :
 			0;
 }
+
+unsigned long boosted_cpu_util(int cpu);
 #endif
 
 #ifdef CONFIG_CPU_FREQ_GOV_SCHED
