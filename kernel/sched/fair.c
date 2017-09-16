@@ -5512,8 +5512,9 @@ static int find_new_capacity(struct energy_env *eenv, int cpu_idx)
 	unsigned long util = group_max_util(eenv, cpu_idx);
 	int idx;
 
+	util = util * capacity_margin;
 	for (idx = 0; idx < sge->nr_cap_states; idx++) {
-		if (sge->cap_states[idx].cap >= util)
+		if (sge->cap_states[idx].cap * SCHED_CAPACITY_SCALE >= util)
 			break;
 	}
 
