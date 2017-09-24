@@ -17,7 +17,7 @@ bool schedtune_initialized = false;
 
 unsigned int sysctl_sched_cfs_boost __read_mostly;
 
-extern struct reciprocal_value schedtune_spc_rdiv;
+struct reciprocal_value schedtune_spc_rdiv;
 
 /* Performance Boost region (B) threshold params */
 static int perf_boost_idx;

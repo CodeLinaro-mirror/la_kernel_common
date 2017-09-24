@@ -3,6 +3,8 @@
 
 #include <linux/reciprocal_div.h>
 
+extern struct reciprocal_value schedtune_spc_rdiv;
+
 /*
  * System energy normalization constants
  */
