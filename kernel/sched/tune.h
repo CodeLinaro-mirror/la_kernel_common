@@ -48,6 +48,52 @@ int schedtune_normalize_energy(int energy);
 int schedtune_accept_deltas(int nrg_delta, int cap_delta,
 			    struct task_struct *task);
 
+static inline long schedtune_margin(unsigned long signal, long boost)
+{
+	long long margin = 0;
+
+	/*
+	 * Signal proportional compensation (SPC)
+	 *
+	 * The Boost (B) value is used to compute a Margin (M) which is
+	 * proportional to the complement of the original Signal (S):
+	 *   M = B * (SCHED_CAPACITY_SCALE - S)
+	 * The obtained M could be used by the caller to "boost" S.
+	 */
+	if (boost >= 0) {
+		margin  = SCHED_CAPACITY_SCALE - signal;
+		margin *= boost;
+	} else
+		margin = -signal * boost;
+
+	margin  = reciprocal_divide(margin, schedtune_spc_rdiv);
+
+	if (boost < 0)
+		margin *= -1;
+	return margin;
+}
+
+static inline long schedtune_cpu_margin(unsigned long util, int cpu)
+{
+	int boost = schedtune_cpu_boost(cpu);
+
+	if (boost == 0)
+		return 0;
+
+	return schedtune_margin(util, boost);
+}
+
+static inline long schedtune_task_margin(unsigned long util,
+					 struct task_struct *p)
+{
+	int boost = schedtune_task_boost(p);
+
+	if (boost == 0)
+		return 0;
+
+	return schedtune_margin(util, boost);
+}
+
 #else /* CONFIG_SCHED_TUNE */
 
 #define schedtune_cpu_boost(cpu)  0
@@ -59,5 +105,13 @@ int schedtune_accept_deltas(int nrg_delta, int cap_delta,
 #define schedtune_dequeue_task(task, cpu) do { } while (0)
 
 #define schedtune_accept_deltas(nrg_delta, cap_delta, task) nrg_delta
+
+static inline long schedtune_margin(unsigned long signal, long boost)
+{ return 0 }
+static inline long schedtune_cpu_margin(unsigned long util, int cpu)
+{ return 0 }
+static inline long schedtune_task_margin(unsigned long util,
+					 struct task_struct *p)
+{ return 0 }
 
 #endif /* CONFIG_SCHED_TUNE */
