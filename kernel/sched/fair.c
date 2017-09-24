@@ -6246,19 +6246,14 @@ schedtune_cpu_margin(unsigned long util, int cpu)
 }
 
 static inline long
-schedtune_task_margin(struct task_struct *p)
+schedtune_task_margin(unsigned long util, struct task_struct *p)
 {
 	int boost = schedtune_task_boost(p);
-	unsigned long util;
-	long margin;
 
 	if (boost == 0)
 		return 0;
 
-	util = task_util(p);
-	margin = schedtune_margin(util, boost);
-
-	return margin;
+	return schedtune_margin(util, boost);
 }
 
 #else /* CONFIG_SCHED_TUNE */
@@ -6270,7 +6265,7 @@ schedtune_cpu_margin(unsigned long util, int cpu)
 }
 
 static inline int
-schedtune_task_margin(struct task_struct *p)
+schedtune_task_margin(unsigned long util, struct task_struct *p)
 {
 	return 0;
 }
@@ -6292,7 +6287,7 @@ static inline unsigned long
 boosted_task_util(struct task_struct *p)
 {
 	unsigned long util = task_util(p);
-	long margin = schedtune_task_margin(p);
+	long margin = schedtune_task_margin(util, p);
 
 	trace_sched_boost_task(p, util, margin);
 
