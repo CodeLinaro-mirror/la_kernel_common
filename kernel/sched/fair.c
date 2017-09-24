@@ -5416,18 +5416,30 @@ static unsigned long group_max_util(struct energy_env *eenv, int cpu_idx)
 	unsigned long max_util = 0;
 	unsigned long util;
 	int cpu;
+	int boost;
 
 	for_each_cpu(cpu, sched_group_cpus(eenv->sg_cap)) {
 		util = cpu_util_wake(cpu, eenv->p);
+
+		boost = schedtune_cpu_boost(cpu);
 
 		/*
 		 * If we are looking at the target CPU specified by the eenv,
 		 * then we should add the (estimated) utilization of the task
 		 * assuming we will wake it up on that CPU.
 		 */
-		if (unlikely(cpu == eenv->cpu[cpu_idx].cpu_id))
+		if (unlikely(cpu == eenv->cpu[cpu_idx].cpu_id)) {
 			util += eenv->util_delta;
 
+			/*
+			 * After place task onto CPU, the boost margin should
+			 * be the maximum value between CPU boost margin by
+			 * other tasks on rq and waken task boost margin.
+			 */
+			boost = max(boost, schedtune_task_boost(eenv->p));
+		}
+
+		util += schedtune_margin(util, boost);
 		max_util = max(max_util, util);
 	}
 
