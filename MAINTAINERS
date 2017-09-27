@@ -11059,6 +11059,7 @@ M:	Vinayak Holikatti <vinholikatti@gmail.com>
 L:	linux-scsi@vger.kernel.org
 S:	Supported
 F:	Documentation/scsi/ufs.txt
+F:	Documentation/ABI/testing/sysfs-devices-soc-ufs
 F:	drivers/scsi/ufs/
 
 UNSORTED BLOCK IMAGES (UBI)
