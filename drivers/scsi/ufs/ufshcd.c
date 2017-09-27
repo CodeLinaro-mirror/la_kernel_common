@@ -96,6 +96,7 @@ static u32 ufs_query_desc_max_size[] = {
 	QUERY_DESC_GEOMETRY_MAZ_SIZE,
 	QUERY_DESC_POWER_MAX_SIZE,
 	QUERY_DESC_RFU_MAX_SIZE,
+	QUERY_DESC_HEALTH_MAX_SIZE,
 };
 
 enum {
@@ -5324,6 +5325,67 @@ ufshcd_exit_latency_hist(struct ufs_hba *hba)
 	device_create_file(hba->dev, &dev_attr_latency_hist);
 }
 
+struct health_attr {
+	struct attribute attr;
+	ssize_t (*show)(struct device *, struct health_attr *, char *);
+	int bytes;
+};
+
+static ssize_t health_attr_show(struct device *dev,
+				struct health_attr *attr, char *buf)
+{
+	struct ufs_hba *hba = dev_get_drvdata(dev);
+	u8 desc_buf[QUERY_DESC_HEALTH_MAX_SIZE];
+	int err;
+
+	pm_runtime_get_sync(hba->dev);
+	err = ufshcd_read_desc(hba, QUERY_DESC_IDN_HEALTH, 0,
+					desc_buf, QUERY_DESC_HEALTH_MAX_SIZE);
+	pm_runtime_put_sync(hba->dev);
+	if (err)
+		return 0;
+
+	return scnprintf(buf, PAGE_SIZE, "0x%02x", desc_buf[attr->bytes]);
+}
+
+#define HEALTH_ATTR_RO(_name, _bytes)					\
+static struct health_attr ufs_health_##_name = {			\
+	.attr = {.name = __stringify(_name), .mode = 0444},		\
+	.show = health_attr_show,					\
+	.bytes = _bytes,						\
+}
+
+HEALTH_ATTR_RO(length, 0);
+HEALTH_ATTR_RO(type, 1);
+HEALTH_ATTR_RO(eol, 2);
+HEALTH_ATTR_RO(lifetimeA, 3);
+HEALTH_ATTR_RO(lifetimeB, 4);
+
+static struct attribute *ufshcd_health_attrs[] = {
+	&ufs_health_length.attr,
+	&ufs_health_type.attr,
+	&ufs_health_eol.attr,
+	&ufs_health_lifetimeA.attr,
+	&ufs_health_lifetimeB.attr,
+	NULL
+};
+
+static const struct attribute_group ufshcd_health_attr_group = {
+	.name = "health",
+	.attrs = ufshcd_health_attrs,
+};
+
+static inline void ufshcd_init_health_info(struct ufs_hba *hba)
+{
+	if (sysfs_create_group(&hba->dev->kobj, &ufshcd_health_attr_group))
+		dev_err(hba->dev, "Failed to create health sysfs group\n");
+}
+
+static void ufshcd_exit_health_info(struct ufs_hba *hba)
+{
+	sysfs_create_group(&hba->dev->kobj, &ufshcd_health_attr_group);
+}
+
 /**
  * ufshcd_remove - de-allocate SCSI host and host memory space
  *		data structure memory
@@ -5338,6 +5400,7 @@ void ufshcd_remove(struct ufs_hba *hba)
 
 	scsi_host_put(hba->host);
 
+	ufshcd_exit_health_info(hba);
 	ufshcd_exit_clk_gating(hba);
 	ufshcd_exit_latency_hist(hba);
 	if (ufshcd_is_clkscaling_enabled(hba))
@@ -5630,6 +5693,7 @@ int ufshcd_init(struct ufs_hba *hba, void __iomem *mmio_base, unsigned int irq)
 	pm_runtime_get_sync(dev);
 
 	ufshcd_init_latency_hist(hba);
+	ufshcd_init_health_info(hba);
 
 	/*
 	 * The device-initialize-sequence hasn't been invoked yet.
