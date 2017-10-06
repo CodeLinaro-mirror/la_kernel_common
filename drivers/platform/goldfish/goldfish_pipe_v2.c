@@ -208,6 +208,16 @@ struct goldfish_pipe {
 	wait_queue_head_t wake_queue;	/* A wake queue for sleeping until host signals an event */
 	struct goldfish_pipe_dev *dev;	/* Pointer to the parent goldfish_pipe_dev instance */
 	struct goldfish_dma_context *dma; /* Holds information about reserved DMA region for this pipe */
+	/* Says whether or not this pipe is in the middle of a release operation. This can affect
+	 * concurrent device operations. However, note that there are two types of concurrency:
+	 * 1. Guest does pipe operations from two separate threads/processes for the same pipe fd.
+	 * 2. Host performs a pipe operation at the same time as the guest.
+	 * We do not use the pipe for (1) unless the pipe is used as a DMA region, in which case it
+	 * will be shared across processes and we can have potential simultaneous close/ioctl/mmap
+	 * operations. For (2), we need to make sure that all pipe cleanup operations take place after
+	 * shutting down all host -> guest communications. |closing| protects both kinds of access.
+	 * TODO: Test concurrent pipe read/write as well */
+	bool closing;
 };
 
 struct goldfish_pipe_dev goldfish_pipe_dev[1] = {};
@@ -557,7 +567,7 @@ static struct goldfish_pipe *signalled_pipes_pop_front(struct goldfish_pipe_dev 
 
 static void goldfish_pipe_dma_clear_lock(struct goldfish_pipe *pipe) {
 	DPRINT("PIPE_WAKE_UNLOCK_DMA: unlock pipe dma for pipe 0x%p\n", pipe);
-	if (pipe->dma) {
+	if (!pipe->closing && pipe->dma) {
 		WARN_ON(!pipe->dma->locked);
 		clear_bit(BIT_WAKE_ON_UNLOCK_DMA, &pipe->flags);
 		pipe->dma->locked = false;
@@ -573,6 +583,7 @@ static void goldfish_interrupt_task(unsigned long unused)
 	int wakes;
 	while ((pipe = signalled_pipes_pop_front(goldfish_pipe_dev, &wakes)) !=
 			NULL) {
+		if (pipe->closing) return;
 		if (wakes & PIPE_WAKE_CLOSED) {
 			pipe->flags = 1 << BIT_CLOSED_ON_HOST;
 		} else {
@@ -743,30 +754,35 @@ err_pipe:
 	return status;
 }
 
-static void goldfish_pipe_dma_release(struct goldfish_pipe *pipe) {
+static void goldfish_pipe_dma_release_host_locked(struct goldfish_pipe *pipe) {
 	struct goldfish_dma_context *dma = pipe->dma;
 	if (!dma) return;
 
-	mutex_lock(&dma->mutex_lock);
 	if (dma->dma_vaddr) {
 		DPRINT("Last ref for dma region @ 0x%llx\n", dma->phys_begin);
 		pipe->command_buffer->dma_maphost_params.dma_paddr = dma->phys_begin;
 		pipe->command_buffer->dma_maphost_params.sz = dma->dma_size;
 		goldfish_pipe_cmd(pipe, PIPE_CMD_DMA_HOST_UNMAP);
-		DPRINT("Unmapped and freeing dma @ 0x%llx\n", dma->phys_begin);
+	}
+	DPRINT("after delete of dma @ 0x%llx: alloc total %llu\n",
+			dma->phys_begin, pipe->dev->dma_alloc_total);
+	dma->locked = false;
+}
+
+static void goldfish_pipe_dma_release_guest_locked(struct goldfish_pipe *pipe) {
+	struct goldfish_dma_context *dma = pipe->dma;
+	if (!dma) return;
+
+	if (dma->dma_vaddr) {
 		dma_free_coherent(
 				dma->pdev_dev,
 				dma->dma_size,
 				dma->dma_vaddr,
 				dma->phys_begin);
 		pipe->dev->dma_alloc_total -= dma->dma_size;
+		DPRINT("after delete of dma @ 0x%llx: alloc total %llu\n",
+				dma->phys_begin, pipe->dev->dma_alloc_total);
 	}
-	DPRINT("after delete of dma @ 0x%llx: alloc total %llu\n",
-			dma->phys_begin, pipe->dev->dma_alloc_total);
-	mutex_unlock(&dma->mutex_lock);
-	dma->locked = false;
-	kfree(dma);
-	pipe->dma = NULL;
 }
 
 static int goldfish_pipe_release(struct inode *inode, struct file *filp)
@@ -776,13 +792,13 @@ static int goldfish_pipe_release(struct inode *inode, struct file *filp)
 	struct goldfish_pipe_dev *dev = pipe->dev;
 
 	DPRINT("%s on 0x%p\n", __FUNCTION__, pipe);
-	/* Even if a fd is duped or involved in a forked process,
-	 * open/release methods are called only once, ever.
-	 * This makes goldfish_pipe_release a safe point
-	 * to delete the DMA region. */
-	goldfish_pipe_dma_release(pipe);
+
+	pipe->closing = true;
+
+	if (pipe->dma) mutex_lock(&pipe->dma->mutex_lock);
 
 	/* The guest is closing the channel, so tell the emulator right now */
+	goldfish_pipe_dma_release_host_locked(pipe);
 	(void)goldfish_pipe_cmd(pipe, PIPE_CMD_CLOSE);
 
 	spin_lock_irqsave(&dev->lock, flags);
@@ -791,6 +807,18 @@ static int goldfish_pipe_release(struct inode *inode, struct file *filp)
 	spin_unlock_irqrestore(&dev->lock, flags);
 
 	filp->private_data = NULL;
+
+	/* Even if a fd is duped or involved in a forked process,
+	 * open/release methods are called only once, ever.
+	 * This makes goldfish_pipe_release a safe point
+	 * to delete the DMA region. */
+	goldfish_pipe_dma_release_guest_locked(pipe);
+
+	if (pipe->dma) {
+		mutex_unlock(&pipe->dma->mutex_lock);
+		kfree(pipe->dma);
+		pipe->dma = NULL;
+	}
 
 	free_page((unsigned long)pipe->command_buffer);
 	kfree(pipe);
@@ -879,6 +907,8 @@ static int goldfish_dma_mmap(struct file *filp, struct vm_area_struct *vma) {
 	unsigned long sz_requested = vma->vm_end - vma->vm_start;
 	int map_err;
 
+	if (pipe->closing) return -EINVAL;
+
 	if (!is_page_size_multiple(sz_requested)) {
 		ERR("Cannot mmap dma buffer of size %lx (is not multiple of page size)\n",
 			sz_requested);
@@ -902,7 +932,6 @@ static int goldfish_dma_mmap(struct file *filp, struct vm_area_struct *vma) {
 
 	if (map_err < 0) {
 		ERR("Cannot remap pfn range....\n");
-		mutex_unlock(&dma->mutex_lock);
 		return -EAGAIN;
 	}
 
@@ -933,6 +962,7 @@ static void goldfish_pipe_dma_create_region(
 }
 
 static int goldfish_pipe_dma_acquire_lock(struct goldfish_pipe *pipe) {
+	if (pipe->closing) return 0;
 	smp_mb();
 	if (pipe->dma && pipe->dma->locked) {
 		set_bit(BIT_WAKE_ON_UNLOCK_DMA, &pipe->flags);
@@ -957,6 +987,9 @@ static long goldfish_dma_ioctl(struct file *file,
 
 	DPRINT("%s: call.", __FUNCTION__);
 	pipe = (struct goldfish_pipe *)(file->private_data);
+
+	if (pipe->closing) return -ENOTTY;
+
 	DPRINT("%s: get dma ptr.", __FUNCTION__);
 	dma = pipe->dma;
 	DPRINT("%s: continuing", __FUNCTION__);
