@@ -45,6 +45,9 @@ void schedtune_dequeue_task(struct task_struct *p, int cpu);
 int schedtune_normalize_energy(int energy);
 int schedtune_accept_deltas(int nrg_delta, int cap_delta,
 			    struct task_struct *task);
+long schedtune_margin(unsigned long signal, long boost);
+long schedtune_cpu_margin(unsigned long util, int cpu);
+long schedtune_task_margin(unsigned long util, struct task_struct *p);
 
 #else /* CONFIG_SCHED_TUNE */
 
@@ -57,5 +60,13 @@ int schedtune_accept_deltas(int nrg_delta, int cap_delta,
 #define schedtune_dequeue_task(task, cpu) do { } while (0)
 
 #define schedtune_accept_deltas(nrg_delta, cap_delta, task) nrg_delta
+
+static inline long schedtune_margin(unsigned long signal, long boost)
+{ return 0 }
+static inline long schedtune_cpu_margin(unsigned long util, int cpu)
+{ return 0 }
+static inline long schedtune_task_margin(unsigned long util,
+					 struct task_struct *p)
+{ return 0 }
 
 #endif /* CONFIG_SCHED_TUNE */
