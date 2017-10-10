@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4ec3518_c1e33802",
+        "filename": "include/uapi/linux/xfrm.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1060151
+      },
+      "writtenOn": "2017-10-10T01:19:21Z",
+      "side": 1,
+      "message": "Same comment... are these readily pick-able, or should these constants be re-named to be explicitly NOT correct, like __XFRMA_PAD or __IGNORE1, __IGNORE2 with a comment indicating that they are placeholders?",
+      "range": {
+        "startLine": 303,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 51
+      },
+      "revId": "548047fff8fa5a9b765d535a9b51489dbe7d158d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9edb6ea6_0f21ce0f",
+        "filename": "net/xfrm/xfrm_output.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1060151
+      },
+      "writtenOn": "2017-10-10T01:19:21Z",
+      "side": 1,
+      "message": "probably a little late, but if the mark is 0, assigning it has not penalty, and if it\u0027s non-zero assigning it is required. Superfluous check trading a branch for an assignment?",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 57,
+        "endChar": 27
+      },
+      "revId": "548047fff8fa5a9b765d535a9b51489dbe7d158d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
