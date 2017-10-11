@@ -45,6 +45,30 @@
       "revId": "548047fff8fa5a9b765d535a9b51489dbe7d158d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1978f963_93bb688c",
+        "filename": "net/xfrm/xfrm_output.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1060151
+      },
+      "writtenOn": "2017-10-11T00:18:23Z",
+      "side": 1,
+      "message": "Lorenzo answered this verbally. My suggestion would be incorrect.",
+      "parentUuid": "9edb6ea6_0f21ce0f",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 57,
+        "endChar": 27
+      },
+      "revId": "548047fff8fa5a9b765d535a9b51489dbe7d158d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
