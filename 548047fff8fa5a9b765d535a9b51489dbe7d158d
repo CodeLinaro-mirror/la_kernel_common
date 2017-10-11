@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0c4f9b28_d22a90fb",
+        "filename": "include/uapi/linux/xfrm.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-10-11T03:18:34Z",
+      "side": 1,
+      "message": "Given that we\u0027ve seen vendors forward-port backports, I think having the correct values is better here - at least they\u0027ll merge cleanly and be correct.",
+      "parentUuid": "d4ec3518_c1e33802",
+      "range": {
+        "startLine": 303,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 51
+      },
+      "revId": "548047fff8fa5a9b765d535a9b51489dbe7d158d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9edb6ea6_0f21ce0f",
         "filename": "net/xfrm/xfrm_output.c",
         "patchSetId": 1
@@ -59,6 +83,30 @@
       "writtenOn": "2017-10-11T00:18:23Z",
       "side": 1,
       "message": "Lorenzo answered this verbally. My suggestion would be incorrect.",
+      "parentUuid": "9edb6ea6_0f21ce0f",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 57,
+        "endChar": 27
+      },
+      "revId": "548047fff8fa5a9b765d535a9b51489dbe7d158d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f305f10_9877b279",
+        "filename": "net/xfrm/xfrm_output.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2017-10-11T03:18:34Z",
+      "side": 1,
+      "message": "Actually I\u0027m not sure there\u0027s no penalty. The packet could already be marked, right?",
       "parentUuid": "9edb6ea6_0f21ce0f",
       "range": {
         "startLine": 57,
