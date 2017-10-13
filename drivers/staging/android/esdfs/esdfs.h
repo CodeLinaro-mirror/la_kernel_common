@@ -29,7 +29,7 @@
 #include <linux/slab.h>
 #include <linux/sched.h>
 #include <linux/fs_struct.h>
-#include <linux/pkglist.h>
+#include "../pkglist.h"
 
 /* the file system name */
 #define ESDFS_NAME "esdfs"
@@ -95,6 +95,8 @@ enum {
 	ESDFS_PERMS_UPPER_DERIVED,
 	ESDFS_PERMS_TABLE_SIZE
 };
+
+#define PKG_APPID_PER_USER	100000
 
 /* operations vectors defined in specific files */
 extern const struct file_operations esdfs_main_fops;
