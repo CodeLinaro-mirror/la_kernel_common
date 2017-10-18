@@ -220,6 +220,12 @@ struct binder_write_read {
 	binder_uintptr_t	read_buffer;
 };
 
+struct binder_write_read_node {
+  binder_uintptr_t binder;
+  binder_uintptr_t cookie;
+  struct binder_write_read bwr;
+};
+
 /* Use with BINDER_VERSION, driver fills in fields. */
 struct binder_version {
 	/* driver protocol version -- increment with incompatible change */
@@ -254,6 +260,14 @@ struct binder_node_debug_info {
 #define BINDER_THREAD_EXIT		_IOW('b', 8, __s32)
 #define BINDER_VERSION			_IOWR('b', 9, struct binder_version)
 #define BINDER_GET_NODE_DEBUG_INFO	_IOWR('b', 11, struct binder_node_debug_info)
+#define BINDER_ENABLE_POLLING _IOWR('b', 12, struct binder_enable_poll)
+#define BINDER_WRITE_READ_NODE		_IOWR('b', 13, struct binder_write_read_node)
+
+struct binder_enable_poll {
+	uint64_t binder;
+	uint64_t cookie;
+	int eventfd;
+};
 
 /*
  * NOTE: Two special error codes you should check for when calling

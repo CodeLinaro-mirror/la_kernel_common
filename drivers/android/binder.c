@@ -70,6 +70,7 @@
 #include <linux/pid_namespace.h>
 #include <linux/security.h>
 #include <linux/spinlock.h>
+#include <linux/eventfd.h>
 
 #ifdef CONFIG_ANDROID_BINDER_IPC_32BIT
 #define BINDER_IPC_32BIT 1
@@ -403,6 +404,8 @@ struct binder_node {
 	};
 	bool has_async_transaction;
 	struct list_head async_todo;
+	struct list_head polled_todo;
+	struct eventfd_ctx *eventctx;
 };
 
 struct binder_ref_death {
@@ -1311,6 +1314,7 @@ static struct binder_node *binder_init_node_ilocked(
 	spin_lock_init(&node->lock);
 	INIT_LIST_HEAD(&node->work.entry);
 	INIT_LIST_HEAD(&node->async_todo);
+	INIT_LIST_HEAD(&node->polled_todo);
 	binder_debug(BINDER_DEBUG_INTERNAL_REFS,
 		     "%d:%d node %d u%016llx c%016llx created\n",
 		     proc->pid, current->pid, node->debug_id,
@@ -2710,7 +2714,8 @@ static int binder_fixup_parent(struct binder_transaction *t,
  */
 static bool binder_proc_transaction(struct binder_transaction *t,
 				    struct binder_proc *proc,
-				    struct binder_thread *thread)
+				    struct binder_thread *thread,
+				    struct binder_node *target_node)
 {
 	struct list_head *target_list = NULL;
 	struct binder_node *node = t->buffer->target_node;
@@ -2738,7 +2743,16 @@ static bool binder_proc_transaction(struct binder_transaction *t,
 	if (proc->is_dead || (thread && thread->is_dead)) {
 		binder_inner_proc_unlock(proc);
 		binder_node_unlock(node);
-		return false;
+		return true;
+	}
+
+	if (target_node && target_node->eventctx) {
+		binder_enqueue_work_ilocked(&t->work,
+					    &target_node->polled_todo);
+		eventfd_signal(target_node->eventctx, 1);
+		binder_inner_proc_unlock(proc);
+		binder_node_unlock(node);
+		return true;
 	}
 
 	if (!thread && !target_list)
@@ -3281,7 +3295,8 @@ static void binder_transaction(struct binder_proc *proc,
 		t->from_parent = thread->transaction_stack;
 		thread->transaction_stack = t;
 		binder_inner_proc_unlock(proc);
-		if (!binder_proc_transaction(t, target_proc, target_thread)) {
+		if (!binder_proc_transaction(t, target_proc, target_thread,
+					     target_node)) {
 			binder_inner_proc_lock(proc);
 			binder_pop_transaction_ilocked(thread, t);
 			binder_inner_proc_unlock(proc);
@@ -3290,7 +3305,7 @@ static void binder_transaction(struct binder_proc *proc,
 	} else {
 		BUG_ON(target_node == NULL);
 		BUG_ON(t->buffer->async_transaction != 1);
-		if (!binder_proc_transaction(t, target_proc, NULL))
+		if (!binder_proc_transaction(t, target_proc, NULL, target_node))
 			goto err_dead_proc_or_thread;
 	}
 	if (target_thread)
@@ -4501,40 +4516,88 @@ static int binder_ioctl_write_read(struct file *filp,
 	int ret = 0;
 	struct binder_proc *proc = filp->private_data;
 	unsigned int size = _IOC_SIZE(cmd);
+	size_t expected_size;
 	void __user *ubuf = (void __user *)arg;
-	struct binder_write_read bwr;
+	struct binder_write_read_node bwrn;
+	struct binder_write_read *bwr = &bwrn.bwr;
+	void *copybuf;
 
-	if (size != sizeof(struct binder_write_read)) {
+	if (cmd == BINDER_WRITE_READ) {
+		expected_size = sizeof(struct binder_write_read);
+		bwrn.binder = 0;
+		bwrn.cookie = 0;
+		copybuf = bwr;
+	} else {
+		expected_size = sizeof(struct binder_write_read_node);
+		copybuf = &bwrn;
+	}
+	if (size != expected_size) {
 		ret = -EINVAL;
 		goto out;
 	}
-	if (copy_from_user(&bwr, ubuf, sizeof(bwr))) {
+	if (copy_from_user(copybuf, ubuf, expected_size)) {
 		ret = -EFAULT;
 		goto out;
 	}
 	binder_debug(BINDER_DEBUG_READ_WRITE,
 		     "%d:%d write %lld at %016llx, read %lld at %016llx\n",
 		     proc->pid, thread->pid,
-		     (u64)bwr.write_size, (u64)bwr.write_buffer,
-		     (u64)bwr.read_size, (u64)bwr.read_buffer);
+		     (u64)bwr->write_size, (u64)bwr->write_buffer,
+		     (u64)bwr->read_size, (u64)bwr->read_buffer);
 
-	if (bwr.write_size > 0) {
+	if (bwr->write_size > 0) {
 		ret = binder_thread_write(proc, thread,
-					  bwr.write_buffer,
-					  bwr.write_size,
-					  &bwr.write_consumed);
+					  bwr->write_buffer,
+					  bwr->write_size,
+					  &bwr->write_consumed);
 		trace_binder_write_done(ret);
 		if (ret < 0) {
-			bwr.read_consumed = 0;
-			if (copy_to_user(ubuf, &bwr, sizeof(bwr)))
+			bwr->read_consumed = 0;
+			if (copy_to_user(ubuf, copybuf, expected_size))
 				ret = -EFAULT;
 			goto out;
 		}
 	}
-	if (bwr.read_size > 0) {
-		ret = binder_thread_read(proc, thread, bwr.read_buffer,
-					 bwr.read_size,
-					 &bwr.read_consumed,
+	if (cmd == BINDER_WRITE_READ_NODE) {
+		int count = 0;
+		uint64_t ecnt;
+		struct binder_work *w;
+		struct binder_node *node = binder_get_node(proc, bwrn.binder);
+
+		/*
+		 * Move all pending polled cmds to this thread's
+		 * todo list
+		 */
+		if (node && node->cookie == bwrn.cookie && node->eventctx) {
+			binder_inner_proc_lock(proc);
+			while (1) {
+				w = binder_dequeue_work_head_ilocked(
+						&node->polled_todo);
+				if (!w)
+					break;
+				binder_enqueue_work_ilocked(w, &thread->todo);
+				count++;
+			}
+			eventfd_ctx_read(node->eventctx, 1, &ecnt);
+			WARN_ON(ecnt != count);
+			binder_inner_proc_unlock(proc);
+		} else {
+			pr_err("binder polling: could not find work: %llu v %llu ctx=%llu\n",
+					node ? node->cookie : 0,
+					bwrn.cookie,
+					node ? (uint64_t)node->eventctx : 0);
+			ret = -ENOENT;
+		}
+		binder_put_node(node);
+		if (!count)
+			ret = -EINVAL;
+		if (ret)
+			return ret;
+	}
+	if (bwr->read_size > 0) {
+		ret = binder_thread_read(proc, thread, bwr->read_buffer,
+					 bwr->read_size,
+					 &bwr->read_consumed,
 					 filp->f_flags & O_NONBLOCK);
 		trace_binder_read_done(ret);
 		binder_inner_proc_lock(proc);
@@ -4542,7 +4605,7 @@ static int binder_ioctl_write_read(struct file *filp,
 			binder_wakeup_proc_ilocked(proc);
 		binder_inner_proc_unlock(proc);
 		if (ret < 0) {
-			if (copy_to_user(ubuf, &bwr, sizeof(bwr)))
+			if (copy_to_user(ubuf, copybuf, expected_size))
 				ret = -EFAULT;
 			goto out;
 		}
@@ -4550,9 +4613,9 @@ static int binder_ioctl_write_read(struct file *filp,
 	binder_debug(BINDER_DEBUG_READ_WRITE,
 		     "%d:%d wrote %lld of %lld, read return %lld of %lld\n",
 		     proc->pid, thread->pid,
-		     (u64)bwr.write_consumed, (u64)bwr.write_size,
-		     (u64)bwr.read_consumed, (u64)bwr.read_size);
-	if (copy_to_user(ubuf, &bwr, sizeof(bwr))) {
+		     (u64)bwr->write_consumed, (u64)bwr->write_size,
+		     (u64)bwr->read_consumed, (u64)bwr->read_size);
+	if (copy_to_user(ubuf, copybuf, expected_size)) {
 		ret = -EFAULT;
 		goto out;
 	}
@@ -4657,6 +4720,7 @@ static long binder_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	}
 
 	switch (cmd) {
+	case BINDER_WRITE_READ_NODE:
 	case BINDER_WRITE_READ:
 		ret = binder_ioctl_write_read(filp, cmd, arg, thread);
 		if (ret)
@@ -4718,6 +4782,44 @@ static long binder_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		}
 		break;
 	}
+	case BINDER_ENABLE_POLLING: {
+		struct binder_enable_poll bep;
+		struct binder_node *node;
+		struct file *eventfp;
+
+		if (copy_from_user(&bep, ubuf, sizeof(bep))) {
+			ret = -EFAULT;
+			goto err;
+		}
+		node = binder_get_node(proc, bep.binder);
+		if (!node) {
+			ret = -ENOENT;
+			goto err;
+		}
+		if (node->cookie != bep.cookie) {
+			ret = -ENOENT;
+			pr_err("binder polling: bad cookie %llu vs %llu",
+					node->cookie, bep.cookie);
+			binder_put_node(node);
+			goto err;
+		}
+		if (node->eventctx) {
+			ret = -EINVAL;
+			binder_put_node(node);
+			goto err;
+		}
+		eventfp = eventfd_fget(bep.eventfd);
+		if (IS_ERR(eventfp)) {
+			ret = PTR_ERR(eventfp);
+			binder_put_node(node);
+			goto err;
+		}
+		node->eventctx = eventfp ?
+			eventfd_ctx_fileget(eventfp) : NULL;
+		pr_info("binder polling: set up node %d fd=%d cookie=%llu",
+				node->debug_id, bep.eventfd, bep.cookie);
+		binder_put_node(node);
+	} break;
 	default:
 		ret = -EINVAL;
 		goto err;
@@ -4915,7 +5017,12 @@ static int binder_node_release(struct binder_node *node, int refs)
 	struct binder_proc *proc = node->proc;
 
 	binder_release_work(proc, &node->async_todo);
-
+	if (node->eventctx) {
+		eventfd_ctx_put(node->eventctx);
+		node->eventctx = NULL;
+		binder_put_node(node);
+	}
+	binder_release_work(proc, &node->polled_todo);
 	binder_node_lock(node);
 	binder_inner_proc_lock(proc);
 	binder_dequeue_work_ilocked(&node->work);
@@ -5264,6 +5371,9 @@ static void print_binder_node_nilocked(struct seq_file *m,
 		list_for_each_entry(w, &node->async_todo, entry)
 			print_binder_work_ilocked(m, node->proc, "    ",
 					  "    pending async transaction", w);
+		list_for_each_entry(w, &node->polled_todo, entry)
+			print_binder_work_ilocked(m, node->proc, "    ",
+					  "    pending polled transaction", w);
 	}
 }
 
