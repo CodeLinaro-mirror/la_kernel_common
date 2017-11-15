@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa7a3fb4_5709af3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-11-15T15:23:19Z",
+      "side": 1,
+      "message": "nit, this says \"what\" you did, just not \"why\" you are making this change.  In the future it\u0027s good to know why a change is happening, so you can remember what you did in 5 years when you are staring at the code again...",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "8311812fead4d0afffdc29ce8a18a6a0ad52bfab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
