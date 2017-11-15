@@ -166,14 +166,11 @@ static int __sdcardfs_setup_root(
 	userid_t userid,
 	int multiuser)
 {
-	struct sdcardfs_tree_entry *te;
+	struct sdcardfs_tree_entry *te = SDCARDFS_D(root);
 	struct inode *inode;
 
 	/* link the upper and lower dentries */
-	te = sdcardfs_init_tree_entry(root, realdir);
-	if (te == NULL)
-		return -ENOMEM;
-
+	sdcardfs_init_tree_entry(te, realdir);
 	te->revision = get_next_revision(root);
 
 	/* setup permission policy */
@@ -189,9 +186,6 @@ static int __sdcardfs_setup_root(
 	 * uid/gid/mode will be updated at the right time
 	 */
 	inode->i_version = te->revision;
-
-	/* used for revalidate in inode_permission */
-	inode->i_private = te;
 
 	__fix_derived_permission(te, inode);
 	return 0;
@@ -344,11 +338,13 @@ static int sdcardfs_read_super(struct super_block *sb,
 	sb->s_d_op = &sdcardfs_ci_dops;
 
 	/* get a inode and allocate our root dentry */
-	inode = sdcardfs_ialloc(sb, lower_inode->i_mode);
-	if (IS_ERR(inode)) {
-		err = PTR_ERR(inode);
+	inode = new_inode(sb);
+	if (inode == NULL) {
+		err = -ENOMEM;
 		goto out_sput;
 	}
+
+	sdcardfs_fill_inode(inode, lower_inode->i_mode);
 
 	/* generate the sdcardfs root dentry */
 	sb->s_root = d_make_root(inode);
