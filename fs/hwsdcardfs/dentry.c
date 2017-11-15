@@ -31,8 +31,8 @@ static inline void dentry_rcuwalk_barrier(struct dentry *dentry)
 /*
  * locking order:
  *     dentry->d_lock
- *         SDCARDFS_DI_LOCK
- *             te->lock
+ *         te->lock
+ *             real, ovl->d_lock
  */
 static int sdcardfs_d_delete(const struct dentry *dentry)
 {
@@ -53,8 +53,6 @@ static int sdcardfs_d_delete(const struct dentry *dentry)
 #endif
 
 	te = SDCARDFS_DI_W(dentry);
-	/* since dentry is hashed, there is no way that te == NULL */
-	BUG_ON(te == NULL);
 
 	/*
 	 * Since d_delete can be "deleted" for many times,
@@ -137,29 +135,33 @@ out:
 static int __sdcardfs_d_revalidate_fast(struct dentry *dentry,
 	unsigned int flags)
 {
+	struct inode *inode;
 	struct sdcardfs_tree_entry *te;
 	struct dentry *real_dentry;
 	int err = 1;
 
 	trace_sdcardfs_d_revalidate_fast_enter(dentry, flags);
 
+	inode = d_inode_rcu(dentry);
+
 	/*
 	 * if dentry_unlink_inode() before, should invalidate it (differ
 	 * from VFS). think why we needn't considering after :)
 	 */
-	if (unlikely(!d_inode_rcu(dentry))) {
+	if (unlikely(!inode)) {
 		err = 0;
 		goto out;
 	}
 
-	te = sdcardfs_real_dentry_rcu_locked(dentry, &real_dentry);
+	te = SDCARDFS_I(inode);
 
-	/* hashed but without te...hmm, reclaiming */
-	if (te == NULL) {
-		err = 0;
-		goto out;
-	}
+	/*
+	 * take the read lock to avoid race between rcu-lookup
+	 * and d_delete / reactivation
+	 */
+	read_lock(&te->lock);
 
+	real_dentry = sdcardfs_tree_entry_real_rcu(te);
 	if (real_dentry == NULL) {
 		/* fall back to ref-walk mode, then reactivate it */
 out_refwalk:
@@ -172,8 +174,7 @@ out_refwalk:
 	 * if real_dentry was hashed,
 	 * it will remain hashed iff d_seq isn't changed.
 	 */
-	if (__read_seqcount_retry(&real_dentry->d_seq,
-		te->real.d_seq)) {
+	if (__read_seqcount_retry(&real_dentry->d_seq, te->real.d_seq)) {
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 18, 0))
 		err = 0;		/* dentry invalid */
 		goto out_unlock;
@@ -185,8 +186,8 @@ out_refwalk:
 #endif
 	}
 
-	if (need_fixup_permission(
-		d_inode_rcu(ACCESS_ONCE(dentry->d_parent)), te)) {
+	if (unlikely(need_fixup_permission(
+		d_inode_rcu(ACCESS_ONCE(dentry->d_parent)), te))) {
 		/*
 		 * XXX: it's not suitble for us
 		 * to get_derived_permission in RCU lookup now :-(
@@ -194,7 +195,7 @@ out_refwalk:
 		goto out_refwalk;
 	}
 
-	if ((real_dentry->d_flags & DCACHE_OP_REVALIDATE)) {
+	if (unlikely(real_dentry->d_flags & DCACHE_OP_REVALIDATE)) {
 		err = real_dentry->d_op->d_revalidate(real_dentry, flags);
 		if (err < 0)
 			goto out_unlock;
@@ -269,6 +270,7 @@ static int sdcardfs_d_revalidate(
 	 * and we dont have disconnected dentry now
 	 */
 	BUG_ON(READ_ONCE(dentry->d_parent) == dentry);
+
 	if (flags & LOOKUP_RCU)
 		return __sdcardfs_d_revalidate_fast(dentry, flags);
 	return __sdcardfs_d_revalidate_slow(dentry, flags);
@@ -280,13 +282,9 @@ static void sdcardfs_canonical_path(const struct path *path,
 	sdcardfs_get_lower_path(path->dentry, actual_path);
 }
 
-/* __sdcardfs_d_release is an alias of sdcardfs_free_tree_entry */
-#define sdcardfs_d_release	sdcardfs_free_tree_entry
-
 const struct dentry_operations sdcardfs_ci_dops = {
 	.d_delete	= sdcardfs_d_delete,
 	.d_revalidate	= sdcardfs_d_revalidate,
-	.d_release	= sdcardfs_d_release,
 
 	.d_canonical_path = sdcardfs_canonical_path,
 };
