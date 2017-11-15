@@ -31,8 +31,8 @@ static inline void dentry_rcuwalk_barrier(struct dentry *dentry)
 /*
  * locking order:
  *     dentry->d_lock
- *         SDCARDFS_DI_LOCK
- *             te->lock
+ *         te->lock
+ *             real, ovl->d_lock
  */
 static int sdcardfs_d_delete(const struct dentry *dentry)
 {
@@ -53,8 +53,6 @@ static int sdcardfs_d_delete(const struct dentry *dentry)
 #endif
 
 	te = SDCARDFS_DI_W(dentry);
-	/* since dentry is hashed, there is no way that te == NULL */
-	BUG_ON(te == NULL);
 
 	/*
 	 * Since d_delete can be "deleted" for many times,
@@ -152,14 +150,12 @@ static int __sdcardfs_d_revalidate_fast(struct dentry *dentry,
 		goto out;
 	}
 
-	te = sdcardfs_real_dentry_rcu_locked(dentry, &real_dentry);
+	te = SDCARDFS_D(dentry);
 
-	/* hashed but without te...hmm, reclaiming */
-	if (te == NULL) {
-		err = 0;
-		goto out;
-	}
+	/* take the RCU-walk read lock */
+	read_lock(&te->lock);
 
+	real_dentry = sdcardfs_tree_entry_real_rcu(te);
 	if (real_dentry == NULL) {
 		/* fall back to ref-walk mode, then reactivate it */
 out_refwalk:
@@ -172,8 +168,7 @@ out_refwalk:
 	 * if real_dentry was hashed,
 	 * it will remain hashed iff d_seq isn't changed.
 	 */
-	if (__read_seqcount_retry(&real_dentry->d_seq,
-		te->real.d_seq)) {
+	if (__read_seqcount_retry(&real_dentry->d_seq, te->real.d_seq)) {
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 18, 0))
 		err = 0;		/* dentry invalid */
 		goto out_unlock;
@@ -269,6 +264,7 @@ static int sdcardfs_d_revalidate(
 	 * and we dont have disconnected dentry now
 	 */
 	BUG_ON(READ_ONCE(dentry->d_parent) == dentry);
+
 	if (flags & LOOKUP_RCU)
 		return __sdcardfs_d_revalidate_fast(dentry, flags);
 	return __sdcardfs_d_revalidate_slow(dentry, flags);
@@ -280,13 +276,9 @@ static void sdcardfs_canonical_path(const struct path *path,
 	sdcardfs_get_lower_path(path->dentry, actual_path);
 }
 
-/* __sdcardfs_d_release is an alias of sdcardfs_free_tree_entry */
-#define sdcardfs_d_release	sdcardfs_free_tree_entry
-
 const struct dentry_operations sdcardfs_ci_dops = {
 	.d_delete	= sdcardfs_d_delete,
 	.d_revalidate	= sdcardfs_d_revalidate,
-	.d_release	= sdcardfs_d_release,
 
 	.d_canonical_path = sdcardfs_canonical_path,
 };
