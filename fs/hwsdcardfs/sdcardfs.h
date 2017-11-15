@@ -157,7 +157,7 @@ extern struct dentry *sdcardfs_interpose(struct dentry *,
 	struct dentry *, struct dentry *);
 
 /* inode.c */
-extern struct inode *sdcardfs_ialloc(struct super_block *, mode_t);
+extern void sdcardfs_fill_inode(struct inode *inode, mode_t mode);
 extern int touch_nomedia(struct dentry *parent);
 
 #ifdef CONFIG_SDCARD_FS_XATTR
@@ -285,184 +285,77 @@ struct sdcardfs_tree_entry {
 	userid_t userid;
 	uid_t d_uid;
 	bool under_android;
+
+	/* the corresponding false upper inode */
+	struct inode vfs_inode;
 };
 
-#define SDCARDFS_DI_LOCKED		((void *)0x19921118)
+/* tree entry can be accessed either from inode or dentry */
+#define SDCARDFS_I(inode) container_of(inode, \
+	struct sdcardfs_tree_entry, vfs_inode)
 
-/* keep in mind SDCARDFS_D is unsafe for RCU lookup */
-static inline
-struct sdcardfs_tree_entry *SDCARDFS_D(
-	const struct dentry *d
-) {
-	struct sdcardfs_tree_entry *te;
+static inline struct sdcardfs_tree_entry *SDCARDFS_D(const struct dentry *d)
+{
+	struct inode *inode = d_inode_rcu(d);
 
-	while ((te = (struct sdcardfs_tree_entry *)
-		lockless_dereference(d->d_fsdata)) == SDCARDFS_DI_LOCKED)
-		cpu_relax();
-	return te;
+	BUG_ON(inode == NULL);
+	return SDCARDFS_I(inode);
 }
 
-static inline
-struct sdcardfs_tree_entry *SDCARDFS_DI_X(
-	const struct dentry *_d
-) {
-	struct dentry *d = (struct dentry *)_d;
-	struct sdcardfs_tree_entry *te;
+/* SDCARDFS_DI_W should only be called out of RCU-lookup */
+static inline struct sdcardfs_tree_entry *SDCARDFS_DI_W(const struct dentry *d)
+{
+	struct sdcardfs_tree_entry *te = SDCARDFS_D((struct dentry *)d);
 
-	while ((te = (struct sdcardfs_tree_entry *)xchg(
-		&d->d_fsdata, SDCARDFS_DI_LOCKED)) == SDCARDFS_DI_LOCKED)
-		cpu_relax();
-
-	smp_mb();
-	ACCESS_ONCE(d->d_fsdata) = NULL;
-	if (te != NULL)
-		write_lock(&te->lock);
-	return te;
-}
-
-/* acquire tree entry with te read locked */
-static inline
-struct sdcardfs_tree_entry *SDCARDFS_DI_R(
-	const struct dentry *_d
-) {
-	struct dentry *d = (struct dentry *)_d;
-	struct sdcardfs_tree_entry *te;
-
-	while ((te = (struct sdcardfs_tree_entry *)xchg(
-		&d->d_fsdata, SDCARDFS_DI_LOCKED)) == SDCARDFS_DI_LOCKED)
-		cpu_relax();
-	BUG_ON(te == NULL);
-	read_lock(&te->lock);
-	return ACCESS_ONCE(d->d_fsdata) = te;
-}
-
-/* acquire tree entry with te write locked */
-static inline
-struct sdcardfs_tree_entry *SDCARDFS_DI_W(
-	const struct dentry *_d
-) {
-	struct dentry *d = (struct dentry *)_d;
-	struct sdcardfs_tree_entry *te;
-
-	while ((te = (struct sdcardfs_tree_entry *)xchg(
-		&d->d_fsdata, SDCARDFS_DI_LOCKED)) == SDCARDFS_DI_LOCKED)
-		cpu_relax();
-	BUG_ON(te == NULL);
 	write_lock(&te->lock);
-	return ACCESS_ONCE(d->d_fsdata) = te;
-}
-
-extern struct dentry *
-_sdcardfs_reactivate_real_locked(const struct dentry *dentry,
-	struct sdcardfs_tree_entry *te);
-
-static inline
-struct sdcardfs_tree_entry *
-sdcardfs_tree_entry_real_locked(
-	const struct dentry *dentry,
-	struct dentry **real_dentry
-) {
-	struct sdcardfs_tree_entry *te = SDCARDFS_DI_R(dentry);
-	*real_dentry = (!te->real.dentry_invalid ? te->real.dentry :
-		_sdcardfs_reactivate_real_locked(dentry, te));
 	return te;
 }
 
-static inline
-struct sdcardfs_tree_entry *
-sdcardfs_tree_entry_lower_locked(
-	const struct dentry *dentry,
-	struct dentry **lower_dentry
-) {
-	struct sdcardfs_tree_entry *te = SDCARDFS_DI_R(dentry);
-	*lower_dentry = (te->ovl != NULL ? te->ovl :
-		(!te->real.dentry_invalid ? te->real.dentry :
-			_sdcardfs_reactivate_real_locked(dentry, te)));
-	return te;
-}
+extern struct dentry *sdcardfs_reactivate_real(const struct dentry *dentry);
 
-static inline
-struct sdcardfs_tree_entry *
-sdcardfs_real_dentry_rcu_locked(
-	struct dentry *d,
-	struct dentry **real_dentry
-) {
-	/*
-	 * it is needed to treat differently for RCU approach.
-	 * because countref isnt taken and free_tree_entry
-	 * could be triggered at the same time
-	 */
-	struct sdcardfs_tree_entry *te;
+#define sdcardfs_tree_entry_real_rcu(te)	\
+	(te->real.dentry_invalid ? NULL : te->real.dentry)
 
-	while ((te = (struct sdcardfs_tree_entry *)xchg(
-		&d->d_fsdata, SDCARDFS_DI_LOCKED)) == SDCARDFS_DI_LOCKED)
-		cpu_relax();
+static inline struct dentry *
+sdcardfs_get_real_dentry_with_seq(const struct dentry *dentry, unsigned *d_seq)
+{
+	struct sdcardfs_tree_entry *te = SDCARDFS_D(dentry);
 
-	if (te != NULL) {
-		read_lock(&te->lock);
-		*real_dentry = (te->real.dentry_invalid ? NULL :
-			te->real.dentry);
-	}
-	ACCESS_ONCE(d->d_fsdata) = te;
-	return te;
-}
-
-static inline
-struct dentry *sdcardfs_get_real_dentry_with_seq(
-	const struct dentry *dentry,
-	unsigned *d_seq
-) {
-	struct sdcardfs_tree_entry *te;
-	struct dentry *real_dentry;
-
-	te = sdcardfs_tree_entry_real_locked(dentry, &real_dentry);
-	real_dentry = dget(real_dentry);
 	*d_seq = te->real.d_seq;
-	read_unlock(&te->lock);
-
-	return real_dentry;
+	return dget(!te->real.dentry_invalid ?
+		te->real.dentry :
+		sdcardfs_reactivate_real(dentry));
 }
 
-static inline
-struct dentry *sdcardfs_get_real_dentry(
-	const struct dentry *dentry
-) {
+static inline struct dentry *
+sdcardfs_get_real_dentry(const struct dentry *dentry)
+{
 	unsigned d_seq;
 
-	return sdcardfs_get_real_dentry_with_seq(
-		dentry, &d_seq);
+	return sdcardfs_get_real_dentry_with_seq(dentry, &d_seq);
 }
 
-static inline
-struct dentry *sdcardfs_get_lower_dentry(
-	const struct dentry *dentry
-) {
-	struct sdcardfs_tree_entry *te;
-	struct dentry *lower_dentry;
+static inline struct dentry *
+sdcardfs_get_lower_dentry(const struct dentry *dentry)
+{
+	struct sdcardfs_tree_entry *te = SDCARDFS_D(dentry);
 
-	te = sdcardfs_tree_entry_lower_locked(dentry, &lower_dentry);
-	lower_dentry = dget(lower_dentry);
-	read_unlock(&te->lock);
-
-	return lower_dentry;
+	return dget(te->ovl != NULL ? te->ovl :
+		(!te->real.dentry_invalid ? te->real.dentry :
+		sdcardfs_reactivate_real(dentry)));
 }
 
-extern struct sdcardfs_tree_entry *
-	sdcardfs_init_tree_entry(struct dentry *, struct dentry *);
-extern void sdcardfs_free_tree_entry(struct dentry *);
+extern void sdcardfs_init_tree_entry(struct sdcardfs_tree_entry *te,
+	struct dentry *);
+extern void sdcardfs_invalidate_tree_entry(struct sdcardfs_tree_entry *);
 
 /* need fixup its permission from its parent */
-static inline int need_fixup_permission(
-	struct inode *dir,
-	struct sdcardfs_tree_entry *te
-) {
-	return te->revision < dir->i_version;
-}
+#define need_fixup_permission(dir, te) (te->revision < dir->i_version)
 
 static inline void __fix_derived_permission(
 	struct sdcardfs_tree_entry *te,
-	struct inode *inode
-) {
+	struct inode *inode)
+{
 	int visible_mode, owner_mode, filtered_mode;
 	struct sdcardfs_mount_options *opts =
 		&SDCARDFS_SB(inode->i_sb)->options;
@@ -511,16 +404,10 @@ static inline void __fix_derived_permission(
 	inode->i_version = te->revision;
 }
 
-static inline void fix_derived_permission(
-	struct dentry *dentry
-) {
-	struct sdcardfs_tree_entry *te = SDCARDFS_DI_R(dentry);
+#define fix_derived_permission(d) \
+	__fix_derived_permission(SDCARDFS_D(d), d_inode(d))
 
-	__fix_derived_permission(te, d_inode(dentry));
-	read_unlock(&te->lock);
-}
-
-/* file to private Data */
+/* file to private data */
 #define SDCARDFS_F(file) ((struct sdcardfs_file_info *)((file)->private_data))
 
 /* file to lower file */
@@ -579,7 +466,7 @@ extern void get_derived_permission(struct dentry *, struct dentry *);
 static inline bool
 permission_denied_to_create(struct inode *dir, const char *name)
 {
-	struct sdcardfs_tree_entry *te = dir->i_private;
+	struct sdcardfs_tree_entry *te = SDCARDFS_I(dir);
 
 	if (te != NULL && te->perm == PERM_ROOT)
 		return !strcasecmp(name, "autorun.inf");
@@ -589,7 +476,7 @@ permission_denied_to_create(struct inode *dir, const char *name)
 static inline bool
 permission_denied_to_remove(struct inode *dir, const char *name)
 {
-	struct sdcardfs_tree_entry *te = dir->i_private;
+	struct sdcardfs_tree_entry *te = SDCARDFS_I(dir);
 
 	if (te != NULL && te->perm == PERM_ROOT)
 		return !strcasecmp(name, ".android_secure") ||
@@ -672,5 +559,5 @@ static inline void sdcardfs_copy_and_fix_attrs(struct inode *dest,
 	set_nlink(dest, src->i_nlink);
 }
 
-#endif	/* not _SDCARDFS_H_ */
+#endif	/* not __SDCARDFS_H */
 

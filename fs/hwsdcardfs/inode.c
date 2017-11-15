@@ -155,7 +155,7 @@ static int sdcardfs_unlink(struct inode *dir, struct dentry *dentry)
 		vfs_unlink(d_inode(this.real_dir_dentry),
 			this.real_dentry, NULL);
 
-	__sdcardfs_do_remove_end(&this, dir);
+	__sdcardfs_do_remove_end(&this, dir, dentry);
 	iput(real_inode);	/* truncate real_inode here */
 
 out:
@@ -175,7 +175,7 @@ static int sdcardfs_rmdir(struct inode *dir, struct dentry *dentry)
 		goto out;
 
 	ret = vfs_rmdir(d_inode(this.real_dir_dentry), this.real_dentry);
-	__sdcardfs_do_remove_end(&this, dir);
+	__sdcardfs_do_remove_end(&this, dir, dentry);
 
 out:
 	trace_sdcardfs_rmdir_exit(dir, dentry, ret);
@@ -446,7 +446,7 @@ static int sdcardfs_getattr(struct vfsmount *mnt, struct dentry *dentry,
 
 	if (!err) {
 		struct inode *inode = d_inode(dentry);
-		struct sdcardfs_tree_entry *te = inode->i_private;
+		struct sdcardfs_tree_entry *te = SDCARDFS_I(inode);
 
 		/* note that generic_fillattr dont take any lock */
 
@@ -473,7 +473,7 @@ static int sdcardfs_permission(struct inode *inode, int mask)
 #ifdef CONFIG_SDCARD_FS_PLUGIN_PRIVACY_SPACE
 	struct sdcardfs_sb_info *sbi;
 #endif
-	struct sdcardfs_tree_entry *te = inode->i_private;
+	struct sdcardfs_tree_entry *te = SDCARDFS_I(inode);
 
 	need_reval = te->revision > inode->i_version;
 

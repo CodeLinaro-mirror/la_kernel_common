@@ -120,16 +120,15 @@ static int sdcardfs_remount_fs(struct super_block *sb,
 	return err;
 }
 
-/*
- * Called by iput() when the inode reference count reached zero
- * and the inode is not hashed anywhere.  Used to clear anything
- * that needs to be, before the inode is completely destroyed and put
- * on the inode free list.
- */
 static void sdcardfs_evict_inode(struct inode *inode)
 {
+	struct sdcardfs_tree_entry *te = SDCARDFS_I(inode);
+
 	truncate_inode_pages_final(&inode->i_data);
 	clear_inode(inode);
+
+	/* dentry rcu-walk could still use tree_entry */
+	sdcardfs_invalidate_tree_entry(te);
 }
 
 /*
@@ -156,6 +155,57 @@ static int sdcardfs_show_options(struct seq_file *m, struct dentry *root)
 	return 0;
 };
 
+static struct kmem_cache *sdcardfs_tree_entry_cachep;
+
+static void init_once(void *ptr)
+{
+	struct sdcardfs_tree_entry *te = ptr;
+
+	inode_init_once(&te->vfs_inode);
+}
+
+int sdcardfs_init_tree_cache(void)
+{
+	sdcardfs_tree_entry_cachep = kmem_cache_create("sdcardfs_tree_entry",
+		sizeof(struct sdcardfs_tree_entry),
+		0, SLAB_RECLAIM_ACCOUNT, init_once);
+	return sdcardfs_tree_entry_cachep != NULL ? 0 : -ENOMEM;
+}
+
+void sdcardfs_destroy_tree_cache(void)
+{
+	BUG_ON(sdcardfs_tree_entry_cachep == NULL);
+	kmem_cache_destroy(sdcardfs_tree_entry_cachep);
+}
+
+static struct inode *sdcardfs_alloc_inode(struct super_block *sb)
+{
+	struct sdcardfs_tree_entry *te =
+		kmem_cache_alloc(sdcardfs_tree_entry_cachep, GFP_KERNEL);
+
+	if (te == NULL)
+		return NULL;
+
+	/* zero out everything except vfs_inode */
+	memset(te, 0, offsetof(struct sdcardfs_tree_entry, vfs_inode));
+
+	return &te->vfs_inode;
+}
+
+static void i_callback(struct rcu_head *head)
+{
+	struct inode *inode = container_of(head, struct inode, i_rcu);
+	struct sdcardfs_tree_entry *te = SDCARDFS_I(inode);
+
+	BUG_ON(te->real.dentry);
+	kmem_cache_free(sdcardfs_tree_entry_cachep, te);
+}
+
+static void sdcardfs_destroy_inode(struct inode *inode)
+{
+	call_rcu(&inode->i_rcu, i_callback);
+}
+
 const struct super_operations sdcardfs_sops = {
 	.put_super      = sdcardfs_put_super,
 	.statfs         = sdcardfs_statfs,
@@ -163,6 +213,8 @@ const struct super_operations sdcardfs_sops = {
 	.evict_inode    = sdcardfs_evict_inode,
 	.umount_begin   = sdcardfs_umount_begin,
 	.show_options   = sdcardfs_show_options,
+	.alloc_inode    = sdcardfs_alloc_inode,
+	.destroy_inode  = sdcardfs_destroy_inode,
 	.drop_inode     = generic_delete_inode,
 };
 
