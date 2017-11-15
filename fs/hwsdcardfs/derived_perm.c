@@ -169,14 +169,12 @@ void get_derived_permission4(struct dentry *parent,
 	struct dentry *dentry,
 	const char *rename, bool lazy_recursive)
 {
-	struct sdcardfs_tree_entry *pi = SDCARDFS_DI_R(parent);
-	struct sdcardfs_tree_entry *ci = SDCARDFS_DI_W(dentry);
+	struct sdcardfs_tree_entry *pi = SDCARDFS_D(parent);
+	struct sdcardfs_tree_entry *ci = SDCARDFS_D(dentry);
 
 	__get_derived_permission(dentry->d_sb, rename, pi, ci);
 	if (lazy_recursive)
 		ci->revision = get_next_revision(dentry);
-	write_unlock(&ci->lock);
-	read_unlock(&pi->lock);
 }
 
 void get_derived_permission(struct dentry *parent, struct dentry *dentry)
@@ -184,3 +182,4 @@ void get_derived_permission(struct dentry *parent, struct dentry *dentry)
 	get_derived_permission4(parent, dentry,
 		dentry->d_name.name, false);
 }
+

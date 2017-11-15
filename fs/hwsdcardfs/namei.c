@@ -21,13 +21,8 @@ static int is_weird_inode(mode_t mode)
 		S_ISFIFO(mode) || S_ISSOCK(mode) || S_ISLNK(mode);
 }
 
-struct inode *sdcardfs_ialloc(struct super_block *sb, mode_t mode)
+void sdcardfs_fill_inode(struct inode *inode, mode_t mode)
 {
-	struct inode *inode = new_inode(sb);
-
-	if (unlikely(inode == NULL))
-		return ERR_PTR(-ENOMEM);
-
 	inode->i_ino = get_next_ino();
 	inode->i_version = 1;
 	inode->i_generation = get_seconds();
@@ -48,7 +43,6 @@ struct inode *sdcardfs_ialloc(struct super_block *sb, mode_t mode)
 	inode->i_mapping->a_ops = &sdcardfs_aops;
 
 	trace_sdcardfs_ialloc(inode);
-	return inode;
 }
 
 /*
@@ -79,32 +73,30 @@ struct dentry *sdcardfs_interpose(
 	 */
 	BUG_ON(d_is_negative(real_dentry));
 
-	te = sdcardfs_init_tree_entry(dentry, real_dentry);
-	if (unlikely(te == NULL)) {
+	inode = new_inode(sb);
+	if (unlikely(inode == NULL)) {
+		errln("%s, failed to new inode", __func__);
 		dput(real_dentry);
+
 		return ERR_PTR(-ENOMEM);
 	}
-	get_derived_permission(parent, dentry);
+
+	te = SDCARDFS_I(inode);
+	sdcardfs_init_tree_entry(te, real_dentry);
 
 	/* before d_add, we can access lower_dentry without locking */
 	lower_dentry = (te->ovl != NULL ? te->ovl : te->real.dentry);
 
 	lower_inode = d_inode(lower_dentry);
-	inode = sdcardfs_ialloc(sb, lower_inode->i_mode);
-	if (IS_ERR(inode)) {
-		errln("%s, failed to alloc inode, err=%ld",
-			__func__, PTR_ERR(inode));
-
-		sdcardfs_free_tree_entry(dentry);
-		return (struct dentry *)inode;
-	}
-
-	/* used for revalidate in inode_permission */
-	inode->i_private = te;
+	sdcardfs_fill_inode(inode, lower_inode->i_mode);
 	fsstack_copy_inode_size(inode, lower_inode);
 
+	d_instantiate(dentry, inode);
+
+	get_derived_permission(parent, dentry);
 	__fix_derived_permission(te, inode);
-	d_add(dentry, inode);
+
+	d_rehash(dentry);
 	return NULL;
 }
 

@@ -103,7 +103,8 @@ dput_err:
 
 static void __sdcardfs_do_remove_end(
 	_sdcardfs_do_remove_struct *this,
-	struct inode *dir)
+	struct inode *dir,
+	struct dentry *dentry)
 {
 	REVERT_CRED(this->saved_cred);
 	fsstack_copy_inode_size(dir, d_inode(this->real_dir_dentry));
@@ -111,5 +112,13 @@ static void __sdcardfs_do_remove_end(
 	inode_unlock(d_inode(this->real_dir_dentry));
 	dput(this->real_dir_dentry);
 	dput(this->real_dentry);
+
+	/*
+	 * Since sdcardfs is a multiview stackable file system,
+	 * we must keep track of the underlay file system all the time.
+	 * Thus, it makes no sense that hashed but negative
+	 * dentries exist (probably could cause bad behaviors).
+	 */
+	d_drop(dentry);
 }
 

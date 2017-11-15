@@ -28,9 +28,9 @@ static int __sdcardfs_do_create_begin(
 	int err;
 	struct sdcardfs_sb_info *sbi;
 
-	if (SDCARDFS_D(dentry) != NULL) {
-		warnln("%s, negative dentry(%s) should not have tree entry",
-			__func__, dentry->d_name.name);
+	if (d_really_is_positive(dentry)) {
+		warnln("%s, unexpected positive dentry(%s)", __func__,
+			dentry->d_name.name);
 		return -ESTALE;
 	}
 

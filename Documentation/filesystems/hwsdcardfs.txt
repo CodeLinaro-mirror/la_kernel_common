@@ -226,17 +226,11 @@ Singleuser mode for public storage (removable media eg. sdcard, otg usb, etc.):
 HUAWEI SDCARDFS IN-MEMORY HIERARCHY
 ================================================================================
 
-   sdcardfs dentry
-    |
-    |
-    \--(d_inode)--------------> sdcardfs false upper inode
-    |                                                   |
-    \--(d_fsdata)--> tree_entry  <-----(i_private)------/
-                      |
-                      |
-                      \--(real)---> underlayfs dentry
-                      \---(ovl)---> underlayfs obb dentry
-
+                          tree_entry
+                           |
+          sdcardfs dentry  \-- (real, ovl as above)...
+           |               |
+           \--(d_inode)--> \-- (sdcardfs false upper inode)
 
    Different from wrapfs-based approach, we follow overlayfs and never record
    underlayfs inode since what we care about is only the dentry relationship.
