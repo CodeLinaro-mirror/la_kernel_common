@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a271a391_15636660",
+        "filename": "init/initramfs.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1015340
+      },
+      "writtenOn": "2017-12-04T22:56:00Z",
+      "side": 1,
+      "message": "Style nitpick: don\u0027t use braces here.  The kernel coding style says not to use braces for single-statement blocks.\n\nOtherwise LGTM.",
+      "range": {
+        "startLine": 625,
+        "startChar": 2,
+        "endLine": 627,
+        "endChar": 3
+      },
+      "revId": "daef8230080798a6fc5a7df66b399a8c7243aa3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
