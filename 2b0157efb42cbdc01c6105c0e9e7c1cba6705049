@@ -33,6 +33,52 @@
       "revId": "2b0157efb42cbdc01c6105c0e9e7c1cba6705049",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "128908b9_3bccd44e",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 5798,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-12-11T14:39:00Z",
+      "side": 1,
+      "message": "This comment is not correct if we keep the change at L5873.\n... but I would update the comment along with that change using a separate patch, so that we can also better evaluate/compare the two versions.",
+      "range": {
+        "startLine": 5798,
+        "startChar": 35,
+        "endLine": 5798,
+        "endChar": 64
+      },
+      "revId": "2b0157efb42cbdc01c6105c0e9e7c1cba6705049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94f4c860_62382856",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 5873,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-12-11T14:39:00Z",
+      "side": 1,
+      "message": "Just notice that this change the behavior wrt the original patch proposed for v4.4, in the sense that we always consider the first CPU which saves energy.\n\nIMO, NXT having priority over BKP is kind of reducing the effectiveness of looking for a BKP CPU.\n\nI would at least split this mod into a separate patch on top, or otherwise we should update the documentation of this method, since now it says we return the most energy efficient candidate.",
+      "range": {
+        "startLine": 5873,
+        "startChar": 0,
+        "endLine": 5873,
+        "endChar": 9
+      },
+      "revId": "2b0157efb42cbdc01c6105c0e9e7c1cba6705049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
