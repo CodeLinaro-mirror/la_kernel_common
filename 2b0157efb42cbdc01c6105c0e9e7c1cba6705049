@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9141c789_0e11ca4d",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 5685,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-12-11T14:15:20Z",
+      "side": 1,
+      "message": "Maybe we can add here a comment like the one we already use in select_energy_cpu_idx, i.e.\n\n/* Skip not valid scheduled candidates */\n\n... as well as use only 1 empty line.",
+      "revId": "2b0157efb42cbdc01c6105c0e9e7c1cba6705049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71d39dba_d927212a",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 5688,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2017-12-11T14:15:20Z",
+      "side": 1,
+      "message": "I would like to add an empty line before this comment",
+      "revId": "2b0157efb42cbdc01c6105c0e9e7c1cba6705049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
