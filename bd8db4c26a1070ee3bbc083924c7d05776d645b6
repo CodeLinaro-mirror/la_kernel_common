@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "497a4f7f_c085c355",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 5846,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2017-12-12T15:14:38Z",
+      "side": 1,
+      "message": "Strictly speaking, we don\u0027t even need to scale back down so long as all components are treated equally all the way through.",
+      "range": {
+        "startLine": 5843,
+        "startChar": 0,
+        "endLine": 5846,
+        "endChar": 0
+      },
+      "revId": "bd8db4c26a1070ee3bbc083924c7d05776d645b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
