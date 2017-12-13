@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f006dd86_5d783e0c",
+        "filename": "drivers/staging/android/Kconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:22:47Z",
+      "side": 1,
+      "message": "not needed \u0027n\u0027 is the default.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 10
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b6f932a_3c6a6a27",
+        "filename": "drivers/staging/android/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:22:47Z",
+      "side": 1,
+      "message": "_very_ generic module name, should this not be android_fw.o instead?",
+      "range": {
+        "startLine": 8,
+        "startChar": 33,
+        "endLine": 8,
+        "endChar": 39
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca00a1b1_1e41588b",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:22:47Z",
+      "side": 1,
+      "message": "who wrote this, just Intel?  Or did Google also modify it?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 33
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3a89d71_d3a95e1d",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:22:47Z",
+      "side": 1,
+      "message": "__ATTR_RO()?",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 52
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "559099ed_723019cb",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:22:47Z",
+      "side": 1,
+      "message": "__ATTR_RO()?",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 13
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87ef2bed_347e62d3",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:22:47Z",
+      "side": 1,
+      "message": "ATTRIBUTE_GROUP()?",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 46
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe5b45e5_d30dc559",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:22:47Z",
+      "side": 1,
+      "message": "is this whole function even needed?  A wrapper for a pass-through to a kobject call is odd.",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 78
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "147e424c_44c55ff5",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:22:47Z",
+      "side": 1,
+      "message": "Good kernel style is to error out, don\u0027t indent for the \"normal\" case.\n\nSo this would be:\nif (!kobj)\n      return NULL;\n\n...",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 12
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ba2ee31_80fb29ad",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:22:47Z",
+      "side": 1,
+      "message": "this comment does not make sense, it seems to be a cut-and-paste from somewhere else.",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 65
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c105d526_8f44ccec",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:22:47Z",
+      "side": 1,
+      "message": "same comment as above.",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 12
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9aa848d_56dca3b3",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:22:47Z",
+      "side": 1,
+      "message": "is this TODO still valid?",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 73
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
