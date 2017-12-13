@@ -29,6 +29,20 @@ is_affected_midr_range(const struct arm64_cpu_capabilities *entry)
 				       entry->midr_range_max);
 }
 
+static bool __maybe_unused
+is_kryo_midr(const struct arm64_cpu_capabilities *entry)
+{
+	u32 model;
+
+	WARN_ON(preemptible());
+
+	model = read_cpuid_id();
+	model &= MIDR_IMPLEMENTOR_MASK | (0xf00 << MIDR_PARTNUM_SHIFT) |
+		 MIDR_ARCHITECTURE_MASK;
+
+	return model == entry->midr_model;
+}
+
 #define MIDR_RANGE(model, min, max) \
 	.matches = is_affected_midr_range, \
 	.midr_model = model, \
@@ -108,6 +122,12 @@ const struct arm64_cpu_capabilities arm64_errata[] = {
 		.desc = "Qualcomm Technologies Falkor erratum 1003",
 		.capability = ARM64_WORKAROUND_QCOM_FALKOR_E1003,
 		MIDR_RANGE(MIDR_QCOM_FALKOR_V1, 0x00, 0x00),
+	},
+	{
+		.desc = "Qualcomm Technologies Kryo erratum 1003",
+		.capability = ARM64_WORKAROUND_QCOM_FALKOR_E1003,
+		.midr_model = MIDR_QCOM_KRYO,
+		.matches = is_kryo_midr,
 	},
 #endif
 	{
