@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0222d164_6573dbb6",
+        "filename": "arch/x86/configs/i386_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:24:48Z",
+      "side": 1,
+      "message": "hotplug pci?  Why?",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 20
+      },
+      "revId": "974e784b3a69764406d43bb0f9cbd900fc50071c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cbdf533_c23e770a",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-13T18:24:48Z",
+      "side": 1,
+      "message": "same question here, you really support PCI hotplug?",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 18
+      },
+      "revId": "974e784b3a69764406d43bb0f9cbd900fc50071c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
