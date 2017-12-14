@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f819a820_5d0a0415",
+        "filename": "arch/x86/configs/i386_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-14T09:48:24Z",
+      "side": 1,
+      "message": "Ah, sorry, I missed that this was just being moved, I thought it was being added, my fault.",
+      "parentUuid": "e98ecd35_d7f60f4e",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 20
+      },
+      "revId": "974e784b3a69764406d43bb0f9cbd900fc50071c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5cbdf533_c23e770a",
         "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
         "patchSetId": 1
@@ -93,6 +117,30 @@
       "revId": "974e784b3a69764406d43bb0f9cbd900fc50071c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "011953a8_51463c7c",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-14T09:48:24Z",
+      "side": 1,
+      "message": "oops, just getting moved, my fault, sorry for the noise.",
+      "parentUuid": "53df74d5_8e029b42",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 18
+      },
+      "revId": "974e784b3a69764406d43bb0f9cbd900fc50071c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
