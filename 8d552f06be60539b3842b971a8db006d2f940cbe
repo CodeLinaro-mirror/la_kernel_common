@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f20e144d_6248547d",
+        "filename": "drivers/staging/android/Kconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T07:14:32Z",
+      "side": 1,
+      "message": "Thanks, will remove. FWIW line 7 above has the same problem.",
+      "parentUuid": "f006dd86_5d783e0c",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 10
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2b6f932a_3c6a6a27",
         "filename": "drivers/staging/android/Makefile",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-12-13T18:22:47Z",
       "side": 1,
       "message": "_very_ generic module name, should this not be android_fw.o instead?",
+      "range": {
+        "startLine": 8,
+        "startChar": 33,
+        "endLine": 8,
+        "endChar": 39
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16f75c7a_57c7801f",
+        "filename": "drivers/staging/android/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T07:14:32Z",
+      "side": 1,
+      "message": "Thanks, I struggled to come up with a good module name. android_fw sounds okay to me, and if there\u0027s no better idea, I\u0027ll go ahead and do a replace-all.",
+      "parentUuid": "2b6f932a_3c6a6a27",
       "range": {
         "startLine": 8,
         "startChar": 33,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ed0f2bf8_4ef7c5d3",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T07:14:32Z",
+      "side": 1,
+      "message": "I work for Intel. I wrote the driver in July for goldfish kernel 3.18:\n\nhttps://r.android.com/442393",
+      "parentUuid": "ca00a1b1_1e41588b",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 33
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a3a89d71_d3a95e1d",
         "filename": "drivers/staging/android/fwdata.c",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2017-12-13T18:22:47Z",
       "side": 1,
       "message": "__ATTR_RO()?",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 52
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24a1cca1_9b235eef",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T07:14:32Z",
+      "side": 1,
+      "message": "I tried to use that macro at first, but it doesn\u0027t allow multiple attributes to share the same show() callback:\n\n \t.show\t\u003d _name##_show,\t\t\t\t\t\t\\\n\nwhereas I want property_show() to handle all attributes.",
+      "parentUuid": "a3a89d71_d3a95e1d",
       "range": {
         "startLine": 75,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "c5403b58_ac97f002",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T07:14:32Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "parentUuid": "559099ed_723019cb",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 13
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87ef2bed_347e62d3",
         "filename": "drivers/staging/android/fwdata.c",
         "patchSetId": 1
@@ -128,6 +248,30 @@
       "writtenOn": "2017-12-13T18:22:47Z",
       "side": 1,
       "message": "ATTRIBUTE_GROUP()?",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 46
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d14c11f_25375bbb",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T07:14:32Z",
+      "side": 1,
+      "message": "That macro doesn\u0027t seem to exist, but there is ATTRIBUTE_GROUPS() which also declares a null-terminated array of struct attribute_group. Using ATTRIBUTE_GROUPS() here would create an unused variable (array).",
+      "parentUuid": "87ef2bed_347e62d3",
       "range": {
         "startLine": 125,
         "startChar": 0,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "1a89231c_ae043b92",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T07:14:32Z",
+      "side": 1,
+      "message": "My intention was to avoid repeating the error handling logic. But since this function is only called twice, I can get rid of it.",
+      "parentUuid": "fe5b45e5_d30dc559",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 78
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "147e424c_44c55ff5",
         "filename": "drivers/staging/android/fwdata.c",
         "patchSetId": 1
@@ -174,6 +342,30 @@
       "writtenOn": "2017-12-13T18:22:47Z",
       "side": 1,
       "message": "Good kernel style is to error out, don\u0027t indent for the \"normal\" case.\n\nSo this would be:\nif (!kobj)\n      return NULL;\n\n...",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 12
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92ee9102_f9f33465",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T07:14:32Z",
+      "side": 1,
+      "message": "Thanks, will fix.",
+      "parentUuid": "147e424c_44c55ff5",
       "range": {
         "startLine": 148,
         "startChar": 0,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "0ad8d3cf_db0dc5e9",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T07:14:32Z",
+      "side": 1,
+      "message": "I must admit with embarrassment that I wrote it myself, after looking at a few random drivers, all of which happen to use device_create_file(). It\u0027s probably a hasty conclusion, so I\u0027m happy to remove it.",
+      "parentUuid": "8ba2ee31_80fb29ad",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 65
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c105d526_8f44ccec",
         "filename": "drivers/staging/android/fwdata.c",
         "patchSetId": 1
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "a4d4a989_e7142825",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T07:14:32Z",
+      "side": 1,
+      "message": "Will fix.",
+      "parentUuid": "c105d526_8f44ccec",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 12
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e9aa848d_56dca3b3",
         "filename": "drivers/staging/android/fwdata.c",
         "patchSetId": 1
@@ -243,6 +483,30 @@
       "writtenOn": "2017-12-13T18:22:47Z",
       "side": 1,
       "message": "is this TODO still valid?",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 73
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e4bc990_4d3b7d31",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T07:14:32Z",
+      "side": 1,
+      "message": "Actually, yes, I just don\u0027t know how to do it - it would be nice if the Unified Device Property API supported enumeration of properties, but I failed to find such a function in kernel 3.18 (for which I first wrote this driver).",
+      "parentUuid": "e9aa848d_56dca3b3",
       "range": {
         "startLine": 246,
         "startChar": 0,
