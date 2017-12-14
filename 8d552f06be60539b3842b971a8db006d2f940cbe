@@ -238,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "994cfa4d_7f3815d7",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T15:50:54Z",
+      "side": 1,
+      "message": "\u003e That will allow you to get rid of the complaint about the \"relative path\" above in property_show().\n\nCould you elaborate on this point? Let\u0027s take an example of the problem I\u0027m trying to solve.\n\nSuppose we have created a deeply-nested file in sysfs, dev_root/dir1/dir2/dir3/foo, which corresponds to a device property in firmware with key \"dir1.dir2.dir3.foo\". Now user space attempts to read the file, resulting in a call to property_show() with dir3 as kobj and foo as attr. To serve that request, property_show() must reconstruct the property key and pass it to device_property_read_string(). Since we want the driver to be generic, with nothing hard-coded, property_show() must infer the relative path dir1/dir2/dir3/ from the dir3 kobject, which is probably doable. For a different file dev_root/dir4/dir5/bar, it needs to follow exactly the same logic.\n\nWe could replace property_show() with foo_show() and bar_show(), but would we implement them differently? Would the change make the task of inferring the relative path any easier? If we did\u0027t even know in advance how many properties there would be in the firmware (again we\u0027re talking about a generic driver), how could we even declare all the show() callbacks statically in the code?",
+      "parentUuid": "bf1656bd_7663817e",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 52
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "559099ed_723019cb",
         "filename": "drivers/staging/android/fwdata.c",
         "patchSetId": 1
@@ -368,6 +392,30 @@
       "side": 1,
       "message": "You want to use a list of attribute groups, that\u0027s the way the driver core works, and is more flexible.  To have an individual group is more awkward over time.  That\u0027s why I never created the ATTRIBUTE_GROUP() macro (sorry, got the naming wrong with the original review comment.)",
       "parentUuid": "3d14c11f_25375bbb",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 46
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "326baf06_8c4113c0",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T15:50:54Z",
+      "side": 1,
+      "message": "I see, thanks.",
+      "parentUuid": "31f9a509_2e89c55e",
       "range": {
         "startLine": 125,
         "startChar": 0,
@@ -627,6 +675,30 @@
       "side": 1,
       "message": "Please work with upstream to resolve this, it should be possible, as you really want to make this generic, and not just specific to android.",
       "parentUuid": "6e4bc990_4d3b7d31",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 73
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3738007_a76696c2",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T15:50:54Z",
+      "side": 1,
+      "message": "Thanks, I agree that\u0027s the way to go.",
+      "parentUuid": "e2eb982a_4f08d49e",
       "range": {
         "startLine": 246,
         "startChar": 0,
