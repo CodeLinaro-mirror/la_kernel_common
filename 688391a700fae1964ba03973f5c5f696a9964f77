@@ -22,6 +22,30 @@
       "revId": "688391a700fae1964ba03973f5c5f696a9964f77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be3c423e_f4a21e9b",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1057369
+      },
+      "writtenOn": "2017-12-14T07:17:14Z",
+      "side": 1,
+      "message": "I answered the same question for the previous patch in the same series:\n\nThat macro doesn\u0027t seem to exist, but there is ATTRIBUTE_GROUPS() which also declares a null-terminated array of struct attribute_group. Using ATTRIBUTE_GROUPS() here would create an unused variable (array).",
+      "parentUuid": "e426af57_55144b33",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 46
+      },
+      "revId": "688391a700fae1964ba03973f5c5f696a9964f77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
