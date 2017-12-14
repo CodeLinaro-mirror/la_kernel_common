@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "fa76997b_015916e4",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-14T09:55:35Z",
+      "side": 1,
+      "message": "Ah, my mistake, sorry!",
+      "parentUuid": "ed0f2bf8_4ef7c5d3",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 33
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3a89d71_d3a95e1d",
         "filename": "drivers/staging/android/fwdata.c",
         "patchSetId": 1
@@ -178,6 +202,30 @@
       "side": 1,
       "message": "I tried to use that macro at first, but it doesn\u0027t allow multiple attributes to share the same show() callback:\n\n \t.show\t\u003d _name##_show,\t\t\t\t\t\t\\\n\nwhereas I want property_show() to handle all attributes.",
       "parentUuid": "a3a89d71_d3a95e1d",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 52
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf1656bd_7663817e",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-14T09:55:35Z",
+      "side": 1,
+      "message": "It\u0027s \"better\" if you have a single function for a single attribute, not a single function for multiple attributes.  That will allow you to get rid of the complaint about the \"relative path\" above in property_show().",
+      "parentUuid": "24a1cca1_9b235eef",
       "range": {
         "startLine": 75,
         "startChar": 0,
@@ -237,6 +285,30 @@
     },
     {
       "key": {
+        "uuid": "648e1396_2a52b479",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-14T09:55:35Z",
+      "side": 1,
+      "message": "Same response from me :)",
+      "parentUuid": "c5403b58_ac97f002",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 13
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87ef2bed_347e62d3",
         "filename": "drivers/staging/android/fwdata.c",
         "patchSetId": 1
@@ -272,6 +344,30 @@
       "side": 1,
       "message": "That macro doesn\u0027t seem to exist, but there is ATTRIBUTE_GROUPS() which also declares a null-terminated array of struct attribute_group. Using ATTRIBUTE_GROUPS() here would create an unused variable (array).",
       "parentUuid": "87ef2bed_347e62d3",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 46
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31f9a509_2e89c55e",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-14T09:55:35Z",
+      "side": 1,
+      "message": "You want to use a list of attribute groups, that\u0027s the way the driver core works, and is more flexible.  To have an individual group is more awkward over time.  That\u0027s why I never created the ATTRIBUTE_GROUP() macro (sorry, got the naming wrong with the original review comment.)",
+      "parentUuid": "3d14c11f_25375bbb",
       "range": {
         "startLine": 125,
         "startChar": 0,
@@ -507,6 +603,30 @@
       "side": 1,
       "message": "Actually, yes, I just don\u0027t know how to do it - it would be nice if the Unified Device Property API supported enumeration of properties, but I failed to find such a function in kernel 3.18 (for which I first wrote this driver).",
       "parentUuid": "e9aa848d_56dca3b3",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 73
+      },
+      "revId": "8d552f06be60539b3842b971a8db006d2f940cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2eb982a_4f08d49e",
+        "filename": "drivers/staging/android/fwdata.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-14T09:55:35Z",
+      "side": 1,
+      "message": "Please work with upstream to resolve this, it should be possible, as you really want to make this generic, and not just specific to android.",
+      "parentUuid": "6e4bc990_4d3b7d31",
       "range": {
         "startLine": 246,
         "startChar": 0,
