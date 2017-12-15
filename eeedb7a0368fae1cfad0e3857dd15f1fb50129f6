@@ -22,6 +22,30 @@
       "revId": "eeedb7a0368fae1cfad0e3857dd15f1fb50129f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24f8866b_0b04aafc",
+        "filename": "fs/hwsdcardfs/tree.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1133869
+      },
+      "writtenOn": "2017-12-15T04:51:59Z",
+      "side": 1,
+      "message": "I have understond what happened,\nI missed a corner case in this experimental submit.\n\nIt could be reproduced by the following scripts:\nThread 1:\nwhile true; do\n  touch /mnt/runtime/default/emulated/0/test/ab\ndone\nThread 2:\nwhile true; do\n  touch /mnt/runtime/default/emulated/0/test/ab\ndone\n\nThread 3:\nwhile true; do\n  rm /mnt/runtime/default/emulated/0/test/ab\ndone\n\n\n\u003c4\u003e[  760.623779s][pid:10826,cpu5,rm][\u003cffffff80ea53c3e8\u003e] sdcardfs_reactivate_real+0x1d0/0x25c\n\u003c4\u003e[  760.623809s][pid:10826,cpu5,rm][\u003cffffff80ea5377cc\u003e] sdcardfs_d_revalidate+0x188/0x200\n\u003c4\u003e[  760.623809s][pid:10826,cpu5,rm][\u003cffffff80ea41bf3c\u003e] lookup_dcache+0x80/0xe0\n\u003c4\u003e[  760.623809s][pid:10826,cpu5,rm][\u003cffffff80ea41e6d8\u003e] __lookup_hash+0x2c/0xbc\n\u003c4\u003e[  760.623809s][pid:10826,cpu5,rm][\u003cffffff80ea4222c8\u003e] do_unlinkat+0x198/0x298\n\u003c4\u003e[  760.623840s][pid:10826,cpu5,rm][\u003cffffff80ea422c20\u003e] SyS_unlinkat+0x18/0x38\n\u003c4\u003e[  760.623840s][pid:10826,cpu5,rm][\u003cffffff80ea2838f0\u003e] el0_svc_naked+0x24/0x28\n\nI will fix it later.",
+      "parentUuid": "c3749985_937c8fd9",
+      "range": {
+        "startLine": 136,
+        "startChar": 1,
+        "endLine": 136,
+        "endChar": 34
+      },
+      "revId": "eeedb7a0368fae1cfad0e3857dd15f1fb50129f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
