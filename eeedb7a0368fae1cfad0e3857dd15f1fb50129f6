@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3749985_937c8fd9",
+        "filename": "fs/hwsdcardfs/tree.c",
+        "patchSetId": 12
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1045980
+      },
+      "writtenOn": "2017-12-15T03:07:08Z",
+      "side": 1,
+      "message": "With this patch, I see this crashing while testing for case insensitivity. That involves creating and destroying an empty file with different cases from the different views. Shortly after doing that, I hit this condition.",
+      "range": {
+        "startLine": 136,
+        "startChar": 1,
+        "endLine": 136,
+        "endChar": 34
+      },
+      "revId": "eeedb7a0368fae1cfad0e3857dd15f1fb50129f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
