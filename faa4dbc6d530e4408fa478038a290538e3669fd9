@@ -22,6 +22,30 @@
       "revId": "faa4dbc6d530e4408fa478038a290538e3669fd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "355d3e0d_caac808c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1176763
+      },
+      "writtenOn": "2017-12-19T05:05:14Z",
+      "side": 1,
+      "message": "Just happened because of cherry-picking. Let me remove this in the description.",
+      "parentUuid": "c0acdc2d_3fd6490c",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 56
+      },
+      "revId": "faa4dbc6d530e4408fa478038a290538e3669fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
