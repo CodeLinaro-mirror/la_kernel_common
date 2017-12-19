@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90ec42bd_aaf7242e",
+        "filename": "drivers/scsi/ufs/ufshcd.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 5348,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-19T15:21:52Z",
+      "side": 1,
+      "message": "nit, sysfs files never need scnprintf, as you \"know\" it\u0027s a page size big, just do sprintf() please.\n\nYes, treehugger will complain at you, but I will complain at you if you tried to push this upstream as-is :)",
+      "range": {
+        "startLine": 5348,
+        "startChar": 0,
+        "endLine": 5348,
+        "endChar": 67
+      },
+      "revId": "278b7db38c4aa2d4aec6ed952a95888236d2a633",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17c8e929_d0569012",
+        "filename": "drivers/scsi/ufs/ufshcd.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 5353,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2017-12-19T15:21:52Z",
+      "side": 1,
+      "message": "Can\u0027t you use __ATTR_RO() here?",
+      "range": {
+        "startLine": 5353,
+        "startChar": 0,
+        "endLine": 5353,
+        "endChar": 55
+      },
+      "revId": "278b7db38c4aa2d4aec6ed952a95888236d2a633",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
