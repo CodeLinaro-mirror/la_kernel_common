@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2fed11e_0793b96f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1105075
+      },
+      "writtenOn": "2017-12-19T05:00:22Z",
+      "side": 1,
+      "message": "I didn\u0027t see this reverting anything...",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 56
+      },
+      "revId": "4cbbe571ad54abf3a05d71467597cefdfe04640c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
