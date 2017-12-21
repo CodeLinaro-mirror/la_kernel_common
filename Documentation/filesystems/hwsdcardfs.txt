@@ -1,0 +1,464 @@
+================================================================================
+WHAT IS HUAWEI SDCARD FILE SYSTEM?
+================================================================================
+
+    HUAWEI sdcard file system behaves as a stackable fils system designing for
+Android eco-system. it takes over the FUSE sdcard daemon since FUSE sdcardd has
+much extra overhead, such as:
+
+    1) redundant context switch to FUSE daemon process
+    2) doubly page cache
+    3) issues that cannot be solved in the user space in principle.
+
+    As a replacement of FUSE sdcard daemon, HUAWEI sdcard file system is
+developed providing all the FUSE sdcardd features:
+
+    1) Emulate the file system a FAT-like file system, including:
+           a) case-insensitive filename support even if running on the
+              case-sensitive underlay file system (eg. f2fs, ext4);
+
+           b) no per-file user permission control but a pre-defined user
+              permission derivation. it indicates that we cannot setattr
+              uid/gid/mode of every individual file. all are pre-defined.
+
+    2) Support runtime permission model feature (multiview) since Android M.
+
+       It allows dynamically grant storage access without killing or restarting
+       already-running apps if it request capabilities when needed at runtime.
+
+       To achieve this goal, Android sdcardd maintains 3 different mountpoints
+       for the same underlayfs called "default", "read", "write" views
+       respectively:
+
+           1) /mnt/runtime/default to apps with no special storage permissions;
+           2) /mnt/runtime/read is to apps with READ_EXTERNAL_STORAGE granted;
+           3) /mnt/runtime/write is to apps with WRITE_EXTERNAL_STORAGE granted;
+
+       These three different views will be bind-mounted the into a universal
+       entrance "/storage" and apps use "/storage" to access the emulated and
+       public storage (removable media) with the proper permission.
+
+       For more details, please refer to:
+           https://source.android.com/devices/storage/
+
+================================================================================
+BACKGROUND AND ISSUES WITH THE EXISTED KERNEL SOLUTION
+================================================================================
+
+    Looking back on what FUSE sdcardd behaves, feature 1) without 2) can be
+    well-done by customizing existed kernel stackable fs solutions (eg. wrapfs).
+    Actually, some other vendors developed the following solution based on wrapfs:
+
+        1) Samsung sdcardfs
+        2) Motorola esdfs
+
+    These solutions all have minor issues (eg. shared OBB issue) but work almost
+    fine before Android M.
+
+    However, Android M runtime permission model makes all things complicated.
+    It becomes great challenge since the current stackable file system cannot work
+    as expected and it make our commercial products unstable.
+
+    The most serious issue IS that the storage space doesn't get CLEARED even after
+    file deletion. The main reason is that when opened files are closed without
+    deletion, upper dentry and inode will remain in dentry LRU list rather than
+    destroying them immediately. Therefore, the dentry / inode reference of
+    underlayfs could NOT be released from overlayfs even we unlink after in a view
+    since dentries and inodes of other views in LRU list will prevent the
+    corresponding underlayfs dentry / inode from releasing / evicting.
+
+    To make a graphic to illustrate the issue (to simplify the issue, only 2 views
+    are shown and all inodes are omitted):
+
+        a) opened file
+            |
+            \--(f_dentry)-------> sdcardfs dentry ( view A )
+                                   |-- (d_count) > 0                  underlayfs
+                                   \-- (real_dentry) -------------->  dentry
+           opened file                                           /    (d_count >= 2)
+            |                                                   /
+            \--(f_dentry)-------> sdcardfs dentry ( view B )   /
+                                   |                          /
+                                   \-- (real_dentry) --------/
+       b) (closed)opened file
+           |
+           \--(f_dentry)         sdcardfs dentry ( view A, LRU list )
+                                  |-- (d_count) = 0                  underlayfs
+                                  \-- (real_dentry) -------------->  dentry
+                                                                /    (d_count >= 2)
+          opened file                                          /
+           |                                                  /
+           \--(f_dentry)--------> sdcardfs dentry ( view B ) /
+                                   |-- (d_count) > 0        /
+                                   \-- (real_dentry) ------/
+
+       c)                         sdcardfs dentry ( view A, LRU list) unlinked
+                                   |-- (d_count) = 0                  underlayfs
+                                   \-- (real_dentry) -------------->  dentry
+                                                                      (d_count >= 1)
+         (deleted, no reference)  sdcardfs dentry ( view B )
+                                   |-- (d_count)
+                                   \-- (real_dentry)
+
+         Therefore underlayfs dentry has an extra d_count. Even underlay dentry is
+         unlinked. the dentry cannot be released and the corresponding inode cannot
+         be evicted of course.
+
+       * For Samsung sdcardfs, Samsung recently provides a work-around patch
+       modifing VFS. It adds an extra callback in do_unlinkat and do_rmdir called
+       (super_operations) s_op->unlink_callback out of inode_lock(dir);
+
+       * For Motorola esdfs, Motorola provides the following patch:
+           esdfs: drop shared caches to reclaim inodes
+           (https://github.com/MotorolaMobilityLLC/kernel-msm/commit/
+            aa9925ba1ccc5136310a42cee55b244cecd94f32)
+       adding functions called "esdfs_drop_sb_icache" / "esdfs_drop_shared_icache".
+       This patch has unsolvable deadlock issue since i_mutex has been taken in
+       the callers (do_unlinkat, do_rmdir...)
+
+   In Android O, Google developed AOSP sdcardfs based on Samsung sdcardfs but it uses
+   a different approach. It modifies VFS adding per-mount data to record different
+   permissions, track different mounts and uses bind-mount to derive multiviews.
+
+   This approach modifies lots of native Linux code,the mount & vfsmount definition
+   and needs to generate temporary upper inodes. We can hardly evaluate its stability
+   and whether undiscovered buges from modified VFS or sdcardfs itself we will face.
+
+================================================================================
+WHAT IS THE REAL MULTIVIEW ISSUE? IS IT NECESSARY SYNCHRONIZING VIEWS?
+================================================================================
+
+   One question raised is "why do we insist on synchronize the other upper views"?
+   Even if we find a way to make the upper views totally synchronized all the time,
+   there still exists the following issues:
+
+      1) synchronizing between overlayfs and underlayfs (if we directly
+         operate underlayfs);
+
+      2) if some other stackable file systems mounted, synchronizing between
+         overlayfs and these stackable file systems.
+
+   What we synchronize is really NOT the other upper views rather than
+   the corresponding underlayfs itself. Therefore we can find another way to
+   handle the issue:
+
+      1) Considering exportfs and NFS, an inode can be uniquely identitied by
+               inode number(i_ino) and inode generation(i_generation);
+         [ multiview is very similar to multiuser for NETWORK FILE SYSTEMs. ]
+
+      2) If the refcount of a last upper dentry is droped, i_ino and i_generation
+         of the underlay inode will be recorded. And then the underlay dentry will
+         be dropped (see .d_delete implementation);
+
+      3) When the dentry is referenced later, we will ilookup the underlayfs inode
+         by i_ino/i_generation, and grab the exact underlayfs dentry alias since
+         we have underlayfs inode (see .d_revalidate(reactivate_real) implementation);
+
+      4) It takes no so much overhead because for directories, subdirs generally
+         go into LRU referenced list, so the dentries of directories should not
+         be frequently released since it is still referenced by d_parent of subdirs.
+
+   Our principle is that what stackable filesystems need to do is to keep track of
+   underlayfs all the time rather than the other mounted views.
+
+   That is what all NETWORK FILE SYSTEMs have done.
+
+================================================================================
+ANDROID EXTERNAL STORAGE (EMULATED / PUBLIC) HIERARCHY
+================================================================================
+
+Multiuser mode for emulated storage (underlayfs /data/media):
+     |
+     \-- obb/ (shared_obb) <-------------+
+     |   |                               |
+     |   \-- com.package.name            |
+     |   \-- ...                         |
+     |                                   |
+     \-- 0/                              |
+     |   |                               |
+     |   \-- Android/                    | (derive permission per app)
+     |   |   |                           |
+     |   |   \-- data/                   |
+     |   |   |   |                       |
+     |   |   |   \-- com.package.name    |
+     |   |   |   \-- ...                 |
+     |   |   |                           |
+     |   |   \-- obb/   (overlay dir) >--+
+     |   |   \-- media/                  |
+     |   |   |   |                       |
+     |   |   |   \-- com.package.name    |
+     |   |   |   \-- ...                 |
+     |   \-- ...                         |
+     \-- 10/                             |
+     |   |                               |
+     |   \-- Android/                    |
+     |   |   |                           |
+     |   |   \-- data/                   |
+     |   |   |   |                       |
+     |   |   |   \-- ...                 |
+     |   |   |                           |
+     |   |   \-- obb/   (overlay dir) >--+
+     |   |   \-- ...
+     |   \-- ...
+     \-- (other users..)
+
+Singleuser mode for public storage (removable media eg. sdcard, otg usb, etc.):
+     |
+     \-- Android/                   (derive permission per app)
+     |   |
+     |   \-- data/
+     |   |   |
+     |   |   \-- com.package.name
+     |   |   \-- ...
+     |   |
+     |   |-- obb/
+     |   |   |
+     |   |   \-- com.package.name
+     |   |   \-- ...
+     |   |
+     |   |-- media/
+     |   |   |
+     |   |   \-- com.package.name
+     |   |   \-- ...
+     \-- ...
+
+================================================================================
+HUAWEI SDCARDFS IN-MEMORY HIERARCHY
+================================================================================
+
+   sdcardfs dentry
+    |
+    |
+    \--(d_inode)--------------> sdcardfs false upper inode
+    |                                                   |
+    \--(d_fsdata)--> tree_entry  <-----(i_private)------/
+                      |
+                      |
+                      \--(real)---> underlayfs dentry
+                      \---(ovl)---> underlayfs obb dentry
+
+
+   Different from wrapfs-based approach, we follow overlayfs and never record
+   underlayfs inode since what we care about is only the dentry relationship.
+
+================================================================================
+RACE BETWEEN LOOKUP AND CREATE, MKDIR, RENAME ISSUE
+================================================================================
+
+    This issue originates from broken locking for Linux stackable file systems
+    in multiview-case scenario or between overlayfs and underlayfs.
+
+    Taking "mkdirat" system call for example, VFS will hold the corresponding
+    directory inode lock between lookup and creation:
+
+    mkdirat
+     |
+     \-- user_path_create
+     |    |
+     |    \-- filename_create
+     |         |
+     |         \-- inode_lock_nested(dir)
+     |         \-- __lookup_hash
+     |         |   |
+     |         |   \-- lookup_real
+     |         |   |    |
+     |         |   |    \-- lookup
+     |         |   |    \-- ...
+     |         |   |
+     |         |   \-- ...
+     |         |
+     |         \-- ...
+     |
+     \-- vfs_mkdir
+     |    |
+     |    \-- ->mkdir
+     |    \-- ...
+     |
+     \-- done_path_create
+     |    |
+     |    \-- inode_unlock(dir)
+     |    \-- ...
+     \-- ...
+
+    As illustrated above, lookup and mkdir are under the same directory inode
+    lock so if file systems are directly under VFS no race between them.
+    Therefore almost all filesystems won't recheck whether the directory entry
+    is still non-exist in mkdir.
+
+    On the other hand, when the stackable file system approach is used,
+    the overlay file system will pass on to the underlay file systems in
+    the respective callbacks (eg. lookup, create, mkdir, rename).
+
+    However, We cannot take a global lock between overlayfs lookup and creation
+    since we have to release the underlayfs directory lock at the end of each
+    callbacks. Therefore the race can occur in this condition.
+
+    # task 1                             # task 2
+    open(O_CREAT)                        open(O_CREAT)
+      inode_lock_nested(dir1);              inode_lock_nested(dir2);
+        lookup_open();                        lookup_open();
+          sdcardfs_lookup();                    sdcardfs_lookup();
+            vfs_path_lookup();                    vfs_path_lookup();
+              inode_lock(lowerdir);
+                ->lookup(); <= return -ENOENT
+              inode_unlock(lowerdir);
+                                                    inode_lock(lowerdir);
+                                                      ->lookup(); <= return -ENOENT
+                                                    inode_unlock(lowerdir);
+          sdcardfs_create();
+            inode_lock(lowerdir);   => dir1 and dir2 have the same underlay dir
+              vfs_create();
+                ->create();
+            inode_unlock(lowerdir);             sdcardfs_create();
+                                                  inode_lock(&lowerdir->i_mutex);
+                                                    vfs_create();
+                                                      ->create();
+                                                  inode_unlock(&lowerdir->i_mutex);
+      inode_unlock(dir1);                   inode_unlock(dir2);
+
+    Our solution follows upstream overlayfs by lookup again when creation:
+
+    sdcardfs_create
+     |
+     \-- inode_lock_nested(lowerdir)
+     \-- lookup_one_len
+     \-- d_is_negative
+     |    |
+     |    \-- ->create
+     |    \-- ...
+     |
+     \-- ...
+     \-- inode_unlock(lowerdir)
+
+    While the total solution is more complicated when case-insensitive support
+    is applied to the case-sensitive underlay file system, which is described
+    on the next section.
+
+================================================================================
+REASONABLE STACKABLE CASE-INSENSITIVE SOLUTION
+================================================================================
+
+    On the one hand, continued from the preceding section, it is not enough just
+to follow upstream overlayfs in order to fully close the race between lookup
+and creation for multiview if the filesystem is case-insensitive, since there
+exists the following case:
+
+    Thread 1 (view A)                             Thread 2 (view B)
+	sdcardfs_lookup(Android)
+            f2fs_lookup(Android)
+                not found
+                                                      sdcardfs_lookup(android)
+                                                          f2fs_lookup(android)
+                                                              not found
+        sdcardfs_create(Android)
+            lookup_again(Android) -> negative Android
+                not found
+            f2fs_create(Android)
+                                                      sdcardfs_create(android)
+                                                          lookup_again(android)
+                                                              -> negative android
+                                                              not found
+                                                          f2fs_create(android)
+
+    The result is that both "Android" and "android" can be created. Therefore,
+for the file system case-insensitive scenario, we cannot trust underlayfs
+negative denties if the underlayfs is a case-sensitive file system since
+the dcache of these file system are designed for case-sensitive case.
+
+    On the other hand, some filesystems (eg. vfat, exfat or ntfs) are purely
+case-insensitive file system and there is no need to do case-insensitive lookup
+by sdcardfs and pay attention to the above issue.
+
+    As a result, a unique case-insensitive solution is introduced as follows:
+
+        1) Add lookup_ci / may_create case-insensitive operations;
+
+        2) Our strategy is to lookup the exact case dentry first.
+           If not found, use "lookup_ci" to get the case-exact name and
+           lookup again;
+
+        3) d_compare and d_hash are never used. In this case, if "Android" and
+           "android" exist in the same non-case-insensitive underlayfs dir:
+               we can type Android to reference "Android",
+                           android to reference "android",
+                       and anDroid to launch the case-insensitive lookup
+                                   to reference "Android or "android",
+                                   which depends on the result of readdir;
+
+        4) may_create is used to check if the case-insensitive filename exists
+           before trigger the real underlayfs creation to fully close
+           the lookup and create race between different views.
+
+
+
+        Thread 1 (view A)                             Thread 2 (view B)
+        sdcardfs_lookup(Android)
+            lookup & _ci(Android)
+                not found
+                                                      sdcardfs_lookup(android)
+                                                          lookup & _ci(android)
+                                                              not found
+        sdcardfs_create(Android)
+            may_create(Android)
+                ok
+            f2fs_create(Android)
+                                                      sdcardfs_create(android)
+                                                          may create(android)
+                                                              no
+    the lookup_ci / may_create approach also provide a way for the underlayfs
+to accelerate their case-insensitive lookup rather than use the general readdir.
+
+================================================================================
+FULLY ENABLE RCU LOOKUP & D_SEQ USAGE
+================================================================================
+
+    It is not allowed for wrapfs-based implementations to do RCU-lookup since
+d_revalidate will return -ECHILD in that case.
+    However, it has performance benefits to enable RCU-lookup.
+    To achieve this, we record d_seq of the underlayfs dentry and then use d_seq
+to check if the underlayfs dentry is moved or unlinked.
+    Checking d_seq is faster than the d_parent and d_name pair.
+
+    For more details, please refer to .d_revalidate
+
+================================================================================
+ANDROID PACKAGELIST AND CONFIGFS
+================================================================================
+
+    Android packagelist is used to provide a packagename - appid database.
+we can get appid from packagename and we can derive permission per app.
+
+    It was a text file located at "/data/system/packages.list" written by
+Android framework.
+
+    In Android N, sdcardfs provides configfs sdcardfs directory and framework
+writes appid to configfs and sdcardfs could use it directly.
+
+    For more details, please refer to the ABI documentation by Daniel Rosenberg:
+        Documentation/ABI/testing/configfs-sdcardfs
+
+    Compared with AOSP sdcardfs, HUAWEI sdcardfs has some packagelist cleanup:
+
+      1)  we don't have "/config/sdcardfs/packages_gid.list" since
+
+          a) we can get all informations by traversing "/config/sdcardfs/appname"
+             using opendir, readdir, closedir.
+
+          b) every configfs node can only has a page-size data.
+             If we install a bunch of apps, it is very likely that data could
+             exceed PAGE_SIZE.
+
+          c) "preferably with only one value per file" and it is uncessary to
+             create such a file because of a).
+
+      2)  we don't have "/config/sdcardfs/extensions" since it is still under
+          consideration how to support underlayfs uid, gid derivation without
+          major known issue (See the details on the next section).
+
+================================================================================
+SOME OTHER IMPORTANT HINTS
+================================================================================
+TODO
+
+To be continued.
+
