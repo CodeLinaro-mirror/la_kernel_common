@@ -81,6 +81,8 @@ hfsplus.txt
 	- info on the Macintosh HFSPlus Filesystem for Linux.
 hpfs.txt
 	- info and mount options for the OS/2 HPFS.
+hwsdcardfs.txt
+	- info on the HUAWEI Sdcardfs File System
 inotify.txt
 	- info on the powerful yet simple file change notification system.
 isofs.txt
