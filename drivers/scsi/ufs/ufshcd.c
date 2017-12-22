@@ -5308,20 +5308,31 @@ latency_hist_show(struct device *dev, struct device_attribute *attr,
 	return blk_latency_hist_show(&hba->io_lat_s, buf);
 }
 
-static DEVICE_ATTR(latency_hist, S_IRUGO | S_IWUSR,
-		   latency_hist_show, latency_hist_store);
+static DEVICE_ATTR_RW(latency_hist);
 
-static void
-ufshcd_init_latency_hist(struct ufs_hba *hba)
+static struct attribute *ufshcd_attrs[] = {
+	&dev_attr_latency_hist.attr,
+	NULL
+};
+
+static const struct attribute_group ufshcd_default_group = {
+	.attrs = ufshcd_attrs,
+};
+
+static const struct attribute_group *ufshcd_groups[] = {
+	&ufshcd_default_group,
+	NULL,
+};
+
+static inline void ufshcd_add_sysfs_nodes(struct ufs_hba *hba)
 {
-	if (device_create_file(hba->dev, &dev_attr_latency_hist))
-		dev_err(hba->dev, "Failed to create latency_hist sysfs entry\n");
+	if (sysfs_create_groups(&hba->dev->kobj, ufshcd_groups))
+		dev_err(hba->dev, "Failed to create default sysfs groups\n");
 }
 
-static void
-ufshcd_exit_latency_hist(struct ufs_hba *hba)
+static inline void ufshcd_remove_sysfs_nodes(struct ufs_hba *hba)
 {
-	device_create_file(hba->dev, &dev_attr_latency_hist);
+	sysfs_remove_groups(&hba->dev->kobj, ufshcd_groups);
 }
 
 /**
@@ -5331,6 +5342,7 @@ ufshcd_exit_latency_hist(struct ufs_hba *hba)
  */
 void ufshcd_remove(struct ufs_hba *hba)
 {
+	ufshcd_remove_sysfs_nodes(hba);
 	scsi_remove_host(hba->host);
 	/* disable interrupts */
 	ufshcd_disable_intr(hba, hba->intr_mask);
@@ -5339,7 +5351,6 @@ void ufshcd_remove(struct ufs_hba *hba)
 	scsi_host_put(hba->host);
 
 	ufshcd_exit_clk_gating(hba);
-	ufshcd_exit_latency_hist(hba);
 	if (ufshcd_is_clkscaling_enabled(hba))
 		devfreq_remove_device(hba->devfreq);
 	ufshcd_hba_exit(hba);
@@ -5629,8 +5640,6 @@ int ufshcd_init(struct ufs_hba *hba, void __iomem *mmio_base, unsigned int irq)
 	/* Hold auto suspend until async scan completes */
 	pm_runtime_get_sync(dev);
 
-	ufshcd_init_latency_hist(hba);
-
 	/*
 	 * The device-initialize-sequence hasn't been invoked yet.
 	 * Set the device to power-off state
@@ -5638,6 +5647,8 @@ int ufshcd_init(struct ufs_hba *hba, void __iomem *mmio_base, unsigned int irq)
 	ufshcd_set_ufs_dev_poweroff(hba);
 
 	async_schedule(ufshcd_async_scan, hba);
+
+	ufshcd_add_sysfs_nodes(hba);
 
 	return 0;
 
