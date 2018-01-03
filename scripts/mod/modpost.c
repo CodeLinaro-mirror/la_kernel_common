@@ -161,6 +161,7 @@ struct symbol {
 	struct module *module;
 	unsigned int crc;
 	int crc_valid;
+	const char *ns; /* namespace */
 	unsigned int weak:1;
 	unsigned int vmlinux:1;    /* 1 if symbol is defined in vmlinux */
 	unsigned int kernel:1;     /* 1 if symbol is from kernel
@@ -171,6 +172,16 @@ struct symbol {
 };
 
 static struct symbol *symbolhash[SYMBOL_HASH_SIZE];
+
+#define NSIMPORT_HASH_SIZE 128
+
+struct nsimport {
+	struct nsimport *next;
+	struct module *module;
+	char name[0]; /* name of the module importing the ns */
+};
+
+static struct nsimport *nsimporthash[NSIMPORT_HASH_SIZE];
 
 /* This is based on the hash agorithm from gdbm, via tdb */
 static inline unsigned int tdb_hash(const char *name)
@@ -228,6 +239,34 @@ static struct symbol *find_symbol(const char *name)
 			return s;
 	}
 	return NULL;
+}
+
+static bool module_imports_ns(struct module *module,
+			      const char *ns)
+{
+	struct nsimport *s;
+
+	for (s = nsimporthash[tdb_hash(ns) % NSIMPORT_HASH_SIZE]; s; s = s->next) {
+		if (s->module == module)
+			return true;
+	}
+
+	return false;
+}
+
+static struct nsimport *new_import(const char *ns,
+				   struct module *module)
+{
+	unsigned int hash;
+	struct nsimport *new = NOFAIL(malloc(sizeof(*new) + strlen(ns) + 1));
+
+	memset(new, 0, sizeof(*new));
+	strcpy(new->name, ns);
+	new->module = module;
+	hash = tdb_hash(ns) % NSIMPORT_HASH_SIZE;
+	nsimporthash[hash] = new;
+
+	return new;
 }
 
 static const struct {
@@ -299,21 +338,39 @@ static enum export export_from_sec(struct elf_info *elf, unsigned int sec)
 		return export_unknown;
 }
 
+static const char *sym_extract_ns(const char **symname)
+{
+	size_t n;
+
+	n = strcspn(*symname, ".");
+	if (n < strlen(*symname) - 1) {
+		char *dupsymname = NOFAIL(strdup(*symname));
+		dupsymname[n] = '\0';
+		*symname = dupsymname;
+		return dupsymname + n + 1;
+	} else {
+		return NULL;
+	}
+}
+
 /**
  * Add an exported symbol - it may have already been added without a
  * CRC, in this case just update the CRC
  **/
-static struct symbol *sym_add_exported(const char *name, struct module *mod,
-				       enum export export)
+static struct symbol *sym_add_exported(const char *name,
+				       struct module *mod, enum export export)
 {
-	struct symbol *s = find_symbol(name);
+	const char *extract_name = name;
+	const char *ns = sym_extract_ns(&extract_name);
+	struct symbol *s = find_symbol(extract_name);
 
 	if (!s) {
-		s = new_symbol(name, mod, export);
+		s = new_symbol(extract_name, mod, export);
+		s->ns = ns;
 	} else {
 		if (!s->preloaded) {
 			warn("%s: '%s' exported twice. Previous export "
-			     "was in %s%s\n", mod->name, name,
+			     "was in %s%s\n", mod->name, extract_name,
 			     s->module->name,
 			     is_vmlinux(s->module->name) ?"":".ko");
 		} else {
@@ -603,6 +660,7 @@ static int ignore_undef_symbol(struct elf_info *info, const char *symname)
 
 #define CRC_PFX     VMLINUX_SYMBOL_STR(__crc_)
 #define KSYMTAB_PFX VMLINUX_SYMBOL_STR(__ksymtab_)
+#define KNSIMPORT_PFX VMLINUX_SYMBOL_STR(__knsimport_)
 
 static void handle_modversions(struct module *mod, struct elf_info *info,
 			       Elf_Sym *sym, const char *symname)
@@ -672,6 +730,11 @@ static void handle_modversions(struct module *mod, struct elf_info *info,
 		if (strncmp(symname, KSYMTAB_PFX, strlen(KSYMTAB_PFX)) == 0) {
 			sym_add_exported(symname + strlen(KSYMTAB_PFX), mod,
 					export);
+		}
+		if (strncmp(symname, KNSIMPORT_PFX, strlen(KNSIMPORT_PFX)) == 0) {
+			const char *name = symname + strlen(KNSIMPORT_PFX);
+			const char* ns = sym_extract_ns(&name);
+			new_import(ns, mod);
 		}
 		if (strcmp(symname, VMLINUX_SYMBOL_STR(init_module)) == 0)
 			mod->has_init = 1;
@@ -2093,6 +2156,10 @@ static void check_exports(struct module *mod)
 			basename++;
 		else
 			basename = mod->name;
+		if (exp->ns && !module_imports_ns(mod, exp->ns)) {
+			warn("module %s uses symbol %s from namespace %s, but does not import it.\n",
+			     basename, exp->name, exp->ns);
+		}
 		if (!mod->gpl_compatible)
 			check_for_gpl_usage(exp->export, basename, exp->name);
 		check_for_unused(exp->export, basename, exp->name);

@@ -30,6 +30,12 @@ struct kernel_symbol
 	const char *name;
 };
 
+struct namespace_import
+{
+	const char *ns;
+	const char *module_name; /* module importing ns */
+};
+
 #ifdef MODULE
 extern struct module __this_module;
 #define THIS_MODULE (&__this_module)
@@ -53,16 +59,26 @@ extern struct module __this_module;
 #define __CRC_SYMBOL(sym, sec)
 #endif
 
+#define __IMPORT_NS(ns, modname)					\
+	static const struct namespace_import __knsimport_##ns		\
+	asm("__knsimport_" modname "." #ns)				\
+        __attribute__((section("__knsimport"), used))			\
+	= { #ns, modname };
+
+#define IMPORT_NS(ns) __IMPORT_NS(ns, KBUILD_MODNAME)
+
 /* For every exported symbol, place a struct in the __ksymtab section */
-#define ___EXPORT_SYMBOL(sym, sec)					\
+#define ___EXPORT_SYMBOL(sym, sec, ns, nspost, nspost2)			\
 	extern typeof(sym) sym;						\
 	__CRC_SYMBOL(sym, sec)						\
 	static const char __kstrtab_##sym[]				\
 	__attribute__((section("__ksymtab_strings"), aligned(1)))	\
 	= VMLINUX_SYMBOL_STR(sym);					\
-	static const struct kernel_symbol __ksymtab_##sym		\
+	static const struct kernel_symbol __ksymtab_##sym##nspost	\
+        asm("__ksymtab_" #sym nspost2)                                  \
 	__used								\
-	__attribute__((section("___ksymtab" sec "+" #sym), used))	\
+	__attribute__((section("___ksymtab" sec "+" #sym #nspost)))	\
+	__attribute__((used))						\
 	= { (unsigned long)&sym, __kstrtab_##sym }
 
 #if defined(__KSYM_DEPS__)
@@ -74,37 +90,42 @@ extern struct module __this_module;
  * system filters out from the preprocessor output (see ksym_dep_filter
  * in scripts/Kbuild.include).
  */
-#define __EXPORT_SYMBOL(sym, sec)	=== __KSYM_##sym ===
+#define __EXPORT_SYMBOL(sym, sec, ns, nspost, nspost2)	=== __KSYM_##sym ===
 
 #elif defined(CONFIG_TRIM_UNUSED_KSYMS)
 
 #include <generated/autoksyms.h>
 
-#define __EXPORT_SYMBOL(sym, sec)				\
-	__cond_export_sym(sym, sec, __is_defined(__KSYM_##sym))
-#define __cond_export_sym(sym, sec, conf)			\
-	___cond_export_sym(sym, sec, conf)
-#define ___cond_export_sym(sym, sec, enabled)			\
-	__cond_export_sym_##enabled(sym, sec)
-#define __cond_export_sym_1(sym, sec) ___EXPORT_SYMBOL(sym, sec)
-#define __cond_export_sym_0(sym, sec) /* nothing */
+#define __EXPORT_SYMBOL(sym, sec, ns, nspost, nspost2)			\
+	__cond_export_sym(sym, sec, ns, nspost, nspost2,		\
+			  __is_defined(__KSYM_##sym))
+#define __cond_export_sym(sym, sec, ns, nspost, nspost2, conf)		\
+	___cond_export_sym(sym, sec, ns, nspost, nspost2, conf)
+#define ___cond_export_sym(sym, sec, ns, nspost, nspost2, enabled)	\
+	__cond_export_sym_##enabled(sym, sec, ns, nspost, nspost2)
+#define __cond_export_sym_1(sym, sec, ns, nspost, nspost2)		\
+	___EXPORT_SYMBOL(sym, sec, ns, nspost, nspost2)
+#define __cond_export_sym_0(sym, sec, ns, nspost, nspost2) /* nothing */
 
 #else
 #define __EXPORT_SYMBOL ___EXPORT_SYMBOL
 #endif
 
 #define EXPORT_SYMBOL(sym)					\
-	__EXPORT_SYMBOL(sym, "")
+	__EXPORT_SYMBOL(sym, "",,,)
 
 #define EXPORT_SYMBOL_GPL(sym)					\
-	__EXPORT_SYMBOL(sym, "_gpl")
+	__EXPORT_SYMBOL(sym, "_gpl",,,)
 
 #define EXPORT_SYMBOL_GPL_FUTURE(sym)				\
-	__EXPORT_SYMBOL(sym, "_gpl_future")
+	__EXPORT_SYMBOL(sym, "_gpl_future",,,)
+
+#define EXPORT_SYMBOL_NS(sym, ns)                               \
+        __EXPORT_SYMBOL(sym, "_ns", ns, __##ns, "." #ns)
 
 #ifdef CONFIG_UNUSED_SYMBOLS
-#define EXPORT_UNUSED_SYMBOL(sym) __EXPORT_SYMBOL(sym, "_unused")
-#define EXPORT_UNUSED_SYMBOL_GPL(sym) __EXPORT_SYMBOL(sym, "_unused_gpl")
+#define EXPORT_UNUSED_SYMBOL(sym) __EXPORT_SYMBOL(sym, "_unused",,,)
+#define EXPORT_UNUSED_SYMBOL_GPL(sym) __EXPORT_SYMBOL(sym, "_unused_gpl",,,)
 #else
 #define EXPORT_UNUSED_SYMBOL(sym)
 #define EXPORT_UNUSED_SYMBOL_GPL(sym)

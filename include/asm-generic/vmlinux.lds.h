@@ -408,6 +408,13 @@
 		VMLINUX_SYMBOL(__stop___kcrctab_gpl_future) = .;	\
 	}								\
 									\
+	/* Kernel symbol table: namespaced symbols */			\
+	__ksymtab_ns        : AT(ADDR(__ksymtab_ns) - LOAD_OFFSET) {	\
+		VMLINUX_SYMBOL(__start___ksymtab_ns) = .;		\
+		*(SORT(___ksymtab_ns+*))				\
+		VMLINUX_SYMBOL(__stop___ksymtab_ns) = .;		\
+	}								\
+									\
 	/* Kernel symbol table: strings */				\
         __ksymtab_strings : AT(ADDR(__ksymtab_strings) - LOAD_OFFSET) {	\
 		KEEP(*(__ksymtab_strings))				\
