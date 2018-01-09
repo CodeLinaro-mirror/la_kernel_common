@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3c43704_4c1d6297",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2018-01-09T16:50:49Z",
+      "side": 1,
+      "message": "NB: Orig-Change-Id: I65b9aa2ddc9444aaf9ccf60781172ccca0f3f518\n\nrelated sha in android-4.9 is d840c1d77287f739323541777c56baf02b130d3d",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 52
+      },
+      "revId": "34193964e7394d8a0b490931cabd56f16784a81f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
