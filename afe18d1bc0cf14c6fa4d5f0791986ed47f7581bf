@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f8f5c747_3547b8a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2018-01-09T16:45:51Z",
+      "side": 1,
+      "message": "Maybe add something like\n\nOrig-Change-Id: I668812cc1e78e2f92497f9ebe0157cb8eec725ba\n\nwould have linked the CP source sha 6c8928f646c6b4a51f594f30c31f37b7e958dfbf in android-4.9 to here. If nothing else, _this_ comment will help link the two in Gerrit.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 52
+      },
+      "revId": "afe18d1bc0cf14c6fa4d5f0791986ed47f7581bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88a6a7fa_62d8147d",
+        "filename": "fs/squashfs/block.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2018-01-09T16:45:51Z",
+      "side": 1,
+      "message": "Original landed:\n\n#include \u003clinux/fs.h\u003e\n#include \u003clinux/vfs.h\u003e\n#include \u003clinux/bio.h\u003e\n#include \u003clinux/slab.h\u003e\n#include \u003clinux/string.h\u003e\n#include \u003clinux/pagemap.h\u003e\n#include \u003clinux/buffer_head.h\u003e\n#include \u003clinux/workqueue.h\u003e\n\nThis may result in future conflicts? Maybe preserve order since this is the order of the headers in ToT android-4.9.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 28
+      },
+      "revId": "afe18d1bc0cf14c6fa4d5f0791986ed47f7581bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
