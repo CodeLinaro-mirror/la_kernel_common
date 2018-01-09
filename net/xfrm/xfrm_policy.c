@@ -2517,12 +2517,11 @@ int __xfrm_policy_check(struct sock *sk, int dir, struct sk_buff *skb,
 	}
 
 	if (!pol) {
-		if (skb->sp && secpath_has_nontransport(skb->sp, 0, &xerr_idx)) {
-			xfrm_secpath_reject(xerr_idx, skb, &fl);
-			XFRM_INC_STATS(net, LINUX_MIB_XFRMINNOPOLS);
-			return 0;
-		}
-		return 1;
+		if (!skb->sp || !skb->sp->len)
+			return 1;
+		xfrm_secpath_reject(skb->sp->len - 1, skb, &fl);
+		XFRM_INC_STATS(net, LINUX_MIB_XFRMINNOPOLS);
+		return 0;
 	}
 
 	pol->curlft.use_time = get_seconds();
