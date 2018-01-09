@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "723e3a27_5283f66d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2018-01-09T16:30:35Z",
+      "side": 1,
+      "message": "The CP this is based on had a Change-Id: I975801b32966b7ea930aebbb32d1b77233d2d2ce. Because of the change, Gerrit did not auto-detect this as a Cherry Pick.\n\nThe sha of the original in android-4.9 was 38840afd42c86ce39b70b286ee695ca821257666.\n\nToo late to change this without Abandon and re-upload, so leave this alone. This comment serves as the note linking the two.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 52
+      },
+      "revId": "6fb5cb0748e2f7ea55e4084ec7b9a0387810b15c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d76616d_190e0a4c",
+        "filename": "fs/squashfs/page_actor.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2018-01-09T16:30:35Z",
+      "side": 1,
+      "message": "NB: conflict resolved ... so not a straight CP.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 38
+      },
+      "revId": "6fb5cb0748e2f7ea55e4084ec7b9a0387810b15c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "811ad3cd_9bcfabdc",
+        "filename": "fs/squashfs/page_actor.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2018-01-09T16:30:35Z",
+      "side": 1,
+      "message": "NB: thanks for _not_ taking the CP\u0027s \u0027squashfsory\u0027 (sic)",
+      "range": {
+        "startLine": 8,
+        "startChar": 37,
+        "endLine": 8,
+        "endChar": 46
+      },
+      "revId": "6fb5cb0748e2f7ea55e4084ec7b9a0387810b15c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
