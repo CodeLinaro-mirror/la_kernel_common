@@ -34,6 +34,8 @@
 #include <linux/usb.h>
 #include <linux/usb/serial.h>
 
+IMPORT_NS(USB_SERIAL);
+
 /* Configuration ids */
 #define TI_BOOT_CONFIG			1
 #define TI_ACTIVE_CONFIG		2

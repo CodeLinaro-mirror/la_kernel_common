@@ -44,6 +44,8 @@
 
 #include "cypress_m8.h"
 
+IMPORT_NS(USB_SERIAL);
+
 
 static bool stats;
 static int interval;

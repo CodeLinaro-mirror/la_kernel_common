@@ -32,6 +32,8 @@
 #include <linux/usb.h>
 #include <linux/usb/serial.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define SWIMS_USB_REQUEST_SetPower	0x00
 #define SWIMS_USB_REQUEST_SetNmea	0x07
 

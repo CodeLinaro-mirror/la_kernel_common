@@ -125,6 +125,8 @@ struct keyspan_port_private {
 #include "keyspan_usa90msg.h"
 #include "keyspan_usa67msg.h"
 
+IMPORT_NS(USB_SERIAL);
+
 
 module_usb_serial_driver(serial_drivers, keyspan_ids_combined);
 

@@ -15,6 +15,8 @@
 #include <linux/usb.h>
 #include <linux/usb/serial.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define USB_DEBUG_MAX_PACKET_SIZE	8
 #define USB_DEBUG_BRK_SIZE		8
 static char USB_DEBUG_BRK[USB_DEBUG_BRK_SIZE] = {

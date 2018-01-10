@@ -17,6 +17,8 @@
 #include <linux/usb/serial.h>
 #include <linux/uaccess.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define GSI_VENDOR_OPENCLOSE 0xB0
 
 static const struct usb_device_id id_table[] = {

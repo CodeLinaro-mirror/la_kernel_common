@@ -24,6 +24,8 @@
 #include <linux/uaccess.h>
 #include <linux/usb/serial.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define DRIVER_DESC "Silicon Labs CP210x RS232 serial adaptor driver"
 
 /*

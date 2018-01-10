@@ -48,6 +48,8 @@
 #include <linux/uaccess.h>
 #include "usb-wwan.h"
 
+IMPORT_NS(USB_SERIAL);
+
 #define DRIVER_AUTHOR	"Roelf Diedericks"
 #define DRIVER_DESC	"IPWireless tty driver"
 

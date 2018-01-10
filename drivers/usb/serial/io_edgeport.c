@@ -48,7 +48,9 @@
 #include <linux/usb/serial.h>
 #include "io_edgeport.h"
 #include "io_ionsp.h"		/* info for the iosp messages */
-#include "io_16654.h"		/* 16654 UART defines */
+#include "io_16654.h"
+
+IMPORT_NS(USB_SERIAL);		/* 16654 UART defines */
 
 #define DRIVER_AUTHOR "Greg Kroah-Hartman <greg@kroah.com> and David Iacovelli"
 #define DRIVER_DESC "Edgeport USB Serial Driver"

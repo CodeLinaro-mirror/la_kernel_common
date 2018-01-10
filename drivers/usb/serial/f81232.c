@@ -25,6 +25,8 @@
 #include <linux/usb/serial.h>
 #include <linux/serial_reg.h>
 
+IMPORT_NS(USB_SERIAL);
+
 static const struct usb_device_id id_table[] = {
 	{ USB_DEVICE(0x1934, 0x0706) },
 	{ }					/* Terminating entry */

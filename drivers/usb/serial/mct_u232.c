@@ -36,6 +36,8 @@
 #include <linux/serial.h>
 #include "mct_u232.h"
 
+IMPORT_NS(USB_SERIAL);
+
 #define DRIVER_AUTHOR "Wolfgang Grandegger <wolfgang@ces.ch>"
 #define DRIVER_DESC "Magic Control Technology USB-RS232 converter driver"
 

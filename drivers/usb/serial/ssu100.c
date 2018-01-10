@@ -17,6 +17,8 @@
 #include <linux/serial_reg.h>
 #include <linux/uaccess.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define QT_OPEN_CLOSE_CHANNEL       0xca
 #define QT_SET_GET_DEVICE           0xc2
 #define QT_SET_GET_REGISTER         0xc0

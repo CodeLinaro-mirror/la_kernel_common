@@ -29,6 +29,8 @@
 #include <linux/usb/cdc.h>
 #include "visor.h"
 
+IMPORT_NS(USB_SERIAL);
+
 /*
  * Version Information
  */

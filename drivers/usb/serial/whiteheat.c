@@ -34,6 +34,8 @@
 #include <linux/usb/ezusb.h>
 #include "whiteheat.h"			/* WhiteHEAT specific commands */
 
+IMPORT_NS(USB_SERIAL);
+
 #ifndef CMSPAR
 #define CMSPAR 0
 #endif

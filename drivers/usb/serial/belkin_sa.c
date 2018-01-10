@@ -36,6 +36,8 @@
 #include <linux/usb/serial.h>
 #include "belkin_sa.h"
 
+IMPORT_NS(USB_SERIAL);
+
 #define DRIVER_AUTHOR "William Greathouse <wgreathouse@smva.com>"
 #define DRIVER_DESC "USB Belkin Serial converter driver"
 

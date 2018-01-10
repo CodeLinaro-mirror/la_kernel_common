@@ -22,6 +22,8 @@
 #include <linux/usb/serial.h>
 #include <linux/uaccess.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define CONTROL_RTS			0x02
 #define RESEND_CTS_STATE	0x03
 

@@ -53,6 +53,8 @@
 #include <linux/kfifo.h>
 #include "oti6858.h"
 
+IMPORT_NS(USB_SERIAL);
+
 #define OTI6858_DESCRIPTION \
 	"Ours Technology Inc. OTi-6858 USB to serial adapter driver"
 #define OTI6858_AUTHOR "Tomasz Michal Lukaszewski <FIXME@FIXME>"

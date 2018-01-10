@@ -24,6 +24,8 @@
 #include <linux/serial.h>
 #include <asm/unaligned.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define DEFAULT_BAUD_RATE 9600
 #define DEFAULT_TIMEOUT   1000
 

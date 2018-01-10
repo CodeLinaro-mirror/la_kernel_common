@@ -34,6 +34,8 @@
 #include <linux/usb/serial.h>
 #include <linux/uaccess.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define DRIVER_DESC "Moschip 7840/7820 USB Serial Driver"
 
 /*

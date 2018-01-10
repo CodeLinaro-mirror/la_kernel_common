@@ -40,6 +40,8 @@
 #include <linux/idr.h>
 #include "pl2303.h"
 
+IMPORT_NS(USB_SERIAL);
+
 #define DRIVER_AUTHOR "Greg Kroah-Hartman <gregkh@linuxfoundation.org>"
 #define DRIVER_DESC "USB Serial Driver core"
 
@@ -537,7 +539,7 @@ void usb_serial_port_softint(struct usb_serial_port *port)
 {
 	schedule_work(&port->work);
 }
-EXPORT_SYMBOL_GPL(usb_serial_port_softint);
+EXPORT_SYMBOL_NS(usb_serial_port_softint, USB_SERIAL);
 
 static void usb_serial_port_work(struct work_struct *work)
 {
@@ -1151,7 +1153,7 @@ int usb_serial_suspend(struct usb_interface *intf, pm_message_t message)
 err_out:
 	return r;
 }
-EXPORT_SYMBOL(usb_serial_suspend);
+EXPORT_SYMBOL_NS(usb_serial_suspend, USB_SERIAL);
 
 static void usb_serial_unpoison_port_urbs(struct usb_serial *serial)
 {
@@ -1176,7 +1178,7 @@ int usb_serial_resume(struct usb_interface *intf)
 
 	return rv;
 }
-EXPORT_SYMBOL(usb_serial_resume);
+EXPORT_SYMBOL_NS(usb_serial_resume, USB_SERIAL);
 
 static int usb_serial_reset_resume(struct usb_interface *intf)
 {
@@ -1456,7 +1458,7 @@ failed_usb_register:
 	kfree(udriver);
 	return rc;
 }
-EXPORT_SYMBOL_GPL(usb_serial_register_drivers);
+EXPORT_SYMBOL_NS(usb_serial_register_drivers, USB_SERIAL);
 
 /**
  * usb_serial_deregister_drivers - deregister drivers for a usb-serial module
@@ -1475,7 +1477,7 @@ void usb_serial_deregister_drivers(struct usb_serial_driver *const serial_driver
 	usb_deregister(udriver);
 	kfree(udriver);
 }
-EXPORT_SYMBOL_GPL(usb_serial_deregister_drivers);
+EXPORT_SYMBOL_NS(usb_serial_deregister_drivers, USB_SERIAL);
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

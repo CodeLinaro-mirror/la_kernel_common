@@ -38,6 +38,8 @@
 #include <linux/usb/serial.h>
 #include <linux/usb/irda.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define DRIVER_AUTHOR "Greg Kroah-Hartman <greg@kroah.com>, Johan Hovold <jhovold@gmail.com>"
 #define DRIVER_DESC "USB IR Dongle driver"
 

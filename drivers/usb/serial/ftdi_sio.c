@@ -47,6 +47,8 @@
 #include "ftdi_sio.h"
 #include "ftdi_sio_ids.h"
 
+IMPORT_NS(USB_SERIAL);
+
 #define DRIVER_AUTHOR "Greg Kroah-Hartman <greg@kroah.com>, Bill Ryder <bryder@sgi.com>, Kuba Ober <kuba@mareimbrium.org>, Andreas Mohr, Johan Hovold <jhovold@gmail.com>"
 #define DRIVER_DESC "USB FTDI Serial Converters Driver"
 

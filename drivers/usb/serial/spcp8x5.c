@@ -25,6 +25,8 @@
 #include <linux/usb.h>
 #include <linux/usb/serial.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define DRIVER_DESC	"SPCP8x5 USB to serial adaptor driver"
 
 #define SPCP825_QUIRK_NO_UART_STATUS	0x01

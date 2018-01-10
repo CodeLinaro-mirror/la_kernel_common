@@ -19,6 +19,8 @@
 #include <linux/slab.h>
 #include "usb-wwan.h"
 
+IMPORT_NS(USB_SERIAL);
+
 #define DRIVER_AUTHOR "Qualcomm Inc"
 #define DRIVER_DESC "Qualcomm USB Serial driver"
 

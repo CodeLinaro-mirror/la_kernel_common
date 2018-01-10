@@ -52,6 +52,8 @@
 #include <linux/usb.h>
 #include <linux/usb/serial.h>
 
+IMPORT_NS(USB_SERIAL);
+
 /* Vendor and Product ID */
 #define AIRCABLE_VID		0x16CA
 #define AIRCABLE_USB_PID	0x1502

@@ -26,6 +26,8 @@
 #include <linux/serial_reg.h>
 #include <linux/uaccess.h>
 
+IMPORT_NS(USB_SERIAL);
+
 /* default urb timeout for usb operations */
 #define QT2_USB_TIMEOUT USB_CTRL_SET_TIMEOUT
 

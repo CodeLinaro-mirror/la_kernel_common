@@ -43,6 +43,8 @@
 #include <linux/usb/serial.h>
 #include "usb-wwan.h"
 
+IMPORT_NS(USB_SERIAL);
+
 /* Function prototypes */
 static int  option_probe(struct usb_serial *serial,
 			const struct usb_device_id *id);

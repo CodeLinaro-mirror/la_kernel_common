@@ -31,6 +31,8 @@
 #include <linux/usb/serial.h>
 #include <asm/unaligned.h>
 
+IMPORT_NS(USB_SERIAL);
+
 /* Definitions for the vendor ID and device ID */
 #define MX_USBSERIAL_VID	0x110A
 #define MX_UPORT1250_PID	0x1250

@@ -31,6 +31,8 @@
 #include "iuu_phoenix.h"
 #include <linux/random.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define DRIVER_DESC "Infinity USB Unlimited Phoenix driver"
 
 static const struct usb_device_id id_table[] = {

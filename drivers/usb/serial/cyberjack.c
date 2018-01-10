@@ -40,6 +40,8 @@
 #include <linux/usb.h>
 #include <linux/usb/serial.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define CYBERJACK_LOCAL_BUF_SIZE 32
 
 #define DRIVER_AUTHOR "Matthias Bruestle"

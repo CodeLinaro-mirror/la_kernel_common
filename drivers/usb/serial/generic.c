@@ -23,6 +23,8 @@
 #include <linux/kfifo.h>
 #include <linux/serial.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #ifdef CONFIG_USB_SERIAL_GENERIC
 
 static __u16 vendor  = 0x05f9;
@@ -92,7 +94,7 @@ int usb_serial_generic_open(struct tty_struct *tty, struct usb_serial_port *port
 
 	return result;
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_open);
+EXPORT_SYMBOL_NS(usb_serial_generic_open, USB_SERIAL);
 
 void usb_serial_generic_close(struct usb_serial_port *port)
 {
@@ -112,7 +114,7 @@ void usb_serial_generic_close(struct usb_serial_port *port)
 			usb_kill_urb(port->read_urbs[i]);
 	}
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_close);
+EXPORT_SYMBOL_NS(usb_serial_generic_close, USB_SERIAL);
 
 int usb_serial_generic_prepare_write_buffer(struct usb_serial_port *port,
 						void *dest, size_t size)
@@ -176,7 +178,7 @@ retry:
 
 	goto retry;	/* try sending off another urb */
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_write_start);
+EXPORT_SYMBOL_NS(usb_serial_generic_write_start, USB_SERIAL);
 
 /**
  * usb_serial_generic_write - generic write function
@@ -206,7 +208,7 @@ int usb_serial_generic_write(struct tty_struct *tty,
 
 	return count;
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_write);
+EXPORT_SYMBOL_NS(usb_serial_generic_write, USB_SERIAL);
 
 int usb_serial_generic_write_room(struct tty_struct *tty)
 {
@@ -241,7 +243,7 @@ int usb_serial_generic_chars_in_buffer(struct tty_struct *tty)
 	dev_dbg(&port->dev, "%s - returns %d\n", __func__, chars);
 	return chars;
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_chars_in_buffer);
+EXPORT_SYMBOL_NS(usb_serial_generic_chars_in_buffer, USB_SERIAL);
 
 void usb_serial_generic_wait_until_sent(struct tty_struct *tty, long timeout)
 {
@@ -273,7 +275,7 @@ void usb_serial_generic_wait_until_sent(struct tty_struct *tty, long timeout)
 			break;
 	}
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_wait_until_sent);
+EXPORT_SYMBOL_NS(usb_serial_generic_wait_until_sent, USB_SERIAL);
 
 static int usb_serial_generic_submit_read_urb(struct usb_serial_port *port,
 						int index, gfp_t mem_flags)
@@ -318,7 +320,7 @@ err:
 
 	return res;
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_submit_read_urbs);
+EXPORT_SYMBOL_NS(usb_serial_generic_submit_read_urbs, USB_SERIAL);
 
 void usb_serial_generic_process_read_urb(struct urb *urb)
 {
@@ -343,7 +345,7 @@ void usb_serial_generic_process_read_urb(struct urb *urb)
 	}
 	tty_flip_buffer_push(&port->port);
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_process_read_urb);
+EXPORT_SYMBOL_NS(usb_serial_generic_process_read_urb, USB_SERIAL);
 
 void usb_serial_generic_read_bulk_callback(struct urb *urb)
 {
@@ -394,7 +396,7 @@ resubmit:
 		spin_unlock_irqrestore(&port->lock, flags);
 	}
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_read_bulk_callback);
+EXPORT_SYMBOL_NS(usb_serial_generic_read_bulk_callback, USB_SERIAL);
 
 void usb_serial_generic_write_bulk_callback(struct urb *urb)
 {
@@ -435,7 +437,7 @@ resubmit:
 	usb_serial_generic_write_start(port, GFP_ATOMIC);
 	usb_serial_port_softint(port);
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_write_bulk_callback);
+EXPORT_SYMBOL_NS(usb_serial_generic_write_bulk_callback, USB_SERIAL);
 
 void usb_serial_generic_throttle(struct tty_struct *tty)
 {
@@ -446,7 +448,7 @@ void usb_serial_generic_throttle(struct tty_struct *tty)
 	port->throttle_req = 1;
 	spin_unlock_irqrestore(&port->lock, flags);
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_throttle);
+EXPORT_SYMBOL_NS(usb_serial_generic_throttle, USB_SERIAL);
 
 void usb_serial_generic_unthrottle(struct tty_struct *tty)
 {
@@ -461,7 +463,7 @@ void usb_serial_generic_unthrottle(struct tty_struct *tty)
 	if (was_throttled)
 		usb_serial_generic_submit_read_urbs(port, GFP_KERNEL);
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_unthrottle);
+EXPORT_SYMBOL_NS(usb_serial_generic_unthrottle, USB_SERIAL);
 
 static bool usb_serial_generic_msr_changed(struct tty_struct *tty,
 				unsigned long arg, struct async_icount *cprev)
@@ -510,7 +512,7 @@ int usb_serial_generic_tiocmiwait(struct tty_struct *tty, unsigned long arg)
 
 	return ret;
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_tiocmiwait);
+EXPORT_SYMBOL_NS(usb_serial_generic_tiocmiwait, USB_SERIAL);
 
 int usb_serial_generic_get_icount(struct tty_struct *tty,
 					struct serial_icounter_struct *icount)
@@ -537,7 +539,7 @@ int usb_serial_generic_get_icount(struct tty_struct *tty,
 
 	return 0;
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_get_icount);
+EXPORT_SYMBOL_NS(usb_serial_generic_get_icount, USB_SERIAL);
 
 #ifdef CONFIG_MAGIC_SYSRQ
 int usb_serial_handle_sysrq_char(struct usb_serial_port *port, unsigned int ch)
@@ -558,7 +560,7 @@ int usb_serial_handle_sysrq_char(struct usb_serial_port *port, unsigned int ch)
 	return 0;
 }
 #endif
-EXPORT_SYMBOL_GPL(usb_serial_handle_sysrq_char);
+EXPORT_SYMBOL_NS(usb_serial_handle_sysrq_char, USB_SERIAL);
 
 int usb_serial_handle_break(struct usb_serial_port *port)
 {
@@ -569,7 +571,7 @@ int usb_serial_handle_break(struct usb_serial_port *port)
 	port->sysrq = 0;
 	return 0;
 }
-EXPORT_SYMBOL_GPL(usb_serial_handle_break);
+EXPORT_SYMBOL_NS(usb_serial_handle_break, USB_SERIAL);
 
 /**
  * usb_serial_handle_dcd_change - handle a change of carrier detect state
@@ -599,7 +601,7 @@ void usb_serial_handle_dcd_change(struct usb_serial_port *usb_port,
 	else if (tty && !C_CLOCAL(tty))
 		tty_hangup(tty);
 }
-EXPORT_SYMBOL_GPL(usb_serial_handle_dcd_change);
+EXPORT_SYMBOL_NS(usb_serial_handle_dcd_change, USB_SERIAL);
 
 int usb_serial_generic_resume(struct usb_serial *serial)
 {
@@ -627,4 +629,4 @@ int usb_serial_generic_resume(struct usb_serial *serial)
 
 	return c ? -EIO : 0;
 }
-EXPORT_SYMBOL_GPL(usb_serial_generic_resume);
+EXPORT_SYMBOL_NS(usb_serial_generic_resume, USB_SERIAL);

@@ -22,6 +22,8 @@
 #include <linux/usb.h>
 #include <linux/usb/serial.h>
 
+IMPORT_NS(USB_SERIAL);
+
 #define KP_RETRIES	100
 
 #define DRIVER_AUTHOR "Ganesh Varadarajan <ganesh@veritas.com>"
