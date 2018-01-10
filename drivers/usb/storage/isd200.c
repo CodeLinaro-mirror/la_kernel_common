@@ -61,6 +61,8 @@
 #include "debug.h"
 #include "scsiglue.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 #define DRV_NAME "ums-isd200"
 
 MODULE_DESCRIPTION("Driver for In-System Design, Inc. ISD200 ASIC");

@@ -55,6 +55,8 @@
 #include "debug.h"
 #include "scsiglue.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 #define DRV_NAME "ums-sddr09"
 
 MODULE_DESCRIPTION("Driver for SanDisk SDDR-09 SmartMedia reader");

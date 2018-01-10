@@ -59,6 +59,8 @@
 #include "debug.h"
 #include "scsiglue.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 #define DRV_NAME "ums-jumpshot"
 
 MODULE_DESCRIPTION("Driver for Lexar \"Jumpshot\" Compact Flash reader");

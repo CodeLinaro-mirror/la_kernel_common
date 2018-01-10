@@ -29,6 +29,8 @@
 #include "option_ms.h"
 #include "debug.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 #define ZCD_FORCE_MODEM			0x01
 #define ZCD_ALLOW_MS 			0x02
 

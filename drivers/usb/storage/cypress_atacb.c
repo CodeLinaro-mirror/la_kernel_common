@@ -30,6 +30,8 @@
 #include "scsiglue.h"
 #include "debug.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 #define DRV_NAME "ums-cypress"
 
 MODULE_DESCRIPTION("SAT support for Cypress USB/ATA bridges with ATACB");

@@ -30,6 +30,8 @@
 #include "debug.h"
 #include "scsiglue.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 #define SD_INIT1_FIRMWARE "ene-ub6250/sd_init1.bin"
 #define SD_INIT2_FIRMWARE "ene-ub6250/sd_init2.bin"
 #define SD_RW_FIRMWARE "ene-ub6250/sd_rdwr.bin"

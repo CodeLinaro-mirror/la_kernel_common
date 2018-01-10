@@ -54,6 +54,8 @@
 #include "scsiglue.h"
 #include "transport.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 /***********************************************************************
  * Protocol routines
  ***********************************************************************/
@@ -123,7 +125,7 @@ void usb_stor_transparent_scsi_command(struct scsi_cmnd *srb,
 	/* send the command to the transport layer */
 	usb_stor_invoke_transport(srb, us);
 }
-EXPORT_SYMBOL_GPL(usb_stor_transparent_scsi_command);
+EXPORT_SYMBOL_NS(usb_stor_transparent_scsi_command, USB_STORAGE_NS);
 
 /***********************************************************************
  * Scatter-gather transfer buffer access routines
@@ -176,7 +178,7 @@ unsigned int usb_stor_access_xfer_buf(unsigned char *buffer,
 
 	return cnt;
 }
-EXPORT_SYMBOL_GPL(usb_stor_access_xfer_buf);
+EXPORT_SYMBOL_NS(usb_stor_access_xfer_buf, USB_STORAGE_NS);
 
 /*
  * Store the contents of buffer into srb's transfer buffer and set the
@@ -194,4 +196,4 @@ void usb_stor_set_xfer_buf(unsigned char *buffer,
 	if (buflen < scsi_bufflen(srb))
 		scsi_set_resid(srb, scsi_bufflen(srb) - buflen);
 }
-EXPORT_SYMBOL_GPL(usb_stor_set_xfer_buf);
+EXPORT_SYMBOL_NS(usb_stor_set_xfer_buf, USB_STORAGE_NS);

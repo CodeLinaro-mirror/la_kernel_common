@@ -56,6 +56,8 @@
 #include "debug.h"
 #include "scsiglue.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 #define DRV_NAME "ums-usbat"
 
 MODULE_DESCRIPTION("Driver for SCM Microsystems (a.k.a. Shuttle) USB-ATAPI cable");

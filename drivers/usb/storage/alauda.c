@@ -44,6 +44,8 @@
 #include "debug.h"
 #include "scsiglue.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 #define DRV_NAME "ums-alauda"
 
 MODULE_DESCRIPTION("Driver for Alauda-based card readers");

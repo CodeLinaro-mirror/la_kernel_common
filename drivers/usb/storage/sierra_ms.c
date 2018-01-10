@@ -13,6 +13,8 @@
 #include "sierra_ms.h"
 #include "debug.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 #define SWIMS_USB_REQUEST_SetSwocMode	0x0B
 #define SWIMS_USB_REQUEST_GetSwocInfo	0x0A
 #define SWIMS_USB_INDEX_SetMode		0x0000

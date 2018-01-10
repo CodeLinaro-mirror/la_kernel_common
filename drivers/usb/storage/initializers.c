@@ -43,6 +43,8 @@
 #include "debug.h"
 #include "transport.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 /*
  * This places the Shuttle/SCM USB<->SCSI bridge devices in multi-target
  * mode

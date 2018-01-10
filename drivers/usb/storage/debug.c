@@ -54,6 +54,8 @@
 #include "debug.h"
 #include "scsi.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 
 void usb_stor_show_command(const struct us_data *us, struct scsi_cmnd *srb)
 {
@@ -188,4 +190,4 @@ void usb_stor_dbg(const struct us_data *us, const char *fmt, ...)
 
 	va_end(args);
 }
-EXPORT_SYMBOL_GPL(usb_stor_dbg);
+EXPORT_SYMBOL_NS(usb_stor_dbg, USB_STORAGE_NS);

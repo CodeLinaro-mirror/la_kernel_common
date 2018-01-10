@@ -62,6 +62,8 @@
 #include "debug.h"
 #include "scsiglue.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 #define DRV_NAME "ums-datafab"
 
 MODULE_DESCRIPTION("Driver for Datafab USB Compact Flash reader");

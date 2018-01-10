@@ -73,6 +73,8 @@
 #include "sierra_ms.h"
 #include "option_ms.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 #if IS_ENABLED(CONFIG_USB_UAS)
 #include "uas-detect.h"
 #endif
@@ -201,7 +203,7 @@ int usb_stor_suspend(struct usb_interface *iface, pm_message_t message)
 	mutex_unlock(&us->dev_mutex);
 	return 0;
 }
-EXPORT_SYMBOL_GPL(usb_stor_suspend);
+EXPORT_SYMBOL_NS(usb_stor_suspend, USB_STORAGE_NS);
 
 int usb_stor_resume(struct usb_interface *iface)
 {
@@ -215,7 +217,7 @@ int usb_stor_resume(struct usb_interface *iface)
 	mutex_unlock(&us->dev_mutex);
 	return 0;
 }
-EXPORT_SYMBOL_GPL(usb_stor_resume);
+EXPORT_SYMBOL_NS(usb_stor_resume, USB_STORAGE_NS);
 
 int usb_stor_reset_resume(struct usb_interface *iface)
 {
@@ -230,7 +232,7 @@ int usb_stor_reset_resume(struct usb_interface *iface)
 	 */
 	return 0;
 }
-EXPORT_SYMBOL_GPL(usb_stor_reset_resume);
+EXPORT_SYMBOL_NS(usb_stor_reset_resume, USB_STORAGE_NS);
 
 #endif /* CONFIG_PM */
 
@@ -247,7 +249,7 @@ int usb_stor_pre_reset(struct usb_interface *iface)
 	mutex_lock(&us->dev_mutex);
 	return 0;
 }
-EXPORT_SYMBOL_GPL(usb_stor_pre_reset);
+EXPORT_SYMBOL_NS(usb_stor_pre_reset, USB_STORAGE_NS);
 
 int usb_stor_post_reset(struct usb_interface *iface)
 {
@@ -264,7 +266,7 @@ int usb_stor_post_reset(struct usb_interface *iface)
 	mutex_unlock(&us->dev_mutex);
 	return 0;
 }
-EXPORT_SYMBOL_GPL(usb_stor_post_reset);
+EXPORT_SYMBOL_NS(usb_stor_post_reset, USB_STORAGE_NS);
 
 /*
  * fill_inquiry_response takes an unsigned char array (which must
@@ -310,7 +312,7 @@ void fill_inquiry_response(struct us_data *us, unsigned char *data,
 
 	usb_stor_set_xfer_buf(data, data_len, us->srb);
 }
-EXPORT_SYMBOL_GPL(fill_inquiry_response);
+EXPORT_SYMBOL_NS(fill_inquiry_response, USB_STORAGE_NS);
 
 static int usb_stor_control_thread(void * __us)
 {
@@ -590,7 +592,7 @@ void usb_stor_adjust_quirks(struct usb_device *udev, unsigned long *fflags)
 	}
 	*fflags = (*fflags & ~mask) | f;
 }
-EXPORT_SYMBOL_GPL(usb_stor_adjust_quirks);
+EXPORT_SYMBOL_NS(usb_stor_adjust_quirks, USB_STORAGE_NS);
 
 /* Get the unusual_devs entries and the string descriptors */
 static int get_device_info(struct us_data *us, const struct usb_device_id *id,
@@ -1015,7 +1017,7 @@ BadDevice:
 	release_everything(us);
 	return result;
 }
-EXPORT_SYMBOL_GPL(usb_stor_probe1);
+EXPORT_SYMBOL_NS(usb_stor_probe1, USB_STORAGE_NS);
 
 /* Second part of general USB mass-storage probing */
 int usb_stor_probe2(struct us_data *us)
@@ -1099,7 +1101,7 @@ BadDevice:
 	release_everything(us);
 	return result;
 }
-EXPORT_SYMBOL_GPL(usb_stor_probe2);
+EXPORT_SYMBOL_NS(usb_stor_probe2, USB_STORAGE_NS);
 
 /* Handle a USB mass-storage disconnect */
 void usb_stor_disconnect(struct usb_interface *intf)
@@ -1109,7 +1111,7 @@ void usb_stor_disconnect(struct usb_interface *intf)
 	quiesce_and_remove_host(us);
 	release_everything(us);
 }
-EXPORT_SYMBOL_GPL(usb_stor_disconnect);
+EXPORT_SYMBOL_NS(usb_stor_disconnect, USB_STORAGE_NS);
 
 static struct scsi_host_template usb_stor_host_template;
 

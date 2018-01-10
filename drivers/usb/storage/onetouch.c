@@ -37,6 +37,8 @@
 #include "debug.h"
 #include "scsiglue.h"
 
+IMPORT_NS(USB_STORAGE_NS);
+
 #define DRV_NAME "ums-onetouch"
 
 MODULE_DESCRIPTION("Maxtor USB OneTouch hard drive button driver");
