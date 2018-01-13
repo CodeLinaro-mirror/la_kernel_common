@@ -140,6 +140,9 @@ struct cpufreq_policy {
 	/* cpufreq-stats */
 	struct cpufreq_stats	*stats;
 
+	/* cpufreq-times */
+	struct cpufreq_times *times;
+
 	/* For cpufreq driver's internal use */
 	void			*driver_data;
 };
@@ -696,3 +699,19 @@ struct sched_domain;
 unsigned long cpufreq_scale_freq_capacity(struct sched_domain *sd, int cpu);
 unsigned long cpufreq_scale_max_freq_capacity(int cpu);
 #endif /* _LINUX_CPUFREQ_H */
+
+/*********************************************************************
+ *                         CPUFREQ TIMES                             *
+ *********************************************************************/
+
+#ifdef CONFIG_CPU_FREQ_TIMES
+void cpufreq_times_create_policy(unsigned int cpu);
+void cpufreq_times_free_table(struct cpufreq_policy *policy);
+void cpufreq_times_record_transition(struct cpufreq_policy *policy,
+				     struct cpufreq_freqs *freq);
+#else
+static inline void cpufreq_times_create_policy(unsigned int cpu) { }
+static inline void cpufreq_times_free_table(struct cpufreq_policy *policy) { }
+static inline void cpufreq_times_record_transition(
+	struct cpufreq_policy *policy, struct cpufreq_freqs *freq) { }
+#endif /* CONFIG_CPU_FREQ_TIMES */
