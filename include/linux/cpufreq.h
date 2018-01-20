@@ -709,9 +709,18 @@ void cpufreq_times_create_policy(unsigned int cpu);
 void cpufreq_times_free_table(struct cpufreq_policy *policy);
 void cpufreq_times_record_transition(struct cpufreq_policy *policy,
 				     struct cpufreq_freqs *freq);
+void acct_update_power(struct task_struct *p, cputime_t cputime);
+void cpufreq_task_times_init(struct task_struct *p);
+void cpufreq_task_times_exit(struct task_struct *p);
+int  proc_time_in_state_show(struct seq_file *m, struct pid_namespace *ns,
+	struct pid *pid, struct task_struct *p);
 #else
 static inline void cpufreq_times_create_policy(unsigned int cpu) { }
 static inline void cpufreq_times_free_table(struct cpufreq_policy *policy) { }
 static inline void cpufreq_times_record_transition(
 	struct cpufreq_policy *policy, struct cpufreq_freqs *freq) { }
+static inline void acct_update_power(struct task_struct *p,
+	cputime_t cputime) {}
+static inline void cpufreq_task_times_init(struct task_struct *p) {}
+static inline void cpufreq_task_times_exit(struct task_struct *p) {}
 #endif /* CONFIG_CPU_FREQ_TIMES */

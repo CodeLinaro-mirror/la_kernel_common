@@ -14,16 +14,22 @@
  *
  */
 
+#include <linux/atomic.h>
 #include <linux/cpufreq.h>
+#include <linux/cputime.h>
 #include <linux/module.h>
+#include <linux/sched.h>
+#include <linux/seq_file.h>
 #include <linux/slab.h>
 
 static DEFINE_SPINLOCK(cpufreq_times_lock);
 
+static DEFINE_SPINLOCK(task_time_in_state_lock); /* task->time_in_state */
+
 struct cpufreq_times {
 	unsigned long long last_time;
 	unsigned int max_state;
-	unsigned int last_index;
+	atomic_t last_index;
 	unsigned int offset;
 	u64 *time_in_state;
 };
@@ -36,9 +42,72 @@ static int cpufreq_times_update(struct cpufreq_times *times)
 	unsigned long long cur_time = get_jiffies_64();
 
 	spin_lock(&cpufreq_times_lock);
-	times->time_in_state[times->last_index] += cur_time - times->last_time;
+	times->time_in_state[atomic_read(&times->last_index)] +=
+		cur_time - times->last_time;
 	times->last_time = cur_time;
 	spin_unlock(&cpufreq_times_lock);
+	return 0;
+}
+
+void cpufreq_task_times_init(struct task_struct *p)
+{
+	void *temp;
+	unsigned long flags;
+	unsigned int max_state;
+
+	spin_lock_irqsave(&task_time_in_state_lock, flags);
+	p->time_in_state = NULL;
+	spin_unlock_irqrestore(&task_time_in_state_lock, flags);
+	WRITE_ONCE(p->max_state, 0);
+
+	WRITE_ONCE(max_state, next_offset);
+
+	/* We use one array to avoid multiple allocs per task */
+	temp = kcalloc(max_state, sizeof(p->time_in_state[0]), GFP_ATOMIC);
+	if (!temp)
+		return;
+
+	spin_lock_irqsave(&task_time_in_state_lock, flags);
+	p->time_in_state = temp;
+	spin_unlock_irqrestore(&task_time_in_state_lock, flags);
+	WRITE_ONCE(p->max_state, max_state);
+}
+
+void cpufreq_task_times_exit(struct task_struct *p)
+{
+	unsigned long flags;
+	void *temp;
+
+	spin_lock_irqsave(&task_time_in_state_lock, flags);
+	temp = p->time_in_state;
+	p->time_in_state = NULL;
+	spin_unlock_irqrestore(&task_time_in_state_lock, flags);
+	kfree(temp);
+}
+
+int proc_time_in_state_show(struct seq_file *m, struct pid_namespace *ns,
+	struct pid *pid, struct task_struct *p)
+{
+	int i;
+	cputime_t cputime;
+	unsigned long flags;
+
+	if (!p->time_in_state)
+		return 0;
+
+	spin_lock(&cpufreq_times_lock);
+	for (i = 0; i < p->max_state; ++i) {
+		cputime = 0;
+		spin_lock_irqsave(&task_time_in_state_lock, flags);
+		if (p->time_in_state)
+			cputime = atomic_read(&p->time_in_state[i]);
+		spin_unlock_irqrestore(&task_time_in_state_lock, flags);
+
+		seq_printf(m, "%u %lu\n", cpufreq_states[i],
+			(unsigned long)cputime_to_clock_t(cputime));
+	}
+	spin_unlock(&cpufreq_times_lock);
+
 	return 0;
 }
 
@@ -61,6 +130,44 @@ static ssize_t show_time_in_state(struct cpufreq_policy *policy, char *buf)
 			       jiffies_64_to_clock_t(times->time_in_state[i]));
 	}
 	return len;
+}
+
+/* Called without cpufreq_times_lock held */
+void acct_update_power(struct task_struct *task, cputime_t cputime)
+{
+	struct cpufreq_policy *policy;
+	struct cpufreq_times *times;
+	unsigned int cpu, state;
+	unsigned long flags;
+
+	if (!task)
+		return;
+
+	cpu = task_cpu(task);
+	policy = cpufreq_cpu_get(cpu);
+	if (!policy)
+		return;
+
+	times = policy->times;
+	if (!times) {
+		cpufreq_cpu_put(policy);
+		return;
+	}
+
+	state = times->offset + atomic_read(&policy->times->last_index);
+
+	/* This function is called from a different context
+	 * Interruptions in between reads/assignements are ok
+	 */
+
+	if (!(task->flags & PF_EXITING) &&
+	    state < READ_ONCE(task->max_state)) {
+		spin_lock_irqsave(&task_time_in_state_lock, flags);
+		if (task->time_in_state)
+			atomic64_add(cputime, &task->time_in_state[state]);
+		spin_unlock_irqrestore(&task_time_in_state_lock, flags);
+	}
+	cpufreq_cpu_put(policy);
 }
 
 static ssize_t show_all_time_in_state(struct kobject *kobj,
@@ -157,8 +264,8 @@ static int cpufreq_times_create_table(struct cpufreq_policy *policy)
 		return -ENOMEM;
 	}
 	times->last_time = get_jiffies_64();
-	times->last_index =
-		cpufreq_frequency_table_get_index(policy, policy->cur);
+	atomic_set(&times->last_index,
+		   cpufreq_frequency_table_get_index(policy, policy->cur));
 	times->max_state = count;
 
 	spin_lock(&cpufreq_times_lock);
@@ -241,7 +348,9 @@ void cpufreq_times_record_transition(struct cpufreq_policy *policy,
 		return;
 
 	cpufreq_times_update(times);
-	times->last_index = index;
+	spin_lock(&cpufreq_times_lock);
+	atomic_set(&times->last_index, index);
+	spin_unlock(&cpufreq_times_lock);
 }
 
 static int __init cpufreq_times_init(void)
