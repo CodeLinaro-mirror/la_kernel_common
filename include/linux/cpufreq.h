@@ -715,6 +715,7 @@ void cpufreq_task_times_init(struct task_struct *p);
 void cpufreq_task_times_exit(struct task_struct *p);
 int  proc_time_in_state_show(struct seq_file *m, struct pid_namespace *ns,
 	struct pid *pid, struct task_struct *p);
+void cpufreq_task_times_remove_uids(uid_t uid_start, uid_t uid_end);
 #else
 static inline void cpufreq_times_create_policy(unsigned int cpu) { }
 static inline void cpufreq_times_free_table(struct cpufreq_policy *policy) { }
@@ -724,4 +725,6 @@ static inline void acct_update_power(struct task_struct *p,
 	cputime_t cputime) {}
 static inline void cpufreq_task_times_init(struct task_struct *p) {}
 static inline void cpufreq_task_times_exit(struct task_struct *p) {}
+static inline void cpufreq_task_times_remove_uids(uid_t uid_start,
+						  uid_t uid_end) {}
 #endif /* CONFIG_CPU_FREQ_TIMES */
