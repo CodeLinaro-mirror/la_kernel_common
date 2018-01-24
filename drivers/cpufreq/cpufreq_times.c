@@ -102,7 +102,11 @@ static int cpufreq_times_create_table(struct cpufreq_policy *policy)
 	times->max_state = count;
 
 	policy->times = times;
+#ifdef CONFIG_CPU_FREQ_STAT
 	ret = sysfs_merge_group(&policy->kobj, &times_attr_group);
+#else
+	ret = sysfs_create_group(&policy->kobj, &times_attr_group);
+#endif
 	if (!ret)
 		return 0;
 
@@ -121,7 +125,11 @@ void cpufreq_times_free_table(struct cpufreq_policy *policy)
 	if (!times)
 		return;
 
+#ifdef CONFIG_CPU_FREQ_STAT
 	sysfs_unmerge_group(&policy->kobj, &times_attr_group);
+#else
+	sysfs_remove_group(&policy->kobj, &times_attr_group);
+#endif
 	kfree(times->time_in_state);
 	kfree(times);
 	policy->times = NULL;

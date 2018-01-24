@@ -704,7 +704,7 @@ unsigned long cpufreq_scale_max_freq_capacity(int cpu);
  *                         CPUFREQ TIMES                             *
  *********************************************************************/
 
-#ifdef CONFIG_CPU_FREQ_STAT
+#ifdef CONFIG_CPU_FREQ_TIMES
 void cpufreq_times_create_policy(unsigned int cpu);
 void cpufreq_times_free_table(struct cpufreq_policy *policy);
 void cpufreq_times_record_transition(struct cpufreq_policy *policy,
