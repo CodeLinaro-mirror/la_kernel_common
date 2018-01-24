@@ -15,50 +15,19 @@
 #include <linux/slab.h>
 #include <linux/cputime.h>
 
-static spinlock_t cpufreq_stats_lock;
-
 struct cpufreq_stats {
 	unsigned int total_trans;
-	unsigned long long last_time;
 	unsigned int max_state;
 	unsigned int state_num;
-	unsigned int last_index;
-	u64 *time_in_state;
 	unsigned int *freq_table;
 #ifdef CONFIG_CPU_FREQ_STAT_DETAILS
 	unsigned int *trans_table;
 #endif
 };
 
-static int cpufreq_stats_update(struct cpufreq_stats *stats)
-{
-	unsigned long long cur_time = get_jiffies_64();
-
-	spin_lock(&cpufreq_stats_lock);
-	stats->time_in_state[stats->last_index] += cur_time - stats->last_time;
-	stats->last_time = cur_time;
-	spin_unlock(&cpufreq_stats_lock);
-	return 0;
-}
-
 static ssize_t show_total_trans(struct cpufreq_policy *policy, char *buf)
 {
 	return sprintf(buf, "%d\n", policy->stats->total_trans);
-}
-
-static ssize_t show_time_in_state(struct cpufreq_policy *policy, char *buf)
-{
-	struct cpufreq_stats *stats = policy->stats;
-	ssize_t len = 0;
-	int i;
-
-	cpufreq_stats_update(stats);
-	for (i = 0; i < stats->state_num; i++) {
-		len += sprintf(buf + len, "%u %llu\n", stats->freq_table[i],
-			(unsigned long long)
-			jiffies_64_to_clock_t(stats->time_in_state[i]));
-	}
-	return len;
 }
 
 #ifdef CONFIG_CPU_FREQ_STAT_DETAILS
@@ -106,11 +75,9 @@ cpufreq_freq_attr_ro(trans_table);
 #endif
 
 cpufreq_freq_attr_ro(total_trans);
-cpufreq_freq_attr_ro(time_in_state);
 
 static struct attribute *default_attrs[] = {
 	&total_trans.attr,
-	&time_in_state.attr,
 #ifdef CONFIG_CPU_FREQ_STAT_DETAILS
 	&trans_table.attr,
 #endif
@@ -141,7 +108,7 @@ static void __cpufreq_stats_free_table(struct cpufreq_policy *policy)
 	pr_debug("%s: Free stats table\n", __func__);
 
 	sysfs_remove_group(&policy->kobj, &stats_attr_group);
-	kfree(stats->time_in_state);
+	kfree(stats->freq_table);
 	kfree(stats);
 	policy->stats = NULL;
 }
@@ -184,18 +151,16 @@ static int __cpufreq_stats_create_table(struct cpufreq_policy *policy)
 	cpufreq_for_each_valid_entry(pos, table)
 		count++;
 
-	alloc_size = count * sizeof(int) + count * sizeof(u64);
+	alloc_size = count * sizeof(int);
 
 #ifdef CONFIG_CPU_FREQ_STAT_DETAILS
 	alloc_size += count * count * sizeof(int);
 #endif
 
-	/* Allocate memory for time_in_state/freq_table/trans_table in one go */
-	stats->time_in_state = kzalloc(alloc_size, GFP_KERNEL);
-	if (!stats->time_in_state)
+	/* Allocate memory for freq_table/trans_table in one go */
+	stats->freq_table = kzalloc(alloc_size, GFP_KERNEL);
+	if (!stats->freq_table)
 		goto free_stat;
-
-	stats->freq_table = (unsigned int *)(stats->time_in_state + count);
 
 #ifdef CONFIG_CPU_FREQ_STAT_DETAILS
 	stats->trans_table = stats->freq_table + count;
@@ -209,8 +174,6 @@ static int __cpufreq_stats_create_table(struct cpufreq_policy *policy)
 			stats->freq_table[i++] = pos->frequency;
 
 	stats->state_num = i;
-	stats->last_time = get_jiffies_64();
-	stats->last_index = freq_table_get_index(stats, policy->cur);
 
 	policy->stats = stats;
 	ret = sysfs_create_group(&policy->kobj, &stats_attr_group);
@@ -219,7 +182,7 @@ static int __cpufreq_stats_create_table(struct cpufreq_policy *policy)
 
 	/* We failed, release resources */
 	policy->stats = NULL;
-	kfree(stats->time_in_state);
+	kfree(stats->freq_table);
 free_stat:
 	kfree(stats);
 
@@ -280,19 +243,16 @@ static int cpufreq_stat_notifier_trans(struct notifier_block *nb,
 
 	stats = policy->stats;
 
-	old_index = stats->last_index;
+	old_index = freq_table_get_index(stats, freq->old);
 	new_index = freq_table_get_index(stats, freq->new);
 
-	/* We can't do stats->time_in_state[-1]= .. */
+	/* We can't do stats->trans_table[-1]= .. */
 	if (old_index == -1 || new_index == -1)
 		goto put_policy;
 
 	if (old_index == new_index)
 		goto put_policy;
 
-	cpufreq_stats_update(stats);
-
-	stats->last_index = new_index;
 #ifdef CONFIG_CPU_FREQ_STAT_DETAILS
 	stats->trans_table[old_index * stats->max_state + new_index]++;
 #endif
@@ -316,7 +276,6 @@ static int __init cpufreq_stats_init(void)
 	int ret;
 	unsigned int cpu;
 
-	spin_lock_init(&cpufreq_stats_lock);
 	ret = cpufreq_register_notifier(&notifier_policy_block,
 				CPUFREQ_POLICY_NOTIFIER);
 	if (ret)
