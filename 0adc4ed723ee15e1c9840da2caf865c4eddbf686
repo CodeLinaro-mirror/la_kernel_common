@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62faa9f7_b38a0e1c",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 1620,
+      "author": {
+        "id": 1072971
+      },
+      "writtenOn": "2018-01-27T11:35:40Z",
+      "side": 1,
+      "message": "Missed a line",
+      "revId": "0adc4ed723ee15e1c9840da2caf865c4eddbf686",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
