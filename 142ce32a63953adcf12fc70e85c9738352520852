@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8eec1451_76aac23c",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6892,
+      "author": {
+        "id": 1215505
+      },
+      "writtenOn": "2018-01-31T16:43:28Z",
+      "side": 1,
+      "message": "P can be in RUNNING state when check_for_migration()-\u003eselect_energy_cpu_brute(). Is it correct to call this unconditionally? May be p-\u003estate \u003d\u003d TASK_WAKING check is needed here.",
+      "range": {
+        "startLine": 6892,
+        "startChar": 1,
+        "endLine": 6892,
+        "endChar": 21
+      },
+      "revId": "142ce32a63953adcf12fc70e85c9738352520852",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
