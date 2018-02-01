@@ -22,6 +22,30 @@
       "revId": "142ce32a63953adcf12fc70e85c9738352520852",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "192a2e7a_25001ed8",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 6892,
+      "author": {
+        "id": 1200908
+      },
+      "writtenOn": "2018-02-01T11:31:47Z",
+      "side": 1,
+      "message": "Hi Pavankumar,\n\ncheck_for_migration()-\u003eselect_energy_cpu_brute() is called after task_tick_fair() which should have updated the sched_avg of curr, so I expect sync_entity_load_avg()-\u003e__update_load_avg() to bail out early without doing anything here. So, in short, this isn\u0027t harmful but could be slightly optimised. I\u0027ll post a patch after the 1.5 release.\n\nThanks for the feedback!",
+      "parentUuid": "8eec1451_76aac23c",
+      "range": {
+        "startLine": 6892,
+        "startChar": 1,
+        "endLine": 6892,
+        "endChar": 21
+      },
+      "revId": "142ce32a63953adcf12fc70e85c9738352520852",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
