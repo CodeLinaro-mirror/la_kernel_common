@@ -1,0 +1,191 @@
+/* drivers/cpufreq/cpufreq_times.c
+ *
+ * Copyright (C) 2018 Google, Inc.
+ *
+ * This software is licensed under the terms of the GNU General Public
+ * License version 2, as published by the Free Software Foundation, and
+ * may be copied, distributed, and modified under those terms.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ */
+
+#include <linux/atomic.h>
+#include <linux/cpufreq.h>
+#include <linux/cpufreq_times.h>
+#include <linux/cputime.h>
+#include <linux/sched.h>
+#include <linux/seq_file.h>
+#include <linux/slab.h>
+#include <linux/spinlock.h>
+#include <linux/threads.h>
+
+static DEFINE_SPINLOCK(cpufreq_times_lock);
+
+static DEFINE_SPINLOCK(task_time_in_state_lock); /* task->time_in_state */
+
+struct cpu_freqs {
+	unsigned int offset;
+	unsigned int max_state;
+	atomic_t last_index;
+	unsigned int *freq_table;
+};
+
+static struct cpu_freqs *all_freqs[NR_CPUS];
+
+static atomic_t next_offset;
+
+void cpufreq_task_times_init(struct task_struct *p)
+{
+	void *temp;
+	unsigned long flags;
+	unsigned int max_state;
+
+	spin_lock_irqsave(&task_time_in_state_lock, flags);
+	p->time_in_state = NULL;
+	spin_unlock_irqrestore(&task_time_in_state_lock, flags);
+	p->max_state = 0;
+
+	max_state = atomic_read(&next_offset);
+
+	/* We use one array to avoid multiple allocs per task */
+	temp = kcalloc(max_state, sizeof(p->time_in_state[0]), GFP_ATOMIC);
+	if (!temp)
+		return;
+
+	spin_lock_irqsave(&task_time_in_state_lock, flags);
+	p->time_in_state = temp;
+	spin_unlock_irqrestore(&task_time_in_state_lock, flags);
+	p->max_state = max_state;
+}
+
+void cpufreq_task_times_exit(struct task_struct *p)
+{
+	unsigned long flags;
+	void *temp;
+
+	spin_lock_irqsave(&task_time_in_state_lock, flags);
+	temp = p->time_in_state;
+	p->time_in_state = NULL;
+	spin_unlock_irqrestore(&task_time_in_state_lock, flags);
+	kfree(temp);
+}
+
+int proc_time_in_state_show(struct seq_file *m, struct pid_namespace *ns,
+	struct pid *pid, struct task_struct *p)
+{
+	unsigned int cpu, i;
+	cputime_t cputime;
+	unsigned long flags;
+	struct cpu_freqs *freqs;
+	struct cpu_freqs *last_freqs = NULL;
+
+	if (!p->time_in_state)
+		return 0;
+
+	for_each_possible_cpu(cpu) {
+		freqs = all_freqs[cpu];
+		if (!freqs || freqs == last_freqs)
+			continue;
+		last_freqs = freqs;
+
+		if (p->max_state < freqs->offset + freqs->max_state)
+			continue;
+		for (i = 0; i < freqs->max_state; i++) {
+			if (freqs->freq_table[i] == CPUFREQ_ENTRY_INVALID)
+				continue;
+			cputime = 0;
+			spin_lock_irqsave(&task_time_in_state_lock, flags);
+			if (p->time_in_state)
+				cputime = p->time_in_state[freqs->offset + i];
+			spin_unlock_irqrestore(&task_time_in_state_lock, flags);
+
+			seq_printf(m, "%u %lu\n", freqs->freq_table[i],
+				   (unsigned long)cputime_to_clock_t(cputime));
+		}
+	}
+
+	return 0;
+}
+
+void acct_update_power(struct task_struct *p, cputime_t cputime)
+{
+	unsigned long flags;
+	unsigned int state;
+	struct cpu_freqs *freqs = all_freqs[task_cpu(p)];
+
+	if (!freqs)
+		return;
+
+	state = freqs->offset + atomic_read(&freqs->last_index);
+
+	if (!(p->flags & PF_EXITING) && state < p->max_state) {
+		spin_lock_irqsave(&task_time_in_state_lock, flags);
+		if (p->time_in_state)
+			p->time_in_state[state] += cputime;
+		spin_unlock_irqrestore(&task_time_in_state_lock, flags);
+	}
+}
+
+void cpufreq_times_create_policy(struct cpufreq_policy *policy)
+{
+	int cpu;
+	unsigned int index, count = 0;
+	struct cpufreq_frequency_table *pos, *table;
+	struct cpu_freqs *freqs;
+	bool need_free = true;
+	void *tmp;
+
+	if (all_freqs[policy->cpu])
+		return;
+
+	table = cpufreq_frequency_get_table(policy->cpu);
+	if (!table)
+		return;
+
+	cpufreq_for_each_entry(pos, table)
+		count++;
+
+	tmp =  kzalloc(sizeof(*freqs) + sizeof(freqs->freq_table[0]) * count,
+		       GFP_KERNEL);
+	if (!tmp)
+		return;
+
+	freqs = tmp;
+	freqs->freq_table = tmp + sizeof(*freqs);
+	freqs->max_state = count;
+
+	index = cpufreq_frequency_table_get_index(policy, policy->cur);
+	if (index >= 0)
+		atomic_set(&freqs->last_index, index);
+
+	cpufreq_for_each_entry(pos, table)
+		freqs->freq_table[pos - table] = pos->frequency;
+
+	freqs->offset = atomic_add_return(count, &next_offset) - count;
+	for_each_cpu(cpu, policy->related_cpus)
+		all_freqs[cpu] = freqs;
+}
+
+void cpufreq_times_record_transition(struct cpufreq_freqs *freq)
+{
+	int index;
+	struct cpu_freqs *freqs = all_freqs[freq->cpu];
+	struct cpufreq_policy *policy;
+
+	if (!freqs)
+		return;
+
+	policy = cpufreq_cpu_get(cpu);
+	if (!policy)
+		return;
+
+	index = cpufreq_frequency_table_get_index(policy, freq->new);
+	if (index >= 0)
+		atomic_set(&freqs->last_index, index);
+
+	cpufreq_cpu_put(policy);
+}
