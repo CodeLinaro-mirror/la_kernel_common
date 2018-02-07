@@ -22,6 +22,30 @@
       "revId": "88a968ca63f84ecd0747bba67ccab878684bb0a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5994357_6e1d126d",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 6780,
+      "author": {
+        "id": 1118600
+      },
+      "writtenOn": "2018-02-07T05:17:22Z",
+      "side": 1,
+      "message": "I read the dependency patches again, and now I know the reason for why here need use max(new_util, capacity_min_of(i));  but I still think this method doesn\u0027t make sense.\n\nFor example, there have two CPUs, CPU0 and CPU1, CPU0 util is 30 and CPU1 util is 150; if the min CPU frequency is limited to OPP corresponding to capacity 200, then we cannot distinguish CPU0 or CPU1 which is more idle one, due finally we always use 200 for their util.\n\nI still think we need rework find_best_target() to find the CPUs in the same clock domain (or CPUs in same cluster with same architecture), so find_best_target() has one assumption, all the CPUs have the same architecture and same clock domain, CPUs have the same constraint (either highest frequency or lowest frequency constraints); it selects best idle and active CPUs.\n\nLater energy_diff() function uses find_new_capacity() to find new capacity index, find_new_capacity() returns back the capacity index which can reflect the constrained capacity and we can choose the best power efficiency CPU.",
+      "parentUuid": "2e227dbe_5498744d",
+      "range": {
+        "startLine": 6780,
+        "startChar": 55,
+        "endLine": 6780,
+        "endChar": 0
+      },
+      "revId": "88a968ca63f84ecd0747bba67ccab878684bb0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
