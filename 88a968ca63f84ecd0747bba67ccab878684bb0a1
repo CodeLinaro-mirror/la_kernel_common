@@ -46,6 +46,30 @@
       "revId": "88a968ca63f84ecd0747bba67ccab878684bb0a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65aa449e_3a7dc9c8",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 6780,
+      "author": {
+        "id": 1125654
+      },
+      "writtenOn": "2018-02-07T12:10:24Z",
+      "side": 1,
+      "message": "Just to make sure that the meaning of this is understood, the minimum cap is there to establish if a CPU is forced to sometimes run above a certain OPP, by external factors (sharing a frequency domain with another device), that results in it having a capacity higher than its original minimum one.\nThis being said, the changes to find_best_target are here to make sure that when this happens, we choose CPUs that have a lower minimum cap (a higher spare) that results in us not choosing a CPU that will result in running at an unnecessary high OPP.\n\nAt the moment this feature (MIN_CAPACITY_CAPPING) is disabled and it will result in capacity_min_of(cpu) to return 0 and therefore new_util will not be capped.\n\nEnabling this feature is considered experimental at the moment due to the lack of platforms to test on, first of all, and second due to in flight changes to find_best_target that are yet to come, that might modify this functionality, either consolidate, replace it or remove it.\n\nFor your example (which will only happen when this feature is enabled):\n\n\u003e\u003e For example, there have two CPUs, CPU0 and CPU1, CPU0 util \n\u003e\u003e is 30 and CPU1 util is 150; if the min CPU frequency is \n\u003e\u003e limited to OPP corresponding to capacity 200, then we cannot \n\u003e\u003e distinguish CPU0 or CPU1 which is more idle one, due finally \n\u003e\u003e we always use 200 for their util.\n\nThis is correct. If the new utilization of some CPUs is lower than the minimum cap, all CPUs will look the same in terms of available spare. Utilisation was not used before this change as a factor in choosing a backup idle CPU, and now all CPUs being seen at the same capped utilisation level should not have an impact for non-min-capped CPUs, but only to differentiate between min-capped ones. When choosing an active CPU this will have an impact for small utilisation variations between CPUs, under the min cap value, but this possible  need to regulate small utilization values is believed to be useful and it\u0027s something to experiment with.",
+      "parentUuid": "f5994357_6e1d126d",
+      "range": {
+        "startLine": 6780,
+        "startChar": 55,
+        "endLine": 6780,
+        "endChar": 0
+      },
+      "revId": "88a968ca63f84ecd0747bba67ccab878684bb0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
