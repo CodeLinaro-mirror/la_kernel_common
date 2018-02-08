@@ -103,6 +103,13 @@ const struct arm64_cpu_capabilities arm64_errata[] = {
 			   (1 << MIDR_VARIANT_SHIFT) | 1),
 	},
 #endif
+#ifdef CONFIG_QCOM_FALKOR_ERRATUM_1003
+	{
+		.desc = "Qualcomm Technologies Falkor erratum 1003",
+		.capability = ARM64_WORKAROUND_QCOM_FALKOR_E1003,
+		MIDR_RANGE(MIDR_QCOM_FALKOR_V1, 0x00, 0x00),
+	},
+#endif
 	{
 	}
 };
