@@ -70,6 +70,30 @@
       "revId": "88a968ca63f84ecd0747bba67ccab878684bb0a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "333466e4_473632e5",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 6780,
+      "author": {
+        "id": 1118600
+      },
+      "writtenOn": "2018-02-10T13:04:46Z",
+      "side": 1,
+      "message": "\u003e This being said, the changes to find_best_target are here to\n\u003e make sure that when this happens, we choose CPUs that have a\n\u003e lower minimum cap (a higher spare) that results in us not\n\u003e choosing a CPU that will result in running at an unnecessary high OPP.\n\nI can easily elaborate one opposite case: if one platform wants to force the CPU minimum capacity so ensure the performance can meet the performance requirement, then we wants to place task on these CPUs with capped min capacity; this is quite common usage.  But this patch will select CPUs with total reversed direction.",
+      "parentUuid": "65aa449e_3a7dc9c8",
+      "range": {
+        "startLine": 6780,
+        "startChar": 55,
+        "endLine": 6780,
+        "endChar": 0
+      },
+      "revId": "88a968ca63f84ecd0747bba67ccab878684bb0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
