@@ -43,6 +43,7 @@ static void free_resources(void)
 				kfree(sge->cap_states);
 				kfree(sge->idle_states);
 				kfree(sge);
+				sge_array[cpu][sd_level] = NULL;
 			}
 		}
 	}
@@ -60,7 +61,7 @@ static inline unsigned long cpu_max_capacity(int cpu)
 
 int sched_energy_installed(int cpu)
 {
-	return (sge_array[cpu][0]->cap_states != NULL);
+	return (sge_array[cpu][0] && sge_array[cpu][0]->cap_states);
 }
 
 void init_sched_energy_costs(void)
