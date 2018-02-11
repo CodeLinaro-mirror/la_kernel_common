@@ -73,8 +73,8 @@ static ssize_t cpu_capacity_store(struct device *dev,
 	if (!count)
 		return 0;
 
-	/* don't allow changes if sched-group-energy is installed */
-	if(sched_energy_installed(this_cpu))
+	/* Don't allow changes if sched-group-energy is installed. */
+	if (sched_energy_installed(this_cpu))
 		return -EINVAL;
 
 	ret = kstrtoul(buf, 0, &new_capacity);
@@ -357,17 +357,13 @@ void topology_normalize_cpu_scale(void)
 bool __init topology_parse_cpu_capacity(struct device_node *cpu_node, int cpu)
 {
 	static bool cap_parsing_failed;
-	int ret = 0;
+	int ret;
 	u32 cpu_capacity;
 
 	if (cap_parsing_failed)
 		return false;
 
-	/* override capacity-dmips-mhz if we have sched-energy-costs */
-	if (of_find_property(cpu_node, "sched-energy-costs", NULL))
-		cpu_capacity = topology_get_cpu_scale(NULL, cpu);
-	else
-		ret = of_property_read_u32(cpu_node, "capacity-dmips-mhz",
+	ret = of_property_read_u32(cpu_node, "capacity-dmips-mhz",
 				   &cpu_capacity);
 
 	if (!ret) {
@@ -408,10 +404,11 @@ init_cpu_capacity_callback(struct notifier_block *nb,
 			   unsigned long val,
 			   void *data)
 {
+	int sched_energy = sched_energy_installed(smp_processor_id());
 	struct cpufreq_policy *policy = data;
 	int cpu;
 
-	if (!raw_capacity)
+	if (!sched_energy && !raw_capacity)
 		return 0;
 
 	if (val != CPUFREQ_NOTIFY)
@@ -423,19 +420,23 @@ init_cpu_capacity_callback(struct notifier_block *nb,
 
 	cpumask_andnot(cpus_to_visit, cpus_to_visit, policy->related_cpus);
 
-	for_each_cpu(cpu, policy->related_cpus) {
-		raw_capacity[cpu] = topology_get_cpu_scale(NULL, cpu) *
-				    policy->cpuinfo.max_freq / 1000UL;
-		capacity_scale = max(raw_capacity[cpu], capacity_scale);
+	if (!sched_energy) {
+		for_each_cpu(cpu, policy->related_cpus) {
+			raw_capacity[cpu] = topology_get_cpu_scale(NULL, cpu) *
+					    policy->cpuinfo.max_freq / 1000UL;
+			capacity_scale = max(raw_capacity[cpu], capacity_scale);
+		}
 	}
 
 	if (cpumask_empty(cpus_to_visit)) {
-		topology_normalize_cpu_scale();
+		if (!sched_energy) {
+			topology_normalize_cpu_scale();
+			free_raw_capacity();
+			pr_debug("cpu_capacity: parsing done\n");
+			schedule_work(&parsing_done_work);
+		}
 		if (topology_detect_flags())
 			schedule_work(&update_topology_flags_work);
-		free_raw_capacity();
-		pr_debug("cpu_capacity: parsing done\n");
-		schedule_work(&parsing_done_work);
 	}
 
 	return 0;
@@ -454,7 +455,7 @@ static int __init register_cpufreq_notifier(void)
 	 * until we have the necessary code to parse the cpu capacity, so
 	 * skip registering cpufreq notifier.
 	 */
-	if (!acpi_disabled || !raw_capacity)
+	if (!acpi_disabled)
 		return -EINVAL;
 
 	if (!alloc_cpumask_var(&cpus_to_visit, GFP_KERNEL)) {

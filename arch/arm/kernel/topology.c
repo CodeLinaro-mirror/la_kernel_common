@@ -36,21 +36,11 @@ static inline
 const struct sched_group_energy * const cpu_core_energy(int cpu)
 {
 	struct sched_group_energy *sge = sge_array[cpu][SD_LEVEL0];
-	unsigned long capacity;
-	int max_cap_idx;
 
 	if (!sge) {
 		pr_warn("Invalid sched_group_energy for CPU%d\n", cpu);
 		return NULL;
 	}
-
-	max_cap_idx = sge->nr_cap_states - 1;
-	capacity = sge->cap_states[max_cap_idx].cap;
-
-	printk_deferred("cpu=%d set cpu scale %lu from energy model\n",
-			cpu, capacity);
-
-	topology_set_cpu_scale(cpu, capacity);
 
 	return sge;
 }
@@ -149,6 +139,11 @@ static void __init parse_dt_topology(void)
 			continue;
 		}
 
+		if (of_find_property(cn, "sched-energy-costs", NULL)) {
+			of_node_put(cn);
+			continue;
+		}
+
 		if (topology_parse_cpu_capacity(cn, cpu)) {
 			of_node_put(cn);
 			continue;
@@ -207,24 +202,15 @@ static void __init parse_dt_topology(void)
  */
 static void update_cpu_capacity(unsigned int cpu)
 {
-	const struct sched_group_energy *sge;
 	unsigned long capacity;
 
-	sge = cpu_core_energy(cpu);
+	if (sched_energy_installed(cpu))
+		return;
 
-	if (sge) {
-		int max_cap_idx;
+	if (!cpu_capacity(cpu) || cap_from_dt)
+		return;
 
-		max_cap_idx = sge->nr_cap_states - 1;
-		capacity = sge->cap_states[max_cap_idx].cap;
-
-		printk_deferred("cpu=%d set cpu scale %lu from energy model\n",
-				cpu, capacity);
-	} else {
-		if (!cpu_capacity(cpu) || cap_from_dt)
-			return;
-		capacity = cpu_capacity(cpu) / middle_capacity;
-	}
+	capacity = cpu_capacity(cpu) / middle_capacity;
 
 	topology_set_cpu_scale(cpu, capacity);
 

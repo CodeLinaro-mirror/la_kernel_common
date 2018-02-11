@@ -40,7 +40,9 @@ static int __init get_cpu_for_node(struct device_node *node)
 
 	for_each_possible_cpu(cpu) {
 		if (of_get_cpu_node(cpu, NULL) == cpu_node) {
-			topology_parse_cpu_capacity(cpu_node, cpu);
+			if (!of_find_property(cpu_node, "sched-energy-costs",
+					      NULL))
+				topology_parse_cpu_capacity(cpu_node, cpu);
 			of_node_put(cpu_node);
 			return cpu;
 		}
@@ -309,21 +311,11 @@ static inline
 const struct sched_group_energy * const cpu_core_energy(int cpu)
 {
 	struct sched_group_energy *sge = sge_array[cpu][SD_LEVEL0];
-	unsigned long capacity;
-	int max_cap_idx;
 
 	if (!sge) {
 		pr_warn("Invalid sched_group_energy for CPU%d\n", cpu);
 		return NULL;
 	}
-
-	max_cap_idx = sge->nr_cap_states - 1;
-	capacity = sge->cap_states[max_cap_idx].cap;
-
-	printk_deferred("cpu=%d set cpu scale %lu from energy model\n",
-			cpu, capacity);
-
-	topology_set_cpu_scale(cpu, capacity);
 
 	return sge;
 }
