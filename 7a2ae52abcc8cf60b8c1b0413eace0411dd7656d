@@ -1,0 +1,243 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "afbc2e84_4f4eb1c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "From this comment and also looking at the code, I see you track for a CPU the nearest timeout for all tasks enqueued in a CPU. And you do that \"nearest tracking\" to reduce boostgroups re-evaluations.\n\nI\u0027m just wondering why a (IMO) \"simpler\" solution to just track the timeout of last enqueued task for each boostgroup, and max aggregating these (absolute) times at every next timeout should not be enough.",
+      "range": {
+        "startLine": 24,
+        "startChar": 37,
+        "endLine": 25,
+        "endChar": 7
+      },
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9614d8a_cba3c7b9",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "nit-pick: maybe better \"boost_timeout\" which seems to be more consistent with \"boost_max\" and, as this one, represents the aggregated value of the following per-boostgroup timeouts...",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8702701_0228e686",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "Not really sure we save much with this additional store... we can probably just compare now with the stored timeout, thus using only memory reads.",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbe97101_c6d1dcb9",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "Actually, we can remove the above check and just keep here:\n\nif (ktime_before(now, bg-\u003egroup[idx].timeout))\n    return true;",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af03d19d_a7b55c60",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "I think this can be avoided by using the max aggregation suggested below...",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d50c0b71_44b59c21",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "I would change the logic of the method and use here instead:\n\n    if (schedtune_boost_group_idle(cpu, idx, now))\n         continue;\n\nMoreover, since we already have a bg, we can also pass it in directly:\n\n    if (schedtune_boost_group_idle(bg, idx, now))\n         continue;",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b8a6858_34db81ec",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "If we avoid to set next_timeout.tv64 to 0, as suggested above, is this not just a max aggregation across all the boostgroups? i.e\n\nnext_timeout \u003d bg-\u003egroup[0].timeout;\nfor (idx \u003d 1; idx \u003c BOOSTGROUPS_COUNT; ++idx) {\n   ...\n   next_timeout \u003d  max(next_timeout, bg-\u003egroup[idx].timeout);\n}",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 3
+      },
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e46a486_dd39e1e8",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "Here I think we can keep the original line, isn\u0027t it?\n\n   boost_max \u003d max(boost_max, bg-\u003egroup[idx].boost);",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 35
+      },
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15172eb6_0e8b4975",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "This function is used to update boostgroups accounting when we change a boost value via the sysfs interface. The most frequent case is a touchboost event. However, we should consider that we do not trigger schedutil at this point... we need to wait the next enqueue/tick event.\n\nThis, I would say that we can skip timeout updates from this code path (provided also we use a max aggregation instead of the closes one) and keep instead the original code. Which mean: boost timeout will be managed just by the fast path at the next enqueue/dequeue event.",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5590af95_6537d5a8",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "I think we should better use:\n\n   u64 sched_clock_cpu(smp_processor_id())\n\ninstead of ktime_t and ktime_get(), for all the enqueue/dequeue paths:\n\n   schedtune_{en,de}queue_task()\n      schedtune_tasks_update()\n\nwhich are also under rq lock.\n\nPotentially we can also use the rq-\u003eclock directly, provided we do not do updates at CGroups attach/detach time, which I think we can avoid completely... (look at my following comment)",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cf504ed_a2d89a80",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "This would be:\n\n   bg-\u003egroup[idx].timeout \u003d now + ktime_boost_hold\n\nWhere schedtune_init() intializes:\n\n   ktime_boost_hold \u003d ktime_to_ns(SCHEDTUNE_BOOST_HOLD_NS);",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82ef7084_bb7a8ef9",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "Maybe this one also can be skipped... since we do not actually trigger a schedutil update when we move tasks among cgroups, we can probably just wait for the task to be dequeue/enqueued one time before actually holding its boost in the new CPU, which will avoid also the next chunk (thus simplifying the login we are adding).\n\nAnother reason to remove it is that we do not update the timeout for the SRC cpu... thus, for consistency probably better to not poke with the destination one.",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e5766e7_80cd96b0",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-02-13T16:11:38Z",
+      "side": 1,
+      "message": "... which will avoid to change this line too.",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
