@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8ee484fd_2103c99f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2018-02-13T17:08:14Z",
+      "side": 1,
+      "message": "You\u0027re probably correct - I think we should just track the timeout associated with the highest boost group in effect, which would simplify the code a bit.",
+      "parentUuid": "afbc2e84_4f4eb1c8",
+      "range": {
+        "startLine": 24,
+        "startChar": 37,
+        "endLine": 25,
+        "endChar": 7
+      },
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a9614d8a_cba3c7b9",
         "filename": "kernel/sched/tune.c",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2018-02-13T16:11:38Z",
       "side": 1,
       "message": "nit-pick: maybe better \"boost_timeout\" which seems to be more consistent with \"boost_max\" and, as this one, represents the aggregated value of the following per-boostgroup timeouts...",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07ac097b_e553c8a1",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2018-02-13T17:08:14Z",
+      "side": 1,
+      "message": "Agreed.",
+      "parentUuid": "a9614d8a_cba3c7b9",
       "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -133,6 +175,30 @@
     },
     {
       "key": {
+        "uuid": "242ac0ca_73337703",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2018-02-13T17:08:14Z",
+      "side": 1,
+      "message": "I think it\u0027s not a max aggregation - consider we have a task in top-app with boost 50 enqueued, and then some time later (while the timeout is in effect) we enqueue a task with boost 10. We want the 50-boost group to stay in effect until the 50ms timeout happens, and then switch to the 10-boost group until it\u0027s timeout happens.\n\nHowever, if we just store the timeout for the active boost group, I think a lot of this goes away. What do you think?",
+      "parentUuid": "8b8a6858_34db81ec",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 3
+      },
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2e46a486_dd39e1e8",
         "filename": "kernel/sched/tune.c",
         "patchSetId": 1
@@ -144,6 +210,30 @@
       "writtenOn": "2018-02-13T16:11:38Z",
       "side": 1,
       "message": "Here I think we can keep the original line, isn\u0027t it?\n\n   boost_max \u003d max(boost_max, bg-\u003egroup[idx].boost);",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 35
+      },
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "866f0652_65297920",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2018-02-13T17:08:14Z",
+      "side": 1,
+      "message": "likely :)",
+      "parentUuid": "2e46a486_dd39e1e8",
       "range": {
         "startLine": 318,
         "startChar": 0,
@@ -173,6 +263,24 @@
     },
     {
       "key": {
+        "uuid": "25a31b50_141b2124",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2018-02-13T17:08:14Z",
+      "side": 1,
+      "message": "However, we do change the boost of the CPU which can impact frequency selected by other CPUs. I need to think about this a bit more.",
+      "parentUuid": "15172eb6_0e8b4975",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5590af95_6537d5a8",
         "filename": "kernel/sched/tune.c",
         "patchSetId": 1
@@ -184,6 +292,24 @@
       "writtenOn": "2018-02-13T16:11:38Z",
       "side": 1,
       "message": "I think we should better use:\n\n   u64 sched_clock_cpu(smp_processor_id())\n\ninstead of ktime_t and ktime_get(), for all the enqueue/dequeue paths:\n\n   schedtune_{en,de}queue_task()\n      schedtune_tasks_update()\n\nwhich are also under rq lock.\n\nPotentially we can also use the rq-\u003eclock directly, provided we do not do updates at CGroups attach/detach time, which I think we can avoid completely... (look at my following comment)",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b37f705_4c72c216",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2018-02-13T17:08:14Z",
+      "side": 1,
+      "message": "Good point :) I hate accessing the timer, and as you point out it only has to be correct in reference to the CPU so we don\u0027t need a real global ktime access.",
+      "parentUuid": "5590af95_6537d5a8",
       "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -207,6 +333,24 @@
     },
     {
       "key": {
+        "uuid": "d3313bce_0a623d25",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2018-02-13T17:08:14Z",
+      "side": 1,
+      "message": "yep, cleaner.",
+      "parentUuid": "7cf504ed_a2d89a80",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82ef7084_bb7a8ef9",
         "filename": "kernel/sched/tune.c",
         "patchSetId": 1
@@ -224,6 +368,24 @@
     },
     {
       "key": {
+        "uuid": "7716e5f1_4ee7c088",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2018-02-13T17:08:14Z",
+      "side": 1,
+      "message": "Yeah, timeouts should probably only be done on enqueue for consistency.",
+      "parentUuid": "82ef7084_bb7a8ef9",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8e5766e7_80cd96b0",
         "filename": "kernel/sched/tune.c",
         "patchSetId": 1
@@ -235,6 +397,24 @@
       "writtenOn": "2018-02-13T16:11:38Z",
       "side": 1,
       "message": "... which will avoid to change this line too.",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74e1d280_18f785a5",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2018-02-13T17:08:14Z",
+      "side": 1,
+      "message": "If we don\u0027t make changes at attach, could we not also avoid updating the per-cpu boost setting until the next time we hit it at all if we instead just mark it dirty? That way we avoid doing any traversal now and if we don\u0027t need to do find out what the boost level for the CPU is until after enqueue, we won\u0027t waste any time.",
+      "parentUuid": "8e5766e7_80cd96b0",
       "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
