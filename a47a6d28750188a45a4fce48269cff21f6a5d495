@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0ee3c88_70cc83a2",
+        "filename": "fs/proc/uid.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-02-13T22:45:27Z",
+      "side": 1,
+      "message": "Add a comment about why RT mutex makes sense here (its definitely not obvious)",
+      "revId": "a47a6d28750188a45a4fce48269cff21f6a5d495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9616fffc_d3013d3b",
+        "filename": "fs/proc/uid.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-02-13T22:45:27Z",
+      "side": 1,
+      "message": "same comment as previous CL: can we rename the functions that require a lock to make it clear that the lock must be held?",
+      "revId": "a47a6d28750188a45a4fce48269cff21f6a5d495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfec47d5_4e5d9072",
+        "filename": "fs/proc/uid.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-02-13T22:45:27Z",
+      "side": 1,
+      "message": "How does this get populated?",
+      "revId": "a47a6d28750188a45a4fce48269cff21f6a5d495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
