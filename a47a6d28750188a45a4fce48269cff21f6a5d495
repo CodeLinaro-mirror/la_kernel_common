@@ -50,6 +50,24 @@
       "revId": "a47a6d28750188a45a4fce48269cff21f6a5d495",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49b1f31f_9fa70636",
+        "filename": "fs/proc/uid.c",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1115183
+      },
+      "writtenOn": "2018-02-14T01:00:03Z",
+      "side": 1,
+      "message": "With only this patch it would stay empty, the next patch in the series adds a time_in_state file. They\u0027re separate patches because nothing in this one is cpufreq related - any sort of per-uid file could be added to this array.",
+      "parentUuid": "bfec47d5_4e5d9072",
+      "revId": "a47a6d28750188a45a4fce48269cff21f6a5d495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
