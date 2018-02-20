@@ -101,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "1a146e94_f7423f69",
+        "filename": "kernel/sched/tune.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2018-02-20T11:30:40Z",
+      "side": 1,
+      "message": "The only reason is to avoid getting the time unless we need it. I\u0027m reworking this to avoid using ktime apis anyway, so this will all go.",
+      "parentUuid": "e8702701_0228e686",
+      "revId": "7a2ae52abcc8cf60b8c1b0413eace0411dd7656d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bbe97101_c6d1dcb9",
         "filename": "kernel/sched/tune.c",
         "patchSetId": 1
