@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57abc466_8b5e2191",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 4499,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-03-05T21:03:04Z",
+      "side": 1,
+      "message": "add argument",
+      "revId": "2084be6f24e1544b5a0d738b40c50ff0a1f6acda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc46df5b_8bfc05db",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 4502,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-03-05T21:03:04Z",
+      "side": 1,
+      "message": "move to next line",
+      "range": {
+        "startLine": 4502,
+        "startChar": 73,
+        "endLine": 4502,
+        "endChar": 74
+      },
+      "revId": "2084be6f24e1544b5a0d738b40c50ff0a1f6acda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91a9aa62_919706d2",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 4526,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-03-05T21:03:04Z",
+      "side": 1,
+      "message": "why is the namespace if the current task relevant here?",
+      "revId": "2084be6f24e1544b5a0d738b40c50ff0a1f6acda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db6502fa_d4bff01f",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 4545,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-03-05T21:03:04Z",
+      "side": 1,
+      "message": "add blank line",
+      "revId": "2084be6f24e1544b5a0d738b40c50ff0a1f6acda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
