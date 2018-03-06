@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5605b6fc_5d3bb1f2",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 4499,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2018-03-06T08:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57abc466_8b5e2191",
+      "revId": "2084be6f24e1544b5a0d738b40c50ff0a1f6acda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bc46df5b_8bfc05db",
         "filename": "drivers/android/binder.c",
         "patchSetId": 3
@@ -30,6 +48,30 @@
       "writtenOn": "2018-03-05T21:03:04Z",
       "side": 1,
       "message": "move to next line",
+      "range": {
+        "startLine": 4502,
+        "startChar": 73,
+        "endLine": 4502,
+        "endChar": 74
+      },
+      "revId": "2084be6f24e1544b5a0d738b40c50ff0a1f6acda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3534cbc_7ce8db5a",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 4502,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2018-03-06T08:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc46df5b_8bfc05db",
       "range": {
         "startLine": 4502,
         "startChar": 73,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "1993fb82_84838ac3",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 4526,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2018-03-06T08:43:20Z",
+      "side": 1,
+      "message": "In the future CLs where this function is used, current is the task providing the pid, so the assumption here is that pid lives in the same namespace as current. However this function doesn\u0027t describe the restriction that the caller must live in the same pid namespace, so I agree it\u0027s confusing.\n\nPerhaps a better idea is to get the ns of proc-\u003etask, since \u0027proc\u0027 is the process containing pid? I\u0027ve made the change for now, let me know if you disagree.",
+      "parentUuid": "91a9aa62_919706d2",
+      "revId": "2084be6f24e1544b5a0d738b40c50ff0a1f6acda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "db6502fa_d4bff01f",
         "filename": "drivers/android/binder.c",
         "patchSetId": 3
@@ -70,6 +130,24 @@
       "writtenOn": "2018-03-05T21:03:04Z",
       "side": 1,
       "message": "add blank line",
+      "revId": "2084be6f24e1544b5a0d738b40c50ff0a1f6acda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6e27e57_fb49c17e",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 4545,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2018-03-06T08:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db6502fa_d4bff01f",
       "revId": "2084be6f24e1544b5a0d738b40c50ff0a1f6acda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
