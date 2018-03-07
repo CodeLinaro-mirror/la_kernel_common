@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee665cf8_3071de94",
+        "filename": "arch/arm64/kernel/topology.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1215505
+      },
+      "writtenOn": "2018-03-07T14:18:13Z",
+      "side": 1,
+      "message": "For QC platforms, we may have to call topology_parse_cpu_capacity() even if sched-energy-costs dT property is present. Is it possible to create a config or wrapper function on when to skip topology_parse_cpu_capacity().",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 31
+      },
+      "revId": "f9971a346d0076dfa2fa50a50bf9aff008ca04a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5394340e_3ee8a1fa",
+        "filename": "drivers/base/arch_topology.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1215505
+      },
+      "writtenOn": "2018-03-07T14:18:13Z",
+      "side": 1,
+      "message": "why not we just rely solely on raw_capacity here? when raw_capacity() is allocated, just populate the cpu_scale().",
+      "range": {
+        "startLine": 411,
+        "startChar": 6,
+        "endLine": 411,
+        "endChar": 19
+      },
+      "revId": "f9971a346d0076dfa2fa50a50bf9aff008ca04a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
