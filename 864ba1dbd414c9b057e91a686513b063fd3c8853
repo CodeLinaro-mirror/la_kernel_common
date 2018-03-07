@@ -25,6 +25,75 @@
     },
     {
       "key": {
+        "uuid": "d89f906c_e7d7be55",
+        "filename": "drivers/staging/android/ashmem.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2018-03-07T18:16:32Z",
+      "side": 1,
+      "message": "FUD: I dug down and I _believe_ shmem_file_llseek does not take \u0026mm-\u003emmap_sem",
+      "range": {
+        "startLine": 355,
+        "startChar": 7,
+        "endLine": 355,
+        "endChar": 46
+      },
+      "revId": "864ba1dbd414c9b057e91a686513b063fd3c8853",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c6a0a2b_7472011d",
+        "filename": "drivers/staging/android/ashmem.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2018-03-07T18:16:32Z",
+      "side": 1,
+      "message": "FUD: I dug down and I _believe_ shmem_file_setup does not take \u0026mm-\u003emmap_sem",
+      "range": {
+        "startLine": 403,
+        "startChar": 11,
+        "endLine": 403,
+        "endChar": 27
+      },
+      "revId": "864ba1dbd414c9b057e91a686513b063fd3c8853",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20fce54d_2a35071f",
+        "filename": "drivers/staging/android/ashmem.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2018-03-07T18:16:32Z",
+      "side": 1,
+      "message": "And here is the \u0027pattern\u0027, and why ashmem_pin_unpin has a demonstrable \u0027anti-pattern\u0027 that you are fixing.",
+      "range": {
+        "startLine": 521,
+        "startChar": 0,
+        "endLine": 535,
+        "endChar": 27
+      },
+      "revId": "864ba1dbd414c9b057e91a686513b063fd3c8853",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f438749_3ecdb904",
         "filename": "drivers/staging/android/ashmem.c",
         "patchSetId": 3

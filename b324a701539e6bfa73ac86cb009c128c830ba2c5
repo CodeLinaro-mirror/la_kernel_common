@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31047916_65bfcd9d",
+        "filename": "drivers/staging/android/ashmem.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2018-03-07T18:16:32Z",
+      "side": 0,
+      "message": "b/c this is unlikely, I have no _efficiency_ issues with moving copy_from_user outside the ashmem_mutex lock. unlikely here means likely there ;-/",
+      "range": {
+        "startLine": 716,
+        "startChar": 1,
+        "endLine": 716,
+        "endChar": 27
+      },
+      "revId": "b324a701539e6bfa73ac86cb009c128c830ba2c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
