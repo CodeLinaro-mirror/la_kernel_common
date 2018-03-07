@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f438749_3ecdb904",
+        "filename": "drivers/staging/android/ashmem.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2018-03-07T17:33:55Z",
+      "side": 1,
+      "message": "just do a return -EFAULT here, gotos should only be used to unraval IMHO",
+      "range": {
+        "startLine": 716,
+        "startChar": 2,
+        "endLine": 716,
+        "endChar": 11
+      },
+      "revId": "864ba1dbd414c9b057e91a686513b063fd3c8853",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
