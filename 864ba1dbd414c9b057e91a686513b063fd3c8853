@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "42d7b6c6_2c8aa0f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2018-03-07T17:35:09Z",
+      "side": 1,
+      "message": "+\n\nBug: 74079836\n\nand apply to 3.18 as well if applicable.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 13
+      },
+      "revId": "864ba1dbd414c9b057e91a686513b063fd3c8853",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f438749_3ecdb904",
         "filename": "drivers/staging/android/ashmem.c",
         "patchSetId": 3
