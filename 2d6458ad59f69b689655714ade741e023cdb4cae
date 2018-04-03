@@ -22,6 +22,30 @@
       "revId": "2d6458ad59f69b689655714ade741e023cdb4cae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ca3e43e_94b22ee3",
+        "filename": "include/linux/goldfish.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1278660
+      },
+      "writtenOn": "2018-04-03T22:13:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb745c02_8b0c6408",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 19
+      },
+      "revId": "2d6458ad59f69b689655714ade741e023cdb4cae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
