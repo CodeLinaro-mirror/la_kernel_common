@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb745c02_8b0c6408",
+        "filename": "include/linux/goldfish.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-04-03T10:03:20Z",
+      "side": 1,
+      "message": "Always run checkpatch.pl so you don\u0027t get grumpy reviewers asking you to run checkpatch.pl...\n\nThis should be \u003clinux/io.h\u003e, right?",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 19
+      },
+      "revId": "2d6458ad59f69b689655714ade741e023cdb4cae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
