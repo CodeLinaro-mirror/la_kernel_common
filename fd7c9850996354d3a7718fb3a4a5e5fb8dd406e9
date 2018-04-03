@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba711e9e_1f6a980b",
+        "filename": "include/linux/goldfish.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-04-03T10:14:04Z",
+      "side": 1,
+      "message": "Not really a change (unsigned long is the same as uintptr_t in the kernel), but if it makes you happy, that\u0027s fine with me :)\n\nBut shouldn\u0027t you just use the default dmar_writeq() function instead?",
+      "range": {
+        "startLine": 12,
+        "startChar": 25,
+        "endLine": 12,
+        "endChar": 34
+      },
+      "revId": "fd7c9850996354d3a7718fb3a4a5e5fb8dd406e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
