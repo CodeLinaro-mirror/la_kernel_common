@@ -22,6 +22,30 @@
       "revId": "fd7c9850996354d3a7718fb3a4a5e5fb8dd406e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8214c92_f13dfcc6",
+        "filename": "include/linux/goldfish.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1278660
+      },
+      "writtenOn": "2018-04-03T22:14:18Z",
+      "side": 1,
+      "message": "dmar_writeq assumes porth\u003dportl+4 which is not the case for tty/goldfish.c\n\n#define\tGOLDFISH_TTY_REG_DATA_PTR\t0x10\n#define\tGOLDFISH_TTY_REG_DATA_LEN\t0x14\n#define\tGOLDFISH_TTY_REG_DATA_PTR_HIGH\t0x18",
+      "parentUuid": "ba711e9e_1f6a980b",
+      "range": {
+        "startLine": 12,
+        "startChar": 25,
+        "endLine": 12,
+        "endChar": 34
+      },
+      "revId": "fd7c9850996354d3a7718fb3a4a5e5fb8dd406e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
