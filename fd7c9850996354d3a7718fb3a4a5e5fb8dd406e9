@@ -46,6 +46,30 @@
       "revId": "fd7c9850996354d3a7718fb3a4a5e5fb8dd406e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4c9bda3_b2d3b19d",
+        "filename": "include/linux/goldfish.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-04-04T14:55:54Z",
+      "side": 1,
+      "message": "Ugh, that\u0027s crazy, a virtual interface that you all created is not sane?  Someone needs to go complain to someone else about this :)\n\nAnyway, ok, makes sense, thanks.",
+      "parentUuid": "b8214c92_f13dfcc6",
+      "range": {
+        "startLine": 12,
+        "startChar": 25,
+        "endLine": 12,
+        "endChar": 34
+      },
+      "revId": "fd7c9850996354d3a7718fb3a4a5e5fb8dd406e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
