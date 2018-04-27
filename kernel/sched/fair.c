@@ -6918,6 +6918,7 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 			unsigned long capacity_curr = capacity_curr_of(i);
 			unsigned long capacity_orig = capacity_orig_of(i);
 			unsigned long wake_util, new_util;
+			long spare_cap;
 
 			if (!cpu_online(i))
 				continue;
@@ -6941,6 +6942,14 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 			new_util = max(min_util, new_util);
 			if (new_util > capacity_orig)
 				continue;
+
+			/*
+			 * Pre-compute the maximum possible capacity we expect
+			 * to have available on this CPU once the task is
+			 * enqueued here. This value is used by the code below
+			 * to support a task spreading strategy.
+			 */
+			spare_cap = capacity_orig - new_util;
 
 			/*
 			 * Case A) Latency sensitive tasks
@@ -6990,8 +6999,8 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 				 * Favor CPUs with max spare capacity.
 				 */
 				if ((capacity_curr > new_util) &&
-					(capacity_orig - new_util > target_max_spare_cap)) {
-					target_max_spare_cap = capacity_orig - new_util;
+					(spare_cap > target_max_spare_cap)) {
+					target_max_spare_cap = spare_cap;
 					target_cpu = i;
 					continue;
 				}
@@ -7101,10 +7110,10 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 
 			/* Favor CPUs with maximum spare capacity */
 			if ((capacity_orig == target_capacity) &&
-			    ((capacity_orig - new_util) < target_max_spare_cap))
+			    (spare_cap < target_max_spare_cap))
 				continue;
 
-			target_max_spare_cap = capacity_orig - new_util;
+			target_max_spare_cap = spare_cap;
 			target_capacity = capacity_orig;
 			target_util = new_util;
 			target_cpu = i;
