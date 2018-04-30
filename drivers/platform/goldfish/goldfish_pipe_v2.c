@@ -941,4 +941,4 @@ static struct platform_driver goldfish_pipe_driver = {
 
 module_platform_driver(goldfish_pipe_driver);
 MODULE_AUTHOR("David Turner <digit@google.com>");
-MODULE_LICENSE("GPL");
+MODULE_LICENSE("GPL v2");
