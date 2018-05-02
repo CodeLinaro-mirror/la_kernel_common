@@ -1,0 +1,132 @@
+/*
+ * Shadow Call Stack support.
+ *
+ * Copyright (C) 2018 Google LLC
+ */
+
+#include <linux/cpuhotplug.h>
+#include <linux/mm.h>
+#include <linux/slab.h>
+#include <linux/scs.h>
+#include <linux/vmalloc.h>
+
+#define SCS_END_MAGIC	0xaf0194819b1635f6UL
+
+static inline void *__scs_base(struct task_struct *tsk)
+{
+	return (void *)((uintptr_t)task_scs(tsk) & ~(SCS_SIZE - 1));
+}
+
+#ifdef SCS_USE_VMALLOC
+
+/* Keep a cache of shadow stacks */
+#define SCS_CACHE_SIZE 2
+static DEFINE_PER_CPU(void *, scs_cache[SCS_CACHE_SIZE]);
+
+static void *scs_alloc(int node)
+{
+	int i;
+
+	for (i = 0; i < SCS_CACHE_SIZE; i++) {
+		void *s;
+
+		s = this_cpu_xchg(scs_cache[i], NULL);
+		if (s) {
+			memset(s, 0, SCS_SIZE);
+			return s;
+		}
+	}
+
+	return __vmalloc_node_range(SCS_SIZE, SCS_SIZE,
+				    VMALLOC_START, VMALLOC_END,
+				    SCS_GFP, PAGE_KERNEL, 0,
+				    node, __builtin_return_address(0));
+}
+
+static void scs_free(void *s)
+{
+	int i;
+
+	for (i = 0; i < SCS_CACHE_SIZE; i++) {
+		if (this_cpu_cmpxchg(scs_cache[i], 0, s) != 0)
+			continue;
+
+		return;
+	}
+
+	vfree_atomic(s);
+}
+
+void __init scs_init(void)
+{
+}
+
+#else /* !SCS_USE_VMALLOC*/
+
+static inline void *scs_alloc(int node)
+{
+	return kmalloc(SCS_SIZE, SCS_GFP);
+}
+
+static inline void scs_free(void *s)
+{
+	kfree(s);
+}
+
+void __init scs_init(void)
+{
+}
+
+#endif /* SCS_USE_VMALLOC */
+
+static inline unsigned long *scs_magic(struct task_struct *tsk)
+{
+	return (unsigned long *)(__scs_base(tsk) + SCS_SIZE - sizeof(long));
+}
+
+static inline void scs_set_magic(struct task_struct *tsk)
+{
+	*scs_magic(tsk) = SCS_END_MAGIC;
+}
+
+void scs_task_init(struct task_struct *tsk)
+{
+	task_set_scs(tsk, NULL);
+}
+
+void scs_set_init_magic(struct task_struct *tsk)
+{
+	scs_save(tsk);
+	scs_set_magic(tsk);
+	scs_load(tsk);
+}
+
+int scs_prepare(struct task_struct *tsk, int node)
+{
+	void *s;
+
+	BUG_ON(__scs_base(tsk));
+
+	s = scs_alloc(node);
+	if (!s)
+		return -ENOMEM;
+
+	task_set_scs(tsk, s);
+	scs_set_magic(tsk);
+
+	return 0;
+}
+
+void scs_release(struct task_struct *tsk)
+{
+	void *s;
+
+	s = __scs_base(tsk);
+	if (!s)
+		return;
+
+	BUG_ON(*scs_magic(tsk) != SCS_END_MAGIC);
+
+	scs_task_init(tsk);
+	scs_free(s);
+}
