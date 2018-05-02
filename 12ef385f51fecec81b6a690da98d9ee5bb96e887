@@ -22,6 +22,30 @@
       "revId": "12ef385f51fecec81b6a690da98d9ee5bb96e887",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8afaa9a2_1c9cad4c",
+        "filename": "net/xfrm/xfrm_state.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1060151
+      },
+      "writtenOn": "2018-05-02T18:56:01Z",
+      "side": 0,
+      "message": "Since I have moved the code into the xfrm_state_lock we shouldn\u0027t need to use this lock anymore. There may be one case with soft lifetime that I see which doesn\u0027t do the right thing, but if it\u0027s broken then I think it was already broken due to the check for the ACQUIRE state above. This is hard to follow, but I\u0027ll put them back in around the dangerous-looking part since xfrm_state_lock doesn\u0027t cover all the cases.",
+      "parentUuid": "2c1f43ee_a4f5aff2",
+      "range": {
+        "startLine": 1343,
+        "startChar": 1,
+        "endLine": 1343,
+        "endChar": 13
+      },
+      "revId": "12ef385f51fecec81b6a690da98d9ee5bb96e887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }

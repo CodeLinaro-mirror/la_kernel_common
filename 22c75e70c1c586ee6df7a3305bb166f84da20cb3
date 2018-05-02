@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1fc1e557_3c8a9a95",
+        "filename": "net/xfrm/xfrm_state.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1314,
+      "author": {
+        "id": 1060151
+      },
+      "writtenOn": "2018-05-02T18:56:01Z",
+      "side": 1,
+      "message": "Due to the mark matching and the semantics, the new mark will match iff it is equivalent to or narrower than the old mark. Thus by the time the code selects the old state, you know that the new mark is a \"subset\".",
+      "parentUuid": "69102744_7c9d9d60",
+      "range": {
+        "startLine": 1314,
+        "startChar": 5,
+        "endLine": 1314,
+        "endChar": 11
+      },
+      "revId": "22c75e70c1c586ee6df7a3305bb166f84da20cb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a349af50_75934c20",
         "filename": "net/xfrm/xfrm_state.c",
         "patchSetId": 5
@@ -71,6 +95,54 @@
     },
     {
       "key": {
+        "uuid": "19e48244_14e3eb3d",
+        "filename": "net/xfrm/xfrm_state.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1352,
+      "author": {
+        "id": 1060151
+      },
+      "writtenOn": "2018-05-02T18:56:01Z",
+      "side": 1,
+      "message": "I didn\u0027t want to move the deletion logic into the other function since it\u0027s already hard enough to follow the paths of these objects being managed. That way the __update_valid() function only does updates for x1 and doesn\u0027t modify x at all; x is effectively constant for that function.",
+      "parentUuid": "a349af50_75934c20",
+      "range": {
+        "startLine": 1351,
+        "startChar": 2,
+        "endLine": 1352,
+        "endChar": 22
+      },
+      "revId": "22c75e70c1c586ee6df7a3305bb166f84da20cb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9409cc0b_0436e7d6",
+        "filename": "net/xfrm/xfrm_state.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1352,
+      "author": {
+        "id": 1060151
+      },
+      "writtenOn": "2018-05-02T18:56:01Z",
+      "side": 1,
+      "message": "line 1361 in the previous patch set. We release the lock on the temprary SA we are holding since if the existing one was VALID we only needed it so we could update the existing.",
+      "parentUuid": "13096bca_ee54707e",
+      "range": {
+        "startLine": 1352,
+        "startChar": 2,
+        "endLine": 1352,
+        "endChar": 20
+      },
+      "revId": "22c75e70c1c586ee6df7a3305bb166f84da20cb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea29fee8_0c1882a9",
         "filename": "net/xfrm/xfrm_state.c",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2018-05-01T21:56:33Z",
       "side": 1,
       "message": "Is it possible to end up running __xfrm_state_put(x) in the XFRM_STATE_VALID branch, then end up here and also run xfrm_state_put(x1)?",
+      "range": {
+        "startLine": 1371,
+        "startChar": 1,
+        "endLine": 1371,
+        "endChar": 15
+      },
+      "revId": "22c75e70c1c586ee6df7a3305bb166f84da20cb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de0f8c94_4f5617d0",
+        "filename": "net/xfrm/xfrm_state.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 1371,
+      "author": {
+        "id": 1060151
+      },
+      "writtenOn": "2018-05-02T18:56:01Z",
+      "side": 1,
+      "message": "Well... yes. Unless something changed inadvertently that should happen in normal cases.",
+      "parentUuid": "ea29fee8_0c1882a9",
       "range": {
         "startLine": 1371,
         "startChar": 1,
