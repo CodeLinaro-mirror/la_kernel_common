@@ -78,6 +78,7 @@
 #include <linux/cpufreq_times.h>
 #include <linux/sched/loadavg.h>
 #include <linux/cgroup-defs.h>
+#include <linux/scs.h>
 
 #include <asm/switch_to.h>
 #include <asm/tlb.h>
@@ -5371,6 +5372,8 @@ void init_idle(struct task_struct *idle, int cpu)
 
 	raw_spin_lock_irqsave(&idle->pi_lock, flags);
 	raw_spin_lock(&rq->lock);
+
+	scs_task_reset(idle);
 
 	__sched_fork(0, idle);
 	idle->state = TASK_RUNNING;
