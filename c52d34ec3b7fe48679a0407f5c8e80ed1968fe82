@@ -16,6 +16,24 @@
       "revId": "c52d34ec3b7fe48679a0407f5c8e80ed1968fe82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72b29175_5ebca643",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1060151
+      },
+      "writtenOn": "2018-05-11T18:14:26Z",
+      "side": 1,
+      "message": "There were no \"real\" conflicts but because the lines immediately adjacent changed Git does generate a conflict. I figured backport would indicate that it didn\u0027t CP cleanly, but as I said there were no \"real\" conflicts. As I\u0027m super new to the kernel I have no idea which is the correct choice in that situation. lmk and I\u0027ll fix.",
+      "parentUuid": "441bcef6_69e29ca6",
+      "revId": "c52d34ec3b7fe48679a0407f5c8e80ed1968fe82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
