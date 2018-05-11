@@ -61,6 +61,13 @@ nodes. A single energy-costs node is required for a given system.
 
 	Any other configuration is considered invalid.
 
+	The energy-costs node must have a compatible property with the
+	value of "sched-energy". Example below:
+	energy-costs {
+		compatible = "sched-energy"
+	}
+
+
 The energy-costs node can only contain a single type of child node
 whose bindings are described in paragraph 4.
 
@@ -236,6 +243,11 @@ Property added to the cpu node:
 	for clarity.
 
 	Any other configuration is invalid.
+
+- freq-energy-model
+	Description: Optional. Must be declared if the energy model
+	represents frequency/power values. If absent, energy model is
+	by default considered as capacity/power.
 
 ===========================================================
 5 - Example dts
