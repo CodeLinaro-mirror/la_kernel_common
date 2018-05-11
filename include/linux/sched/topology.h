@@ -68,7 +68,8 @@ struct sched_domain_attr {
 extern int sched_domain_level_max;
 
 struct capacity_state {
-	unsigned long cap;	/* compute capacity */
+	unsigned long cap;	/* capacity calculated by energy driver */
+	unsigned long frequency;/* frequency */
 	unsigned long power;	/* power consumption at this compute capacity */
 };
 
@@ -194,6 +195,7 @@ typedef const struct cpumask *(*sched_domain_mask_f)(int cpu);
 typedef int (*sched_domain_flags_f)(void);
 typedef
 const struct sched_group_energy * const(*sched_domain_energy_f)(int cpu);
+extern bool energy_aware(void);
 
 #define SDTL_OVERLAP	0x01
 
