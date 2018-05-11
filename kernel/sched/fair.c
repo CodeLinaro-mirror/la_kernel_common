@@ -5475,6 +5475,14 @@ static inline bool energy_aware(void)
 	return sched_feat(ENERGY_AWARE);
 }
 
+/*
+ * Externally visible function.
+ */
+bool sched_is_energy_aware(void)
+{
+	return energy_aware();
+}
+
 static int cpu_util_wake(int cpu, struct task_struct *p);
 
 /*
