@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "441bcef6_69e29ca6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-11T06:13:04Z",
+      "side": 1,
+      "message": "Nit: is this actually a backport? If there were no conflicts, I think it should be UPSTREAM.",
+      "revId": "c52d34ec3b7fe48679a0407f5c8e80ed1968fe82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
