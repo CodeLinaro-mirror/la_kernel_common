@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b4ee7f6b_317fa674",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-05-15T20:54:38Z",
+      "side": 1,
+      "message": "Sure will add more details. This wasn\u0027t the final solution.",
+      "parentUuid": "69956cbd_1fdc6a95",
+      "revId": "8e645132f7b6d8f4bf90245a2837598959651ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "909783f3_23e1ed83",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-05-15T09:54:56Z",
       "side": 1,
       "message": "Could you be more elaborate here when describing what this patch is actually doing? I assume currently only insider know what this is all about.",
+      "revId": "8e645132f7b6d8f4bf90245a2837598959651ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84084bc1_d7bac958",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-05-15T20:54:38Z",
+      "side": 1,
+      "message": "Sure will do.",
+      "parentUuid": "909783f3_23e1ed83",
       "revId": "8e645132f7b6d8f4bf90245a2837598959651ff6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
