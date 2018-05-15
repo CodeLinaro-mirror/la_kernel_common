@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69956cbd_1fdc6a95",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-05-15T09:54:56Z",
+      "side": 1,
+      "message": "Can we make the description of the patch more clear? Something like \u0027ANDROID: sched: \"Scaling capacity values of the energy model according to the max cpu frequency value (speed bin)\" maybe?\n\nThe current phrase is too generic and could refer to various places where we update CPU capacity.",
+      "revId": "8e645132f7b6d8f4bf90245a2837598959651ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "909783f3_23e1ed83",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-05-15T09:54:56Z",
+      "side": 1,
+      "message": "Could you be more elaborate here when describing what this patch is actually doing? I assume currently only insider know what this is all about.",
+      "revId": "8e645132f7b6d8f4bf90245a2837598959651ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
