@@ -6,9 +6,11 @@
 
 #include <linux/cpuhotplug.h>
 #include <linux/mm.h>
+#include <linux/mmzone.h>
 #include <linux/slab.h>
 #include <linux/scs.h>
 #include <linux/vmalloc.h>
+#include <linux/vmstat.h>
 #include <asm/page.h>
 
 #define SCS_END_MAGIC	0xaf0194819b1635f6UL
@@ -61,6 +63,11 @@ static void scs_free(void *s)
 	vfree_atomic(s);
 }
 
+static struct page *__scs_page(struct task_struct *tsk)
+{
+	return vmalloc_to_page(scs_base(tsk));
+}
+
 void __init scs_init(void)
 {
 }
@@ -75,6 +82,11 @@ static inline void *scs_alloc(int node)
 static inline void scs_free(void *s)
 {
 	kfree(s);
+}
+
+static struct page *__scs_page(struct task_struct *tsk)
+{
+	return virt_to_page(scs_base(tsk));
 }
 
 void __init scs_init(void)
@@ -108,6 +120,12 @@ void scs_set_init_magic(void)
 	scs_set_magic(&init_task);
 }
 
+static void scs_account(struct task_struct *tsk, int account)
+{
+	mod_zone_page_state(page_zone(__scs_page(tsk)), NR_KERNEL_SCS_BYTES,
+		account * SCS_SIZE);
+}
+
 int scs_prepare(struct task_struct *tsk, int node)
 {
 	void *s;
@@ -121,6 +139,7 @@ int scs_prepare(struct task_struct *tsk, int node)
 	task_set_scs(tsk, s);
 	scs_set_base(tsk, s);
 	scs_set_magic(tsk);
+	scs_account(tsk, 1);
 
 	return 0;
 }
@@ -135,6 +154,7 @@ void scs_release(struct task_struct *tsk)
 
 	BUG_ON(*scs_magic(tsk) != SCS_END_MAGIC);
 
+	scs_account(tsk, -1);
 	scs_task_init(tsk);
 	scs_free(s);
 }
