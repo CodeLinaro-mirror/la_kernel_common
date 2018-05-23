@@ -5215,6 +5215,10 @@ static int memory_stat_show(struct seq_file *m, void *v)
 		   (u64)stat[MEM_CGROUP_STAT_CACHE] * PAGE_SIZE);
 	seq_printf(m, "kernel_stack %llu\n",
 		   (u64)stat[MEMCG_KERNEL_STACK_KB] * 1024);
+#ifdef CONFIG_SHADOW_CALL_STACK
+	seq_printf(m, "shadow_call_stack %llu\n",
+		   (u64)stat[MEMCG_KERNEL_SCS_KB] * 1024);
+#endif
 	seq_printf(m, "slab %llu\n",
 		   (u64)(stat[MEMCG_SLAB_RECLAIMABLE] +
 			 stat[MEMCG_SLAB_UNRECLAIMABLE]) * PAGE_SIZE);
