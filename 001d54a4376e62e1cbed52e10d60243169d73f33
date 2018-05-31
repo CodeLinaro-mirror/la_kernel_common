@@ -22,6 +22,30 @@
       "revId": "001d54a4376e62e1cbed52e10d60243169d73f33",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79c7ca05_5186b367",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 7012,
+      "author": {
+        "id": 1200908
+      },
+      "writtenOn": "2018-05-31T11:31:22Z",
+      "side": 1,
+      "message": "I think you can still enter the last condition, because the previous ones are exclusive (boosted for first !boosted for the second)",
+      "parentUuid": "c7931c4a_e49db68c",
+      "range": {
+        "startLine": 7003,
+        "startChar": 0,
+        "endLine": 7012,
+        "endChar": 15
+      },
+      "revId": "001d54a4376e62e1cbed52e10d60243169d73f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
