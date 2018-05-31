@@ -46,6 +46,30 @@
       "revId": "001d54a4376e62e1cbed52e10d60243169d73f33",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9657e03e_86c09696",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 7012,
+      "author": {
+        "id": 1125654
+      },
+      "writtenOn": "2018-05-31T11:40:53Z",
+      "side": 1,
+      "message": "No, Chris is right! The first two conditions were like this from the previous patch because we only wanted to update the best_idle_cpu if we found a better match (higher or lower capacity orig, depending on boost). But with the addition of cstate awareness we should only continue for inappropriate CPUs, and for CPUs that have the capacity_orig equal to the best one we\u0027ve found so far, we should further filter.",
+      "parentUuid": "79c7ca05_5186b367",
+      "range": {
+        "startLine": 7003,
+        "startChar": 0,
+        "endLine": 7012,
+        "endChar": 15
+      },
+      "revId": "001d54a4376e62e1cbed52e10d60243169d73f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
