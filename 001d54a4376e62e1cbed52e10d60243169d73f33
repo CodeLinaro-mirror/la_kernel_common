@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7931c4a_e49db68c",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 7012,
+      "author": {
+        "id": 1122323
+      },
+      "writtenOn": "2018-05-31T11:25:45Z",
+      "side": 1,
+      "message": "We now have conditions where we have cap_orig \u003c\u003d target_cap, cap_orig \u003e\u003d target_cap and cap_orig \u003d\u003d target_cap. Since these ranges all overlap, are we sure that we have the ordering right? I think we will never enter the last condition because if the two capacities are equal, we must enter one of the previous conditions.",
+      "range": {
+        "startLine": 7003,
+        "startChar": 0,
+        "endLine": 7012,
+        "endChar": 15
+      },
+      "revId": "001d54a4376e62e1cbed52e10d60243169d73f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
