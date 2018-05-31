@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c01a94f_824bd76a",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 7011,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-05-31T18:10:33Z",
+      "side": 1,
+      "message": "Since we do the same check in case B) below (L7104) and you already add a check for idle_cpu(i) above (L6960), I was wondering if we can\u0027t move this chunk to be part of the above check (L6960) and get rid of the one below (L7104).. it looks functional equivalent to me.\n\nIf that\u0027s the case, we can also recycle the comment below (L7104), i.e.\n\n  Skip CPUs in deeper idle state, but only\n  if they are also less energy efficient.\n  IOW, prefer a deep IDLE LITTLE CPU vs a\n  shallow idle big CPU.\n\nand re-use it before the check above (L6960)",
+      "range": {
+        "startLine": 7009,
+        "startChar": 5,
+        "endLine": 7011,
+        "endChar": 40
+      },
+      "revId": "cf37ac6294acc9178b85fed10e8bc68fe8b6dd4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
