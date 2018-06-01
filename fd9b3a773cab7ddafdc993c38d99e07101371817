@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93a42edf_03e73891",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 6945,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-06-01T09:04:37Z",
+      "side": 1,
+      "message": "Maybe we can add here above a small \"definition\" of spare capacity and its usage? Something like:\n\n   /*\n    * Pre-compute the maximum possible capacity we expect will be available\n    * on this CPU once the task has been enqueued there, which can be used\n    * by the following code to support a \"task spreading\" strategy.\n    */\n\n?",
+      "range": {
+        "startLine": 6945,
+        "startChar": 3,
+        "endLine": 6945,
+        "endChar": 40
+      },
+      "revId": "fd9b3a773cab7ddafdc993c38d99e07101371817",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
