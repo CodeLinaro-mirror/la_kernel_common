@@ -22,6 +22,30 @@
       "revId": "cf37ac6294acc9178b85fed10e8bc68fe8b6dd4f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90f7884f_943d58da",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 7011,
+      "author": {
+        "id": 1125654
+      },
+      "writtenOn": "2018-06-04T12:16:15Z",
+      "side": 1,
+      "message": "We can\u0027t do this due to the cascade of conditions. If I moved this condition at 6960, I could end up deciding to skip an idle CPU that\u0027s in a deeper idle state without checking if this CPU is better from the point of view of it\u0027s capacity_orig. I would always want to choose a bigger CPU even if it\u0027s in a deeper idle state for the boosted case and a smaller CPU, even if it\u0027s in a deeper idle state for the non-boosted case.\nSo we have to choose capacity over the depth of the idle state, so conditions applied to capacity_orig should come first.\n\nI could move up both conditions, especially given the patch at https://android-review.googlesource.com/c/kernel/common/+/673169/6 which makes things easier. The only question mark would remain around the prefer_idle case when you only have active CPUs. At the moment it does not filter based on capacity_orig, it just looks for the highest spare, independent of the task being boosted or not, so we\u0027d no longer be functionally equivalent. This would be a different patch, that I\u0027m reluctant to introduce as I\u0027d prefer not to tinker with find_best_target much more given plans to remove parts of it or entirely.",
+      "parentUuid": "4c01a94f_824bd76a",
+      "range": {
+        "startLine": 7009,
+        "startChar": 5,
+        "endLine": 7011,
+        "endChar": 40
+      },
+      "revId": "cf37ac6294acc9178b85fed10e8bc68fe8b6dd4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
