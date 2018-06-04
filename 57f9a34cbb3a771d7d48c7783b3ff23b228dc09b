@@ -22,6 +22,30 @@
       "revId": "57f9a34cbb3a771d7d48c7783b3ff23b228dc09b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1e2f9b0_cea00617",
+        "filename": "drivers/platform/goldfish/goldfish_pipe_v2.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1040,
+      "author": {
+        "id": 1278660
+      },
+      "writtenOn": "2018-06-04T22:32:57Z",
+      "side": 1,
+      "message": "This function does nothing, I removed it and the place where it was called.",
+      "parentUuid": "99cade76_a22d88ba",
+      "range": {
+        "startLine": 1034,
+        "startChar": 0,
+        "endLine": 1040,
+        "endChar": 10
+      },
+      "revId": "57f9a34cbb3a771d7d48c7783b3ff23b228dc09b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
