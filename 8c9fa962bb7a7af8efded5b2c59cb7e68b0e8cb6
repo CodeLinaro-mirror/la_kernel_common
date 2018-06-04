@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7013d570_f4f189c4",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1046320
+      },
+      "writtenOn": "2018-06-04T18:12:05Z",
+      "side": 1,
+      "message": "\u0027y\u0027 is a typo and it has been there historitclal and did not cause much harm\nbut please replace it with the right value, I think it is \nbinder,hwbinder,vndbinder\nplease double check",
+      "range": {
+        "startLine": 523,
+        "startChar": 0,
+        "endLine": 523,
+        "endChar": 29
+      },
+      "revId": "8c9fa962bb7a7af8efded5b2c59cb7e68b0e8cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
