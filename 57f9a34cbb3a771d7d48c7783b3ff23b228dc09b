@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99cade76_a22d88ba",
+        "filename": "drivers/platform/goldfish/goldfish_pipe_v2.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1040,
+      "author": {
+        "id": 1082465
+      },
+      "writtenOn": "2018-06-04T22:30:14Z",
+      "side": 1,
+      "message": "Why did this not make it into common?",
+      "range": {
+        "startLine": 1034,
+        "startChar": 0,
+        "endLine": 1040,
+        "endChar": 10
+      },
+      "revId": "57f9a34cbb3a771d7d48c7783b3ff23b228dc09b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
