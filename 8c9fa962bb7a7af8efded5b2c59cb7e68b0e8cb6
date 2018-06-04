@@ -2,6 +2,190 @@
   "comments": [
     {
       "key": {
+        "uuid": "c18ace54_0678a7f3",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-04T21:11:59Z",
+      "side": 1,
+      "message": "you shouldn\u0027t need this",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "8c9fa962bb7a7af8efded5b2c59cb7e68b0e8cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fb46cb3_b7f8df55",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-04T21:11:59Z",
+      "side": 1,
+      "message": "recommend not changing the default here",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 20
+      },
+      "revId": "8c9fa962bb7a7af8efded5b2c59cb7e68b0e8cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec783aa2_6ad7a5d7",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-04T21:11:59Z",
+      "side": 1,
+      "message": "This is obsolete",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 19
+      },
+      "revId": "8c9fa962bb7a7af8efded5b2c59cb7e68b0e8cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad725ccb_ed53bfba",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-04T21:11:59Z",
+      "side": 1,
+      "message": "This is obsolete",
+      "range": {
+        "startLine": 70,
+        "startChar": 1,
+        "endLine": 70,
+        "endChar": 21
+      },
+      "revId": "8c9fa962bb7a7af8efded5b2c59cb7e68b0e8cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ca15da2_20836cff",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-04T21:11:59Z",
+      "side": 1,
+      "message": "You shouldn\u0027t need these",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 15
+      },
+      "revId": "8c9fa962bb7a7af8efded5b2c59cb7e68b0e8cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c891b15f_1b1ea4de",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-04T21:11:59Z",
+      "side": 1,
+      "message": "I don\u0027t think you need this is CONFIG_VT is not set.",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 30
+      },
+      "revId": "8c9fa962bb7a7af8efded5b2c59cb7e68b0e8cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd40dde0_c66e1a7f",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-04T21:11:59Z",
+      "side": 1,
+      "message": "surely all of these can\u0027t be required?",
+      "range": {
+        "startLine": 351,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 29
+      },
+      "revId": "8c9fa962bb7a7af8efded5b2c59cb7e68b0e8cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3763c2f2_ded5f689",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-04T21:11:59Z",
+      "side": 1,
+      "message": "\"is not set\"",
+      "range": {
+        "startLine": 518,
+        "startChar": 0,
+        "endLine": 518,
+        "endChar": 16
+      },
+      "revId": "8c9fa962bb7a7af8efded5b2c59cb7e68b0e8cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7013d570_f4f189c4",
         "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
         "patchSetId": 1
@@ -18,6 +202,53 @@
         "startChar": 0,
         "endLine": 523,
         "endChar": 29
+      },
+      "revId": "8c9fa962bb7a7af8efded5b2c59cb7e68b0e8cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45cd12a2_8df49301",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-04T21:11:59Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "7013d570_f4f189c4",
+      "range": {
+        "startLine": 523,
+        "startChar": 0,
+        "endLine": 523,
+        "endChar": 29
+      },
+      "revId": "8c9fa962bb7a7af8efded5b2c59cb7e68b0e8cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2c197f9_99279a4f",
+        "filename": "arch/x86/configs/x86_64_ranchu_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-04T21:11:59Z",
+      "side": 1,
+      "message": "\"is not set\"",
+      "range": {
+        "startLine": 535,
+        "startChar": 0,
+        "endLine": 543,
+        "endChar": 16
       },
       "revId": "8c9fa962bb7a7af8efded5b2c59cb7e68b0e8cb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
