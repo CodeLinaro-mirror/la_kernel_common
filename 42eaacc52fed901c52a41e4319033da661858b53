@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b836c81_f10ef402",
+        "filename": "kernel/sched/sched.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 1654,
+      "author": {
+        "id": 1200908
+      },
+      "writtenOn": "2018-06-06T11:10:38Z",
+      "side": 1,
+      "message": "#ifdef CONFIG_SMP around this ? Won\u0027t compile for !SMP systems otherwise no ?",
+      "range": {
+        "startLine": 1654,
+        "startChar": 0,
+        "endLine": 1654,
+        "endChar": 64
+      },
+      "revId": "42eaacc52fed901c52a41e4319033da661858b53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
