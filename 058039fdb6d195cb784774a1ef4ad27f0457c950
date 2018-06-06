@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f2fab75_a5d6b75d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-06-06T12:03:25Z",
+      "side": 1,
+      "message": "Can you re-add my Signed-off-by: Dietmar Eggemann \u003cdietmar.eggemann@arm.com\u003e ?",
+      "revId": "058039fdb6d195cb784774a1ef4ad27f0457c950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
