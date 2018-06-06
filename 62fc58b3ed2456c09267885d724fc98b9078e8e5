@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76800c0c_50b15376",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-06-06T11:52:34Z",
+      "side": 1,
+      "message": "Can you re-add my Signed-off-by: Dietmar Eggemann \u003cdietmar.eggemann@arm.com\u003e ?\n\nW/o it, the patches make trouble if you move them in gerrit, for example.",
+      "revId": "62fc58b3ed2456c09267885d724fc98b9078e8e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
