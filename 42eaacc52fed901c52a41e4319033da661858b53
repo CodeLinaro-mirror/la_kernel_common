@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "88b3f96b_bf9614ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1125654
+      },
+      "writtenOn": "2018-06-06T14:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d539c09b_852fb489",
+      "revId": "42eaacc52fed901c52a41e4319033da661858b53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b836c81_f10ef402",
         "filename": "kernel/sched/sched.h",
         "patchSetId": 4
@@ -39,6 +57,30 @@
       "revId": "42eaacc52fed901c52a41e4319033da661858b53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "966021c6_b454fe92",
+        "filename": "kernel/sched/sched.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 1654,
+      "author": {
+        "id": 1125654
+      },
+      "writtenOn": "2018-06-06T14:17:09Z",
+      "side": 1,
+      "message": "Done!\n\nI\u0027ve moved this in a more appropriate place, inside a ifdef CONFIG_SMP.\n\nThanks!",
+      "parentUuid": "9b836c81_f10ef402",
+      "range": {
+        "startLine": 1654,
+        "startChar": 0,
+        "endLine": 1654,
+        "endChar": 64
+      },
+      "revId": "42eaacc52fed901c52a41e4319033da661858b53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
