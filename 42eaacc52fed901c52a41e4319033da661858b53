@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "d539c09b_852fb489",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-06-06T12:10:06Z",
+      "side": 1,
+      "message": "Can you re-add my Signed-off-by: Dietmar Eggemann \u003cdietmar.eggemann@arm.com\u003e ?",
+      "revId": "42eaacc52fed901c52a41e4319033da661858b53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9b836c81_f10ef402",
         "filename": "kernel/sched/sched.h",
         "patchSetId": 4
