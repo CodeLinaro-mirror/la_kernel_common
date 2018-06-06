@@ -57,6 +57,30 @@
       "revId": "62fc58b3ed2456c09267885d724fc98b9078e8e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5822405_63624985",
+        "filename": "kernel/sched/sched.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1734,
+      "author": {
+        "id": 1125654
+      },
+      "writtenOn": "2018-06-06T14:20:52Z",
+      "side": 1,
+      "message": "This is inside a \"ifdef CONFIG_SMP\" so it has struct sched_domain defined. It\u0027s not causing me issues with a !SMT config and looking over the code, it shouldn\u0027t cause any. Have you seen issues with this?",
+      "parentUuid": "5a3ce7c4_41c03ab2",
+      "range": {
+        "startLine": 1734,
+        "startChar": 43,
+        "endLine": 1734,
+        "endChar": 67
+      },
+      "revId": "62fc58b3ed2456c09267885d724fc98b9078e8e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
