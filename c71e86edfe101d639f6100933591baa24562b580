@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "483ee0cf_7075104a",
+        "filename": "arch/arm64/configs/ranchu64_defconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-07T20:19:01Z",
+      "side": 1,
+      "message": "Not sure if you really need these?",
+      "revId": "c71e86edfe101d639f6100933591baa24562b580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3aa7c9d_c0258202",
+        "filename": "arch/arm64/configs/ranchu64_defconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-07T20:19:01Z",
+      "side": 1,
+      "message": "Do you need VETH?",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 13
+      },
+      "revId": "c71e86edfe101d639f6100933591baa24562b580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4be3b194_ba8f02f3",
+        "filename": "arch/arm64/configs/ranchu64_defconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-06-07T20:19:01Z",
+      "side": 1,
+      "message": "Or this..",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 23
+      },
+      "revId": "c71e86edfe101d639f6100933591baa24562b580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
