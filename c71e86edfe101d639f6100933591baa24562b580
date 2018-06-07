@@ -128,6 +128,29 @@
       "revId": "c71e86edfe101d639f6100933591baa24562b580",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e71dc1b6_511db394",
+        "filename": "arch/arm64/configs/ranchu64_defconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1046320
+      },
+      "writtenOn": "2018-06-07T22:07:25Z",
+      "side": 1,
+      "message": "+ bjoern here",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 21
+      },
+      "revId": "c71e86edfe101d639f6100933591baa24562b580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
