@@ -73,12 +73,6 @@ err_alloc:
 	return NULL;
 }
 
-static void proc_cleanup_work(struct work_struct *work)
-{
-	struct pid_namespace *ns = container_of(work, struct pid_namespace, proc_work);
-	pid_ns_release_proc(ns);
-}
-
 /* MAX_PID_NS_LEVEL is needed for limiting size of 'struct pid' */
 #define MAX_PID_NS_LEVEL 32
 
@@ -136,7 +130,6 @@ static struct pid_namespace *create_pid_namespace(struct user_namespace *user_ns
 	ns->user_ns = get_user_ns(user_ns);
 	ns->ucounts = ucounts;
 	ns->nr_hashed = PIDNS_HASH_ADDING;
-	INIT_WORK(&ns->proc_work, proc_cleanup_work);
 
 	set_bit(0, ns->pidmap[0].page);
 	atomic_set(&ns->pidmap[0].nr_free, BITS_PER_PAGE - 1);
