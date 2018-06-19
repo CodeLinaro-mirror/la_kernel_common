@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "560d2ca9_e0db431e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-06-19T15:37:46Z",
+      "side": 1,
+      "message": "Definitely an improvement.\n\nIt would have been nice if the patch would provide an example freq-energy-model in dt in the comment section or patch header so people can try it out (e.g. me on my juno r0 while reviewing the patch).\n\nIt\u0027s also not mentioned that those frequency values now appear in the energy model proc files:\n\nroot@juno:~# cat /proc/sys/kernel/sched_domain/cpu0/domain*/group0/energy/*\n235     0 \u003c--    33      302     0       46      368     0       61      406     0       76   446      0       93\n6       6       0       0\n5\n4\n235     0       26      302     0       30      368     0       39      406     0       47   446      0       57\n56      56      56      17\n5\n4\n\n(here as 0\u0027s )which can be confusing ...",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33dae616_5cc16a81",
+        "filename": "Documentation/devicetree/bindings/scheduler/sched-energy-costs.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-06-19T15:37:46Z",
+      "side": 1,
+      "message": "s/decalred/declared",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "104d218b_b20c208d",
+        "filename": "drivers/base/arch_topology.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-06-19T15:37:46Z",
+      "side": 1,
+      "message": "I always get confused by the term \u0027efficiency\u0027. This value is actually the cpu_capacity based on capacity-dmips-mhz dt values and normalized to 1024. I.e. it is the cpu_capacity w/o the second normalization to max CPU frequency.\nThe cpu_scale value is this value plus the normalization to max CPU frequency. \nWould be helpful to explain this at least in the patch header. \nI don\u0027t have a better name for \u0027efficiency\u0027 right now ... cpu_scale_wo_cpufreq ? ... not good",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6416892f_ef9e26c5",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-06-19T15:37:46Z",
+      "side": 1,
+      "message": "Why do you have to set cap_states[i].cap to SCHED_CAPACITY_SCALE here? Can\u0027t it stay uninitialized?",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e92d1158_c15ef09a",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 5479,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-06-19T15:37:46Z",
+      "side": 1,
+      "message": "Why an extra function sched_is_energy_aware() when you can make energy_aware() public ? Less code ...",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
