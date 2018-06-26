@@ -70,6 +70,29 @@
     },
     {
       "key": {
+        "uuid": "4de0d629_c1a4dcaf",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1115183
+      },
+      "writtenOn": "2018-06-26T19:19:11Z",
+      "side": 1,
+      "message": "I think this function runs after build_sched_domains() calculates max_cap_orig_cpu and min_cap_orig_cpu, which would mean those will be based on faulty capacity info unless they\u0027re updated after this.",
+      "range": {
+        "startLine": 262,
+        "startChar": 5,
+        "endLine": 262,
+        "endChar": 33
+      },
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e92d1158_c15ef09a",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 3
