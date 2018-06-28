@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "abb64bd1_7fc6d4ea",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 6933,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-06-28T10:40:50Z",
+      "side": 1,
+      "message": "Actually, this has also be be initialized, mainly to avoid compiler warnings. Since we are after the shallowest idle state, we should probably use:\n\n    int idle_idx \u003d INT_MAX;",
+      "parentUuid": "bc49862d_835f8dce",
+      "range": {
+        "startLine": 6933,
+        "startChar": 3,
+        "endLine": 6933,
+        "endChar": 18
+      },
+      "revId": "47912b0330512918cd9bd5c934d0cf65fbfe34a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0650cbd1_58d78be3",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 6
