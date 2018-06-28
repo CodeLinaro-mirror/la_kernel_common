@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc49862d_835f8dce",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 6933,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-06-28T10:17:03Z",
+      "side": 1,
+      "message": "We should add:\n\n   int idle_idx;",
+      "range": {
+        "startLine": 6933,
+        "startChar": 3,
+        "endLine": 6933,
+        "endChar": 18
+      },
+      "revId": "47912b0330512918cd9bd5c934d0cf65fbfe34a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0650cbd1_58d78be3",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 6967,
+      "author": {
+        "id": 1119068
+      },
+      "writtenOn": "2018-06-28T10:17:03Z",
+      "side": 1,
+      "message": "We moved this here from case B but it\u0027s now missing a definition.",
+      "range": {
+        "startLine": 6967,
+        "startChar": 4,
+        "endLine": 6967,
+        "endChar": 12
+      },
+      "revId": "47912b0330512918cd9bd5c934d0cf65fbfe34a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
