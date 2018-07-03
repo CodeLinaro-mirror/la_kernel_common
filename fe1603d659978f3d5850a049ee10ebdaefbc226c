@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "116afc75_545167f5",
+        "filename": "kernel/sched/topology.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1869,
+      "author": {
+        "id": 1173283
+      },
+      "writtenOn": "2018-07-03T15:41:23Z",
+      "side": 1,
+      "message": "Morten found out this can break with some funky cpusets, needs a !cpumask_empty(cpu_map) guard.",
+      "range": {
+        "startLine": 1869,
+        "startChar": 1,
+        "endLine": 1869,
+        "endChar": 2
+      },
+      "revId": "fe1603d659978f3d5850a049ee10ebdaefbc226c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
