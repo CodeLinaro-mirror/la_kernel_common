@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ebdea24_d9828b5c",
+        "filename": "kernel/sched/topology.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 1836,
+      "author": {
+        "id": 1006514
+      },
+      "writtenOn": "2018-07-09T23:53:10Z",
+      "side": 1,
+      "message": "rq isn\u0027t used, can be killed as well",
+      "range": {
+        "startLine": 1836,
+        "startChar": 15,
+        "endLine": 1836,
+        "endChar": 16
+      },
+      "revId": "bc134e83d640e9aa6c4137ec7758a04ce5a5945f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
