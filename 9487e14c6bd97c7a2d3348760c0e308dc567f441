@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "372d0d84_eb47cd12",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-07-11T23:10:41Z",
+      "side": 1,
+      "message": "Sure will add an example model in comment. \nOk yes frequency values do appear in proc files also. will update text to include that info.",
+      "parentUuid": "560d2ca9_e0db431e",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "33dae616_5cc16a81",
         "filename": "Documentation/devicetree/bindings/scheduler/sched-energy-costs.txt",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2018-06-19T15:37:46Z",
       "side": 1,
       "message": "s/decalred/declared",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0b9fa02_a7808e4f",
+        "filename": "Documentation/devicetree/bindings/scheduler/sched-energy-costs.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-07-11T23:10:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "33dae616_5cc16a81",
       "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3ce439d1_9905fb81",
+        "filename": "drivers/base/arch_topology.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-07-11T23:10:41Z",
+      "side": 1,
+      "message": "Sure. how about cpu_ipc or cpu_dmips? do you like that better?",
+      "parentUuid": "104d218b_b20c208d",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6416892f_ef9e26c5",
         "filename": "kernel/sched/energy.c",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2018-06-19T15:37:46Z",
       "side": 1,
       "message": "Why do you have to set cap_states[i].cap to SCHED_CAPACITY_SCALE here? Can\u0027t it stay uninitialized?",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "241e370d_8c5f07d2",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-07-11T23:10:41Z",
+      "side": 1,
+      "message": "We have it initialized to 1024 since we use that value to still calculate max_cap based on the dmips read and max_freq. I would need to double check if its this value or raw_capacity all the way we rely on. But the call on line 154 here might be a problem if I leave it uninitialized.",
+      "parentUuid": "6416892f_ef9e26c5",
       "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -93,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "4386e717_9652c8bf",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-07-11T23:10:41Z",
+      "side": 1,
+      "message": "Yes it does run after build_sched_domains() but max_cap_orig_cpu and min_cap_orig_cpu should still be correct values. Max capacity of cpu is properly populated by the time build_sched_domain() runs by topology_normalize_cpu_scale(). Even though all the cap_states are not populated max capacity is calculated before by scaling 1024 to dmips and cpu_info.max_freq. raw_capacity is updated in init_cpu_capacity_callback().\nI would double check if that is something we have in our kernels, if you still see a problem here. Let me know",
+      "parentUuid": "4de0d629_c1a4dcaf",
+      "range": {
+        "startLine": 262,
+        "startChar": 5,
+        "endLine": 262,
+        "endChar": 33
+      },
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e92d1158_c15ef09a",
         "filename": "kernel/sched/fair.c",
         "patchSetId": 3
@@ -104,6 +200,24 @@
       "writtenOn": "2018-06-19T15:37:46Z",
       "side": 1,
       "message": "Why an extra function sched_is_energy_aware() when you can make energy_aware() public ? Less code ...",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fd19607_b046fbcc",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 5479,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-07-11T23:10:41Z",
+      "side": 1,
+      "message": "Sure I can do that.",
+      "parentUuid": "e92d1158_c15ef09a",
       "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
