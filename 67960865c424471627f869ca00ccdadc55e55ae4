@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd1db6ca_f2c076fc",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 6949,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2018-07-11T20:09:58Z",
+      "side": 1,
+      "message": "IMHO this comment can be shorter. There\u0027s not much value in saying \u0027the code below uses it\u0027\n\nAlso, could you verify +1 it?",
+      "revId": "67960865c424471627f869ca00ccdadc55e55ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
