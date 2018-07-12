@@ -160,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "896305b7_02131459",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-07-12T14:53:24Z",
+      "side": 1,
+      "message": "Where would this code be? I tried to find it but was unable to do so. You actually calculate the sge-\u003ecap_states[i].cap values in init_sched_energy_costs() based on efficiency and frequency values but that doesn\u0027t mean that they have to be initialized to 1024 before? 1024 would be wrong for each sge-\u003ecap_states[i].cap values except the value for the highest OPP on the big CPU.\n\nSo efficiency (or better cpu_uarch_scale) is raw_capacity but I can\u0027t see why not initializing sge-\u003ecap_states[i].cap is a problem.",
+      "parentUuid": "241e370d_8c5f07d2",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4de0d629_c1a4dcaf",
         "filename": "kernel/sched/energy.c",
         "patchSetId": 3
