@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "c08fde03_1e8d04e1",
+        "filename": "drivers/base/arch_topology.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-07-12T14:29:08Z",
+      "side": 1,
+      "message": "I would call it cpu_uarch_scale because it is the cpu_scale value w/o taking maximum frequency into consideration. It only relies on micro-architectural differences since it is set in topology_parse_cpu_capacity().\n\nOn a system w/o cpufreq, cpu_uarch_scale[cpu] \u003d\u003d cpu_scale[cpu].\n\nDocumentation/devicetree/bindings/arm/cpu-capacity.txt:\n\nCPU capacity is a number that provides the scheduler information about CPUs\nheterogeneity. Such heterogeneity can come from micro-architectural differences\n(e.g., ARM big.LITTLE systems) or maximum frequency at which CPUs can run.\n\non Juno r0 with \u0027rework_cpu_cap_parsing\u0027 patch-set and this patch on top and with extra printks:\n\nroot@juno:~# dmesg | grep \u0027capacity\\|Calling\\|efficiency\u0027\n...\n[    0.141190] topology_parse_cpu_capacity(): Set efficiency for cpu\u003d1 to 1024\n[    0.148375] topology_parse_cpu_capacity(): Set efficiency for cpu\u003d2 to 1024\n[    0.155497] topology_parse_cpu_capacity(): Set efficiency for cpu\u003d0 to 578\n[    0.162596] topology_parse_cpu_capacity(): Set efficiency for cpu\u003d3 to 578\n[    0.169740] topology_parse_cpu_capacity(): Set efficiency for cpu\u003d4 to 578\n[    0.176938] topology_parse_cpu_capacity(): Set efficiency for cpu\u003d5 to 578\n[    0.183914] parse_dt_topology(): Calling topology_normalize_cpu_scale()\n[    0.190628] topology_normalize_cpu_scale(): Calling topology_set_cpu_scale() with cpu\u003d0 capacity\u003d578\n[    0.199853] topology_normalize_cpu_scale(): Calling topology_set_cpu_scale() with cpu\u003d1 capacity\u003d1024\n[    0.209156] topology_normalize_cpu_scale(): Calling topology_set_cpu_scale() with cpu\u003d2 capacity\u003d1024\n[    0.218457] topology_normalize_cpu_scale(): Calling topology_set_cpu_scale() with cpu\u003d3 capacity\u003d578\n[    0.227672] topology_normalize_cpu_scale(): Calling topology_set_cpu_scale() with cpu\u003d4 capacity\u003d578\n[    0.236886] topology_normalize_cpu_scale(): Calling topology_set_cpu_scale() with cpu\u003d5 capacity\u003d578\n[    0.782503] span: 0-5 (max cpu_capacity \u003d 1024)\n[    2.571685] init_cpu_capacity_callback(): Calling topology_normalize_cpu_scale()\n[    2.579162] topology_normalize_cpu_scale(): Calling topology_set_cpu_scale() with cpu\u003d0 capacity\u003d446\n[    2.588596] topology_normalize_cpu_scale(): Calling topology_set_cpu_scale() with cpu\u003d1 capacity\u003d1024\n[    2.597892] topology_normalize_cpu_scale(): Calling topology_set_cpu_scale() with cpu\u003d2 capacity\u003d1024\n[    2.607250] topology_normalize_cpu_scale(): Calling topology_set_cpu_scale() with cpu\u003d3 capacity\u003d446\n[    2.616360] topology_normalize_cpu_scale(): Calling topology_set_cpu_scale() with cpu\u003d4 capacity\u003d446\n[    2.625489] topology_normalize_cpu_scale(): Calling topology_set_cpu_scale() with cpu\u003d5 capacity\u003d446\n[    2.878211] span: 0-5 (max cpu_capacity \u003d 1024)",
+      "parentUuid": "3ce439d1_9905fb81",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6416892f_ef9e26c5",
         "filename": "kernel/sched/energy.c",
         "patchSetId": 3
