@@ -22,6 +22,30 @@
       "revId": "bc134e83d640e9aa6c4137ec7758a04ce5a5945f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7957534e_dd402097",
+        "filename": "kernel/sched/topology.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 1836,
+      "author": {
+        "id": 1125654
+      },
+      "writtenOn": "2018-07-17T10:50:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ebdea24_d9828b5c",
+      "range": {
+        "startLine": 1836,
+        "startChar": 15,
+        "endLine": 1836,
+        "endChar": 16
+      },
+      "revId": "bc134e83d640e9aa6c4137ec7758a04ce5a5945f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
