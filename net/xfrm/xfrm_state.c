@@ -817,9 +817,8 @@ xfrm_init_tempstate(struct xfrm_state *x, const struct flowi *fl,
 }
 
 static struct xfrm_state *__xfrm_state_lookup(struct net *net, u32 mark,
-					      const xfrm_address_t *daddr,
-					      __be32 spi, u8 proto,
-					      unsigned short family)
+				u32 mask, const xfrm_address_t *daddr,
+				__be32 spi, u8 proto, unsigned short family)
 {
 	unsigned int h = xfrm_spi_hash(net, daddr, spi, proto, family);
 	struct xfrm_state *x;
@@ -831,7 +830,7 @@ static struct xfrm_state *__xfrm_state_lookup(struct net *net, u32 mark,
 		    !xfrm_addr_equal(&x->id.daddr, daddr, family))
 			continue;
 
-		if ((mark & x->mark.m) != x->mark.v)
+		if ((mark ^ x->mark.v) & mask & x->mark.m)
 			continue;
 		if (!xfrm_state_hold_rcu(x))
 			continue;
@@ -841,10 +840,11 @@ static struct xfrm_state *__xfrm_state_lookup(struct net *net, u32 mark,
 	return NULL;
 }
 
-static struct xfrm_state *__xfrm_state_lookup_byaddr(struct net *net, u32 mark,
-						     const xfrm_address_t *daddr,
-						     const xfrm_address_t *saddr,
-						     u8 proto, unsigned short family)
+static struct xfrm_state *__xfrm_state_lookup_byaddr(struct net *net,
+						u32 mark, u32 mask,
+						const xfrm_address_t *daddr,
+						const xfrm_address_t *saddr,
+						u8 proto, unsigned short family)
 {
 	unsigned int h = xfrm_src_hash(net, daddr, saddr, family);
 	struct xfrm_state *x;
@@ -856,7 +856,7 @@ static struct xfrm_state *__xfrm_state_lookup_byaddr(struct net *net, u32 mark,
 		    !xfrm_addr_equal(&x->props.saddr, saddr, family))
 			continue;
 
-		if ((mark & x->mark.m) != x->mark.v)
+		if ((mark ^ x->mark.v) & mask & x->mark.m)
 			continue;
 		if (!xfrm_state_hold_rcu(x))
 			continue;
@@ -870,16 +870,13 @@ static inline struct xfrm_state *
 __xfrm_state_locate(struct xfrm_state *x, int use_spi, int family)
 {
 	struct net *net = xs_net(x);
-	u32 mark = x->mark.v & x->mark.m;
 
 	if (use_spi)
-		return __xfrm_state_lookup(net, mark, &x->id.daddr,
-					   x->id.spi, x->id.proto, family);
+		return __xfrm_state_lookup(net, x->mark.v, x->mark.m,
+					   &x->id.daddr, x->id.spi, x->id.proto, family);
 	else
-		return __xfrm_state_lookup_byaddr(net, mark,
-						  &x->id.daddr,
-						  &x->props.saddr,
-						  x->id.proto, family);
+		return __xfrm_state_lookup_byaddr(net, x->mark.v, x->mark.m,
+						  &x->id.daddr, &x->props.saddr, x->id.proto, family);
 }
 
 static void xfrm_hash_grow_check(struct net *net, int have_hash_collision)
@@ -984,8 +981,10 @@ found:
 	x = best;
 	if (!x && !error && !acquire_in_progress) {
 		if (tmpl->id.spi &&
-		    (x0 = __xfrm_state_lookup(net, mark, daddr, tmpl->id.spi,
-					      tmpl->id.proto, encap_family)) != NULL) {
+		    (x0 = __xfrm_state_lookup(net, mark, 0xFFFFFFFF,
+					      daddr, tmpl->id.spi,
+					      tmpl->id.proto,
+					      encap_family)) != NULL) {
 			to_put = x0;
 			error = -EEXIST;
 			goto out;
@@ -1590,7 +1589,8 @@ xfrm_state_lookup(struct net *net, u32 mark, const xfrm_address_t *daddr, __be32
 	struct xfrm_state *x;
 
 	rcu_read_lock();
-	x = __xfrm_state_lookup(net, mark, daddr, spi, proto, family);
+	x = __xfrm_state_lookup(net, mark, 0xFFFFFFFF,
+			        daddr, spi, proto, family);
 	rcu_read_unlock();
 	return x;
 }
@@ -1604,7 +1604,8 @@ xfrm_state_lookup_byaddr(struct net *net, u32 mark,
 	struct xfrm_state *x;
 
 	spin_lock_bh(&net->xfrm.xfrm_state_lock);
-	x = __xfrm_state_lookup_byaddr(net, mark, daddr, saddr, proto, family);
+	x = __xfrm_state_lookup_byaddr(net, mark, 0xFFFFFFFF,
+			               daddr, saddr, proto, family);
 	spin_unlock_bh(&net->xfrm.xfrm_state_lock);
 	return x;
 }
