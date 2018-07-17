@@ -695,6 +695,7 @@ static int goldfish_pipe_open(struct inode *inode, struct file *file)
 	pipe->command_buffer =
 		(struct goldfish_pipe_command *)__get_free_page(GFP_KERNEL);
 	if (!pipe->command_buffer) {
+		pr_err("Could not alloc pipe command buffer!\n");
 		status = -ENOMEM;
 		goto err_pipe;
 	}
@@ -703,6 +704,7 @@ static int goldfish_pipe_open(struct inode *inode, struct file *file)
 
 	id = get_free_pipe_id_locked(dev);
 	if (id < 0) {
+		pr_err("Could not get free pipe id!\n");
 		status = id;
 		goto err_id_locked;
 	}
@@ -719,6 +721,7 @@ static int goldfish_pipe_open(struct inode *inode, struct file *file)
 	status = goldfish_cmd_locked(pipe, PIPE_CMD_OPEN);
 	spin_unlock_irqrestore(&dev->lock, flags);
 	if (status < 0) {
+		pr_err("Could not tell host of new pipe! status=%d\n", status);
 		goto err_cmd;
 	}
 	/* All is done, save the pipe into the file's private data field */
