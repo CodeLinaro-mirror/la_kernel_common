@@ -46,6 +46,7 @@
  * exchange is properly mapped during a transfer.
  */
 
+#include <linux/printk.h>
 #include "goldfish_pipe.h"
 
 
@@ -440,7 +441,7 @@ static ssize_t goldfish_pipe_read_write(struct file *filp,
 			 * err.
 			 */
 			if (status != PIPE_ERROR_AGAIN)
-				pr_info_ratelimited(
+				pr_err_ratelimited(
 					"goldfish_pipe: backend error %d on %s\n",
 					status, is_write ? "write" : "read");
 			break;
