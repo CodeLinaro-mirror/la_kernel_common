@@ -53,11 +53,12 @@ static u32 goldfish_tty_line_count = 8;
 static u32 goldfish_tty_current_line_count;
 static struct goldfish_tty *goldfish_ttys;
 
-static void goldfish_tty_do_write(int line, const char *buf, unsigned count)
+static void goldfish_tty_do_write(int line, const char *buf, unsigned int count)
 {
 	unsigned long irq_flags;
 	struct goldfish_tty *qtty = &goldfish_ttys[line];
 	void __iomem *base = qtty->base;
+
 	spin_lock_irqsave(&qtty->lock, irq_flags);
 	gf_write_ptr(buf, base + GOLDFISH_TTY_DATA_PTR,
 				base + GOLDFISH_TTY_DATA_PTR_HIGH);
@@ -107,6 +108,7 @@ static void goldfish_tty_shutdown(struct tty_port *port)
 static int goldfish_tty_open(struct tty_struct *tty, struct file *filp)
 {
 	struct goldfish_tty *qtty = &goldfish_ttys[tty->index];
+
 	return tty_port_open(&qtty->port, tty, filp);
 }
 
@@ -136,11 +138,12 @@ static int goldfish_tty_chars_in_buffer(struct tty_struct *tty)
 {
 	struct goldfish_tty *qtty = &goldfish_ttys[tty->index];
 	void __iomem *base = qtty->base;
+
 	return readl(base + GOLDFISH_TTY_BYTES_READY);
 }
 
 static void goldfish_tty_console_write(struct console *co, const char *b,
-								unsigned count)
+				       unsigned int count)
 {
 	goldfish_tty_do_write(co->index, b, count);
 }
@@ -154,7 +157,7 @@ static struct tty_driver *goldfish_tty_console_device(struct console *c,
 
 static int goldfish_tty_console_setup(struct console *co, char *options)
 {
-	if ((unsigned)co->index >= goldfish_tty_line_count)
+	if ((unsigned int)co->index >= goldfish_tty_line_count)
 		return -ENODEV;
 	if (!goldfish_ttys[co->index].base)
 		return -ENODEV;
