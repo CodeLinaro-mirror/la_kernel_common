@@ -515,7 +515,8 @@ static void signalled_pipes_add_locked(struct goldfish_pipe_dev *dev,
 {
 	struct goldfish_pipe *pipe;
 
-	BUG_ON(id >= dev->pipes_capacity);
+	if (id >= dev->pipes_capacity)
+		return; /* ignore this id, should never happen */
 
 	pipe = dev->pipes[id];
 	if (!pipe)
