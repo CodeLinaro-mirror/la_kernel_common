@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "e740c5f4_d4514a2a",
+        "filename": "drivers/base/arch_topology.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-07-20T21:12:47Z",
+      "side": 1,
+      "message": "I like cpu_uarch_scale. Thanks",
+      "parentUuid": "c08fde03_1e8d04e1",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6416892f_ef9e26c5",
         "filename": "kernel/sched/energy.c",
         "patchSetId": 3
@@ -172,6 +190,24 @@
       "side": 1,
       "message": "Where would this code be? I tried to find it but was unable to do so. You actually calculate the sge-\u003ecap_states[i].cap values in init_sched_energy_costs() based on efficiency and frequency values but that doesn\u0027t mean that they have to be initialized to 1024 before? 1024 would be wrong for each sge-\u003ecap_states[i].cap values except the value for the highest OPP on the big CPU.\n\nSo efficiency (or better cpu_uarch_scale) is raw_capacity but I can\u0027t see why not initializing sge-\u003ecap_states[i].cap is a problem.",
       "parentUuid": "241e370d_8c5f07d2",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24557feb_cada99c4",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-07-20T21:12:47Z",
+      "side": 1,
+      "message": "Ok I tested on snapdragon without initializing and looks good. Yes I understand init_sched_energy_costs() would initialize cap values but I had some confusion about Connor and my discussion below.",
+      "parentUuid": "896305b7_02131459",
       "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
