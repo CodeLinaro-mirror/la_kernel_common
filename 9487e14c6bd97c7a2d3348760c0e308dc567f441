@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "e083c8c1_fe22d5d6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-07-23T16:23:17Z",
+      "side": 1,
+      "message": "example freq-energy model:\n busy-cost-data \u003d \u003c\n 300000  28\n 403200  30\n 480000  33\n 576000  37\n 672000  42\n 768000  47\n 864000  54\n 979200  63\n\u003e",
+      "parentUuid": "372d0d84_eb47cd12",
+      "revId": "9487e14c6bd97c7a2d3348760c0e308dc567f441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "33dae616_5cc16a81",
         "filename": "Documentation/devicetree/bindings/scheduler/sched-energy-costs.txt",
         "patchSetId": 3
