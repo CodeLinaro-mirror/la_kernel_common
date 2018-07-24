@@ -46,7 +46,7 @@ struct goldfish_sync_timeline {
 	struct list_head	active_list_head;
 };
 
-static inline struct goldfish_sync_timeline *goldfish_dma_fence_parent(struct dma_fence *fence)
+static inline struct goldfish_sync_timeline *fence_parent(struct dma_fence *fence)
 {
 	return container_of(fence->lock, struct goldfish_sync_timeline,
 				child_list_lock);
@@ -179,7 +179,7 @@ static const char *goldfish_sync_timeline_fence_get_driver_name(
 static const char *goldfish_sync_timeline_fence_get_timeline_name(
 						struct dma_fence *fence)
 {
-	struct goldfish_sync_timeline *parent = goldfish_dma_fence_parent(fence);
+	struct goldfish_sync_timeline *parent = fence_parent(fence);
 
 	return parent->name;
 }
@@ -187,7 +187,7 @@ static const char *goldfish_sync_timeline_fence_get_timeline_name(
 static void goldfish_sync_timeline_fence_release(struct dma_fence *fence)
 {
 	struct sync_pt *pt = goldfish_sync_fence_to_sync_pt(fence);
-	struct goldfish_sync_timeline *parent = goldfish_dma_fence_parent(fence);
+	struct goldfish_sync_timeline *parent = fence_parent(fence);
 	unsigned long flags;
 
 	spin_lock_irqsave(fence->lock, flags);
@@ -202,7 +202,7 @@ static void goldfish_sync_timeline_fence_release(struct dma_fence *fence)
 
 static bool goldfish_sync_timeline_fence_signaled(struct dma_fence *fence)
 {
-	struct goldfish_sync_timeline *parent = goldfish_dma_fence_parent(fence);
+	struct goldfish_sync_timeline *parent = fence_parent(fence);
 
 	return (fence->seqno > parent->value) ? false : true;
 }
@@ -210,7 +210,7 @@ static bool goldfish_sync_timeline_fence_signaled(struct dma_fence *fence)
 static bool goldfish_sync_timeline_fence_enable_signaling(struct dma_fence *fence)
 {
 	struct sync_pt *pt = goldfish_sync_fence_to_sync_pt(fence);
-	struct goldfish_sync_timeline *parent = goldfish_dma_fence_parent(fence);
+	struct goldfish_sync_timeline *parent = fence_parent(fence);
 
 	if (goldfish_sync_timeline_fence_signaled(fence))
 		return false;
@@ -236,7 +236,7 @@ static void goldfish_sync_timeline_fence_timeline_value_str(
 				struct dma_fence *fence,
 				char *str, int size)
 {
-	struct goldfish_sync_timeline *parent = goldfish_dma_fence_parent(fence);
+	struct goldfish_sync_timeline *parent = fence_parent(fence);
 
 	snprintf(str, size, "%d", parent->value);
 }

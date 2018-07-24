@@ -3,7 +3,7 @@
 
 /**
  * struct sync_pt - sync_pt object
- * @base: base dma_fence object
+ * @base: base fence object
  * @child_list: sync timeline child's list
  * @active_list: sync timeline active child's list
  */
