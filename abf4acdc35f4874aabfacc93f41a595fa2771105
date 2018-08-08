@@ -70,6 +70,30 @@
       "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93decc58_90923f65",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-08-08T20:20:26Z",
+      "side": 1,
+      "message": "Hi Puja,\n\nah, now I understand! Yes, I agree. This is much better! Being able to get rid of cpu_uarch_scale is nice. And we also get rid of the rounding errors \u0027446 !\u003d 448\u0027.\n\nI think this whole thing was just about to align mainline cpu_scale with your cpu efficiency in this case.",
+      "parentUuid": "d3af98d5_71e94715",
+      "range": {
+        "startLine": 193,
+        "startChar": 24,
+        "endLine": 193,
+        "endChar": 52
+      },
+      "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
