@@ -22,6 +22,30 @@
       "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3716471_4fd8e43a",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-08-08T10:48:38Z",
+      "side": 1,
+      "message": "I thought so far that you need uarch_scale and can\u0027t just rely on cpu_scale.\nThe difference between uarch_scale and cpu_scale is that latter is not only scaled by capacity-dmips-mhz (max cpu get\u0027s 1024) but by max frequency as well.\n\nSo on my Juno board:\n\nI have in my juno.dts capacity-dmips-mhz \u003d \u003c1024\u003e for my big CPU and capacity-dmips-mhz \u003d \u003c578\u003e for my little CPU.\n\ncpu_uarch_scale is:\n\n578\n1024\n1024\n578\n578\n578\n\ncpu_scale is cpu*/cpu_capacity:\n\nroot@juno:~# cat /sys/devices/system/cpu/cpu*/cpu_capacity\n446\n1024\n1024\n446\n446\n446\n\t\t\nSo for little cpus, cpu_scale (446) is smaller than cpu_uarch_scale (578) because the max frequency of a big cpu is higher than the max frequency of a little cpu.\n\nI thought you need cpu_uarch_scale to calculate cpu_max_cap in sched_energy_probe()?\n\nWe could remove check_max_cap_vs_cpu_scale() from sched_energy_probe() because we know that the diff should be rounding errors (diff is 448 - 446 \u003d 2), yes:\n\n[    2.639957] sched-energy: CPU0 max energy model capacity\u003d448 !\u003d cpu_scale\u003d446\n[    2.640269] sched-energy: CPU3 max energy model capacity\u003d448 !\u003d cpu_scale\u003d446\n[    2.640377] sched-energy: CPU4 max energy model capacity\u003d448 !\u003d cpu_scale\u003d446\n[    2.640485] sched-energy: CPU5 max energy model capacity\u003d448 !\u003d cpu_scale\u003d446\n\nSince I get 448 (which is very close to cpu_scale 446 which is the max cpu capacity) with cpu_uarch_scale I think we need it.\n\nIn case I use cpu_scale instead of cpu_uarch_scale in sched_energy_probe() I get\n\n[    2.676467] sched-energy: CPU0 max energy model capacity\u003d345 !\u003d cpu_scale\u003d446\n[    2.676594] sched-energy: CPU3 max energy model capacity\u003d345 !\u003d cpu_scale\u003d446\n[    2.676638] sched-energy: CPU4 max energy model capacity\u003d345 !\u003d cpu_scale\u003d446\n[    2.676681] sched-energy: CPU5 max energy model capacity\u003d345 !\u003d cpu_scale\u003d446\n\nwhich looks wrong to me.",
+      "parentUuid": "55233c00_6fb43f43",
+      "range": {
+        "startLine": 193,
+        "startChar": 24,
+        "endLine": 193,
+        "endChar": 52
+      },
+      "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
