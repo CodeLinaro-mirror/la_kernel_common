@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55233c00_6fb43f43",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1215505
+      },
+      "writtenOn": "2018-08-08T03:19:45Z",
+      "side": 1,
+      "message": "At this point, we know the arch topology driver normalized the cpu scale. so can we just rely on topology_get_cpu_scale() API to find out the max cpu capacity instead of finding it again based on efficiency and fmax?\n\n- topology_get_cpu_scale() API is no longer needed\n- There is no need for check_max_cap_vs_cpu_scale() checks. because we derive OPP\u0027s capacity based on cpu_scale.\n\nDiscussed this offline with Puja and she is okay with it. \n\nDietmar, let me know your opinion",
+      "range": {
+        "startLine": 193,
+        "startChar": 24,
+        "endLine": 193,
+        "endChar": 52
+      },
+      "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
