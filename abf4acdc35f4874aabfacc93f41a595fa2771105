@@ -46,6 +46,30 @@
       "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3af98d5_71e94715",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-08-08T17:22:40Z",
+      "side": 1,
+      "message": "Hi Dietmar, I am adding some more explanation to help you understand what we are proposing here.\nWe are talking to get rid of math in lines 227-232 here and replace with cpu_max_cap \u003d topology_get_cpu_scale(). After that capacity at each freq stays same math i.e. max_cap * freq/max_freq.\nYou are seeing incorrect values coz most likely you had the lines I talked above and you ended up scaling by freq again. Does it makes sense now?",
+      "parentUuid": "e3716471_4fd8e43a",
+      "range": {
+        "startLine": 193,
+        "startChar": 24,
+        "endLine": 193,
+        "endChar": 52
+      },
+      "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
