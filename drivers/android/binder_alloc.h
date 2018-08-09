@@ -184,5 +184,44 @@ binder_alloc_get_user_buffer_offset(struct binder_alloc *alloc)
 	return alloc->user_buffer_offset;
 }
 
+/**
+ * binder_alloc_apply_fixup() - write val to kernel address
+ * @alloc:	binder_alloc for this proc
+ * @kaddr:	kernel address to patch
+ * @val:	value to write
+ *
+ * Some architectures require a flush to guarantee that a modification
+ * to kernel address is visible at a different user-space alias (eg.
+ * VIVT cache architectures). To handle this, we need to do the patch
+ * at the "standard" kernel virtual address to allow flush_dcache_page()
+ * to flush the correct kernel virtual address as well as user-space
+ * aliases.
+ */
+static inline void
+binder_alloc_apply_fixup(struct binder_alloc *alloc, void *kaddr, u32 val)
+{
+	u64 offset = (uintptr_t)kaddr - (uintptr_t)alloc->buffer;
+	pgoff_t pgoff = ((uintptr_t)kaddr) & (PAGE_SIZE - 1);
+	size_t index = offset >> PAGE_SHIFT;
+	struct binder_lru_page *lru_page;
+	struct page *page;
+	u32 *fixup_addr;
+
+	mutex_lock(&alloc->mutex);
+	lru_page = &alloc->pages[index];
+	page = lru_page->page_ptr;
+	mutex_unlock(&alloc->mutex);
+
+	fixup_addr = (u32 *)((uintptr_t)page_to_virt(page) + pgoff);
+	*fixup_addr = val;
+	/*
+	 * Some architectures require the kernel address and user addresses
+	 * to be flushed (eg. VIVT cache) to guarantee user-space can see
+	 * this modification. flush_dcache_page() will flush the kernel address
+	 * and any existing user-space aliases.
+	 */
+	flush_dcache_page(page);
+}
+
 #endif /* _LINUX_BINDER_ALLOC_H */
 
