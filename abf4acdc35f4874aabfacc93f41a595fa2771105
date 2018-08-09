@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "19b8e8f5_a74b7141",
+        "filename": "Documentation/devicetree/bindings/scheduler/sched-energy-costs.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1215505
+      },
+      "writtenOn": "2018-08-09T08:03:56Z",
+      "side": 1,
+      "message": "This is no longer needed with the dynamic platform device registration, correct?",
+      "range": {
+        "startLine": 67,
+        "startChar": 2,
+        "endLine": 67,
+        "endChar": 13
+      },
+      "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0a58b7b_bd67e155",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1215505
+      },
+      "writtenOn": "2018-08-09T08:03:56Z",
+      "side": 1,
+      "message": "we can eliminate this sge_ready business by moving the platform device registration to here. does that sound good?",
+      "range": {
+        "startLine": 157,
+        "startChar": 1,
+        "endLine": 157,
+        "endChar": 11
+      },
+      "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "55233c00_6fb43f43",
         "filename": "kernel/sched/energy.c",
         "patchSetId": 8
@@ -118,6 +164,29 @@
       "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea89a5bc_a6e84b26",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 5694,
+      "author": {
+        "id": 1215505
+      },
+      "writtenOn": "2018-08-09T08:03:56Z",
+      "side": 1,
+      "message": "is this related to this change?",
+      "range": {
+        "startLine": 5694,
+        "startChar": 21,
+        "endLine": 5694,
+        "endChar": 34
+      },
+      "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
