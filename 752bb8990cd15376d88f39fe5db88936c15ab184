@@ -176,6 +176,24 @@
       "revId": "752bb8990cd15376d88f39fe5db88936c15ab184",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16e7806f_ff16d61e",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3218,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-08-09T23:36:23Z",
+      "side": 1,
+      "message": "I think we should have a trace with the source fd, but you can split it into two trace points and include the offset.",
+      "parentUuid": "c2eddbf2_8a72e623",
+      "revId": "752bb8990cd15376d88f39fe5db88936c15ab184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
