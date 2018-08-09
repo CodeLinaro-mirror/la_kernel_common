@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9ea560da_f0e50285",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2385,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-08-09T23:21:20Z",
+      "side": 1,
+      "message": "WARN_ON is fine",
+      "parentUuid": "99674ba8_0c26ce43",
+      "revId": "752bb8990cd15376d88f39fe5db88936c15ab184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "513d26ff_6dd9eab1",
         "filename": "drivers/android/binder.c",
         "patchSetId": 1
@@ -72,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "d6c50252_f10aa0dc",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2625,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-08-09T23:21:20Z",
+      "side": 1,
+      "message": "or you could store the offset like the user-kernel interface does",
+      "parentUuid": "5ccc55ff_03411182",
+      "revId": "752bb8990cd15376d88f39fe5db88936c15ab184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a2f8972f_1dd8d1cf",
         "filename": "drivers/android/binder.c",
         "patchSetId": 1
@@ -101,6 +137,24 @@
       "side": 1,
       "message": "Well, I wasn\u0027t sure why we needed to 0 out fp-\u003epad_binder (do we?). If so, then the point of writing the old fd back is only so that trace_binder_transaction_fd() can log both the old and new fds when the fixup is being applied.\n\nIf we don\u0027t need to 0 out pad_binder, then we can remove lines 3217-3218.",
       "parentUuid": "a2f8972f_1dd8d1cf",
+      "revId": "752bb8990cd15376d88f39fe5db88936c15ab184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f2df7d3_b349bb02",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3218,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-08-09T23:21:20Z",
+      "side": 1,
+      "message": "the 0 pad is to prevent an information leak (b/30768347)",
+      "parentUuid": "78de3541_ef43c2a5",
       "revId": "752bb8990cd15376d88f39fe5db88936c15ab184",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
