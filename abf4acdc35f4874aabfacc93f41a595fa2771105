@@ -94,6 +94,30 @@
       "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "102ea6c1_2e326acf",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1215505
+      },
+      "writtenOn": "2018-08-09T07:59:15Z",
+      "side": 1,
+      "message": "yeah. we will upload the next patch with this change.",
+      "parentUuid": "93decc58_90923f65",
+      "range": {
+        "startLine": 193,
+        "startChar": 24,
+        "endLine": 193,
+        "endChar": 52
+      },
+      "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
