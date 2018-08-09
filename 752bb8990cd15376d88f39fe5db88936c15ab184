@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "99674ba8_0c26ce43",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2385,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-09T22:33:50Z",
+      "side": 1,
+      "message": "Yes, I noticed that -- today, this will never evaluate to true. I wasn\u0027t comfortable assuming that \"failed_at !\u003d NULL\" implies \"proc-\u003etsk !\u003d current-\u003egroup_leader\" perhaps binder_transaction_buffer_release() will be added somewhere else where this is not true.\n\nI guess this could be turned into a BUG_ON or an error instead. What do you recommend?",
+      "parentUuid": "0e2a5a35_c2cc5174",
+      "revId": "752bb8990cd15376d88f39fe5db88936c15ab184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "513d26ff_6dd9eab1",
         "filename": "drivers/android/binder.c",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "5ccc55ff_03411182",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2625,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-09T22:33:50Z",
+      "side": 1,
+      "message": "Well, if we decide to remap the buffers as a solution to b/67668716, we could change this code then. For example, we could have a \"buffer-\u003eremapped\" flag set on any active buffer that was remapped. If remapped, we\u0027d traverse the buffer again to find BINDER_TYPE_FD[_ARRAY] instead of using the pointer. If its been traversed, then the buffer-\u003eremapped flag could be cleared.",
+      "parentUuid": "513d26ff_6dd9eab1",
+      "revId": "752bb8990cd15376d88f39fe5db88936c15ab184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a2f8972f_1dd8d1cf",
         "filename": "drivers/android/binder.c",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2018-08-09T22:10:59Z",
       "side": 1,
       "message": "what is the point of this?",
+      "revId": "752bb8990cd15376d88f39fe5db88936c15ab184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78de3541_ef43c2a5",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 3218,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-09T22:33:50Z",
+      "side": 1,
+      "message": "Well, I wasn\u0027t sure why we needed to 0 out fp-\u003epad_binder (do we?). If so, then the point of writing the old fd back is only so that trace_binder_transaction_fd() can log both the old and new fds when the fixup is being applied.\n\nIf we don\u0027t need to 0 out pad_binder, then we can remove lines 3217-3218.",
+      "parentUuid": "a2f8972f_1dd8d1cf",
       "revId": "752bb8990cd15376d88f39fe5db88936c15ab184",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
