@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6cf4d776_68e84fae",
+        "filename": "Documentation/devicetree/bindings/scheduler/sched-energy-costs.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-08-10T17:46:40Z",
+      "side": 1,
+      "message": "correct. Will clean this and the driver accordingly.",
+      "parentUuid": "19b8e8f5_a74b7141",
+      "range": {
+        "startLine": 67,
+        "startChar": 2,
+        "endLine": 67,
+        "endChar": 13
+      },
+      "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c0a58b7b_bd67e155",
         "filename": "kernel/sched/energy.c",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63654b0e_7876c008",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-08-10T17:46:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c0a58b7b_bd67e155",
+      "range": {
+        "startLine": 157,
+        "startChar": 1,
+        "endLine": 157,
+        "endChar": 11
+      },
+      "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -178,6 +226,30 @@
       "writtenOn": "2018-08-09T08:03:56Z",
       "side": 1,
       "message": "is this related to this change?",
+      "range": {
+        "startLine": 5694,
+        "startChar": 21,
+        "endLine": 5694,
+        "endChar": 34
+      },
+      "revId": "abf4acdc35f4874aabfacc93f41a595fa2771105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ba7b634_48c4f5ea",
+        "filename": "kernel/sched/fair.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 5694,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-08-10T17:46:40Z",
+      "side": 1,
+      "message": "No it\u0027s not. Got in from other stuff. Will remove it.",
+      "parentUuid": "ea89a5bc_a6e84b26",
       "range": {
         "startLine": 5694,
         "startChar": 21,
