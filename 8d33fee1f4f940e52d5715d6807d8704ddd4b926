@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6425cb58_5495dcbc",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2382,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-08-10T00:59:32Z",
+      "side": 1,
+      "message": "you are describing why your code is different from the original code, but after removing it it is not clear what you are referring to. We don\u0027t need to close the file here because user-space closes it for successfully delivered transactions (which is different from the slightly cleaner BINDER_TYPE_FDA api) and now it is closed elsewhere for transactions that are not delivered.",
+      "revId": "8d33fee1f4f940e52d5715d6807d8704ddd4b926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04f8fcec_529c678d",
+        "filename": "drivers/android/binder_trace.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-08-10T00:59:32Z",
+      "side": 1,
+      "message": "...fd_out ...fd_in or ...fd_send ...fd_receive?",
+      "range": {
+        "startLine": 250,
+        "startChar": 12,
+        "endLine": 250,
+        "endChar": 33
+      },
+      "revId": "8d33fee1f4f940e52d5715d6807d8704ddd4b926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
