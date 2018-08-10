@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "dc7a0bc7_e18637b0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2059,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2018-08-10T14:45:24Z",
+      "side": 1,
+      "message": "I think this can be called even from the target process in error scenarios after it\u0027s processed? But then I think it\u0027s still ok - either we hadn\u0027t yet gotten to processing the fixups, in which case we cleanup here, or if we did, the list is empty by the time we come here. If you agree may be worthwhile updating the comment here.",
+      "range": {
+        "startLine": 2057,
+        "startChar": 2,
+        "endLine": 2059,
+        "endChar": 34
+      },
+      "revId": "8d33fee1f4f940e52d5715d6807d8704ddd4b926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6425cb58_5495dcbc",
         "filename": "drivers/android/binder.c",
         "patchSetId": 4
@@ -13,6 +36,29 @@
       "writtenOn": "2018-08-10T00:59:32Z",
       "side": 1,
       "message": "you are describing why your code is different from the original code, but after removing it it is not clear what you are referring to. We don\u0027t need to close the file here because user-space closes it for successfully delivered transactions (which is different from the slightly cleaner BINDER_TYPE_FDA api) and now it is closed elsewhere for transactions that are not delivered.",
+      "revId": "8d33fee1f4f940e52d5715d6807d8704ddd4b926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "801e145e_0fd2e331",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 2680,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2018-08-10T14:45:24Z",
+      "side": 1,
+      "message": "return ret?",
+      "range": {
+        "startLine": 2680,
+        "startChar": 3,
+        "endLine": 2680,
+        "endChar": 32
+      },
       "revId": "8d33fee1f4f940e52d5715d6807d8704ddd4b926",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
