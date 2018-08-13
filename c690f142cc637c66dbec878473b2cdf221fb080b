@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4d9cb08_dd848e65",
+        "filename": "drivers/android/Kconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-08-13T16:58:16Z",
+      "side": 1,
+      "message": "why this change?",
+      "range": {
+        "startLine": 13,
+        "startChar": 29,
+        "endLine": 13,
+        "endChar": 43
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "706a821e_6fcabea8",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2389,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-08-13T16:58:16Z",
+      "side": 1,
+      "message": "who can do something with this?",
+      "range": {
+        "startLine": 2389,
+        "startChar": 3,
+        "endLine": 2389,
+        "endChar": 10
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "050e22e1_c27f0363",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2447,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-08-13T16:58:16Z",
+      "side": 1,
+      "message": "last I looked the kernel was trying to get away from calling syscalls directly.  Is this still ok to do?",
+      "range": {
+        "startLine": 2447,
+        "startChar": 4,
+        "endLine": 2447,
+        "endChar": 13
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a67fc50f_fe01cfcb",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 4007,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-08-13T16:58:16Z",
+      "side": 1,
+      "message": "should this be done before fd_install()?",
+      "range": {
+        "startLine": 4006,
+        "startChar": 2,
+        "endLine": 4007,
+        "endChar": 12
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
