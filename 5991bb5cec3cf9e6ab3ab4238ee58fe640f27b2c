@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1f66459_213d59e7",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-13T20:13:05Z",
+      "side": 1,
+      "message": "Nope, this isn\u0027t quite right (crashes one of my test devices). Looks like this assumes that the kernel\u0027s version of the address is somewhere else (identity-mapped with phys address).\n\nI could use flush_cache_range() instead which would be fine except that it\u0027s a non-standard, non-exported function (the very thing I\u0027m trying to get rid of which this CL).\n\nSo, I guess I need to use the \"right\" kernel address for patching... new attempt coming.",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
