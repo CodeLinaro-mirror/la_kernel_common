@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9dfc4215_f24a8732",
+        "filename": "drivers/android/Kconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-13T17:14:35Z",
+      "side": 1,
+      "message": "The concern is that we may need to add explicit cache flushing if we access the buffer from two aliases on a virtually-indexed-virtually-tagged cpu. Since it is unlikely that this will ever run on a VIVT cpu (ARMv5?), it seemed better to exclude that case than to add the flushing.",
+      "parentUuid": "b4d9cb08_dd848e65",
+      "range": {
+        "startLine": 13,
+        "startChar": 29,
+        "endLine": 13,
+        "endChar": 43
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "706a821e_6fcabea8",
         "filename": "drivers/android/binder.c",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2018-08-13T16:58:16Z",
       "side": 1,
       "message": "who can do something with this?",
+      "range": {
+        "startLine": 2389,
+        "startChar": 3,
+        "endLine": 2389,
+        "endChar": 10
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f7c43d1_9c7a72e6",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2389,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-13T17:14:35Z",
+      "side": 1,
+      "message": "Most likely only the Android team. We have found a few issues (via syzkallar) with WARN_ONs like this in testing where WARN_ON is forced to crash. This could be a BUG_ON, but I don\u0027t think that\u0027s necessary.",
+      "parentUuid": "706a821e_6fcabea8",
       "range": {
         "startLine": 2389,
         "startChar": 3,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a23d9e54_2df5af6d",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2447,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-13T17:14:35Z",
+      "side": 1,
+      "message": "When this is posted upstream, this will be a ksys_close(). In 4.14, folks used sys_close() for this.",
+      "parentUuid": "050e22e1_c27f0363",
+      "range": {
+        "startLine": 2447,
+        "startChar": 4,
+        "endLine": 2447,
+        "endChar": 13
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a67fc50f_fe01cfcb",
         "filename": "drivers/android/binder.c",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2018-08-13T16:58:16Z",
       "side": 1,
       "message": "should this be done before fd_install()?",
+      "range": {
+        "startLine": 4006,
+        "startChar": 2,
+        "endLine": 4007,
+        "endChar": 12
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65940a32_232e0738",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 4007,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-13T17:14:35Z",
+      "side": 1,
+      "message": "I don\u0027t think it really matters. No one can use it until this transaction is delivered to userspace. My rationale was that it seemed better to patch the transaction after the fd is setup in the fd table not when it\u0027s an unassociated fd. Why do you think it would be better before fd_install()?",
+      "parentUuid": "a67fc50f_fe01cfcb",
       "range": {
         "startLine": 4006,
         "startChar": 2,
