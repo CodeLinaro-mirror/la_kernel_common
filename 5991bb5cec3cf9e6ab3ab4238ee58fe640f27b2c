@@ -34,6 +34,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b7fe55d_b25c395f",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-13T22:08:58Z",
+      "side": 1,
+      "message": "regarding #2... if this is true, isn\u0027t that case already broken for VIVT? This new code isn\u0027t doing anything to bring in the lines for those user-space addresses into the cache. If VIVT has been broken for years, it doesn\u0027t seem like we need to add an exclusion in Kconfig.",
+      "parentUuid": "b4c10730_c76f7bd0",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
