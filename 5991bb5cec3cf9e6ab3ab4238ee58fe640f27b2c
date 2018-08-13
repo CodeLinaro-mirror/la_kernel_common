@@ -70,6 +70,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "004622f2_7b7969f0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-13T23:02:36Z",
+      "side": 1,
+      "message": "Ok, that\u0027s what I thought, so I was surprised when you said \"flushing the kernel address is not enough\" when that is the only address we are accessing from this context.\n\nSo, is it sufficient to flush just this kernel address for this case? If user-address flush is required (as you state above), can you explain why?\n\nI don\u0027t see any standard way to flush just a cacheline which is why I did the page version. Do you know of a cacheline granularity flush that would work that would also be supported for modules (exported function, inline or macro)?",
+      "parentUuid": "46936d5a_bb2b11b5",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
