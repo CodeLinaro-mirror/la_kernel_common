@@ -106,6 +106,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da1d9789_c613524b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-13T23:35:10Z",
+      "side": 1,
+      "message": "But why is there any \"obsolete cached data\"? The whole cache would have been flushed on the context switch and the only access is this kernel access. Once the kernel address is flushed, how is there stale data in the cache?",
+      "parentUuid": "70033b26_c86435c3",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
