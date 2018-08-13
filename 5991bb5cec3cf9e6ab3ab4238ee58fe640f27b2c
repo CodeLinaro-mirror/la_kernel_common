@@ -52,6 +52,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46936d5a_bb2b11b5",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-08-13T22:39:34Z",
+      "side": 1,
+      "message": "The entire cache is flushed on process context switch on vivt (arm) systems. Since the current driver never writes to a buffer that is shared with user-space from the same process, it works without any additional cache flushes.",
+      "parentUuid": "3b7fe55d_b25c395f",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
