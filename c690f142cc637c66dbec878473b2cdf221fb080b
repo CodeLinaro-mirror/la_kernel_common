@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "9b8487e0_de5be500",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2389,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-08-13T17:23:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1f7c43d1_9c7a72e6",
+      "range": {
+        "startLine": 2389,
+        "startChar": 3,
+        "endLine": 2389,
+        "endChar": 10
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "050e22e1_c27f0363",
         "filename": "drivers/android/binder.c",
         "patchSetId": 5
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "d16a6cd5_9f23742b",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 2447,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-08-13T17:23:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a23d9e54_2df5af6d",
+      "range": {
+        "startLine": 2447,
+        "startChar": 4,
+        "endLine": 2447,
+        "endChar": 13
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a67fc50f_fe01cfcb",
         "filename": "drivers/android/binder.c",
         "patchSetId": 5
@@ -187,6 +235,30 @@
       "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65d5dfdc_ecdcd690",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 4007,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-08-13T17:23:45Z",
+      "side": 1,
+      "message": "Ok, I didn\u0027t know if it could be used right after fd_install() was called or not.",
+      "parentUuid": "65940a32_232e0738",
+      "range": {
+        "startLine": 4006,
+        "startChar": 2,
+        "endLine": 4007,
+        "endChar": 12
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
