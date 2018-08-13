@@ -16,6 +16,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4c10730_c76f7bd0",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-08-13T21:12:46Z",
+      "side": 1,
+      "message": "1. You don\u0027t need to flush the page, only the cache lines touched. 2. flushing the kernel address is not enough as the old data could still be cached at the user-space address.\n\nYou can look at what the open-binder driver did, as it worked this way. We ran into several cache coherency bugs with that driver though, which is why we switched to only touching the buffer from the sending process.\n\nI think not supporting vivt systems is the simpler solution, as we no longer have any hardware to test this on.",
+      "parentUuid": "f1f66459_213d59e7",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
