@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9a0c3d65_49085864",
+        "filename": "drivers/android/Kconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-08-13T17:25:25Z",
+      "side": 1,
+      "message": "That feels really odd, are you sure this is the only arch that would have this problem?  We don\u0027t have other drivers/subsystems in the kernel that do not build on that config symbol, why add this now?  If you do rely on cache flushing, you should do it explicitly to ensure it works everywhere.",
+      "parentUuid": "9dfc4215_f24a8732",
+      "range": {
+        "startLine": 13,
+        "startChar": 29,
+        "endLine": 13,
+        "endChar": 43
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "706a821e_6fcabea8",
         "filename": "drivers/android/binder.c",
         "patchSetId": 5
