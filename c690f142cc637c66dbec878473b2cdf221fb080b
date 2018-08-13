@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "1b3ef8b4_f8541f06",
+        "filename": "drivers/android/Kconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-08-13T19:10:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5a4467d2_1a83ff4f",
+      "range": {
+        "startLine": 13,
+        "startChar": 29,
+        "endLine": 13,
+        "endChar": 43
+      },
+      "revId": "c690f142cc637c66dbec878473b2cdf221fb080b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "706a821e_6fcabea8",
         "filename": "drivers/android/binder.c",
         "patchSetId": 5
