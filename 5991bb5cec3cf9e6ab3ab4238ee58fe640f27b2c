@@ -88,6 +88,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70033b26_c86435c3",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-08-13T23:21:40Z",
+      "side": 1,
+      "message": "You should specify the entire range you need flushed then the cpu specific code should figure out which cache lines need to be flushed. It looks like someone updated the open-binder driver:\nhttps://github.com/seyko2/openbinder/blob/master/modules/binder/\n\nYou can look at binder_transaction_ConvertToNodes in there. It uses an arm specific cache flush function though.\n\nYou have to flush the user-space address as well because the problem is that the data is in two cache lines. The kernel flush (this only need to be a clean, no invalidate is needed as the user-space data is read-only) is needed to get the data into ram and the user-space flush is needed to make sure the data is read from ram instead of the obsolete cached data.",
+      "parentUuid": "004622f2_7b7969f0",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
