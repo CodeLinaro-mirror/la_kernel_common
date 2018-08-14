@@ -160,6 +160,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aefa5ec9_be1d522c",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-08-14T17:46:31Z",
+      "side": 1,
+      "message": "There won\u0027t be any stale data in vaB if you came here from a process context switch, but that is not necessarily how you get here. You could get here after the current thread calls the ioctl which means it could have pulled data into the cache, or you could get here from another thread. The CPUs that have VIVT caches don\u0027t typically fetch a lot of data speculatively, and have only one core, so the chances are low that the cache-line that has a fd in it would be fetched after the sender ran. If the fd is near the start or end of the buffer though it could share a cache-line with an active transaction and cause problems even with no speculation.",
+      "parentUuid": "aca0358a_8ff95057",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
