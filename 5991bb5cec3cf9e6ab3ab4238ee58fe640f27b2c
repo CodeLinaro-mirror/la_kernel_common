@@ -178,6 +178,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e4d625d_4bf9511f",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-14T18:12:39Z",
+      "side": 1,
+      "message": "Ok, that does make sense. Sigh.\n\nGreg, this is going to get really complex for an arch that we don\u0027t actually run android on and have no way to test... so I think I\u0027m back with Arve that the best thing to do is punt and just cause binder not to compile on this known-bad architecture.\n\nMind if I put back the Kconfig to exclude binder if VIVT?\n\nI\u0027ll also add a comment in the code about this.",
+      "parentUuid": "aefa5ec9_be1d522c",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
