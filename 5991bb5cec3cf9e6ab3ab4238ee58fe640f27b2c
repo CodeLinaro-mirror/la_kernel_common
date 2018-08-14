@@ -214,6 +214,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a57a950_f85e9ba9",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-14T19:33:04Z",
+      "side": 1,
+      "message": "Because the processor and cache for VIVT doesn\u0027t recognise that vaA and vaB are mapped to the same physical address -- they would be cached separately with no coherency between aliases to the same physical page.\n\n*vaA \u003d 1;\nmb();\nx \u003d *vaB;\n\n\nThe mb() guarantees that another CPU with a matching mb() will observe the \"*vaA\" as 1, but it guarantees nothing about *vaB because the cache doesn\u0027t notice that the modification at vaA affects vaB without explicitly flushing (a flush of vaA is needed to force it to memory, a flush of vaB needed to ensure no stale vaB data in cache to guarantee it is re-fetched from memory).\n\nHere is a wikipedia paragraph on VIVT (from CPU cache article):\n\nVirtually indexed, virtually tagged (VIVT) caches use the virtual address for both the index and the tag. This caching scheme can result in much faster lookups, since the MMU does not need to be consulted first to determine the physical address for a given virtual address. However, VIVT suffers from aliasing problems, where several different virtual addresses may refer to the same physical address. The result is that such addresses would be cached separately despite referring to the same memory, causing coherency problems. Although solutions to this problem exist [19] they do not work for standard coherence protocols. Another problem is homonyms, where the same virtual address maps to several different physical addresses. It is not possible to distinguish these mappings merely by looking at the virtual index itself, though potential solutions include: flushing the cache after a context switch, forcing address spaces to be non-overlapping, tagging the virtual address with an address space ID (ASID). Additionally, there is a problem that virtual-to-physical mappings can change, which would require flushing cache lines, as the VAs would no longer be valid. All these issues are absent if tags use physical addresses (VIPT).",
+      "parentUuid": "5aedddfb_c4048625",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
