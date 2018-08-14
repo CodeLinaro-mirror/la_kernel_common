@@ -142,6 +142,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aca0358a_8ff95057",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-14T15:47:52Z",
+      "side": 1,
+      "message": "An mb() wouldn\u0027t suffice for a VIVT cache since the modification to pageX from vaA is not visible at vaB unless there is an explicit flush (and we can ensure that vaB is not stale in the cache). If there is physical tagging (as in x86, arm64 and the other modern architectures) then the flush isn\u0027t necessary since the modification at vaA will cause an invalidation of the cacheline for vaB so coherency is maintained across aliases.\n\nI have a patch that does the flush correctly by using the \"standard\" kernel VA (it adds some complexity though), but now I\u0027m concerned about Arve\u0027s statement that there might be a stale \"vaB\" -- the user space VA -- that needs to be flushed too. I don\u0027t understand why that would be needed given the full cache flush at the context switch for VIVT and no use of the vaB page here... Arve can you explain?",
+      "parentUuid": "0c9d552d_9b1b6ea7",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
