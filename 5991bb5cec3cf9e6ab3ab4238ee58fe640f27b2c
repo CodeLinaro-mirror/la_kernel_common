@@ -124,6 +124,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c9d552d_9b1b6ea7",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-08-14T08:20:28Z",
+      "side": 1,
+      "message": "What about a \"normal\" memory barrier?  Shouldn\u0027t that suffice?",
+      "parentUuid": "da1d9789_c613524b",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
