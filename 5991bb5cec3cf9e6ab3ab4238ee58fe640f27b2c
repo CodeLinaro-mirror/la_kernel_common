@@ -196,6 +196,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5aedddfb_c4048625",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-08-14T19:20:13Z",
+      "side": 1,
+      "message": "This all feels very odd to me.  Look at memory-barriers.txt.  How would a simple mb() call here not suffice?",
+      "parentUuid": "7e4d625d_4bf9511f",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
