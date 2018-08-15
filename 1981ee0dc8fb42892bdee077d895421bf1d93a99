@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f19c3a41_a79de76c",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-08-15T08:35:01Z",
+      "side": 0,
+      "message": "Why do you get rid of this call to check_max_cap_vs_cpu_scale() even for the capacity/power EM? Last time we had \n\nif (!freq_energy_model)\n    check_max_cap_vs_cpu_scale(cpu, sge_array[cpu][SD_LEVEL0]);\n\nhere, which I liked since with the capacity/energy model, cpu_scale and capacity values of the highest OPP are derived in independent processes.",
+      "revId": "1981ee0dc8fb42892bdee077d895421bf1d93a99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}

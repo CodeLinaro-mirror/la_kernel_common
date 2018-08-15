@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7207a4e9_b8bda3ce",
+        "filename": "include/linux/sched/topology.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2018-08-15T08:35:01Z",
+      "side": 1,
+      "message": "This is a minor thing: The comment \"/* capacity calculated by energy driver */\" is only true for the frequency/power model, not for the capacity/power model. So please get rid of it. One codeline change less.",
+      "revId": "0068d0f0c8e5e7b36125e491b6232aeb3be5cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
