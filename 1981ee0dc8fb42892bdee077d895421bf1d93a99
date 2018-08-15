@@ -16,6 +16,24 @@
       "revId": "1981ee0dc8fb42892bdee077d895421bf1d93a99",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "518deeb5_5f31d75b",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-08-15T17:17:31Z",
+      "side": 0,
+      "message": "From the discussion last time on your patch which brought the check I understood it was brought in for freq energy model where capacity was derived differently. I don\u0027t have understanding of how you pass capacity model and if the values can differ. I will keep check for capacity energy model in that case then.",
+      "parentUuid": "f19c3a41_a79de76c",
+      "revId": "1981ee0dc8fb42892bdee077d895421bf1d93a99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }

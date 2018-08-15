@@ -16,6 +16,24 @@
       "revId": "0068d0f0c8e5e7b36125e491b6232aeb3be5cc46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b5ae405_6c9cedf7",
+        "filename": "include/linux/sched/topology.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1298987
+      },
+      "writtenOn": "2018-08-15T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7207a4e9_b8bda3ce",
+      "revId": "0068d0f0c8e5e7b36125e491b6232aeb3be5cc46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
