@@ -286,6 +286,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2951c62e_60397b41",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-15T17:52:33Z",
+      "side": 1,
+      "message": "Yes... because in the new code, we write to the kernel address generated via page_to_virt() instead of binder\u0027s kernel address for the buffer. Take a look after I upload the next rev (somehow got some verity files mixed in on the last upload).",
+      "parentUuid": "fab55bd4_7adab525",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
