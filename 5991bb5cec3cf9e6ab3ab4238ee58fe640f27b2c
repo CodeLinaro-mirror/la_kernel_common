@@ -322,6 +322,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19f9bad4_665c2c0e",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-15T19:17:27Z",
+      "side": 1,
+      "message": "Ok, so now the issue is that we might share physical cacheline that uses the other kernel virtual address and it might be dirty (eg, another thread is modifying the buffer for another transaction and the dirty cacheline is the same physical line as the one we are modifying). The vipt_aliasing case wasn\u0027t an issue before because the VAs all conformed to coloring restrictions.\n\nI don\u0027t see any standard way to do the flush at the other kernel VA.\n\nI guess I\u0027ll give up on flushing since this would need a bigger redesign of how we map the binder buffers in the kernel.\n\nBack to the VIVT exclusion.",
+      "parentUuid": "6cdba6b9_e6486dcb",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
