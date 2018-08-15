@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b734a14_afb0be44",
+        "filename": "kernel/sched/energy.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1318918
+      },
+      "writtenOn": "2018-08-15T21:30:32Z",
+      "side": 1,
+      "message": "The documentation mentions \"freq-energy-model\" (with dashes) while the code mentions \"freq_energy_model\" with underscores. Please reconcile.",
+      "range": {
+        "startLine": 92,
+        "startChar": 28,
+        "endLine": 92,
+        "endChar": 45
+      },
+      "revId": "e1ef5d5f8c7c68821d0c61524a7b12aafe45b7b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
