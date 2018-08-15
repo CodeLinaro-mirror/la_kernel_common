@@ -232,6 +232,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0e94469_901ff8ad",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2018-08-15T13:16:18Z",
+      "side": 1,
+      "message": "Thanks for the good explanation, that makes more sense, however is this really the only type of processor out there that has this \"problem\"?  I would think that the memory primitives would handle this properly for us, as again, no other kernel driver has this type of \"depends on\" and I\u0027m sure they do much the same thing at times.\n\nAnyway, if you want to defend this upstream, that\u0027s fine with me, just leave the \"depends on\" in and hope no one is running Android on those types of systems :)",
+      "parentUuid": "3a57a950_f85e9ba9",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
