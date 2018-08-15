@@ -250,6 +250,24 @@
       "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71dee3bf_99f3da8f",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 4014,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-15T16:59:48Z",
+      "side": 1,
+      "message": "Actually, according to cachetlb.txt and looking at the arch/arm implementation of flush_dcache_page(), it will flush the kernel address and any user-space aliases (via __flush_dcache_aliases).\n\nI don\u0027t see any standard way to flush just a cacheline, but with the page flush we at least get correctness (or think so given we can\u0027t actually test it). Someone can optimize for VIVT if that ever becomes necessary.\n\nSo, one more update coming that I think flushes correctly for this case so we don\u0027t need the VIVT exclusion...",
+      "parentUuid": "c0e94469_901ff8ad",
+      "revId": "5991bb5cec3cf9e6ab3ab4238ee58fe640f27b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
