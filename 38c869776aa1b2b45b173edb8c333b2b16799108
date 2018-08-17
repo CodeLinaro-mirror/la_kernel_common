@@ -69,6 +69,24 @@
       "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feae0ef1_fce3ceaf",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 4328,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-17T22:14:40Z",
+      "side": 1,
+      "message": "Ah ok, I\u0027m being to harsh on the local proc.\n\nWhat do you think is the appropriate way to handle this if it was an async transaction? The sender thinks everything was fine, but the receiver doesn\u0027t know anything about it and should probably not see it at all. Do senders assume guaranteed delivery of async transactions if they don\u0027t get an error and the target doesn\u0027t die?\n\n  if (reply) {\n    cmd\u003dBR_FAILED_REPLY\n  } else if (!async) {\n    // receiving a new transaction, local proc doesn\u0027t know anything\n    // about it, so reply with error and return noop command? Or can\n    // we return nothing?\n    send_failed_reply(...);\n    cmd\u003dBR_NOOP\n  } else {\n    ???\n    ignore it and send cmd\u003dBR_NOOP or nothing at all? Is it ok that the sender thinks this went\n    through? \n  }",
+      "parentUuid": "38f02eab_77a0e081",
+      "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
