@@ -33,6 +33,24 @@
       "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "584ccb6b_1cf7b2ba",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 4328,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-17T20:54:51Z",
+      "side": 1,
+      "message": "How is it unsafe here but ok at line 4340? Since the fd couldn\u0027t be patched, the buffer is corrupt (stale fds from sender) so we don\u0027t want the local proc to process it. What do you suggest?",
+      "parentUuid": "dae9b0df_89ac6d76",
+      "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
