@@ -51,6 +51,24 @@
       "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38f02eab_77a0e081",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 4328,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-08-17T21:04:36Z",
+      "side": 1,
+      "message": "4340 trigger a return if user-space passed in a bad pointer to receive data into. It is not a recoverable error. The error path you are adding could be hit by running out of file-descriptors. We should not corrupt the state of the receiving process in this case but fail the transaction that does not fit. You can write a test for this and pass more files in a single transaction than the limit for the receiving process (or you can see if there is a hwbinder test for this).",
+      "parentUuid": "584ccb6b_1cf7b2ba",
+      "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
