@@ -87,6 +87,24 @@
       "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e0b2e98_d46bfec7",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 4328,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2018-08-18T00:00:36Z",
+      "side": 1,
+      "message": "The driver currently guarantees delivery, so it is not unreasonable to assume there are senders that assume it. I don\u0027t know how common it is to pass fds in async transactions though as that is a good way to run out of file descriptors in the target process. Your change would make it less likely to fail, but undetectable. You should probably ask the framework team if they want a way to report this new failure case though. (also yes, you can return nothing here by not writing to the buffer)",
+      "parentUuid": "feae0ef1_fce3ceaf",
+      "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
