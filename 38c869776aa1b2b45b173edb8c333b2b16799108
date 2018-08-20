@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "2596a65b_e9fdc609",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 3974,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-20T15:27:53Z",
+      "side": 1,
+      "message": "copy/paste goof. I\u0027ll change to \"binder transaction with list of fd fixups\"",
+      "parentUuid": "db645f51_277639bc",
+      "range": {
+        "startLine": 3974,
+        "startChar": 30,
+        "endLine": 3974,
+        "endChar": 37
+      },
+      "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dae9b0df_89ac6d76",
         "filename": "drivers/android/binder.c",
         "patchSetId": 10
@@ -143,6 +167,24 @@
       "side": 1,
       "message": "I am inclined to think it\u0027s ok if they don\u0027t find out - if the target runs out of file descriptors only after the transaction lands in userspace, the Parcel code there would also reject the transaction without either the client or the server finding out, so it\u0027s not all that different from it failing here in the kernel.\n\nFor hwbinder it is a bit different because the receiver is responsible for cloning the fd and could detect the failure, but that doesn\u0027t change anything for the client.\n\nI checked the HIDL interfaces and AFAICT there are no users of oneway with file descriptors. In AIDL it\u0027s hard to tell because of Parcelables, which may contain file descriptors and are only described in code.",
       "parentUuid": "3e0b2e98_d46bfec7",
+      "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f3c73d1_b4cc8367",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 4328,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2018-08-20T15:27:53Z",
+      "side": 1,
+      "message": "There are some cases of async transactions with fds (approx 0.7% of transactions with fds were async in my sample). Dianne indicated that fds in async transactions \"is used a lot\".\n\nMartijn/Arve, which do you like best of these options:\n1) write a kernel log message and otherwise ignore it\n2) deliver the transaction without the failed fds (fd \u003d\u003d -1) so they are surfaced in the target\n3) return an error on the ioctl which probably kills the target\n4) other idea?\n\nIt is sounding like 1 or 2 is probably best. Dianne didn\u0027t have an opinion.",
+      "parentUuid": "9a47d016_8228f6ba",
       "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
