@@ -188,6 +188,24 @@
       "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ab73a9c_a08fdc36",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 4328,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2018-08-20T19:21:28Z",
+      "side": 1,
+      "message": "I\u0027d be in favor of #1; I don\u0027t think userspace will handle #2 too well, since (at least for framework binder) it will try to dup the fd and then fail. So we might as well not let it get that far. hwbinder userspace was written with the assumption the fd was valid also, so that\u0027s another reason to go for 1) IMHO. If we ever find a need to know about this failure on the calling side, I guess we can always add it then.",
+      "parentUuid": "6f3c73d1_b4cc8367",
+      "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
