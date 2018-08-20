@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "db645f51_277639bc",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 3974,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2018-08-20T09:27:03Z",
+      "side": 1,
+      "message": "did you mean \u0027from t-\u003efrom\u0027 or \u0027for t-\u003eto\u0027?",
+      "range": {
+        "startLine": 3974,
+        "startChar": 30,
+        "endLine": 3974,
+        "endChar": 37
+      },
+      "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dae9b0df_89ac6d76",
         "filename": "drivers/android/binder.c",
         "patchSetId": 10
@@ -102,6 +125,24 @@
       "side": 1,
       "message": "The driver currently guarantees delivery, so it is not unreasonable to assume there are senders that assume it. I don\u0027t know how common it is to pass fds in async transactions though as that is a good way to run out of file descriptors in the target process. Your change would make it less likely to fail, but undetectable. You should probably ask the framework team if they want a way to report this new failure case though. (also yes, you can return nothing here by not writing to the buffer)",
       "parentUuid": "feae0ef1_fce3ceaf",
+      "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a47d016_8228f6ba",
+        "filename": "drivers/android/binder.c",
+        "patchSetId": 10
+      },
+      "lineNbr": 4328,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2018-08-20T09:27:03Z",
+      "side": 1,
+      "message": "I am inclined to think it\u0027s ok if they don\u0027t find out - if the target runs out of file descriptors only after the transaction lands in userspace, the Parcel code there would also reject the transaction without either the client or the server finding out, so it\u0027s not all that different from it failing here in the kernel.\n\nFor hwbinder it is a bit different because the receiver is responsible for cloning the fd and could detect the failure, but that doesn\u0027t change anything for the client.\n\nI checked the HIDL interfaces and AFAICT there are no users of oneway with file descriptors. In AIDL it\u0027s hard to tell because of Parcelables, which may contain file descriptors and are only described in code.",
+      "parentUuid": "3e0b2e98_d46bfec7",
       "revId": "38c869776aa1b2b45b173edb8c333b2b16799108",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
