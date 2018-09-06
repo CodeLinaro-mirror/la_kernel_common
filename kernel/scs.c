@@ -14,6 +14,7 @@
 #include <asm/page.h>
 
 #define SCS_END_MAGIC	0xaf0194819b1635f6UL
+#define SCS_GFP		(GFP_KERNEL | __GFP_NOTRACK | __GFP_ZERO)
 
 static inline void *scs_base(struct task_struct *tsk)
 {
@@ -39,13 +40,15 @@ static void *scs_alloc(int node)
 		void *s;
 
 		s = this_cpu_xchg(scs_cache[i], NULL);
-		if (s)
+		if (s) {
+			memset(s, 0, SCS_SIZE);
 			return s;
+		}
 	}
 
 	return __vmalloc_node_range(SCS_SIZE, SCS_SIZE,
 				    VMALLOC_START, VMALLOC_END,
-				    THREADINFO_GFP, PAGE_KERNEL, 0,
+				    SCS_GFP, PAGE_KERNEL, 0,
 				    node, __builtin_return_address(0));
 }
 
@@ -76,7 +79,7 @@ void __init scs_init(void)
 
 static inline void *scs_alloc(int node)
 {
-	return kmalloc(SCS_SIZE, THREADINFO_GFP);
+	return kmalloc(SCS_SIZE, SCS_GFP);
 }
 
 static inline void scs_free(void *s)
@@ -144,6 +147,49 @@ int scs_prepare(struct task_struct *tsk, int node)
 	return 0;
 }
 
+#ifdef CONFIG_DEBUG_STACK_USAGE
+static inline unsigned long scs_used(void *s)
+{
+	unsigned long *p = s;
+	unsigned long *end =
+		(unsigned long *)(s + SCS_SIZE - sizeof(unsigned long));
+
+	while (p < end && *p)
+		p++;
+
+	return (unsigned long)p - (unsigned long)s;
+}
+
+static void scs_check_usage(void *s)
+{
+	static DEFINE_SPINLOCK(lock);
+	static unsigned long highest = 0;
+	unsigned long used = scs_used(s);
+
+	if (used <= highest)
+		return;
+
+	spin_lock(&lock);
+
+	if (used > highest) {
+		pr_info("scs_check_usage: highest shadow stack usage %lu "
+			"bytes\n", used);
+		highest = used;
+	}
+
+	spin_unlock(&lock);
+}
+#else
+static inline void scs_check_usage(void *s)
+{
+}
+#endif
+
+bool scs_corrupted(struct task_struct *tsk)
+{
+	return *scs_magic(tsk) != SCS_END_MAGIC;
+}
+
 void scs_release(struct task_struct *tsk)
 {
 	void *s;
@@ -152,7 +198,8 @@ void scs_release(struct task_struct *tsk)
 	if (!s)
 		return;
 
-	BUG_ON(*scs_magic(tsk) != SCS_END_MAGIC);
+	BUG_ON(scs_corrupted(tsk));
+	scs_check_usage(s);
 
 	scs_account(tsk, -1);
 	scs_task_init(tsk);
