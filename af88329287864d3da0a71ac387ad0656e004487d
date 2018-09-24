@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d52e6705_e0921f93",
+        "filename": "drivers/staging/android/virt_wifi.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-09-24T21:34:56Z",
+      "side": 1,
+      "message": "Maybe:\n\nif (!w_priv-\u003eis_connected)\n  return NETDEV_TX_BUSY;\n\nskb-\u003edev \u003d priv-\u003elowerdev;\nreturn dev_queue_xmit(skb);\n\nwould be more kernel-y.",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 342,
+        "endChar": 2
+      },
+      "revId": "af88329287864d3da0a71ac387ad0656e004487d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef37ce8a_23c11ac9",
+        "filename": "drivers/staging/android/virt_wifi.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2018-09-24T21:34:56Z",
+      "side": 1,
+      "message": "..and would match the pattern used here.",
+      "range": {
+        "startLine": 387,
+        "startChar": 1,
+        "endLine": 388,
+        "endChar": 25
+      },
+      "revId": "af88329287864d3da0a71ac387ad0656e004487d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
