@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "06c0f4b8_55853299",
+        "filename": "drivers/staging/android/virt_wifi.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1291337
+      },
+      "writtenOn": "2018-09-24T21:41:12Z",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "d52e6705_e0921f93",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 342,
+        "endChar": 2
+      },
+      "revId": "af88329287864d3da0a71ac387ad0656e004487d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef37ce8a_23c11ac9",
         "filename": "drivers/staging/android/virt_wifi.c",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "af88329287864d3da0a71ac387ad0656e004487d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50ca9beb_78a9b6db",
+        "filename": "drivers/staging/android/virt_wifi.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1291337
+      },
+      "writtenOn": "2018-09-24T21:41:12Z",
+      "side": 1,
+      "message": "Acknowledged.",
+      "parentUuid": "ef37ce8a_23c11ac9",
+      "range": {
+        "startLine": 387,
+        "startChar": 1,
+        "endLine": 388,
+        "endChar": 25
+      },
+      "revId": "af88329287864d3da0a71ac387ad0656e004487d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
