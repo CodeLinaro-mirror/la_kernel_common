@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e026d607_b9b9cd20",
+        "filename": "drivers/staging/android/virt_wifi.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1062926
+      },
+      "writtenOn": "2018-09-24T23:33:51Z",
+      "side": 1,
+      "message": "Use a constant here. Sadly there doesn\u0027t seem to be a standard one.\n\nMention the distinction between OUI and the last three bytes.\n\nAlso mention is_local_ether_addr in the comments.",
+      "range": {
+        "startLine": 115,
+        "startChar": 33,
+        "endLine": 115,
+        "endChar": 34
+      },
+      "revId": "8e025d55a665f1d937ab65330d537a7a65837c9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
