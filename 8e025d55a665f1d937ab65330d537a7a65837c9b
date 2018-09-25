@@ -22,6 +22,30 @@
       "revId": "8e025d55a665f1d937ab65330d537a7a65837c9b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b575a80a_97c6a3e8",
+        "filename": "drivers/staging/android/virt_wifi.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1291337
+      },
+      "writtenOn": "2018-09-25T22:28:55Z",
+      "side": 1,
+      "message": "I changed this to using eth_random_addr, which guarantees in the method contract that the address will be locally administered and unicast.",
+      "parentUuid": "e026d607_b9b9cd20",
+      "range": {
+        "startLine": 115,
+        "startChar": 33,
+        "endLine": 115,
+        "endChar": 34
+      },
+      "revId": "8e025d55a665f1d937ab65330d537a7a65837c9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
