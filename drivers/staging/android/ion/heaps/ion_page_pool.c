@@ -9,14 +9,31 @@
 #include <linux/slab.h>
 #include <linux/swap.h>
 #include <linux/sched/signal.h>
+#include <linux/dma-noncoherent.h>
 
 #include "ion_page_pool.h"
 
-static inline struct page *ion_page_pool_alloc_pages(struct ion_page_pool *pool)
+static inline struct page *ion_page_pool_alloc_pages(struct ion_page_pool *pool,
+						     bool cached)
 {
+	struct page *page;
+
 	if (fatal_signal_pending(current))
 		return NULL;
-	return alloc_pages(pool->gfp_mask, pool->order);
+
+	page = alloc_pages(pool->gfp_mask, pool->order);
+
+	/*
+	 * The memory allocated here is likely to be in the CPU cache.
+	 * It might have been used previously and because of the
+	 * GFP_ZERO flag, alloc_pages() will write it. In order to map
+	 * this memory as non cached, we need to flush the CPU cache
+	 * first.
+	 */
+	if (page && !cached)
+		arch_dma_prep_coherent(page, PAGE_SIZE << pool->order);
+
+	return page;
 }
 
 static void ion_page_pool_free_pages(struct ion_page_pool *pool,
@@ -61,7 +78,7 @@ static struct page *ion_page_pool_remove(struct ion_page_pool *pool, bool high)
 	return page;
 }
 
-struct page *ion_page_pool_alloc(struct ion_page_pool *pool)
+struct page *ion_page_pool_alloc(struct ion_page_pool *pool, bool cached)
 {
 	struct page *page = NULL;
 
@@ -75,7 +92,7 @@ struct page *ion_page_pool_alloc(struct ion_page_pool *pool)
 	mutex_unlock(&pool->mutex);
 
 	if (!page)
-		page = ion_page_pool_alloc_pages(pool);
+		page = ion_page_pool_alloc_pages(pool, cached);
 
 	return page;
 }
