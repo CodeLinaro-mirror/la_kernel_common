@@ -16,6 +16,24 @@
       "revId": "2b65bff3ba7f82aedeca693c492760c1b6a65364",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "932d5a4a_b99e88a5",
+        "filename": "drivers/staging/android/virt_wifi.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1291337
+      },
+      "writtenOn": "2018-10-30T01:32:22Z",
+      "side": 1,
+      "message": "Good catch, fixed.",
+      "parentUuid": "44873c36_8e085af7",
+      "revId": "2b65bff3ba7f82aedeca693c492760c1b6a65364",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
