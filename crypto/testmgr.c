@@ -2173,6 +2173,36 @@ static const struct alg_test_desc alg_test_descs[] = {
 		.test = alg_test_null,
 		.fips_allowed = 1,
 	}, {
+		.alg = "adiantum(xchacha12,aes)",
+		.test = alg_test_skcipher,
+		.suite = {
+			.cipher = {
+				.enc = {
+					.vecs = adiantum_xchacha12_aes_enc_tv_template,
+					.count = ARRAY_SIZE(adiantum_xchacha12_aes_enc_tv_template),
+				},
+				.dec = {
+					.vecs = adiantum_xchacha12_aes_dec_tv_template,
+					.count = ARRAY_SIZE(adiantum_xchacha12_aes_dec_tv_template),
+				},
+			}
+		},
+	}, {
+		.alg = "adiantum(xchacha20,aes)",
+		.test = alg_test_skcipher,
+		.suite = {
+			.cipher = {
+				.enc = {
+					.vecs = adiantum_xchacha20_aes_enc_tv_template,
+					.count = ARRAY_SIZE(adiantum_xchacha20_aes_enc_tv_template),
+				},
+				.dec = {
+					.vecs = adiantum_xchacha20_aes_dec_tv_template,
+					.count = ARRAY_SIZE(adiantum_xchacha20_aes_dec_tv_template),
+				},
+			}
+		},
+	}, {
 		.alg = "ansi_cprng",
 		.test = alg_test_cprng,
 		.suite = {
@@ -3648,7 +3678,10 @@ static const struct alg_test_desc alg_test_descs[] = {
 		.alg = "nhpoly1305",
 		.test = alg_test_hash,
 		.suite = {
-			.hash = __VECS(nhpoly1305_tv_template)
+			.hash = {
+				.vecs = nhpoly1305_tv_template,
+				.count = ARRAY_SIZE(nhpoly1305_tv_template),
+			}
 		}
 	}, {
 		.alg = "ofb(aes)",
@@ -4007,8 +4040,14 @@ static const struct alg_test_desc alg_test_descs[] = {
 		.test = alg_test_skcipher,
 		.suite = {
 			.cipher = {
-				.enc = __VECS(xchacha12_tv_template),
-				.dec = __VECS(xchacha12_tv_template)
+				.enc = {
+					.vecs = xchacha12_tv_template,
+					.count = ARRAY_SIZE(xchacha12_tv_template),
+				},
+				.dec = {
+					.vecs = xchacha12_tv_template,
+					.count = ARRAY_SIZE(xchacha12_tv_template),
+				},
 			}
 		},
 	}, {
@@ -4016,8 +4055,14 @@ static const struct alg_test_desc alg_test_descs[] = {
 		.test = alg_test_skcipher,
 		.suite = {
 			.cipher = {
-				.enc = __VECS(xchacha20_tv_template),
-				.dec = __VECS(xchacha20_tv_template)
+				.enc = {
+					.vecs = xchacha20_tv_template,
+					.count = ARRAY_SIZE(xchacha20_tv_template),
+				},
+				.dec = {
+					.vecs = xchacha20_tv_template,
+					.count = ARRAY_SIZE(xchacha20_tv_template),
+				},
 			}
 		},
 	}, {
