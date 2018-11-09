@@ -27,6 +27,7 @@
 #include <linux/fs_struct.h>
 #include <linux/slab.h>
 #include <linux/ramfs.h>
+#include <linux/completion.h>
 #include <linux/shmem_fs.h>
 
 #include <linux/nfs_fs.h>
@@ -543,6 +544,14 @@ void __init mount_root(void)
 #endif
 }
 
+static DECLARE_COMPLETION(dm_setup_allowed);
+
+void allow_dm_setup(void)
+{
+	complete(&dm_setup_allowed);
+}
+EXPORT_SYMBOL_GPL(allow_dm_setup);
+
 /*
  * Prepare the namespace - decide what/where to mount, load ramdisks, etc.
  */
@@ -566,6 +575,11 @@ void __init prepare_namespace(void)
 	wait_for_device_probe();
 
 	md_run_setup();
+#ifdef CONFIG_BLK_DEV_DM
+	if (wait_for_completion_interruptible_timeout(&dm_setup_allowed,
+						       2*HZ) <= 0)
+		pr_err("Block device was not initialized before DM setup, try to use rootdelay\n");
+#endif
 	dm_run_setup();
 
 	if (saved_root_name[0]) {

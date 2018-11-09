@@ -78,9 +78,11 @@ static inline void md_run_setup(void) {}
 #ifdef CONFIG_BLK_DEV_DM
 
 void dm_run_setup(void);
+void allow_dm_setup(void);
 
 #else
 
 static inline void dm_run_setup(void) {}
+void allow_dm_setup(void) {}
 
 #endif
