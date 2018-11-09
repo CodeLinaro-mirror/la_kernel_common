@@ -20,11 +20,12 @@
 #include <linux/blktrace_api.h>
 
 #include "partitions/check.h"
+#include "../init/do_mounts.h"
 
 #ifdef CONFIG_BLK_DEV_MD
 extern void md_autodetect_dev(dev_t dev);
 #endif
- 
+
 /*
  * disk_name() is used by partition check code and the genhd driver.
  * It formats the devicename of the indicated disk into
@@ -543,6 +544,7 @@ rescan:
 			md_autodetect_dev(part_to_dev(part)->devt);
 #endif
 	}
+	allow_dm_setup();
 	free_partitions(state);
 	return 0;
 }
