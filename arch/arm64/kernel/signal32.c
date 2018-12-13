@@ -465,6 +465,7 @@ static void compat_setup_return(struct pt_regs *regs, struct k_sigaction *ka,
 	compat_ulong_t retcode;
 	compat_ulong_t spsr = regs->pstate & ~(PSR_f | COMPAT_PSR_E_BIT);
 	int thumb;
+	void *sigreturn_base;
 
 	/* Check if the handler is written for ARM or Thumb */
 	thumb = handler & 1;
@@ -485,12 +486,12 @@ static void compat_setup_return(struct pt_regs *regs, struct k_sigaction *ka,
 	} else {
 		/* Set up sigreturn pointer */
 		unsigned int idx = thumb << 1;
+		sigreturn_base = current->mm->context.vdso;
 
 		if (ka->sa.sa_flags & SA_SIGINFO)
 			idx += 3;
 
-		retcode = AARCH32_VECTORS_BASE +
-			  AARCH32_KERN_SIGRET_CODE_OFFSET +
+		retcode = ptr_to_compat(sigreturn_base) +
 			  (idx << 2) + thumb;
 	}
 
