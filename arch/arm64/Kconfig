@@ -1141,6 +1141,27 @@ config COMPAT
 
 	  If you want to execute 32-bit userspace applications, say Y.
 
+config KUSER_HELPERS
+	bool "Enable kuser helpers page for compatibility with 32 bit applications."
+	depends on COMPAT
+	default y
+	help
+	  Enables kuser helpers to be mapped in a special purpose page at a fixed
+	  address to maintain independence from the type of CPU present in the SoC.
+	  This feature is provided for compatibility reasons in fact allows 32 bit
+	  applications compliant with ARMv4 up to ARMv8 to run without any
+	  modification.
+
+	  Warning: Being always mapped at a fixed address makes it easier to create
+	  exploits based on ROP type of attacks.
+
+	  As a consequence of this, this feature is made configurable but be aware that
+	  it can be turned off if and only if the binaries and the libraries running on
+	  a specific platform are designed to do not make use of these helpers, otherwise
+	  should be left on.
+
+	  See Documentation/arm/kernel_user_helpers.txt for details.
+
 config SYSVIPC_COMPAT
 	def_bool y
 	depends on COMPAT && SYSVIPC
