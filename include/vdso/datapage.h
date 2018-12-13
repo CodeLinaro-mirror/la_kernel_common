@@ -8,6 +8,7 @@
 
 #include <linux/types.h>
 #include <linux/time.h>
+#include <vdso/types.h>
 
 #define VDSO_BASES	(CLOCK_TAI + 1)
 #define VDSO_HRES	(BIT(CLOCK_REALTIME)		| \
