@@ -31,11 +31,12 @@
 #include <linux/slab.h>
 #include <linux/timekeeper_internal.h>
 #include <linux/vmalloc.h>
+#include <vdso/datapage.h>
+#include <vdso/helpers.h>
 
 #include <asm/cacheflush.h>
 #include <asm/signal32.h>
 #include <asm/vdso.h>
-#include <asm/vdso_datapage.h>
 
 extern char vdso_start[], vdso_end[];
 static unsigned long vdso_pages __ro_after_init;
@@ -200,38 +201,85 @@ up_fail:
 	return PTR_ERR(ret);
 }
 
+#define VDSO_PRECISION_MASK	~(0xFF00ULL<<48)
+
 /*
  * Update the vDSO data page to keep in sync with kernel timekeeping.
  */
 void update_vsyscall(struct timekeeper *tk)
 {
+	struct vdso_timestamp *vdso_ts;
 	u32 use_syscall = !tk->tkr_mono.clock->archdata.vdso_direct;
+	u64 nsec;
 
-	++vdso_data->tb_seq_count;
-	smp_wmb();
+	vdso_write_begin(vdso_data);
 
-	vdso_data->use_syscall			= use_syscall;
-	vdso_data->xtime_coarse_sec		= tk->xtime_sec;
-	vdso_data->xtime_coarse_nsec		= tk->tkr_mono.xtime_nsec >>
-							tk->tkr_mono.shift;
-	vdso_data->wtm_clock_sec		= tk->wall_to_monotonic.tv_sec;
-	vdso_data->wtm_clock_nsec		= tk->wall_to_monotonic.tv_nsec;
+	vdso_data->use_syscall	= use_syscall;
+	/* CLOCK_REALTIME_COARSE */
+	vdso_ts			= &vdso_data->basetime[CLOCK_REALTIME_COARSE];
+	vdso_ts->sec		= tk->xtime_sec;
+	vdso_ts->nsec		= tk->tkr_mono.xtime_nsec >> tk->tkr_mono.shift;
+	/* CLOCK_MONOTONIC_COARSE */
+	vdso_ts			= &vdso_data->basetime[CLOCK_MONOTONIC_COARSE];
+	vdso_ts->sec		= tk->xtime_sec + tk->wall_to_monotonic.tv_sec;
+	nsec			= tk->tkr_mono.xtime_nsec >> tk->tkr_mono.shift;
+	nsec			= nsec + tk->wall_to_monotonic.tv_nsec;
+	while (nsec >= NSEC_PER_SEC) {
+		nsec = nsec - NSEC_PER_SEC;
+		vdso_ts->sec++;
+	}
+	vdso_ts->nsec		= nsec;
 
 	if (!use_syscall) {
-		/* tkr_mono.cycle_last == tkr_raw.cycle_last */
-		vdso_data->cs_cycle_last	= tk->tkr_mono.cycle_last;
-		vdso_data->raw_time_sec         = tk->raw_sec;
-		vdso_data->raw_time_nsec        = tk->tkr_raw.xtime_nsec;
-		vdso_data->xtime_clock_sec	= tk->xtime_sec;
-		vdso_data->xtime_clock_nsec	= tk->tkr_mono.xtime_nsec;
-		vdso_data->cs_mono_mult		= tk->tkr_mono.mult;
-		vdso_data->cs_raw_mult		= tk->tkr_raw.mult;
-		/* tkr_mono.shift == tkr_raw.shift */
-		vdso_data->cs_shift		= tk->tkr_mono.shift;
+		vdso_data->clock_mode	= 0;
+		vdso_data->cycle_last	= tk->tkr_mono.cycle_last;
+		vdso_data->mask		= VDSO_PRECISION_MASK;
+		vdso_data->mult		= tk->tkr_mono.mult;
+		vdso_data->shift	= tk->tkr_mono.shift;
+		/* CLOCK_REALTIME */
+		vdso_ts			= &vdso_data->basetime[CLOCK_REALTIME];
+		vdso_ts->sec		= tk->xtime_sec;
+		vdso_ts->nsec		= tk->tkr_mono.xtime_nsec;
+		/* CLOCK_MONOTONIC */
+		vdso_ts			= &vdso_data->basetime[CLOCK_MONOTONIC];
+		vdso_ts->sec		= tk->xtime_sec +
+						tk->wall_to_monotonic.tv_sec;
+		nsec			= tk->tkr_mono.xtime_nsec;
+		nsec			= nsec +
+					  ((u64)tk->wall_to_monotonic.tv_nsec <<
+					   tk->tkr_mono.shift);
+		while (nsec >= (((u64)NSEC_PER_SEC) << tk->tkr_mono.shift)) {
+			nsec = nsec -
+				(((u64)NSEC_PER_SEC) << tk->tkr_mono.shift);
+			vdso_ts->sec++;
+		}
+		vdso_ts->nsec		= nsec;
+		/* CLOCK_MONOTONIC_RAW */
+		vdso_ts			= &vdso_data->basetime[CLOCK_MONOTONIC_RAW];
+		vdso_ts->sec		= tk->raw_sec;
+		vdso_ts->nsec		= tk->tkr_raw.xtime_nsec;
+		/* CLOCK_BOOTTIME */
+		vdso_ts			= &vdso_data->basetime[CLOCK_BOOTTIME];
+		vdso_ts->sec		= tk->xtime_sec +
+						tk->wall_to_monotonic.tv_sec;
+		nsec			= tk->tkr_mono.xtime_nsec;
+		nsec			= nsec +
+					  ((u64)(tk->wall_to_monotonic.tv_nsec +
+					   ktime_to_ns(tk->offs_boot)) <<
+					   tk->tkr_mono.shift);
+		while (nsec >= (((u64)NSEC_PER_SEC) << tk->tkr_mono.shift)) {
+			nsec = nsec -
+				(((u64)NSEC_PER_SEC) << tk->tkr_mono.shift);
+			vdso_ts->sec++;
+		}
+		vdso_ts->nsec		= nsec;
+		/* CLOCK_TAI */
+		vdso_ts			= &vdso_data->basetime[CLOCK_TAI];
+		vdso_ts->sec		= tk->xtime_sec + (s64)tk->tai_offset;
+		vdso_ts->nsec		= tk->tkr_mono.xtime_nsec;
 	}
 
-	smp_wmb();
-	++vdso_data->tb_seq_count;
+	vdso_write_end(vdso_data);
 }
 
 void update_vsyscall_tz(void)
