@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9e5805b_901842c7",
+        "filename": "drivers/block/zram/zram_drv.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2019-01-23T19:23:36Z",
+      "side": 1,
+      "message": "Maybe it doesn\u0027t matter, but this open-coding of the 4.14 version of bio_init() would use the bio_vec on the outer stack frame that you removed, rather than the bvec in this stack frame. Any idea why the original code did that?",
+      "range": {
+        "startLine": 652,
+        "startChar": 0,
+        "endLine": 656,
+        "endChar": 27
+      },
+      "revId": "696fc4d1a9e19faeb006b42e9f7b4b294b734618",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
