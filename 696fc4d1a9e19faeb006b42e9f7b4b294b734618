@@ -22,6 +22,30 @@
       "revId": "696fc4d1a9e19faeb006b42e9f7b4b294b734618",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b887bef_62b1cec4",
+        "filename": "drivers/block/zram/zram_drv.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1374565
+      },
+      "writtenOn": "2019-01-23T19:43:28Z",
+      "side": 1,
+      "message": "I was trying to keep the implementation consistent with https://partner-android-review.googlesource.com/c/kernel/private/msm-google/+/1181193/16/drivers/block/zram/zram_drv.c\n\nminchan@ will probably have a better answer.",
+      "parentUuid": "e9e5805b_901842c7",
+      "range": {
+        "startLine": 652,
+        "startChar": 0,
+        "endLine": 656,
+        "endChar": 27
+      },
+      "revId": "696fc4d1a9e19faeb006b42e9f7b4b294b734618",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
