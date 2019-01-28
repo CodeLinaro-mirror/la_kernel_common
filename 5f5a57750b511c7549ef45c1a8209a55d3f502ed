@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40b57aa3_49cb0aee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2019-01-28T17:38:50Z",
+      "side": 1,
+      "message": "What is this Bug number?",
+      "revId": "5f5a57750b511c7549ef45c1a8209a55d3f502ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
