@@ -16,6 +16,24 @@
       "revId": "5f5a57750b511c7549ef45c1a8209a55d3f502ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86b480ad_870bba9c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1200908
+      },
+      "writtenOn": "2019-01-28T17:40:56Z",
+      "side": 1,
+      "message": "That\u0027s the EAS bug number. It is required for all EAS-related changes going in Android now ;)",
+      "parentUuid": "40b57aa3_49cb0aee",
+      "revId": "5f5a57750b511c7549ef45c1a8209a55d3f502ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
