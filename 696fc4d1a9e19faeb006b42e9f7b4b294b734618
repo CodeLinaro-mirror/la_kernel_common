@@ -46,6 +46,30 @@
       "revId": "696fc4d1a9e19faeb006b42e9f7b4b294b734618",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bbb5dcb_274e829b",
+        "filename": "drivers/block/zram/zram_drv.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1275554
+      },
+      "writtenOn": "2019-01-30T06:52:52Z",
+      "side": 1,
+      "message": "Originally, I wanted to make the write-back works asynchronously so that it had different bio_vec but I went synchronous writeback for the simple start. \nIOW, it was just leftover of last implementation. No harmful.\nMaybe, will have a chance to clean up or enhance soon. \nThanks.",
+      "parentUuid": "2b887bef_62b1cec4",
+      "range": {
+        "startLine": 652,
+        "startChar": 0,
+        "endLine": 656,
+        "endChar": 27
+      },
+      "revId": "696fc4d1a9e19faeb006b42e9f7b4b294b734618",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
