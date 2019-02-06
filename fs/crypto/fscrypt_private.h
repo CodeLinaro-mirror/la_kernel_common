@@ -87,6 +87,9 @@ struct fscrypt_info {
 	u8 ci_flags;
 	u8 ci_master_key_descriptor[FS_KEY_DESCRIPTOR_SIZE];
 	u8 ci_nonce[FS_KEY_DERIVATION_NONCE_SIZE];
+	u8* raw_key;
+	int keysize;
+	bool hw_encrypt;
 };
 
 typedef enum {

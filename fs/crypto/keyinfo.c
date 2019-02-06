@@ -498,6 +498,7 @@ static void put_crypt_info(struct fscrypt_info *ci)
 		crypto_free_skcipher(ci->ci_ctfm);
 		crypto_free_cipher(ci->ci_essiv_tfm);
 	}
+	kzfree(ci->raw_key);
 	kmem_cache_free(fscrypt_info_cachep, ci);
 }
 
@@ -547,6 +548,9 @@ int fscrypt_get_encryption_info(struct inode *inode)
 	memcpy(crypt_info->ci_master_key_descriptor, ctx.master_key_descriptor,
 	       FS_KEY_DESCRIPTOR_SIZE);
 	memcpy(crypt_info->ci_nonce, ctx.nonce, FS_KEY_DERIVATION_NONCE_SIZE);
+	crypt_info->raw_key = NULL;
+	crypt_info->keysize = 0;
+	crypt_info->hw_encrypt = false;
 
 	mode = select_encryption_mode(crypt_info, inode);
 	if (IS_ERR(mode)) {
@@ -573,8 +577,20 @@ int fscrypt_get_encryption_info(struct inode *inode)
 	if (res)
 		goto out;
 
-	if (cmpxchg(&inode->i_crypt_info, NULL, crypt_info) == NULL)
+	if ((crypt_info->ci_flags & FS_POLICY_FLAGS_HW_ENCRYPTION) && S_ISREG(inode->i_mode)) {
+		crypt_info->raw_key = raw_key;
+		crypt_info->keysize = mode->keysize;
+		crypt_info->hw_encrypt = true;
+	}
+
+	if (cmpxchg(&inode->i_crypt_info, NULL, crypt_info) == NULL) {
 		crypt_info = NULL;
+		if ((ctx.flags & FS_POLICY_FLAGS_HW_ENCRYPTION) && S_ISREG(inode->i_mode)) {
+			raw_key = NULL;
+		}
+	} else {
+		crypt_info->raw_key = NULL;
+	}
 out:
 	if (res == -ENOKEY)
 		res = 0;
