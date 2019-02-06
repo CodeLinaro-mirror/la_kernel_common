@@ -141,6 +141,12 @@ enum mq_rq_state {
 	MQ_RQ_COMPLETE		= 2,
 };
 
+struct rq_crypt_context {
+	bool enabled;
+	uint key_slot;
+	u64 data_unit_num;
+};
+
 /*
  * Try to put the fields that are referenced together in the same cacheline.
  *
@@ -268,6 +274,9 @@ struct request {
 #ifdef CONFIG_BLK_CGROUP
 	struct request_list *rl;		/* rl this rq is alloced from */
 #endif
+
+	/* for inline crypto */
+	struct rq_crypt_context crypt_context;
 };
 
 static inline bool blk_op_is_scsi(unsigned int op)

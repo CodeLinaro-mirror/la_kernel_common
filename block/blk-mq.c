@@ -331,6 +331,10 @@ static struct request *blk_mq_rq_ctx_init(struct blk_mq_alloc_data *data,
 	rq->rl = NULL;
 #endif
 
+	rq->crypt_context.enabled = false;
+	rq->crypt_context.key_slot = 0;
+	rq->crypt_context.data_unit_num = ~0;
+
 	data->ctx->rq_dispatched[op_is_sync(op)]++;
 	refcount_set(&rq->ref, 1);
 	return rq;

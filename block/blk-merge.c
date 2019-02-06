@@ -500,6 +500,14 @@ static inline int ll_new_hw_segment(struct request_queue *q,
 	 * counters.
 	 */
 	req->nr_phys_segments += nr_phys_segs;
+
+	BUG_ON(bio->bi_crypt_context.enabled != req->crypt_context.enabled);
+
+	if (bio->bi_crypt_context.enabled &&
+		bio->bi_crypt_context.data_unit_num < req->crypt_context.data_unit_num) {
+		req->crypt_context.data_unit_num = bio->bi_crypt_context.data_unit_num;
+	}
+
 	return 1;
 
 no_merge:
@@ -620,6 +628,11 @@ static int ll_merge_requests_fn(struct request_queue *q, struct request *req,
 
 	/* Merge is OK... */
 	req->nr_phys_segments = total_phys_segments;
+
+	if (next->crypt_context.enabled &&
+		next->crypt_context.data_unit_num < req->crypt_context.data_unit_num) {
+		req->crypt_context.data_unit_num = next->crypt_context.data_unit_num;
+	}
 	return 1;
 }
 
@@ -707,6 +720,11 @@ static struct request *attempt_merge(struct request_queue *q,
 	 */
 	if (req->write_hint != next->write_hint)
 		return NULL;
+
+	if (req->crypt_context.enabled != next->crypt_context.enabled ||
+		req->crypt_context.key_slot != next->crypt_context.key_slot) {
+		return NULL;
+	}
 
 	/*
 	 * If we are allowed to merge, then append bio list
@@ -837,6 +855,13 @@ bool blk_rq_merge_ok(struct request *rq, struct bio *bio)
 	 */
 	if (rq->write_hint != bio->bi_write_hint)
 		return false;
+
+	/* only merge if the ICE context is the same */
+	/* TODO - fix */
+	if (bio->bi_crypt_context.enabled != rq->crypt_context.enabled ||
+		bio->bi_crypt_context.key_slot != rq->crypt_context.key_slot) {
+		return false;
+	}
 
 	return true;
 }

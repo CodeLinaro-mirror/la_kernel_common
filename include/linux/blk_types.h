@@ -137,6 +137,12 @@ static inline void bio_issue_init(struct bio_issue *issue,
 			((u64)size << BIO_ISSUE_SIZE_SHIFT));
 }
 
+struct bio_crypt_ctx {
+	bool enabled;
+	uint key_slot;
+	u64 data_unit_num;
+};
+
 /*
  * main unit of I/O for the block layer and lower layers (ie drivers and
  * stacking drivers)
@@ -172,6 +178,7 @@ struct bio {
 	bio_end_io_t		*bi_end_io;
 
 	void			*bi_private;
+	struct bio_crypt_ctx	bi_crypt_context;
 #ifdef CONFIG_BLK_CGROUP
 	/*
 	 * Optional ioc and css associated with this bio.  Put on bio

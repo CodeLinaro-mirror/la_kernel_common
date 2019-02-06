@@ -198,6 +198,9 @@ void blk_rq_init(struct request_queue *q, struct request *rq)
 	rq->internal_tag = -1;
 	rq->start_time_ns = ktime_get_ns();
 	rq->part = NULL;
+	rq->crypt_context.enabled = false;
+	rq->crypt_context.key_slot = 0;
+	rq->crypt_context.data_unit_num = ~0;
 }
 EXPORT_SYMBOL(blk_rq_init);
 
@@ -1982,6 +1985,11 @@ void blk_init_request_from_bio(struct request *req, struct bio *bio)
 		req->ioprio = IOPRIO_PRIO_VALUE(IOPRIO_CLASS_NONE, 0);
 	req->write_hint = bio->bi_write_hint;
 	blk_rq_bio_prep(req->q, req, bio);
+	req->crypt_context.enabled = bio->bi_crypt_context.enabled;
+	if (bio->bi_crypt_context.enabled) {
+		req->crypt_context.key_slot = bio->bi_crypt_context.key_slot;
+		req->crypt_context.data_unit_num = bio->bi_crypt_context.data_unit_num;
+	}
 }
 EXPORT_SYMBOL_GPL(blk_init_request_from_bio);
 
@@ -3123,8 +3131,13 @@ bool blk_update_request(struct request *req, blk_status_t error,
 	req->__data_len -= total_bytes;
 
 	/* update sector only for requests with clear definition of sector */
-	if (!blk_rq_is_passthrough(req))
+	if (!blk_rq_is_passthrough(req)) {
 		req->__sector += total_bytes >> 9;
+		/* TODO: what should we do here? */
+		if (req->crypt_context.enabled) {
+			req->crypt_context.data_unit_num += total_bytes >> 12;
+		}
+	}
 
 	/* mixed attributes always follow the first bio */
 	if (req->rq_flags & RQF_MIXED_MERGE) {
@@ -3496,6 +3509,7 @@ static void __blk_rq_prep_clone(struct request *dst, struct request *src)
 	dst->nr_phys_segments = src->nr_phys_segments;
 	dst->ioprio = src->ioprio;
 	dst->extra_len = src->extra_len;
+	dst->crypt_context = src->crypt_context;
 }
 
 /**

@@ -46,6 +46,7 @@
 #include "ufs_quirks.h"
 #include "unipro.h"
 #include "ufs-sysfs.h"
+#include "ufshcd-crypto.h"
 
 #define CREATE_TRACE_POINTS
 #include <trace/events/ufs.h>
@@ -881,7 +882,11 @@ static void ufshcd_enable_run_stop_reg(struct ufs_hba *hba)
  */
 static inline void ufshcd_hba_start(struct ufs_hba *hba)
 {
-	ufshcd_writel(hba, CONTROLLER_ENABLE, REG_CONTROLLER_ENABLE);
+	u32 val = CONTROLLER_ENABLE;
+	if (ufshcd_is_crypto_enabled(hba)) {
+		val |= CRYPTO_GENERAL_ENABLE;
+	}
+	ufshcd_writel(hba, val, REG_CONTROLLER_ENABLE);
 }
 
 /**
@@ -2205,10 +2210,22 @@ static void ufshcd_prepare_req_desc_hdr(struct ufshcd_lrb *lrbp,
 	if (lrbp->intr_cmd)
 		dword_0 |= UTP_REQ_DESC_INT_CMD;
 
+	if (lrbp->crypto_enable) {
+		dword_0 |= UTP_REQ_DESC_CRYPTO_ENABLE_CMD;
+		dword_0 |= lrbp->crypto_key_slot;
+		req_desc->header.dword_1 =
+			cpu_to_le32(lrbp->data_unit_num_lower);
+		req_desc->header.dword_3 =
+			cpu_to_le32(lrbp->data_unit_num_upper);
+	} else {
+		/* dword_1 and dword_3 are reserved, hence they are set to 0 */
+		req_desc->header.dword_1 = 0;
+		req_desc->header.dword_3 = 0;
+	}
+
 	/* Transfer request descriptor header fields */
 	req_desc->header.dword_0 = cpu_to_le32(dword_0);
-	/* dword_1 is reserved, hence it is set to 0 */
-	req_desc->header.dword_1 = 0;
+	
 	/*
 	 * assigning invalid value for command status. Controller
 	 * updates OCS on command completion, with the command
@@ -2216,9 +2233,7 @@ static void ufshcd_prepare_req_desc_hdr(struct ufshcd_lrb *lrbp,
 	 */
 	req_desc->header.dword_2 =
 		cpu_to_le32(OCS_INVALID_COMMAND_STATUS);
-	/* dword_3 is reserved, hence it is set to 0 */
-	req_desc->header.dword_3 = 0;
-
+	
 	req_desc->prd_table_length = 0;
 }
 
@@ -2392,6 +2407,7 @@ static int ufshcd_queuecommand(struct Scsi_Host *host, struct scsi_cmnd *cmd)
 	unsigned long flags;
 	int tag;
 	int err = 0;
+	struct rq_crypt_context crypt_ctx;
 
 	hba = shost_priv(host);
 
@@ -2465,6 +2481,27 @@ static int ufshcd_queuecommand(struct Scsi_Host *host, struct scsi_cmnd *cmd)
 	lrbp->task_tag = tag;
 	lrbp->lun = ufshcd_scsi_to_upiu_lun(cmd->device->lun);
 	lrbp->intr_cmd = !ufshcd_is_intr_aggr_allowed(hba) ? true : false;
+
+	if (cmd->request->crypt_context.enabled) {
+		if (!ufshcd_is_crypto_enabled(hba)) {
+			/* Upper layer asked us to do inline encryption
+			 * but that isn't enabled. */
+			BUG();
+		}
+		lrbp->crypto_enable = true;
+		crypt_ctx = cmd->request->crypt_context;
+		if (!crypto_cfg_slot_in_bounds(hba, crypt_ctx.key_slot)) {
+			err = -EINVAL;
+			clear_bit_unlock(tag, &hba->lrb_in_use);
+			goto out;
+		}
+		lrbp->crypto_key_slot = crypt_ctx.key_slot;
+		lrbp->data_unit_num_lower = (u32)(crypt_ctx.data_unit_num & 0xFFFFFFFF);
+		lrbp->data_unit_num_upper = (u32)((crypt_ctx.data_unit_num >> 32) & 0xFFFFFFFF);
+	} else {
+		lrbp->crypto_enable = false;
+	}
+
 	lrbp->req_abort_skip = false;
 
 	ufshcd_comp_scsi_upiu(hba, lrbp);
@@ -2498,6 +2535,7 @@ static int ufshcd_compose_dev_cmd(struct ufs_hba *hba,
 	lrbp->task_tag = tag;
 	lrbp->lun = 0; /* device management cmd is not specific to any LUN */
 	lrbp->intr_cmd = true; /* No interrupt aggregation */
+	lrbp->crypto_enable = false; /* No crypto operations */
 	hba->dev_cmd.type = cmd_type;
 
 	return ufshcd_comp_devman_upiu(hba, lrbp);
@@ -4761,6 +4799,8 @@ ufshcd_transfer_rsp_status(struct ufs_hba *hba, struct ufshcd_lrb *lrbp)
 	case OCS_MISMATCH_RESP_UPIU_SIZE:
 	case OCS_PEER_COMM_FAILURE:
 	case OCS_FATAL_ERROR:
+	case OCS_INVALID_CRYPTO_CONFIG:
+	case OCS_GENERAL_CRYPTO_ERROR:
 	default:
 		result |= DID_ERROR << 16;
 		dev_err(hba->dev,
@@ -5972,6 +6012,9 @@ static int ufshcd_host_reset_and_restore(struct ufs_hba *hba)
 
 	if (!err && (hba->ufshcd_state != UFSHCD_STATE_OPERATIONAL))
 		err = -EIO;
+
+	/* TODO reset crypto engine */
+
 out:
 	if (err)
 		dev_err(hba->dev, "%s: Host init failed %d\n", __func__, err);
@@ -8145,6 +8188,11 @@ int ufshcd_init(struct ufs_hba *hba, void __iomem *mmio_base, unsigned int irq)
 
 	async_schedule(ufshcd_async_scan, hba);
 	ufs_sysfs_add_nodes(hba->dev);
+
+	/* Init crypto */
+	if (ufshcd_hba_init_crypto(hba) == 0) {
+		ufshcd_crypto_enable(hba, true);
+	}
 
 	return 0;
 
