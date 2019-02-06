@@ -27,6 +27,7 @@
 #include <linux/percpu-refcount.h>
 #include <linux/scatterlist.h>
 #include <linux/blkzoned.h>
+#include <linux/keyslot-manager.h>
 
 struct module;
 struct scsi_ioctl_command;
@@ -565,6 +566,9 @@ struct request_queue {
 	void			*dma_drain_buffer;
 	unsigned int		dma_pad_mask;
 	unsigned int		dma_alignment;
+
+	/* Inline crypto capabilities */
+	struct keyslot_manager* ksm;
 
 	struct blk_queue_tag	*queue_tags;
 

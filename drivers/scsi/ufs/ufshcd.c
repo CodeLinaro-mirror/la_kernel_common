@@ -4621,9 +4621,19 @@ static int ufshcd_change_queue_depth(struct scsi_device *sdev, int depth)
 static int ufshcd_slave_configure(struct scsi_device *sdev)
 {
 	struct request_queue *q = sdev->request_queue;
+	struct ufs_hba *hba = shost_priv(sdev->host);
 
 	blk_queue_update_dma_pad(q, PRDT_DATA_BYTE_COUNT_PAD - 1);
 	blk_queue_max_segment_size(q, PRDT_DATA_BYTE_COUNT_MAX);
+
+	if (ufshcd_hba_is_crypto_supported(hba)) {
+		q->ksm = keyslot_manager_create(
+		    hba->crypto_capabilities.config_count+1,
+		    &ufshcd_ksm_ops, hba);
+		if (!q->ksm) {
+			ufshcd_crypto_enable(hba, false);
+		}
+	}
 
 	return 0;
 }
@@ -4635,6 +4645,8 @@ static int ufshcd_slave_configure(struct scsi_device *sdev)
 static void ufshcd_slave_destroy(struct scsi_device *sdev)
 {
 	struct ufs_hba *hba;
+	struct request_queue *q = sdev->request_queue;
+
 
 	hba = shost_priv(sdev->host);
 	/* Drop the reference as it won't be needed anymore */
@@ -4644,6 +4656,10 @@ static void ufshcd_slave_destroy(struct scsi_device *sdev)
 		spin_lock_irqsave(hba->host->host_lock, flags);
 		hba->sdev_ufs_device = NULL;
 		spin_unlock_irqrestore(hba->host->host_lock, flags);
+	}
+
+	if (q && q->ksm) {
+		keyslot_manager_destroy(q->ksm);
 	}
 }
 
