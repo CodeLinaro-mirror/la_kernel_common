@@ -29,6 +29,7 @@
 #include <linux/workqueue.h>
 #include <linux/cgroup.h>
 #include <linux/blk-cgroup.h>
+#include <linux/keyslot-manager.h>
 
 #include <trace/events/block.h>
 #include "blk.h"
@@ -270,6 +271,38 @@ static void bio_free(struct bio *bio)
 		kfree(bio);
 	}
 }
+
+#ifdef CONFIG_BLK_CRYPT_CTX
+static inline void bio_crypt_advance(struct bio *bio, unsigned int bytes)
+{
+	if (bio_is_encrypted(bio)) {
+		bio->bi_crypt_context.data_unit_num +=
+			bytes >> bio->bi_crypt_context.data_unit_size_bits;
+	}
+}
+
+inline void bio_clone_crypt_context(struct bio *dst, struct bio *src)
+{
+	if (bio_crypt_swhandled(src))
+		return;
+	dst->bi_crypt_context = src->bi_crypt_context;
+
+	if (!bio_crypt_has_keyslot(src))
+		return;
+
+	WARN_ON(!keyslot_manager_get_slot(src->bi_crypt_context.processing_ksm,
+					  src->bi_crypt_context.keyslot));
+}
+
+inline bool bio_crypt_check_process_ksm(struct bio *bio,
+					struct request_queue *q)
+{
+	WARN_ON(!bio_crypt_has_keyslot(bio));
+	return q->ksm == bio->bi_crypt_context.processing_ksm;
+}
+EXPORT_SYMBOL(bio_crypt_check_process_ksm);
+
+#endif /* CONFIG_BLK_CRYPT_CTX */
 
 /*
  * Users of this function have their own bio allocation. Subsequently,
@@ -609,6 +642,7 @@ void __bio_clone_fast(struct bio *bio, struct bio *bio_src)
 	bio->bi_write_hint = bio_src->bi_write_hint;
 	bio->bi_iter = bio_src->bi_iter;
 	bio->bi_io_vec = bio_src->bi_io_vec;
+	bio_clone_crypt_context(bio, bio_src);
 
 	bio_clone_blkcg_association(bio, bio_src);
 }
@@ -951,6 +985,7 @@ void bio_advance(struct bio *bio, unsigned bytes)
 		bio_integrity_advance(bio, bytes);
 
 	bio_advance_iter(bio, &bio->bi_iter, bytes);
+	bio_crypt_advance(bio, bytes);
 }
 EXPORT_SYMBOL(bio_advance);
 
@@ -1745,6 +1780,10 @@ void bio_endio(struct bio *bio)
 again:
 	if (!bio_remaining_done(bio))
 		return;
+
+	if (blk_crypto_endio(bio) == -EAGAIN)
+		return;
+
 	if (!bio_integrity_endio(bio))
 		return;
 

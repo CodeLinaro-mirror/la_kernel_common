@@ -607,6 +607,165 @@ static inline void bvec_kunmap_irq(char *buffer, unsigned long *flags)
 }
 #endif
 
+#ifdef CONFIG_BLK_CRYPT_CTX
+extern void bio_clone_crypt_context(struct bio *dst, struct bio *src);
+
+static inline bool bio_crypt_test_flag(struct bio *bio, int flag_num)
+{
+	return !!(bio->bi_crypt_context.flags & (1 << flag_num));
+}
+
+static inline void bio_crypt_set_flag(struct bio *bio, int flag_num)
+{
+	bio->bi_crypt_context.flags |= (1 << flag_num);
+}
+
+static inline void bio_crypt_clear_flag(struct bio *bio, int flag_num)
+{
+	bio->bi_crypt_context.flags &= ~(1 << flag_num);
+}
+
+static inline bool bio_is_encrypted(struct bio *bio)
+{
+	return bio && bio_crypt_test_flag(bio, BIO_CRYPT_ENABLED_SHIFT);
+}
+
+static inline bool bio_crypt_swhandled(struct bio *bio)
+{
+	return bio_crypt_test_flag(bio, BIO_CRYPT_SWHANDLED_SHIFT);
+}
+
+static inline bool bio_crypt_has_keyslot(struct bio *bio)
+{
+	return bio_is_encrypted(bio) &&
+	       bio_crypt_test_flag(bio, BIO_CRYPT_KEYSLOT_SHIFT);
+}
+
+static inline void bio_crypt_set_swhandled(struct bio *bio)
+{
+	WARN_ON(!bio_crypt_has_keyslot(bio));
+	bio_crypt_set_flag(bio, BIO_CRYPT_SWHANDLED_SHIFT);
+
+	bio->bi_crypt_context.crypt_iter = bio->bi_iter;
+}
+
+static inline void bio_crypt_set_ctx(struct bio *bio,
+				     u8 *raw_key,
+				     enum blk_crypt_mode_index crypt_mode,
+				     u64 dun,
+				     unsigned int dun_bits)
+{
+	bio_crypt_set_flag(bio, BIO_CRYPT_ENABLED_SHIFT);
+	bio_crypt_clear_flag(bio, BIO_CRYPT_KEYSLOT_SHIFT);
+	bio_crypt_clear_flag(bio, BIO_CRYPT_SWHANDLED_SHIFT);
+	bio->bi_crypt_context.raw_key = raw_key;
+	bio->bi_crypt_context.data_unit_num = dun;
+	bio->bi_crypt_context.data_unit_size_bits = dun_bits;
+	bio->bi_crypt_context.crypt_mode = crypt_mode;
+	bio->bi_crypt_context.processing_ksm = NULL;
+	bio->bi_crypt_context.keyslot = 0;
+}
+
+static inline int bio_crypt_get_slot(struct bio *bio)
+{
+	return bio->bi_crypt_context.keyslot;
+}
+
+static inline void bio_crypt_set_keyslot(struct bio *bio,
+					 unsigned int keyslot,
+					 struct keyslot_manager *ksm)
+{
+	bio->bi_crypt_context.keyslot = keyslot;
+	bio_crypt_set_flag(bio, BIO_CRYPT_KEYSLOT_SHIFT);
+	bio->bi_crypt_context.processing_ksm = ksm;
+}
+
+static inline void bio_crypt_unset_keyslot(struct bio *bio)
+{
+	bio_crypt_clear_flag(bio, BIO_CRYPT_KEYSLOT_SHIFT);
+	bio_crypt_clear_flag(bio, BIO_CRYPT_SWHANDLED_SHIFT);
+	bio->bi_crypt_context.processing_ksm = NULL;
+	bio->bi_crypt_context.keyslot = 0;
+}
+
+static inline u8 *bio_crypt_raw_key(struct bio *bio)
+{
+	return bio->bi_crypt_context.raw_key;
+}
+
+static inline enum blk_crypt_mode_index bio_crypt_mode(struct bio *bio)
+{
+	return bio->bi_crypt_context.crypt_mode;
+}
+
+static inline u64 bio_crypt_data_unit_num(struct bio *bio)
+{
+	WARN_ON(!bio_is_encrypted(bio));
+	return bio->bi_crypt_context.data_unit_num;
+}
+
+extern bool bio_crypt_check_process_ksm(struct bio *bio,
+					       struct request_queue *q);
+
+#else
+static inline void bio_clone_crypt_context(struct bio *dst,
+					   struct bio *src) { }
+static inline void bio_crypt_advance(struct bio *bio,
+				     unsigned int bytes) { }
+
+static inline bool bio_is_encrypted(struct bio *bio)
+{
+	return false;
+}
+
+static inline void bio_crypt_set_ctx(struct bio *bio,
+				     u8 *raw_key,
+				     enum blk_crypt_mode_index crypt_mode,
+				     u64 dun,
+				     unsigned int dun_bits) { }
+
+static inline bool bio_crypt_swhandled(struct bio *bio)
+{
+	return false;
+}
+
+static inline void bio_crypt_set_swhandled(struct bio *bio) { }
+
+static inline bool bio_crypt_has_keyslot(struct bio *bio)
+{
+	return false;
+}
+
+static inline void bio_crypt_set_keyslot(struct bio *bio,
+					 unsigned int keyslot,
+					 struct keyslot_manager *ksm) { }
+
+static inline void bio_crypt_unset_keyslot(struct bio *bio) { }
+
+static inline int bio_crypt_get_slot(struct bio *bio)
+{
+	return -1;
+}
+
+static inline u8 *bio_crypt_raw_key(struct bio *bio)
+{
+	return NULL;
+}
+
+static inline u64 bio_crypt_data_unit_num(struct bio *bio)
+{
+	WARN_ON(1);
+	return 0;
+}
+
+static inline bool bio_crypt_check_process_ksm(struct bio *bio,
+					       struct request_queue *q)
+{
+	return false;
+}
+
+#endif /* CONFIG_BLK_CRYPT_CTX */
+
 /*
  * BIO list management for use by remapping drivers (e.g. DM or MD) and loop.
  *

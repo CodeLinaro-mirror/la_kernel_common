@@ -200,6 +200,19 @@ config BLK_SED_OPAL
 	Enabling this option enables users to setup/unlock/lock
 	Locking ranges for SED devices using the Opal protocol.
 
+config BLK_CRYPT_CTX
+	bool
+
+config BLK_KEYSLOT_MANAGER
+	bool
+
+config BLK_CRYPTO
+	bool "Enable encryption in block layer"
+	select BLK_CRYPT_CTX
+	select BLK_KEYSLOT_MANAGER
+	help
+	TODO: add help
+
 menu "Partition Types"
 
 source "block/partitions/Kconfig"

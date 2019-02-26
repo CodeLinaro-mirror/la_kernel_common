@@ -1064,6 +1064,10 @@ struct request_queue *blk_alloc_queue_node(gfp_t gfp_mask, int node_id,
 
 	init_waitqueue_head(&q->mq_freeze_wq);
 
+#ifdef CONFIG_BLK_KEYSLOT_MANAGER
+	q->ksm = NULL;
+#endif
+
 	/*
 	 * Init percpu_ref in atomic mode so that it's faster to shutdown.
 	 * See blk_register_queue() for details.
@@ -2401,6 +2405,14 @@ blk_qc_t generic_make_request(struct bio *bio)
 		goto out;
 
 	/*
+	 * TODO: is it alright to call it here, considering it might
+	 * sleep for a while for a keyslot to open up? If necessary, we
+	 * could instead use a workqueue to do things instead.
+	 */
+	if (blk_crypto_submit_bio(bio))
+		goto out;
+
+	/*
 	 * We only want one ->make_request_fn to be active at a time, else
 	 * stack usage with stacked devices could be a problem.  So use
 	 * current->bio_list to keep a list of requests submited by a
@@ -2506,6 +2518,8 @@ blk_qc_t direct_make_request(struct bio *bio)
 
 	if (!generic_make_request_checks(bio))
 		return BLK_QC_T_NONE;
+
+	/* TODO: call blk-crypto */
 
 	if (unlikely(blk_queue_enter(q, nowait ? BLK_MQ_REQ_NOWAIT : 0))) {
 		if (nowait && !blk_queue_dying(q))
@@ -3962,6 +3976,8 @@ int __init blk_dev_init(void)
 #ifdef CONFIG_DEBUG_FS
 	blk_debugfs_root = debugfs_create_dir("block", NULL);
 #endif
+
+	blk_crypto_init();
 
 	return 0;
 }
