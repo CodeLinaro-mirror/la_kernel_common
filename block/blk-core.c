@@ -35,6 +35,7 @@
 #include <linux/blk-cgroup.h>
 #include <linux/debugfs.h>
 #include <linux/bpf.h>
+#include <linux/blk-crypto.h>
 
 #define CREATE_TRACE_POINTS
 #include <trace/events/block.h>
@@ -1067,6 +1068,10 @@ struct request_queue *blk_alloc_queue_node(gfp_t gfp_mask, int node_id,
 	queue_flag_set_unlocked(QUEUE_FLAG_BYPASS, q);
 
 	init_waitqueue_head(&q->mq_freeze_wq);
+
+#ifdef CONFIG_BLK_KEYSLOT_MANAGER
+	q->ksm = NULL;
+#endif
 
 	/*
 	 * Init percpu_ref in atomic mode so that it's faster to shutdown.
@@ -2458,7 +2463,9 @@ blk_qc_t generic_make_request(struct bio *bio)
 			/* Create a fresh bio_list for all subordinate requests */
 			bio_list_on_stack[1] = bio_list_on_stack[0];
 			bio_list_init(&bio_list_on_stack[0]);
-			ret = q->make_request_fn(q, bio);
+
+			if (!blk_crypto_submit_bio(&bio))
+				ret = q->make_request_fn(q, bio);
 
 			/* sort new bios into those for a lower level
 			 * and those for the same level
@@ -2509,6 +2516,9 @@ blk_qc_t direct_make_request(struct bio *bio)
 	blk_qc_t ret;
 
 	if (!generic_make_request_checks(bio))
+		return BLK_QC_T_NONE;
+
+	if (blk_crypto_submit_bio(&bio))
 		return BLK_QC_T_NONE;
 
 	if (unlikely(blk_queue_enter(q, nowait ? BLK_MQ_REQ_NOWAIT : 0))) {
@@ -3966,6 +3976,8 @@ int __init blk_dev_init(void)
 #ifdef CONFIG_DEBUG_FS
 	blk_debugfs_root = debugfs_create_dir("block", NULL);
 #endif
+
+	blk_crypto_init();
 
 	return 0;
 }
