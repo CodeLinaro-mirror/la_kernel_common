@@ -77,7 +77,6 @@ static int blk_crypto_keyslot_program(void *priv, const u8 *key,
 		slot_mem[slot].tfm = tfm;
 	}
 
-
 	err = crypto_skcipher_setkey(tfm, key, keysize);
 
 	if (err) {
