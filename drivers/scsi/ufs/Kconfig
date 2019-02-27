@@ -109,3 +109,13 @@ config SCSI_UFS_HISI
 
 	  Select this if you have UFS controller on Hisilicon chipset.
 	  If unsure, say N.
+
+config SCSI_UFS_CRYPTO
+	bool "UFS Crypto Engine Support"
+	depends on SCSI_UFSHCD && BLK_KEYSLOT_MANAGER
+	help
+	Enable Crypto Engine Support in UFS.
+	Enabling this makes it possible for the kernel to use the crypto
+	capabilities of the UFS device (if present) to perform crypto
+	operations on data being transferred into/out of the device.
+
