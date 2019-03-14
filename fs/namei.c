@@ -43,6 +43,9 @@
 #include "internal.h"
 #include "mount.h"
 
+#define CREATE_TRACE_POINTS
+#include <trace/events/namei.h>
+
 /* [Feb-1997 T. Schoebel-Theuer]
  * Fundamental changes in the pathname lookup mechanisms (namei)
  * were necessary because of omirr.  The reason is that omirr needs
@@ -801,6 +804,39 @@ static inline int d_revalidate(struct dentry *dentry, unsigned int flags)
 		return 1;
 }
 
+#define MAX_PATH_SIZE 128
+
+static int success_walk(struct nameidata *nd)
+{
+	struct path *pt = &nd->path;
+	struct inode *i = nd->inode;
+	char buf[MAX_PATH_SIZE];
+	int n = MAX_PATH_SIZE;
+	char *p;
+
+	/* When eBPF does not use the tracepoint, the overhead is just a branch */
+	if (!trace_inodepath_enabled())
+		return 0;
+
+	p = d_path(pt, buf, n);
+
+	if (!IS_ERR(p)) {
+		char *end = mangle_path(buf, p, "\n");
+		if (end) {
+			buf[end - buf] = 0;
+		} else {
+			buf[n-1] = 0;
+		}
+	} else {
+		buf[0] = 0;
+	}
+
+	buf[MAX_PATH_SIZE - 1] = 0;
+
+	trace_inodepath(i, buf);
+	return 0;
+}
+
 /**
  * complete_walk - successful completion of path walk
  * @nd:  pointer nameidata
@@ -824,14 +860,14 @@ static int complete_walk(struct nameidata *nd)
 	}
 
 	if (likely(!(nd->flags & LOOKUP_JUMPED)))
-		return 0;
+		return success_walk(nd);
 
 	if (likely(!(dentry->d_flags & DCACHE_OP_WEAK_REVALIDATE)))
-		return 0;
+		return success_walk(nd);
 
 	status = dentry->d_op->d_weak_revalidate(dentry, nd->flags);
 	if (status > 0)
-		return 0;
+		return success_walk(nd);
 
 	if (!status)
 		status = -ESTALE;
