@@ -21,6 +21,7 @@
 #include <linux/module.h>
 #include <linux/log2.h>
 #include <asm/page.h>
+#include <linux/acpi.h>
 #include "trusty-log.h"
 
 #define TRUSTY_LOG_SIZE (PAGE_SIZE * 2)
@@ -262,6 +263,12 @@ static const struct of_device_id trusty_test_of_match[] = {
 	{},
 };
 
+static const struct acpi_device_id trusty_log_acpi_match[] = {
+	{ "TRUS0003", 0 },
+	{ },
+};
+MODULE_DEVICE_TABLE(acpi, trusty_log_acpi_match);
+
 static struct platform_driver trusty_log_driver = {
 	.probe = trusty_log_probe,
 	.remove = trusty_log_remove,
@@ -269,6 +276,7 @@ static struct platform_driver trusty_log_driver = {
 		.name = "trusty-log",
 		.owner = THIS_MODULE,
 		.of_match_table = trusty_test_of_match,
+		.acpi_match_table = ACPI_PTR(trusty_log_acpi_match),
 	},
 };
 
