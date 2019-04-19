@@ -25,6 +25,10 @@
 #include <linux/trusty/smcall.h>
 #include <linux/trusty/sm_err.h>
 #include <linux/trusty/trusty.h>
+#include <linux/acpi.h>
+
+#define IRQ_VECTOR_OFFSET 0x30
+#define IRQ_FOR_LK_TIMER 1
 
 struct trusty_irq {
 	struct trusty_irq_state *is;
@@ -295,6 +299,41 @@ static int trusty_irq_create_irq_mapping(struct trusty_irq_state *is, int irq)
 	return (!ret) ? -EINVAL : ret;
 }
 
+#if defined(CONFIG_X86)
+static inline void trusty_irq_unmask(struct irq_data *data)
+{
+	return;
+}
+
+static inline void trusty_irq_mask(struct irq_data *data)
+{
+	return;
+}
+
+static void trusty_irq_enable(struct irq_data *data)
+{
+	return;
+}
+
+static void trusty_irq_disable(struct irq_data *data)
+{
+	return;
+}
+
+void trusty_irq_eoi(struct irq_data *data)
+{
+	return;
+}
+static struct irq_chip trusty_irq_chip = {
+		.name = "TRUSY-IRQ",
+		.irq_mask = trusty_irq_mask,
+		.irq_unmask = trusty_irq_unmask,
+		.irq_enable = trusty_irq_enable,
+		.irq_disable = trusty_irq_disable,
+		.irq_eoi = trusty_irq_eoi,
+};
+#endif
+
 static int trusty_irq_init_normal_irq(struct trusty_irq_state *is, int tirq)
 {
 	int ret;
@@ -304,12 +343,16 @@ static int trusty_irq_init_normal_irq(struct trusty_irq_state *is, int tirq)
 
 	dev_dbg(is->dev, "%s: irq %d\n", __func__, tirq);
 
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 	irq = trusty_irq_create_irq_mapping(is, tirq);
 	if (irq < 0) {
 		dev_err(is->dev,
 			"trusty_irq_create_irq_mapping failed (%d)\n", irq);
 		return irq;
 	}
+#elif defined(CONFIG_X86_64)
+	irq = tirq;
+#endif
 
 	trusty_irq = kzalloc(sizeof(*trusty_irq), GFP_KERNEL);
 	if (!trusty_irq)
@@ -322,6 +365,16 @@ static int trusty_irq_init_normal_irq(struct trusty_irq_state *is, int tirq)
 	spin_lock_irqsave(&is->normal_irqs_lock, irq_flags);
 	hlist_add_head(&trusty_irq->node, &is->normal_irqs.inactive);
 	spin_unlock_irqrestore(&is->normal_irqs_lock, irq_flags);
+
+#if defined(CONFIG_X86)
+	ret = irq_alloc_desc_at(irq, 0);
+	if (ret >= 0)
+		irq_set_chip_and_handler_name(irq, &trusty_irq_chip, handle_edge_irq, "trusty-irq");
+	else if (ret != -EEXIST) {
+		dev_err(is->dev, "can't allocate irq desc %d\n", ret);
+		goto err_request_irq;
+	}
+#endif
 
 	ret = request_irq(irq, trusty_irq_handler, IRQF_NO_THREAD,
 			  "trusty", trusty_irq);
@@ -410,10 +463,24 @@ static int trusty_irq_init_one(struct trusty_irq_state *is,
 	if (irq < 0)
 		return irq;
 
+#if defined(CONFIG_X86)
+	irq += 1;
+	dev_info(is->dev, "irq from lk = %d\n", irq);
+
+	WARN_ON(irq - IRQ_VECTOR_OFFSET != IRQ_FOR_LK_TIMER);
+#endif
+
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 	if (per_cpu)
 		ret = trusty_irq_init_per_cpu_irq(is, irq);
 	else
 		ret = trusty_irq_init_normal_irq(is, irq);
+#elif defined(CONFIG_X86_64)
+	if (per_cpu)
+		ret = trusty_irq_init_per_cpu_irq(is, irq - IRQ_VECTOR_OFFSET);
+	else
+		ret = trusty_irq_init_normal_irq(is, irq - IRQ_VECTOR_OFFSET);
+#endif 
 
 	if (ret) {
 		dev_warn(is->dev,
@@ -428,7 +495,9 @@ static void trusty_irq_free_irqs(struct trusty_irq_state *is)
 {
 	struct trusty_irq *irq;
 	struct hlist_node *n;
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 	unsigned int cpu;
+#endif
 
 	hlist_for_each_entry_safe(irq, n, &is->normal_irqs.inactive, node) {
 		dev_dbg(is->dev, "%s: irq %d\n", __func__, irq->irq);
@@ -436,6 +505,7 @@ static void trusty_irq_free_irqs(struct trusty_irq_state *is)
 		hlist_del(&irq->node);
 		kfree(irq);
 	}
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 	hlist_for_each_entry_safe(irq, n,
 				  &this_cpu_ptr(is->percpu_irqs)->inactive,
 				  node) {
@@ -452,6 +522,7 @@ static void trusty_irq_free_irqs(struct trusty_irq_state *is)
 		}
 		free_percpu(trusty_irq_handler_data);
 	}
+#endif
 }
 
 static int trusty_irq_probe(struct platform_device *pdev)
@@ -461,7 +532,7 @@ static int trusty_irq_probe(struct platform_device *pdev)
 	unsigned long irq_flags;
 	struct trusty_irq_state *is;
 
-	dev_dbg(&pdev->dev, "%s\n", __func__);
+	dev_info(&pdev->dev, "%s\n", __func__);
 
 	is = kzalloc(sizeof(*is), GFP_KERNEL);
 	if (!is) {
@@ -489,8 +560,10 @@ static int trusty_irq_probe(struct platform_device *pdev)
 		goto err_trusty_call_notifier_register;
 	}
 
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 	for (irq = 0; irq >= 0;)
 		irq = trusty_irq_init_one(is, irq, true);
+#endif
 	for (irq = 0; irq >= 0;)
 		irq = trusty_irq_init_one(is, irq, false);
 
@@ -550,6 +623,12 @@ static const struct of_device_id trusty_test_of_match[] = {
 	{},
 };
 
+static const struct acpi_device_id trusty_irq_acpi_match[] = {
+	{ "TRUS0002", 0 },
+	{ },
+};
+MODULE_DEVICE_TABLE(acpi, trusty_irq_acpi_match);
+
 static struct platform_driver trusty_irq_driver = {
 	.probe = trusty_irq_probe,
 	.remove = trusty_irq_remove,
@@ -557,6 +636,7 @@ static struct platform_driver trusty_irq_driver = {
 		.name = "trusty-irq",
 		.owner = THIS_MODULE,
 		.of_match_table = trusty_test_of_match,
+		.acpi_match_table = ACPI_PTR(trusty_irq_acpi_match),
 	},
 };
 
