@@ -32,6 +32,7 @@
 #include <linux/virtio_ring.h>
 
 #include <linux/atomic.h>
+#include <linux/acpi.h>
 
 #define  RSC_DESCR_VER  1
 
@@ -148,7 +149,11 @@ static bool trusty_virtio_notify(struct virtqueue *vq)
 
 	if (api_ver < TRUSTY_API_VERSION_SMP_NOP) {
 		atomic_set(&tvr->needs_kick, 1);
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 		queue_work(tctx->kick_wq, &tctx->kick_vqs);
+#elif defined(CONFIG_X86_64)
+		queue_work_on(0, tctx->kick_wq, &tctx->kick_vqs);
+#endif
 	} else {
 		trusty_enqueue_nop(tctx->dev->parent, &tvr->kick_nop);
 	}
@@ -661,8 +666,13 @@ static int trusty_virtio_probe(struct platform_device *pdev)
 		goto err_create_check_wq;
 	}
 
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 	tctx->kick_wq = alloc_workqueue("trusty-kick-wq",
 					WQ_UNBOUND | WQ_CPU_INTENSIVE, 0);
+#elif defined(CONFIG_X86_64)
+	tctx->kick_wq = alloc_workqueue("trusty-kick-wq",
+					WQ_CPU_INTENSIVE, 0);
+#endif
 	if (!tctx->kick_wq) {
 		ret = -ENODEV;
 		dev_err(&pdev->dev, "Failed create trusty-kick-wq\n");
@@ -726,6 +736,12 @@ static const struct of_device_id trusty_of_match[] = {
 
 MODULE_DEVICE_TABLE(of, trusty_of_match);
 
+static const struct acpi_device_id trusty_virtio_acpi_match[] = {
+	{ "TRUS0004", 0 },
+	{ },
+};
+MODULE_DEVICE_TABLE(acpi, trusty_virtio_acpi_match);
+
 static struct platform_driver trusty_virtio_driver = {
 	.probe = trusty_virtio_probe,
 	.remove = trusty_virtio_remove,
@@ -733,6 +749,7 @@ static struct platform_driver trusty_virtio_driver = {
 		.name = "trusty-virtio",
 		.owner = THIS_MODULE,
 		.of_match_table = trusty_of_match,
+		.acpi_match_table = ACPI_PTR(trusty_virtio_acpi_match),
 	},
 };
 
