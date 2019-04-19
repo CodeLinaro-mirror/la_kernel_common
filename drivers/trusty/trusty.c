@@ -12,7 +12,9 @@
  *
  */
 
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 #include <asm/compiler.h>
+#endif
 #include <linux/delay.h>
 #include <linux/module.h>
 #include <linux/of.h>
@@ -24,6 +26,7 @@
 #include <linux/trusty/smcall.h>
 #include <linux/trusty/sm_err.h>
 #include <linux/trusty/trusty.h>
+#include <linux/acpi.h>
 
 struct trusty_state;
 
@@ -53,7 +56,7 @@ struct trusty_state {
 #define SMC_ARCH_EXTENSION	""
 #define SMC_REGISTERS_TRASHED	"x4","x5","x6","x7","x8","x9","x10","x11", \
 				"x12","x13","x14","x15","x16","x17"
-#else
+#elif defined(CONFIG_ARM)
 #define SMC_ARG0		"r0"
 #define SMC_ARG1		"r1"
 #define SMC_ARG2		"r2"
@@ -62,6 +65,7 @@ struct trusty_state {
 #define SMC_REGISTERS_TRASHED	"ip"
 #endif
 
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 static inline ulong smc(ulong r0, ulong r1, ulong r2, ulong r3)
 {
 	register ulong _r0 asm(SMC_ARG0) = r0;
@@ -96,6 +100,66 @@ s32 trusty_fast_call32(struct device *dev, u32 smcnr, u32 a0, u32 a1, u32 a2)
 
 	return smc(smcnr, a0, a1, a2);
 }
+#elif defined(CONFIG_X86_64)
+
+#define EVMM_SMC_HC_ID 0x74727500
+
+struct trusty_smc_interface {
+	struct device *dev;
+	ulong args[5];
+};
+
+static inline ulong smc(ulong r0, ulong r1, ulong r2, ulong r3)
+{
+	register unsigned long smc_id asm("rax") = EVMM_SMC_HC_ID;
+	__asm__ __volatile__(
+		"vmcall; \n"
+		: "=D"(r0)
+		: "r"(smc_id), "D"(r0), "S"(r1), "d"(r2), "b"(r3)
+	);
+
+	return r0;
+}
+
+static void trusty_fast_call32_remote(void *args)
+{
+	struct trusty_smc_interface *p_args = args;
+	struct device *dev = p_args->dev;
+	ulong smcnr = p_args->args[0];
+	ulong a0 = p_args->args[1];
+	ulong a1 = p_args->args[2];
+	ulong a2 = p_args->args[3];
+	struct trusty_state *s = platform_get_drvdata(to_platform_device(dev));
+
+	BUG_ON(!s);
+	BUG_ON(!SMC_IS_FASTCALL(smcnr));
+	BUG_ON(SMC_IS_SMC64(smcnr));
+
+	p_args->args[4] = smc(smcnr, a0, a1, a2);
+}
+
+s32 trusty_fast_call32(struct device *dev, u32 smcnr, u32 a0, u32 a1, u32 a2)
+{
+	int cpu = 0;
+	int ret = 0;
+	struct trusty_smc_interface s;
+	s.dev = dev;
+	s.args[0] = smcnr;
+	s.args[1] = a0;
+	s.args[2] = a1;
+	s.args[3] = a2;
+	s.args[4] = 0;
+
+	ret = smp_call_function_single(cpu, trusty_fast_call32_remote, (void *)&s, 1);
+
+	if (ret) {
+		pr_err("%s: smp_call_function_single failed: %d\n", __func__, ret);
+	}
+
+	return s.args[4];
+}
+#endif
+
 EXPORT_SYMBOL(trusty_fast_call32);
 
 #ifdef CONFIG_64BIT
@@ -185,6 +249,7 @@ static void trusty_std_call_cpu_idle(struct trusty_state *s)
 	}
 }
 
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 s32 trusty_std_call32(struct device *dev, u32 smcnr, u32 a0, u32 a1, u32 a2)
 {
 	int ret;
@@ -221,6 +286,85 @@ s32 trusty_std_call32(struct device *dev, u32 smcnr, u32 a0, u32 a1, u32 a2)
 
 	return ret;
 }
+#elif defined(CONFIG_X86_64)
+
+struct trusty_std_call32_args {
+        struct device *dev;
+        u32 smcnr;
+        u32 a0;
+        u32 a1;
+        u32 a2;
+};
+
+static long trusty_std_call32_work(void *args)
+{
+	int ret;
+	struct device *dev;
+	u32 smcnr, a0, a1, a2;
+	struct trusty_state *s;
+	struct trusty_std_call32_args *work_args;
+
+	BUG_ON(!args);
+
+	work_args = (struct trusty_std_call32_args *)args;
+	dev = work_args->dev;
+	s = platform_get_drvdata(to_platform_device(dev));
+
+	smcnr = work_args->smcnr;
+	a0 = work_args->a0;
+	a1 = work_args->a1;
+	a2 = work_args->a2;
+
+	BUG_ON(SMC_IS_FASTCALL(smcnr));
+	BUG_ON(SMC_IS_SMC64(smcnr));
+
+	if (smcnr != SMC_SC_NOP) {
+		mutex_lock(&s->smc_lock);
+		reinit_completion(&s->cpu_idle_completion);
+	}
+
+	dev_dbg(dev, "%s(0x%x 0x%x 0x%x 0x%x) started\n",
+		__func__, smcnr, a0, a1, a2);
+
+	ret = trusty_std_call_helper(dev, smcnr, a0, a1, a2);
+	while (ret == SM_ERR_INTERRUPTED || ret == SM_ERR_CPU_IDLE) {
+		dev_dbg(dev, "%s(0x%x 0x%x 0x%x 0x%x) interrupted\n",
+			__func__, smcnr, a0, a1, a2);
+		if (ret == SM_ERR_CPU_IDLE)
+			trusty_std_call_cpu_idle(s);
+		ret = trusty_std_call_helper(dev, SMC_SC_RESTART_LAST, 0, 0, 0);
+	}
+	dev_dbg(dev, "%s(0x%x 0x%x 0x%x 0x%x) returned 0x%x\n",
+		__func__, smcnr, a0, a1, a2, ret);
+
+	WARN_ONCE(ret == SM_ERR_PANIC, "trusty crashed");
+
+	if (smcnr == SMC_SC_NOP)
+		complete(&s->cpu_idle_completion);
+	else
+		mutex_unlock(&s->smc_lock);
+
+	return ret;
+}
+
+s32 trusty_std_call32(struct device *dev, u32 smcnr, u32 a0, u32 a1, u32 a2)
+{
+	struct trusty_std_call32_args args = {
+		.dev = dev,
+		.smcnr = smcnr,
+		.a0 = a0,
+		.a1 = a1,
+		.a2 = a2,
+	};
+
+	/* bind cpu 0 for now since trusty OS is running on physical cpu #0*/
+	if((smcnr == SMC_SC_VDEV_KICK_VQ) || (smcnr == SMC_SC_LOCKED_NOP)
+		|| (smcnr == SMC_SC_NOP))
+		return trusty_std_call32_work((void *) &args);
+	else
+		return work_on_cpu(0, trusty_std_call32_work, (void *) &args);
+}
+#endif
 EXPORT_SYMBOL(trusty_std_call32);
 
 int trusty_call_notifier_register(struct device *dev, struct notifier_block *n)
@@ -413,7 +557,11 @@ void trusty_enqueue_nop(struct device *dev, struct trusty_nop *nop)
 			list_add_tail(&nop->node, &s->nop_queue);
 		spin_unlock_irqrestore(&s->nop_lock, flags);
 	}
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 	queue_work(s->nop_wq, &tw->work);
+#elif defined(CONFIG_X86_64)
+	queue_work_on(0, s->nop_wq, &tw->work);
+#endif
 	preempt_enable();
 }
 EXPORT_SYMBOL(trusty_enqueue_nop);
@@ -441,10 +589,12 @@ static int trusty_probe(struct platform_device *pdev)
 	struct trusty_state *s;
 	struct device_node *node = pdev->dev.of_node;
 
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 	if (!node) {
 		dev_err(&pdev->dev, "of_node required\n");
 		return -EINVAL;
 	}
+#endif
 
 	s = kzalloc(sizeof(*s), GFP_KERNEL);
 	if (!s) {
@@ -492,14 +642,17 @@ static int trusty_probe(struct platform_device *pdev)
 		INIT_WORK(&tw->work, work_func);
 	}
 
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 	ret = of_platform_populate(pdev->dev.of_node, NULL, NULL, &pdev->dev);
 	if (ret < 0) {
 		dev_err(&pdev->dev, "Failed to add children: %d\n", ret);
 		goto err_add_children;
 	}
+#endif
 
 	return 0;
 
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 err_add_children:
 	for_each_possible_cpu(cpu) {
 		struct trusty_work *tw = per_cpu_ptr(s->nop_works, cpu);
@@ -507,6 +660,7 @@ err_add_children:
 		flush_work(&tw->work);
 	}
 	free_percpu(s->nop_works);
+#endif
 err_alloc_works:
 	destroy_workqueue(s->nop_wq);
 err_create_nop_wq:
@@ -551,6 +705,12 @@ static const struct of_device_id trusty_of_match[] = {
 	{},
 };
 
+static const struct acpi_device_id trusty_acpi_match[] = {
+	{ "TRUS0001", 0 },
+	{ },
+};
+MODULE_DEVICE_TABLE(acpi, trusty_acpi_match);
+
 static struct platform_driver trusty_driver = {
 	.probe = trusty_probe,
 	.remove = trusty_remove,
@@ -558,6 +718,7 @@ static struct platform_driver trusty_driver = {
 		.name = "trusty",
 		.owner = THIS_MODULE,
 		.of_match_table = trusty_of_match,
+		.acpi_match_table = ACPI_PTR(trusty_acpi_match),
 	},
 };
 

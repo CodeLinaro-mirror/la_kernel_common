@@ -17,6 +17,14 @@
 #include <linux/trusty/trusty.h>
 #include <linux/trusty/smcall.h>
 
+#if defined(CONFIG_X86)
+/* Normal memory */
+#define NS_MAIR_NORMAL_CACHED_WB_RWA       0xFF /* inner and outer write back read/write allocate */
+#define NS_MAIR_NORMAL_CACHED_WT_RA        0xAA /* inner and outer write through read allocate */
+#define NS_MAIR_NORMAL_CACHED_WB_RA        0xEE /* inner and outer wriet back, read allocate */
+#define NS_MAIR_NORMAL_UNCACHED            0x44 /* uncached */
+#endif
+
 static int get_mem_attr(struct page *page, pgprot_t pgprot)
 {
 #if defined(CONFIG_ARM64)
@@ -69,6 +77,22 @@ static int get_mem_attr(struct page *page, pgprot_t pgprot)
 	default:
 		return -EINVAL;
 	}
+#elif defined(CONFIG_X86)
+	/* The porting to CHT kernel (3.14.55) is in the #else clause.
+	** For BXT kernel (4.1.0), the function get_page_memtype() is static.
+	**
+	** The orignal google code (for arm) getst the cache states and page
+	** flags from input parameter "pgprot", which is not prefered in x86.
+	** In x86, both cache states and page flags should be got from input
+	** parameter "page". But, since current caller of trusty_call32_mem_buf()
+	** always allocate memory in kernel heap, it is also ok to use hardcode
+	** here.
+	**
+	** The memory allocated in kernel heap should be CACHED. The reason to
+	** return UNCACHED here is to pass the check in LK sm_decode_ns_memory_attr()
+	** with SMP, which only allow UNCACHED.
+	*/
+	return NS_MAIR_NORMAL_UNCACHED;
 #else
 	return 0;
 #endif
@@ -101,6 +125,11 @@ int trusty_encode_page_info(struct ns_mem_page_info *inf,
 		pte |= (1 << 7);
 	if (pgprot_val(pgprot) & L_PTE_SHARED)
 		pte |= (3 << 8); /* inner sharable */
+#elif defined(CONFIG_X86)
+	if (pgprot_val(pgprot) & _PAGE_USER)
+		pte |= (1 << 6);
+	if (!(pgprot_val(pgprot) & _PAGE_RW))
+		pte |= (1 << 7);
 #endif
 
 	inf->attr = (pte & 0x0000FFFFFFFFFFFFull) | ((uint64_t)mem_attr << 48);
