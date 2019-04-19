@@ -12,7 +12,9 @@
  *
  */
 
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 #include <asm/compiler.h>
+#endif
 #include <linux/delay.h>
 #include <linux/module.h>
 #include <linux/of.h>
@@ -62,6 +64,7 @@ struct trusty_state {
 #define SMC_REGISTERS_TRASHED	"ip"
 #endif
 
+#if defined(CONFIG_ARM64) || defined(CONFIG_ARM)
 static inline ulong smc(ulong r0, ulong r1, ulong r2, ulong r3)
 {
 	register ulong _r0 asm(SMC_ARG0) = r0;
@@ -85,6 +88,22 @@ static inline ulong smc(ulong r0, ulong r1, ulong r2, ulong r3)
 		: SMC_REGISTERS_TRASHED);
 	return _r0;
 }
+
+#elif defined(CONFIG_X86_64)
+
+#define EVMM_SMC_HC_ID 0x74727500
+static inline ulong smc(ulong r0, ulong r1, ulong r2, ulong r3)
+{
+	register unsigned long smc_id asm("rax") = EVMM_SMC_HC_ID;
+	__asm__ __volatile__(
+		"vmcall; \n"
+		: "=D"(r0)
+		: "r"(smc_id), "D"(r0), "S"(r1), "d"(r2), "b"(r3)
+	);
+
+	return r0;
+}
+#endif
 
 s32 trusty_fast_call32(struct device *dev, u32 smcnr, u32 a0, u32 a1, u32 a2)
 {
