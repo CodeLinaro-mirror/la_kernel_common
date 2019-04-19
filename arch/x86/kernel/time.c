@@ -68,6 +68,14 @@ static struct irqaction irq0  = {
 	.name = "timer"
 };
 
+#ifdef CONFIG_TRUSTY
+struct irqaction irq1  = {
+	.handler = no_action,
+	.flags = IRQF_NO_THREAD,
+	.name = "trusty"
+};
+#endif
+
 static void __init setup_default_timer_irq(void)
 {
 	/*
@@ -76,6 +84,15 @@ static void __init setup_default_timer_irq(void)
 	 */
 	if (setup_irq(0, &irq0))
 		pr_info("Failed to register legacy timer interrupt\n");
+
+#ifdef CONFIG_TRUSTY
+	/*
+	 * register dummy irq1 for trusty to keep the vector 0x31 available
+	 * and it will be removed after trusty driver is probed
+	 */
+	if (setup_irq(1, &irq1))
+		pr_info("Failed to register trusty interrupt\n");
+#endif
 }
 
 /* Default timer init function */
