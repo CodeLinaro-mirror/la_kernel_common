@@ -152,9 +152,10 @@ SECTIONS
 		__indirect_thunk_end = .;
 #endif
 
-		/* End of text section */
-		_etext = .;
 	} :text = 0x9090
+
+	/* End of text section */
+	_etext = .;
 
 	NOTES :text :note
 
