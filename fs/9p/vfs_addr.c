@@ -100,6 +100,18 @@ static int v9fs_vfs_readpage(struct file *filp, struct page *page)
 }
 
 /**
+ * v9fs_filler - callback function for read_cache_pages
+ *
+ * @data: struct p9_fid from filp->private_data
+ * @page: structure to page
+ *
+ */
+static int v9fs_filler(void *data, struct page *page)
+{
+	return v9fs_fid_readpage(data, page);
+}
+
+/**
  * v9fs_vfs_readpages - read a set of pages from 9P
  *
  * @filp: file being read
@@ -122,7 +134,7 @@ static int v9fs_vfs_readpages(struct file *filp, struct address_space *mapping,
 	if (ret == 0)
 		return ret;
 
-	ret = read_cache_pages(mapping, pages, (void *)v9fs_vfs_readpage, filp);
+	ret = read_cache_pages(mapping, pages, v9fs_filler, filp->private_data);
 	p9_debug(P9_DEBUG_VFS, "  = %d\n", ret);
 	return ret;
 }
