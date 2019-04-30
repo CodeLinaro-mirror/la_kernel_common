@@ -677,6 +677,11 @@ struct jffs2_inode_info *jffs2_gc_fetch_inode(struct jffs2_sb_info *c,
 	return JFFS2_INODE_INFO(inode);
 }
 
+static int jffs2_filler(void *data, struct page *page)
+{
+	return jffs2_do_readpage_unlock(data, page);
+}
+
 unsigned char *jffs2_gc_fetch_page(struct jffs2_sb_info *c,
 				   struct jffs2_inode_info *f,
 				   unsigned long offset,
@@ -686,7 +691,7 @@ unsigned char *jffs2_gc_fetch_page(struct jffs2_sb_info *c,
 	struct page *pg;
 
 	pg = read_cache_page(inode->i_mapping, offset >> PAGE_SHIFT,
-			     (void *)jffs2_do_readpage_unlock, inode);
+			     jffs2_filler, inode);
 	if (IS_ERR(pg))
 		return (void *)pg;
 
