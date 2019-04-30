@@ -2982,9 +2982,12 @@ struct page *read_cache_page_gfp(struct address_space *mapping,
 				pgoff_t index,
 				gfp_t gfp)
 {
-	filler_t *filler = (filler_t *)mapping->a_ops->readpage;
+	struct file_filler_data data = {
+		.filler = mapping->a_ops->readpage,
+		.filp	= NULL
+	};
 
-	return do_read_cache_page(mapping, index, filler, NULL, gfp);
+	return do_read_cache_page(mapping, index, __file_filler, &data, gfp);
 }
 EXPORT_SYMBOL(read_cache_page_gfp);
 

@@ -396,11 +396,27 @@ extern struct page * read_cache_page_gfp(struct address_space *mapping,
 extern int read_cache_pages(struct address_space *mapping,
 		struct list_head *pages, filler_t *filler, void *data);
 
-static inline struct page *read_mapping_page(struct address_space *mapping,
-				pgoff_t index, void *data)
+struct file_filler_data {
+	int (*filler)(struct file *, struct page *);
+	struct file *filp;
+};
+
+static inline int __file_filler(void *data, struct page *page)
 {
-	filler_t *filler = (filler_t *)mapping->a_ops->readpage;
-	return read_cache_page(mapping, index, filler, data);
+	struct file_filler_data *ffd = (struct file_filler_data *)data;
+
+	return ffd->filler(ffd->filp, page);
+}
+
+static inline struct page *read_mapping_page(struct address_space *mapping,
+				pgoff_t index, struct file *filp)
+{
+	struct file_filler_data data = {
+		.filler = mapping->a_ops->readpage,
+		.filp   = filp
+	};
+
+	return read_cache_page(mapping, index, __file_filler, &data);
 }
 
 /*
