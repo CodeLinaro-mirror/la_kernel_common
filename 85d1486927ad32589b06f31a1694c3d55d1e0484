@@ -16,6 +16,24 @@
       "revId": "85d1486927ad32589b06f31a1694c3d55d1e0484",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "220de95d_7ad2000d",
+        "filename": "kernel/pid.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-06-24T20:37:50Z",
+      "side": 1,
+      "message": "The issue is that in 4.9 and 4.14 PIDTYPE_TGID does not exist yet and instead there is __PIDTYPE_TGID (see https://elixir.bootlin.com/linux/v4.9.183/source/include/linux/pid.h#L13) which is not treated as a real \"pid_type\" but instead handled in a special way inside __task_pid_nr_ns() (see: https://elixir.bootlin.com/linux/v4.9.183/source/kernel/pid.c#L532).\n\nWhat I can do is I can implement a similar check here like this:\n\n\trcu_read_lock();\n\tstruct task_struct *tsk \u003d pid_task(p, PIDTYPE_PID);\n\t/* Check that pid belongs to a group leader task */\n\tif (!tsk || tsk !\u003d tsk-\u003egroup_leader)\n\t\tret \u003d -EINVAL;\n\trcu_read_unlock();\n\nWDYT?",
+      "parentUuid": "f31b1a2b_0754b049",
+      "revId": "85d1486927ad32589b06f31a1694c3d55d1e0484",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
