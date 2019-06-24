@@ -34,6 +34,24 @@
       "revId": "85d1486927ad32589b06f31a1694c3d55d1e0484",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e16fadb_5e5887a6",
+        "filename": "kernel/pid.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1124848
+      },
+      "writtenOn": "2019-06-24T22:44:26Z",
+      "side": 1,
+      "message": "Looks fine to me.\nFor the condition, you could also call:\nif (!thread_group_leader(tsk))",
+      "parentUuid": "220de95d_7ad2000d",
+      "revId": "85d1486927ad32589b06f31a1694c3d55d1e0484",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
