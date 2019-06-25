@@ -52,6 +52,24 @@
       "revId": "85d1486927ad32589b06f31a1694c3d55d1e0484",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ad18830_3039903e",
+        "filename": "kernel/pid.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-06-25T18:16:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e16fadb_5e5887a6",
+      "revId": "85d1486927ad32589b06f31a1694c3d55d1e0484",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
