@@ -1828,8 +1828,12 @@ static int clk_calc_subtree(struct clk_core *core, unsigned long new_rate,
 			     struct clk_core *new_parent, u8 p_index)
 {
 	struct clk_core *child;
-	int ret;
+	int ret = 0;
 
+	if (core->ops->vote_vdd)
+		ret = core->ops->vote_vdd(core->hw, new_rate);
+	if (ret)
+		return ret;
 	core->new_rate = new_rate;
 	core->new_parent = new_parent;
 	core->new_parent_index = p_index;
@@ -2137,12 +2141,14 @@ static int clk_core_set_rate_nolock(struct clk_core *core,
 
 	/* calculate new rates and get the topmost changed clock */
 	top = clk_calc_new_rates(core, req_rate);
-	if (!top)
-		return -EINVAL;
+	if (!top) {
+		ret = -EINVAL;
+		goto pre_rate_change_err;
+	}
 
 	ret = clk_pm_runtime_get(core);
 	if (ret)
-		return ret;
+		goto pre_rate_change_err;
 
 	/* notify that we are about to change rates */
 	fail_clk = clk_propagate_rate_change(top, PRE_RATE_CHANGE);
@@ -2151,7 +2157,8 @@ static int clk_core_set_rate_nolock(struct clk_core *core,
 				fail_clk->name);
 		clk_propagate_rate_change(top, ABORT_RATE_CHANGE);
 		ret = -EBUSY;
-		goto err;
+		clk_pm_runtime_put(core);
+		goto pre_rate_change_err;
 	}
 
 	/* change the rates */
@@ -2159,13 +2166,27 @@ static int clk_core_set_rate_nolock(struct clk_core *core,
 	if (ret) {
 		pr_err("%s: failed to set %s clock to run at %lu\n", __func__,
 			top->name, req_rate);
+		if (core->ops->unvote_vdd)
+			core->ops->unvote_vdd(core->hw,
+					      CLK_SET_RATE_POST_CHANGE_ERR,
+					      prepare_refcnt != 1);
 		goto err;
 	}
 
 	core->req_rate = req_rate;
+
+	if (core->ops->unvote_vdd)
+		ret = core->ops->unvote_vdd(core->hw, CLK_SET_RATE_DONE,
+					    prepare_refcnt != 1);
 err:
 	clk_pm_runtime_put(core);
 
+	return ret;
+
+pre_rate_change_err:
+	if (core->ops->unvote_vdd)
+		core->ops->unvote_vdd(core->hw, CLK_SET_RATE_PRE_CHANGE_ERR,
+				      prepare_refcnt != 1);
 	return ret;
 }
 

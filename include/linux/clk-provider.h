@@ -72,6 +72,15 @@ struct clk_duty {
 };
 
 /**
+ * enum clk_set_rate_result - Enum representing outcomes of clk_set_rate()
+ */
+enum clk_set_rate_result {
+	CLK_SET_RATE_DONE = 0,
+	CLK_SET_RATE_PRE_CHANGE_ERR,
+	CLK_SET_RATE_POST_CHANGE_ERR,
+};
+
+/**
  * struct clk_ops -  Callback operations for hardware clocks; these are to
  * be provided by the clock implementation, and will be called by drivers
  * through the clk_* api.
@@ -199,6 +208,15 @@ struct clk_duty {
  *		directory is provided as an argument.  Called with
  *		prepare_lock held.  Returns 0 on success, -EERROR otherwise.
  *
+ * @vote_vdd:	Make any voltage changes necessary for an upcoming clock
+ *		rate change. The input is the clock and the new rate. Return 0
+ *		on success, -EERROR otherwise.
+ *
+ * @unvote_vdd:	Make any voltage changes that can happen after the clock rate
+ *		change that just completed. The input is the clock, the result
+ *		of the clk_set_rate() attempt and whether this is a nested
+ *		clk_set_rate() call or not. Return 0 on success, -EERROR
+ *		otherwise.
  *
  * The clk_enable/clk_disable and clk_prepare/clk_unprepare pairs allow
  * implementations to split any work between atomic (enable) and sleepable
@@ -245,6 +263,9 @@ struct clk_ops {
 					  struct clk_duty *duty);
 	void		(*init)(struct clk_hw *hw);
 	void		(*debug_init)(struct clk_hw *hw, struct dentry *dentry);
+	int		(*vote_vdd)(struct clk_hw *hw, unsigned long rate);
+	int		(*unvote_vdd)(struct clk_hw *hw,
+				      enum clk_set_rate_result, bool is_nested);
 };
 
 /**
