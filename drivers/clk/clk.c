@@ -833,6 +833,15 @@ void clk_unprepare(struct clk *clk)
 }
 EXPORT_SYMBOL_GPL(clk_unprepare);
 
+unsigned long clk_get_core_rate(struct clk_hw *hw)
+{
+	if (!hw)
+		return 0;
+
+	return hw->core->rate;
+}
+EXPORT_SYMBOL_GPL(clk_get_core_rate);
+
 static int clk_core_prepare(struct clk_core *core)
 {
 	int ret = 0;
