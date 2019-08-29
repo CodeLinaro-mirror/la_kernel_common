@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61f8c178_95eb1f98",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2019-08-29T11:33:33Z",
+      "side": 1,
+      "message": "s/BW controller/CFS Bandwidth control ... for later reference and to distinguish this from RT",
+      "revId": "8dc98e36e70082740d0ed61702ab995fa38b68eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db6d9ebb_ec943556",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2019-08-29T11:33:33Z",
+      "side": 1,
+      "message": "s/tasks/CFS tasks \n\ns/throttled by the CPU controller/throttled by the CPU Bandwidth control mechanism of the CPU cgroups controller",
+      "revId": "8dc98e36e70082740d0ed61702ab995fa38b68eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca11c761_26de6652",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1201522
+      },
+      "writtenOn": "2019-08-29T11:33:33Z",
+      "side": 1,
+      "message": "s/tasks/CFS tasks",
+      "revId": "8dc98e36e70082740d0ed61702ab995fa38b68eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
