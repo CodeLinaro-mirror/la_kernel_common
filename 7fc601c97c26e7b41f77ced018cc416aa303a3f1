@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0722ccba_75b9e1e0",
+        "filename": "build.config.allmodconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1409599
+      },
+      "writtenOn": "2019-09-04T13:44:26Z",
+      "side": 1,
+      "message": "Should we file a bug and/or add a comment to keep track of this?",
+      "range": {
+        "startLine": 8,
+        "startChar": 12,
+        "endLine": 8,
+        "endChar": 18
+      },
+      "revId": "7fc601c97c26e7b41f77ced018cc416aa303a3f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
