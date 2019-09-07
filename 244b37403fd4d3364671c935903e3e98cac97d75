@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79198a18_72853d76",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-07T11:55:44Z",
+      "side": 1,
+      "message": "does this need to be a macro? could just make this the name of the function.",
+      "range": {
+        "startLine": 543,
+        "startChar": 8,
+        "endLine": 543,
+        "endChar": 20
+      },
+      "revId": "244b37403fd4d3364671c935903e3e98cac97d75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1cc004f_d1023428",
+        "filename": "kernel/bpf/core.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-07T11:55:44Z",
+      "side": 1,
+      "message": "#if IS_ENABLED(CONFIG_BPF_JIT) \u0026\u0026 IS_ENABLED(CONFIG_CFI_CLANG)\nmight be nicer syntax.",
+      "range": {
+        "startLine": 624,
+        "startChar": 4,
+        "endLine": 624,
+        "endChar": 11
+      },
+      "revId": "244b37403fd4d3364671c935903e3e98cac97d75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86397f85_071eed53",
+        "filename": "kernel/bpf/core.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-07T11:55:44Z",
+      "side": 1,
+      "message": "should this perhaps default to false?  (not sure)",
+      "range": {
+        "startLine": 634,
+        "startChar": 8,
+        "endLine": 634,
+        "endChar": 12
+      },
+      "revId": "244b37403fd4d3364671c935903e3e98cac97d75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b59bd83_1335f454",
+        "filename": "kernel/bpf/core.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-07T11:55:44Z",
+      "side": 1,
+      "message": "this feels incorrect.  more like a reason to panic.",
+      "range": {
+        "startLine": 648,
+        "startChar": 3,
+        "endLine": 648,
+        "endChar": 9
+      },
+      "revId": "244b37403fd4d3364671c935903e3e98cac97d75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
