@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e951abbc_5f42c634",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-18T22:34:08Z",
+      "side": 1,
+      "message": "do we actually need this function or can we just open code it below?\n\nif it has to be a function perhaps add comment why that is the case.",
+      "range": {
+        "startLine": 523,
+        "startChar": 27,
+        "endLine": 523,
+        "endChar": 42
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "421f1e22_be8a6376",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-18T22:34:08Z",
+      "side": 1,
+      "message": "i assume this is the magic why the above is needed.",
+      "range": {
+        "startLine": 533,
+        "startChar": 27,
+        "endLine": 533,
+        "endChar": 34
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2124711a_f55ec4d7",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-18T22:34:08Z",
+      "side": 1,
+      "message": "hmm, thinking about it more there\u0027s a bunch of func calls in here which aren\u0027t checked.\nperhaps the opposite should be done ... a __nocfi helper called above, and open code this call, and make this function check cfi for bpf_jit_binary_hdr() and arch_bpf_jit_check_func() calls",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 549,
+        "endChar": 48
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7560557_99a5f8c6",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-18T22:34:08Z",
+      "side": 1,
+      "message": "Personally, I think I would tend to have two (or even three since you need helper func) #ifdef blocks in the bodies of 2 functions instead of this large #ifdef around the both of them...  I just find it easier to read when there\u0027s only 1 func definition and how it changes is clear.",
+      "range": {
+        "startLine": 557,
+        "startChar": 0,
+        "endLine": 557,
+        "endChar": 5
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
