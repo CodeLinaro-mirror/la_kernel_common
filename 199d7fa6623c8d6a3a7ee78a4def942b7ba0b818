@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "b3ab2efb_e7b293b4",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-18T22:58:33Z",
+      "side": 1,
+      "message": "ah.  it would still be more logical, reasonable, easier to read, etc. for the __nocfi function to be tiny.",
+      "parentUuid": "a313a5f9_9085e034",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 549,
+        "endChar": 48
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7560557_99a5f8c6",
         "filename": "include/linux/filter.h",
         "patchSetId": 3
@@ -178,6 +202,30 @@
       "side": 1,
       "message": "Kernel maintainers tend to prefer splitting the functions like this, with an empty static inline stub when a feature is disabled.",
       "parentUuid": "e7560557_99a5f8c6",
+      "range": {
+        "startLine": 557,
+        "startChar": 0,
+        "endLine": 557,
+        "endChar": 5
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bd13814_6b6e9842",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-18T22:58:33Z",
+      "side": 1,
+      "message": "Is this patch going upstream?",
+      "parentUuid": "d6af358c_5f6de64d",
       "range": {
         "startLine": 557,
         "startChar": 0,
