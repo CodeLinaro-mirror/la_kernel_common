@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e04b9c0a_cfa98fea",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-18T23:14:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "80339a52_98c06b7b",
+      "range": {
+        "startLine": 523,
+        "startChar": 27,
+        "endLine": 523,
+        "endChar": 42
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "421f1e22_be8a6376",
         "filename": "include/linux/filter.h",
         "patchSetId": 3
@@ -93,6 +117,30 @@
       "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "575fef7b_35d3fc15",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-18T23:14:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0335a695_2b048e27",
+      "range": {
+        "startLine": 533,
+        "startChar": 27,
+        "endLine": 533,
+        "endChar": 34
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -179,6 +227,30 @@
       "side": 1,
       "message": "The __nocfi function needs to be the one with the checking, because otherwise it provides a convenient gadget for jumping to arbitrary code.",
       "parentUuid": "b3ab2efb_e7b293b4",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 549,
+        "endChar": 48
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "128cecdb_cdc63f7b",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2019-09-18T23:14:28Z",
+      "side": 1,
+      "message": "Ah, again this is very useful backstory that would ideally be in the function comment perhaps?",
+      "parentUuid": "ecedf817_1812df93",
       "range": {
         "startLine": 549,
         "startChar": 0,
