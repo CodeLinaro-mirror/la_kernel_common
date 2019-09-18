@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "80339a52_98c06b7b",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2019-09-18T22:54:33Z",
+      "side": 1,
+      "message": "Yes, all functions have CFI checking for indirect calls by default, so we need one function without CFI checking to jump to a jited function without tripping CFI.",
+      "parentUuid": "e951abbc_5f42c634",
+      "range": {
+        "startLine": 523,
+        "startChar": 27,
+        "endLine": 523,
+        "endChar": 42
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "421f1e22_be8a6376",
         "filename": "include/linux/filter.h",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2019-09-18T22:34:08Z",
       "side": 1,
       "message": "i assume this is the magic why the above is needed.",
+      "range": {
+        "startLine": 533,
+        "startChar": 27,
+        "endLine": 533,
+        "endChar": 34
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0335a695_2b048e27",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2019-09-18T22:54:33Z",
+      "side": 1,
+      "message": "Correct.",
+      "parentUuid": "421f1e22_be8a6376",
       "range": {
         "startLine": 533,
         "startChar": 27,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a313a5f9_9085e034",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2019-09-18T22:54:33Z",
+      "side": 1,
+      "message": "\u003e hmm, thinking about it more there\u0027s a bunch of func calls in here which aren\u0027t checked.\n\nWhich functions do you mean? Unless the function has the __nocfi attribute, all indirect calls in the function are checked when CFI is enabled. Direct function calls don\u0027t need checking and CFI doesn\u0027t add any instrumentation to them.",
+      "parentUuid": "2124711a_f55ec4d7",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 549,
+        "endChar": 48
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7560557_99a5f8c6",
         "filename": "include/linux/filter.h",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6af358c_5f6de64d",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2019-09-18T22:54:33Z",
+      "side": 1,
+      "message": "Kernel maintainers tend to prefer splitting the functions like this, with an empty static inline stub when a feature is disabled.",
+      "parentUuid": "e7560557_99a5f8c6",
+      "range": {
+        "startLine": 557,
+        "startChar": 0,
+        "endLine": 557,
+        "endChar": 5
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
