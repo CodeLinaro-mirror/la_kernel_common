@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "ecedf817_1812df93",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2019-09-18T23:06:20Z",
+      "side": 1,
+      "message": "The __nocfi function needs to be the one with the checking, because otherwise it provides a convenient gadget for jumping to arbitrary code.",
+      "parentUuid": "b3ab2efb_e7b293b4",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 549,
+        "endChar": 48
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7560557_99a5f8c6",
         "filename": "include/linux/filter.h",
         "patchSetId": 3
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "Is this patch going upstream?",
       "parentUuid": "d6af358c_5f6de64d",
+      "range": {
+        "startLine": 557,
+        "startChar": 0,
+        "endLine": 557,
+        "endChar": 5
+      },
+      "revId": "199d7fa6623c8d6a3a7ee78a4def942b7ba0b818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa0b5415_19da3901",
+        "filename": "include/linux/filter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1058768
+      },
+      "writtenOn": "2019-09-18T23:06:20Z",
+      "side": 1,
+      "message": "Yes, eventually. However, BPF maintainers don\u0027t see a point for adding the checking at the moment since CFI is otherwise not yet upstreamed. See the discussion here: https://lkml.org/lkml/2019/9/9/743",
+      "parentUuid": "8bd13814_6b6e9842",
       "range": {
         "startLine": 557,
         "startChar": 0,
