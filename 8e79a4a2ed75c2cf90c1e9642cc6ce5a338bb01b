@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c02e9fc_2e28beb2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1108565
+      },
+      "writtenOn": "2019-10-16T01:02:15Z",
+      "side": 1,
+      "message": "One note for future references, if you add the following lines in the change logs, the bug will automatically get closed or commented on for a pending change in gerrit :).\n\nBug: \u003cbug number\u003e Or b/\u003cbug number\u003e will make sure the bug gets a comment / update when this change is merged.\n\nFixes: \u003cbug number\u003e Or b/\u003cbugnumber\u003e will do what the \"Bug:\" tag does and also will mark the bug \"Fixed\"",
+      "range": {
+        "startLine": 23,
+        "startChar": 12,
+        "endLine": 23,
+        "endChar": 19
+      },
+      "revId": "8e79a4a2ed75c2cf90c1e9642cc6ce5a338bb01b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
