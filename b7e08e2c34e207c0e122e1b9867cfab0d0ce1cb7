@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7bdfae98_a787e4d9",
+        "filename": "block/blk-merge.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2019-10-29T21:27:45Z",
+      "side": 1,
+      "message": "I don\u0027t see why the calls to bio_crypt_ctx_compatible() in this file are actually needed, as it\u0027s done by bio_crypt_ctx_back_mergeable() anyway, and that must be called anyway.  Check https://android.googlesource.com/kernel/msm/+/refs/heads/android-msm-coral-4.14-android10-c2f2/block/blk-merge.c which is shipping code -- it only does the crypto merge checks in blk_try_merge() and in attempt_merge().  It doesn\u0027t really hurt to do unnecessary checks, but as a future cleanup it would be nice to simplify this.",
+      "revId": "b7e08e2c34e207c0e122e1b9867cfab0d0ce1cb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
