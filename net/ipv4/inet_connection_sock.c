@@ -307,6 +307,10 @@ int inet_csk_get_port(struct sock *sk, unsigned short snum)
 	head = &hinfo->bhash[inet_bhashfn(net, port,
 					  hinfo->bhash_size)];
 	spin_lock_bh(&head->lock);
+
+	if (inet_is_unbindable_port(net, port))
+		goto fail_unlock;
+
 	inet_bind_bucket_for_each(tb, &head->chain)
 		if (net_eq(ib_net(tb), net) && tb->l3mdev == l3mdev &&
 		    tb->port == port)

@@ -1814,6 +1814,9 @@ static __net_init int inet_init_net(struct net *net)
 	net->ipv4.ip_local_ports.range[0] =  32768;
 	net->ipv4.ip_local_ports.range[1] =  60999;
 
+	/* Allow explicit binding to reserved ports */
+	net->ipv4.sysctl_reserved_port_bind = 1;
+
 	seqlock_init(&net->ipv4.ping_group_range.lock);
 	/*
 	 * Sane defaults - nobody may create ping sockets.

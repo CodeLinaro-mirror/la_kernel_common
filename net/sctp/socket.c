@@ -8210,6 +8210,12 @@ static int sctp_get_port_local(struct sock *sk, union sctp_addr *addr)
 		 */
 		head = &sctp_port_hashtable[sctp_phashfn(sock_net(sk), snum)];
 		spin_lock(&head->lock);
+
+		if (inet_is_unbindable_port(sock_net(sk), snum)) {
+			ret = 1;
+			goto fail_unlock;
+		}
+
 		sctp_for_each_hentry(pp, &head->chain) {
 			if ((pp->port == snum) && net_eq(pp->net, sock_net(sk)))
 				goto pp_found;
