@@ -20,6 +20,7 @@
 #define RESET_CTRL_EN	(0x1C)
 #define UFS_SYSCTRL	(0x5C)
 #define UFS_DEVICE_RESET_CTRL	(0x60)
+#define UFS_APB_ADDR_MASK	(0x64)
 
 #define BIT_UFS_PSW_ISO_CTRL		(1 << 16)
 #define BIT_UFS_PSW_MTCMOS_EN		(1 << 0)
