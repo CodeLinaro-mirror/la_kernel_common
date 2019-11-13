@@ -12,6 +12,8 @@
 
 #include "ion.h"
 
+static atomic_long_t nr_total_pages;
+
 static inline struct page *ion_page_pool_alloc_pages(struct ion_page_pool *pool)
 {
 	if (fatal_signal_pending(current))
@@ -36,6 +38,7 @@ static void ion_page_pool_add(struct ion_page_pool *pool, struct page *page)
 		pool->low_count++;
 	}
 
+	atomic_long_add(1 << pool->order, &nr_total_pages);
 	mod_node_page_state(page_pgdat(page), NR_KERNEL_MISC_RECLAIMABLE,
 							1 << pool->order);
 	mutex_unlock(&pool->mutex);
@@ -56,6 +59,7 @@ static struct page *ion_page_pool_remove(struct ion_page_pool *pool, bool high)
 	}
 
 	list_del(&page->lru);
+	atomic_long_sub(1 << pool->order, &nr_total_pages);
 	mod_node_page_state(page_pgdat(page), NR_KERNEL_MISC_RECLAIMABLE,
 							-(1 << pool->order));
 	return page;
@@ -95,6 +99,11 @@ static int ion_page_pool_total(struct ion_page_pool *pool, bool high)
 		count += pool->high_count;
 
 	return count << pool->order;
+}
+
+unsigned long ion_page_pool_nr_pages(void)
+{
+	return atomic_long_read(&nr_total_pages);
 }
 
 int ion_page_pool_shrink(struct ion_page_pool *pool, gfp_t gfp_mask,
