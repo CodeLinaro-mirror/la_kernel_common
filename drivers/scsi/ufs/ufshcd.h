@@ -305,6 +305,8 @@ struct ufs_pwr_mode_info {
  * @dbg_register_dump: used to dump controller debug information
  * @phy_initialization: used to initialize phys
  * @device_reset: called to issue a reset pulse on the UFS device
+ * @begin_program_keyslot: called before programming a crypto keyslot
+ * @end_program_keyslot: called after programming a crypto keyslot
  */
 struct ufs_hba_variant_ops {
 	const char *name;
@@ -334,6 +336,8 @@ struct ufs_hba_variant_ops {
 	void	(*dbg_register_dump)(struct ufs_hba *hba);
 	int	(*phy_initialization)(struct ufs_hba *);
 	void	(*device_reset)(struct ufs_hba *hba);
+	u32	(*begin_program_keyslot)(struct ufs_hba *hba, int slot);
+	void	(*end_program_keyslot)(struct ufs_hba *hba, int slot);
 };
 
 struct keyslot_mgmt_ll_ops;

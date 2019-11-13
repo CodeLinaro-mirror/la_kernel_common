@@ -114,7 +114,12 @@ static void program_key(struct ufs_hba *hba,
 			int slot)
 {
 	int i;
-	u32 slot_offset = hba->crypto_cfg_register + slot * sizeof(*cfg);
+	u32 slot_offset;
+
+	if (hba->vops->begin_program_keyslot)
+		slot_offset = hba->vops->begin_program_keyslot(hba, slot);
+	else
+		slot_offset = hba->crypto_cfg_register + slot * sizeof(*cfg);
 
 	/* Clear the dword 16 */
 	ufshcd_writel(hba, 0, slot_offset + 16 * sizeof(cfg->reg_val[0]));
@@ -135,16 +140,29 @@ static void program_key(struct ufs_hba *hba,
 	ufshcd_writel(hba, le32_to_cpu(cfg->reg_val[16]),
 		      slot_offset + 16 * sizeof(cfg->reg_val[0]));
 	wmb();
+
+	if (hba->vops->end_program_keyslot)
+		hba->vops->end_program_keyslot(hba, slot);
+}
+
+static void ufshcd_clear_keyslot(struct ufs_hba *hba, int slot)
+{
+	union ufs_crypto_cfg_entry cfg = { 0 };
+
+	/*
+	 * Clear the crypto cfg on the device. Clearing CFGE might not be
+	 * sufficient, so just clear the entire cfg.
+	 */
+	program_key(hba, &cfg, slot);
 }
 
 /* Clear all keyslots at driver init time */
-static void clear_all_keyslots(struct ufs_hba *hba)
+static void ufshcd_clear_all_keyslots(struct ufs_hba *hba)
 {
-	union ufs_crypto_cfg_entry cfg = { 0 };
 	int slot;
 
 	for (slot = 0; slot < NUM_KEYSLOTS(hba); slot++)
-		program_key(hba, &cfg, slot);
+		ufshcd_clear_keyslot(hba, slot);
 }
 
 static int ufshcd_crypto_keyslot_program(void *hba_p,
@@ -191,24 +209,12 @@ static int ufshcd_crypto_keyslot_evict(void *hba_p,
 				       unsigned int slot)
 {
 	struct ufs_hba *hba = hba_p;
-	int i = 0;
-	u32 reg_base;
 
 	if (!ufshcd_is_crypto_enabled(hba) ||
 	    !ufshcd_keyslot_valid(hba, slot))
 		return -EINVAL;
 
-	reg_base = hba->crypto_cfg_register +
-		   slot * sizeof(union ufs_crypto_cfg_entry);
-
-	/*
-	 * Clear the crypto cfg on the device. Clearing CFGE
-	 * might not be sufficient, so just clear the entire cfg.
-	 */
-	for (i = 0; i < sizeof(union ufs_crypto_cfg_entry); i += sizeof(__le32))
-		ufshcd_writel(hba, 0, reg_base + i);
-	wmb();
-
+	ufshcd_clear_keyslot(hba, slot);
 	return 0;
 }
 
@@ -295,7 +301,7 @@ int ufshcd_hba_init_crypto_spec(struct ufs_hba *hba,
 						 cap_idx * sizeof(__le32)));
 	}
 
-	clear_all_keyslots(hba);
+	ufshcd_clear_all_keyslots(hba);
 
 	hba->ksm = keyslot_manager_create(NUM_KEYSLOTS(hba), ksm_ops, hba);
 
