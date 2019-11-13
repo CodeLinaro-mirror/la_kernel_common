@@ -547,6 +547,34 @@ static int ufs_hi3670_init(struct ufs_hba *hba)
 	return 0;
 }
 
+#ifdef CONFIG_SCSI_UFS_CRYPTO
+static u32 ufs_hisi_begin_program_keyslot(struct ufs_hba *hba, int slot)
+{
+	struct ufs_hisi_host *host = ufshcd_get_variant(hba);
+
+	/*
+	 * On this host controller, keyslots 22 and higher overlap with the
+	 * vendor-specific "sys_ctrl" registers.  To access these keyslots, a
+	 * bit needs to be set in the UFS_APB_ADDR_MASK sys_ctrl register to
+	 * cause keyslots 22-31 to temporarily appear where 0-9 are.
+	 */
+	if (slot >= 22) {
+		ufs_sys_ctrl_writel(host, 0x10001, UFS_APB_ADDR_MASK);
+		slot -= 22;
+	}
+	return hba->crypto_cfg_register +
+	       slot * sizeof(union ufs_crypto_cfg_entry);
+}
+
+static void ufs_hisi_end_program_keyslot(struct ufs_hba *hba, int slot)
+{
+	struct ufs_hisi_host *host = ufshcd_get_variant(hba);
+
+	if (slot >= 22)
+		ufs_sys_ctrl_writel(host, 0x10000, UFS_APB_ADDR_MASK);
+}
+#endif /* CONFIG_SCSI_UFS_CRYPTO */
+
 static const struct ufs_hba_variant_ops ufs_hba_hi3660_vops = {
 	.name = "hi3660",
 	.init = ufs_hi3660_init,
@@ -554,6 +582,10 @@ static const struct ufs_hba_variant_ops ufs_hba_hi3660_vops = {
 	.pwr_change_notify = ufs_hisi_pwr_change_notify,
 	.suspend = ufs_hisi_suspend,
 	.resume = ufs_hisi_resume,
+#ifdef CONFIG_SCSI_UFS_CRYPTO
+	.begin_program_keyslot = ufs_hisi_begin_program_keyslot,
+	.end_program_keyslot = ufs_hisi_end_program_keyslot,
+#endif
 };
 
 static const struct ufs_hba_variant_ops ufs_hba_hi3670_vops = {
@@ -563,6 +595,10 @@ static const struct ufs_hba_variant_ops ufs_hba_hi3670_vops = {
 	.pwr_change_notify = ufs_hisi_pwr_change_notify,
 	.suspend = ufs_hisi_suspend,
 	.resume = ufs_hisi_resume,
+#ifdef CONFIG_SCSI_UFS_CRYPTO
+	.begin_program_keyslot = ufs_hisi_begin_program_keyslot,
+	.end_program_keyslot = ufs_hisi_end_program_keyslot,
+#endif
 };
 
 static const struct of_device_id ufs_hisi_of_match[] = {
