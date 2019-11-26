@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d23ec9d0_3666bf2c",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2019-11-26T07:38:10Z",
+      "side": 1,
+      "message": "why is this variable an atomic?  What are you trying to \"protect\" with it being that way?",
+      "range": {
+        "startLine": 599,
+        "startChar": 39,
+        "endLine": 599,
+        "endChar": 55
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28cdc0d2_a3cf149d",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2019-11-26T07:38:10Z",
+      "side": 1,
+      "message": "no need for snprintf() for sysfs attributes, you always know the size of the buffer, and as you are only printing out a single number, sprintf() works just fine.",
+      "range": {
+        "startLine": 601,
+        "startChar": 8,
+        "endLine": 601,
+        "endChar": 16
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddc61299_8205f4da",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2019-11-26T07:38:10Z",
+      "side": 1,
+      "message": "again, sprintf() please.",
+      "range": {
+        "startLine": 611,
+        "startChar": 8,
+        "endLine": 611,
+        "endChar": 16
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4c36e51_8a9b71e0",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2019-11-26T07:38:10Z",
+      "side": 1,
+      "message": "ATTRIBUTE_GROUPS()?",
+      "range": {
+        "startLine": 627,
+        "startChar": 0,
+        "endLine": 627,
+        "endChar": 56
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b261fa6_2a5d689b",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2019-11-26T07:38:10Z",
+      "side": 1,
+      "message": "worst name for a variable :)",
+      "range": {
+        "startLine": 631,
+        "startChar": 23,
+        "endLine": 631,
+        "endChar": 27
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9af771c0_de8dcb44",
+        "filename": "drivers/staging/android/ion/ion_page_pool.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2019-11-26T07:38:10Z",
+      "side": 1,
+      "message": "again, why atomic?",
+      "range": {
+        "startLine": 28,
+        "startChar": 21,
+        "endLine": 28,
+        "endChar": 35
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
