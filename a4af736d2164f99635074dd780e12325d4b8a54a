@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6062875a_aa3dc41b",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-11-26T18:48:59Z",
+      "side": 1,
+      "message": "This function might race with ion_alloc() for example and if read/write are not atomic we might read a torn value AFAIK. Or do you suggest synchronizing using dev-\u003ebuffer_lock mutex instead of atomic?",
+      "parentUuid": "d23ec9d0_3666bf2c",
+      "range": {
+        "startLine": 599,
+        "startChar": 39,
+        "endLine": 599,
+        "endChar": 55
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "28cdc0d2_a3cf149d",
         "filename": "drivers/staging/android/ion/ion.c",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f3ce3ae_6060ceac",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-11-26T18:48:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "28cdc0d2_a3cf149d",
+      "range": {
+        "startLine": 601,
+        "startChar": 8,
+        "endLine": 601,
+        "endChar": 16
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "58ccf1b6_a0053337",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-11-26T18:48:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ddc61299_8205f4da",
+      "range": {
+        "startLine": 611,
+        "startChar": 8,
+        "endLine": 611,
+        "endChar": 16
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4c36e51_8a9b71e0",
         "filename": "drivers/staging/android/ion/ion.c",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbeef838_e6bd87f9",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-11-26T18:48:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c4c36e51_8a9b71e0",
+      "range": {
+        "startLine": 627,
+        "startChar": 0,
+        "endLine": 627,
+        "endChar": 56
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "702a1d70_55fbb9a6",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-11-26T18:48:59Z",
+      "side": 1,
+      "message": "Ack. This variable can be local to ion_init_sysfs() because we never destroy it afterwards.",
+      "parentUuid": "0b261fa6_2a5d689b",
+      "range": {
+        "startLine": 631,
+        "startChar": 23,
+        "endLine": 631,
+        "endChar": 27
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9af771c0_de8dcb44",
         "filename": "drivers/staging/android/ion/ion_page_pool.c",
         "patchSetId": 2
@@ -128,6 +248,30 @@
       "writtenOn": "2019-11-26T07:38:10Z",
       "side": 1,
       "message": "again, why atomic?",
+      "range": {
+        "startLine": 28,
+        "startChar": 21,
+        "endLine": 28,
+        "endChar": 35
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1d7f977_5bc6a414",
+        "filename": "drivers/staging/android/ion/ion_page_pool.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-11-26T18:48:59Z",
+      "side": 1,
+      "message": "Possible race between ion_page_pool_add, ion_page_pool_remove and ion_page_pool_nr_pages. Is that not a legit concern?",
+      "parentUuid": "9af771c0_de8dcb44",
       "range": {
         "startLine": 28,
         "startChar": 21,
