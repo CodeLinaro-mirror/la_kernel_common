@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f371c15a_e730e098",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2019-11-27T07:33:35Z",
+      "side": 1,
+      "message": "As discussed over chat, this is only for 64bit kernels of android, and it\u0027s just a statistic, so no need for any locking or atomic here, just use an u64 and all should be fine.",
+      "parentUuid": "6062875a_aa3dc41b",
+      "range": {
+        "startLine": 599,
+        "startChar": 39,
+        "endLine": 599,
+        "endChar": 55
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "28cdc0d2_a3cf149d",
         "filename": "drivers/staging/android/ion/ion.c",
         "patchSetId": 2
