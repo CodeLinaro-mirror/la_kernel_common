@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa7b8e85_36909bbe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2019-12-04T04:48:01Z",
+      "side": 1,
+      "message": "I recommend replacing \"is likely to be\" with \"might be\". It is not likelihood that matters here but possibility: Even if the memory location was unlikely to be in the CPU cache, the cache flush is still necessary to ensure correctness.",
+      "range": {
+        "startLine": 9,
+        "startChar": 47,
+        "endLine": 9,
+        "endChar": 62
+      },
+      "revId": "2f6b82699c508933540493c368dfc4b848aafd58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27c84d3f_6df98024",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2019-12-04T04:48:01Z",
+      "side": 1,
+      "message": "I suggest mentioning that dirty cache lines are the risk here. Evicting a clean cache line would not be a problem.",
+      "range": {
+        "startLine": 13,
+        "startChar": 14,
+        "endLine": 13,
+        "endChar": 37
+      },
+      "revId": "2f6b82699c508933540493c368dfc4b848aafd58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f46d7fe_d1d0a27d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2019-12-04T04:48:01Z",
+      "side": 1,
+      "message": "I think they want you to follow a specific format for referencing other commits. In this case, it would be\n\ncommit 1dccb598df54 (\"arm64: simplify dma_get_ops\")",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 29
+      },
+      "revId": "2f6b82699c508933540493c368dfc4b848aafd58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1af78e62_e777034c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2019-12-04T04:48:01Z",
+      "side": 1,
+      "message": "Wouldn\u0027t these cache maintenance operations also be necessary if the memory location was exclusively accessed through a kernel (vmap) mapping? I\u0027d therefor remove \"to user-space\".",
+      "range": {
+        "startLine": 22,
+        "startChar": 39,
+        "endLine": 22,
+        "endChar": 52
+      },
+      "revId": "2f6b82699c508933540493c368dfc4b848aafd58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4370d25_1002afd2",
+        "filename": "drivers/staging/android/ion/heaps/ion_page_pool.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2019-12-04T04:48:01Z",
+      "side": 1,
+      "message": "\"could be\"",
+      "range": {
+        "startLine": 27,
+        "startChar": 30,
+        "endLine": 27,
+        "endChar": 45
+      },
+      "revId": "2f6b82699c508933540493c368dfc4b848aafd58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c1ba787_ca2cccc9",
+        "filename": "drivers/staging/android/ion/heaps/ion_page_pool.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2019-12-04T04:48:01Z",
+      "side": 1,
+      "message": "I suggest explaining the risk in more detail: Eviction of (stale) dirty cache lines might lead to data corruption.",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 61
+      },
+      "revId": "2f6b82699c508933540493c368dfc4b848aafd58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9886131f_492fc49a",
+        "filename": "drivers/staging/android/ion/heaps/ion_page_pool.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2019-12-04T04:48:01Z",
+      "side": 1,
+      "message": "This file can be compiled into a module (CONFIG_ION_SYSTEM_HEAP\u003dm), but I believe that arch_dma_prep_coherent() is not available to modules.",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 24
+      },
+      "revId": "2f6b82699c508933540493c368dfc4b848aafd58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e8215cf_755a8988",
+        "filename": "drivers/staging/android/ion/heaps/ion_page_pool.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2019-12-04T04:48:01Z",
+      "side": 1,
+      "message": "If you get a page from the pool, don\u0027t you need to run your cache maintenance operation (CMO) i.e. arch_dma_prep_coherent() on that page as well?",
+      "revId": "2f6b82699c508933540493c368dfc4b848aafd58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
