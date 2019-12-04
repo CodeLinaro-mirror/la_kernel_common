@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4282387_d7a46b1f",
+        "filename": "drivers/staging/android/ion/ion_buffer.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2019-12-04T20:51:41Z",
+      "side": 1,
+      "message": "What is the reason for this being done on a per-page basis? If there is no particular reason, I would suggest using a simple for_each_sg() instead like it is done in iommu_dma_alloc_remap():\n\n\n\t\tfor_each_sg(sgt.sgl, sg, sgt.orig_nents, i)\n\t\t\tarch_dma_prep_coherent(sg_page(sg), sg-\u003elength);",
+      "revId": "e1996441b249d5ec46a19b4b729b66404a5aeabc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
