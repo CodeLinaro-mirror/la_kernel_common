@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15bb6b69_2321a871",
+        "filename": "Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 879,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2019-12-05T19:28:30Z",
+      "side": 1,
+      "message": "chosen by fair dice roll\nhttps://xkcd.com/221/",
+      "revId": "f3ac931f20035751944fd25b0e45bcc9dc2b882f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
