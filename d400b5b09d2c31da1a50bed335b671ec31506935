@@ -22,6 +22,30 @@
       "revId": "d400b5b09d2c31da1a50bed335b671ec31506935",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdf261c2_59f6b4db",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-12-05T21:18:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3baa1203_75d394e5",
+      "range": {
+        "startLine": 638,
+        "startChar": 7,
+        "endLine": 638,
+        "endChar": 25
+      },
+      "revId": "d400b5b09d2c31da1a50bed335b671ec31506935",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
