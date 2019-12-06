@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6342b321_7577f321",
+        "filename": "drivers/staging/android/ion/ion_buffer.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2019-12-06T05:17:37Z",
+      "side": 1,
+      "message": "I would argue that these checks are not necessary. You can depend on the caller to not pass a NULL pointer.",
+      "revId": "28524d4004004bbcfcd9ea3bda0cddf76faf075c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
