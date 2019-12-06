@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "a1284f25_40815630",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-12-06T18:27:43Z",
+      "side": 1,
+      "message": "Hmm. Ok, will change back to atomics which is probably a more generic was anyway. Note that all stats in vmstat for example also use atomics, so there is precedence :)",
+      "parentUuid": "88fdb36f_552497b8",
+      "range": {
+        "startLine": 599,
+        "startChar": 39,
+        "endLine": 599,
+        "endChar": 55
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "28cdc0d2_a3cf149d",
         "filename": "drivers/staging/android/ion/ion.c",
         "patchSetId": 2
