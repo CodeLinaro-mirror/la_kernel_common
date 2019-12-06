@@ -22,6 +22,30 @@
       "revId": "d1d233dc15d6f543b3ea0b7a56a3850d0ea15c09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c23df71_2dbf1658",
+        "filename": "drivers/staging/android/ion/ion_page_pool.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-12-06T18:16:40Z",
+      "side": 1,
+      "message": "The issue is not the precision of the variable but the atomicity of the operations on that variable. What I meant here is that 64-bit architectures operate on u64 using single instructions which prevents torn reads/writes. If we use this patch on 32-bit architecture then we should use atomic type to prevent torn values.",
+      "parentUuid": "da845f5d_3fea6e64",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 70
+      },
+      "revId": "d1d233dc15d6f543b3ea0b7a56a3850d0ea15c09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
