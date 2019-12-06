@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "88fdb36f_552497b8",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2019-12-06T18:24:26Z",
+      "side": 1,
+      "message": "(wishing was fly on all in the chat, we still have 32 bit Android products as part of the 2.5B devices + IoT out there)",
+      "parentUuid": "7e0fa0ac_1da297ca",
+      "range": {
+        "startLine": 599,
+        "startChar": 39,
+        "endLine": 599,
+        "endChar": 55
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "28cdc0d2_a3cf149d",
         "filename": "drivers/staging/android/ion/ion.c",
         "patchSetId": 2
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "58ccf1b6_a0053337",
+      "range": {
+        "startLine": 611,
+        "startChar": 8,
+        "endLine": 611,
+        "endChar": 16
+      },
+      "revId": "a4af736d2164f99635074dd780e12325d4b8a54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7b77553_167aae1b",
+        "filename": "drivers/staging/android/ion/ion.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2019-12-06T18:24:26Z",
+      "side": 1,
+      "message": "(I have been advocating scnprintf as the only correct solution, never use snprintf when using the return value. Dropping to sprintf makes me nervous, this is where GregKH and I have been divergent. I will reduce my pedantic meter from now on)",
+      "parentUuid": "d24e924c_3a10858a",
       "range": {
         "startLine": 611,
         "startChar": 8,
