@@ -16,6 +16,24 @@
       "revId": "28524d4004004bbcfcd9ea3bda0cddf76faf075c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91144c3a_411713df",
+        "filename": "drivers/staging/android/ion/ion_buffer.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1601419
+      },
+      "writtenOn": "2019-12-09T16:23:53Z",
+      "side": 1,
+      "message": "As this can be called from a module I wanted to make sure that there are no way to crash the kernel. Same as \u0027ion_buffer_destroy()\u0027 or \u0027ion_buffer_alloc()\u0027 But if you prefer, I can submit an updated version without this check.",
+      "parentUuid": "6342b321_7577f321",
+      "revId": "28524d4004004bbcfcd9ea3bda0cddf76faf075c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
