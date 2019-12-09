@@ -166,6 +166,30 @@
       "revId": "d1d233dc15d6f543b3ea0b7a56a3850d0ea15c09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87371412_d0ee1bc8",
+        "filename": "drivers/staging/android/ion/ion_page_pool.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-12-09T19:02:45Z",
+      "side": 1,
+      "message": "Torn read can return you a completely bogus value (see https://preshing.com/20130618/atomic-vs-non-atomic-operations/ for a good explanation).\nI\u0027ll change this to an atomic. It\u0027s not in a hot path and is not going to be used that often to be worried about cache invalidation I think.",
+      "parentUuid": "6a2d4f5b_fe609bb8",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 70
+      },
+      "revId": "d1d233dc15d6f543b3ea0b7a56a3850d0ea15c09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
