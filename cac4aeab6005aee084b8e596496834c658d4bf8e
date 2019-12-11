@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd76769c_866f0b35",
+        "filename": "drivers/staging/android/ion/heaps/ion_system_contig_heap.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1108565
+      },
+      "writtenOn": "2019-12-11T20:23:34Z",
+      "side": 1,
+      "message": "thanks for doing this, fwiw, I will probably just remove this heap implementation in near future.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 35
+      },
+      "revId": "cac4aeab6005aee084b8e596496834c658d4bf8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba8f57c3_30d1574a",
+        "filename": "drivers/staging/android/ion/ion_buffer.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1108565
+      },
+      "writtenOn": "2019-12-11T20:23:34Z",
+      "side": 1,
+      "message": "I see what you mean in the changelog ... sigh. Thanks for doing this.",
+      "range": {
+        "startLine": 214,
+        "startChar": 2,
+        "endLine": 214,
+        "endChar": 24
+      },
+      "revId": "cac4aeab6005aee084b8e596496834c658d4bf8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5022b85_dc4b29bb",
+        "filename": "include/linux/ion.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1108565
+      },
+      "writtenOn": "2019-12-11T20:23:34Z",
+      "side": 1,
+      "message": "\u0027to flush\u0027 ?",
+      "range": {
+        "startLine": 285,
+        "startChar": 24,
+        "endLine": 285,
+        "endChar": 30
+      },
+      "revId": "cac4aeab6005aee084b8e596496834c658d4bf8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
