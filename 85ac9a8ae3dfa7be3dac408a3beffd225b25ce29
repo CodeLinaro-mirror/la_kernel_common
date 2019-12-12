@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fcd0685c_75650118",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1108565
+      },
+      "writtenOn": "2019-12-12T22:20:02Z",
+      "side": 1,
+      "message": "nit: you lost the \"bug: xxx\" line",
+      "revId": "85ac9a8ae3dfa7be3dac408a3beffd225b25ce29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
