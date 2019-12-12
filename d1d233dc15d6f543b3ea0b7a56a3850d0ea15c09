@@ -214,6 +214,30 @@
       "revId": "d1d233dc15d6f543b3ea0b7a56a3850d0ea15c09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64c831be_a8c574ff",
+        "filename": "drivers/staging/android/ion/ion_page_pool.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2019-12-12T22:46:53Z",
+      "side": 1,
+      "message": "Discussed this with Minchan. Due to the fact that ION heaps interface requires byte-size allocations we can\u0027t use word-size variable for accounting, it can easily overflow. So we agreed that atomic_long would be appropriate to use here. ION allocations/deallocations should also not be so frequent that performance hit of an atomic operation would be an issue.",
+      "parentUuid": "cb338ac0_3fc055d2",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 70
+      },
+      "revId": "d1d233dc15d6f543b3ea0b7a56a3850d0ea15c09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
