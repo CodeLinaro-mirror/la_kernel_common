@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "f5e33a09_bed5c519",
+        "filename": "drivers/staging/android/ion/ion_buffer.c",
+        "patchSetId": 8
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1601419
+      },
+      "writtenOn": "2019-12-12T11:11:41Z",
+      "side": 1,
+      "message": "Hi Isaac,\n\narch_dma_prep_coherent() is arch specific and the implementation should handle the highmem case accordingly. In the case of arm64, AFAIU, there\u0027s no highmem support. The page_address() shouldn\u0027t be an issue.",
+      "parentUuid": "59c48e57_abf1a717",
+      "range": {
+        "startLine": 214,
+        "startChar": 2,
+        "endLine": 214,
+        "endChar": 24
+      },
+      "revId": "cac4aeab6005aee084b8e596496834c658d4bf8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c5022b85_dc4b29bb",
         "filename": "include/linux/ion.h",
         "patchSetId": 8
@@ -91,6 +115,30 @@
       "revId": "cac4aeab6005aee084b8e596496834c658d4bf8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "014b72ae_647a28c5",
+        "filename": "include/linux/ion.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1601419
+      },
+      "writtenOn": "2019-12-12T11:11:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5022b85_dc4b29bb",
+      "range": {
+        "startLine": 285,
+        "startChar": 24,
+        "endLine": 285,
+        "endChar": 30
+      },
+      "revId": "cac4aeab6005aee084b8e596496834c658d4bf8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
