@@ -22,6 +22,30 @@
       "revId": "c4712d3985b0077bc5415040264156664ebb6f10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd43d59e_5f17eb02",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1010110
+      },
+      "writtenOn": "2019-12-18T17:33:53Z",
+      "side": 1,
+      "message": "Sorry, since these patches come from my upstream tracking tree, they do have notes to myself. The intent is to do this prior to upstreaming the DRM driver, but I\u0027ve not gotten there yet (current efforts are focused on usb). For this submission I can remove it.",
+      "parentUuid": "7c15c694_bcf09816",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 0
+      },
+      "revId": "c4712d3985b0077bc5415040264156664ebb6f10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
