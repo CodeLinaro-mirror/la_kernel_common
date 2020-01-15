@@ -28,7 +28,7 @@ struct nlmsg_perm {
 	u32	perm;
 };
 
-static const struct nlmsg_perm nlmsg_route_perms[] =
+static struct nlmsg_perm nlmsg_route_perms[] =
 {
 	{ RTM_NEWLINK,		NETLINK_ROUTE_SOCKET__NLMSG_WRITE },
 	{ RTM_DELLINK,		NETLINK_ROUTE_SOCKET__NLMSG_WRITE },
@@ -194,4 +194,25 @@ int selinux_nlmsg_lookup(u16 sclass, u16 nlmsg_type, u32 *perm)
 	}
 
 	return err;
+}
+
+static void nlmsg_set_getlink_perm(u32 perm)
+	for (i = 0; i < tabsize/sizeof(struct nlmsg_perm); i++)
+		if (RTM_GETLINK == tab[i].nlmsg_type) {
+			tab[i].perm = perm;
+			break;
+		}
+	}
+}
+
+/**
+ * The value permission guarding RTM_GETLINK changes if nlroute_getlink
+ * policy capability is set.
+ */
+void selinux_nlmsg_init()
+{
+	if (selinux_policycap_nlroute_getlink())
+		nlmsg_set_getlink_perm(NETLINK_ROUTE_SOCKET__NLMSG_READ);
+	else
+		nlmsg_set_getlink_perm(NETLINK_ROUTE_SOCKET__NLMSG_READPRIV);
 }

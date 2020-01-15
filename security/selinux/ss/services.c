@@ -77,7 +77,8 @@ const char *selinux_policycap_names[__POLICYDB_CAPABILITY_MAX] = {
 	"extended_socket_class",
 	"always_check_network",
 	"cgroup_seclabel",
-	"nnp_nosuid_transition"
+	"nnp_nosuid_transition",
+	"netlink_route_getlink"
 };
 
 static struct selinux_ss selinux_ss;
@@ -2175,6 +2176,7 @@ int security_load_policy(struct selinux_state *state, void *data, size_t len)
 
 		state->ss->sidtab = newsidtab;
 		security_load_policycaps(state);
+		selinux_nlmsg_init();
 		state->initialized = 1;
 		seqno = ++state->ss->latest_granting;
 		selinux_complete_init();
