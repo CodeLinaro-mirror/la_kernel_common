@@ -2217,6 +2217,15 @@ extern void si_meminfo_node(struct sysinfo *val, int nid);
 #ifdef __HAVE_ARCH_RESERVED_KERNEL_PAGES
 extern unsigned long arch_reserved_kernel_pages(void);
 #endif
+enum show_mem_extend_type {
+	SHOW_MEM_EXTEND_BASIC,
+	SHOW_MEM_EXTEND_CLASSIC,
+	SHOW_MEM_EXTEND_ALL
+};
+extern int register_show_mem_notifier(struct notifier_block *nb);
+extern int unregister_show_mem_notifier(struct notifier_block *nb);
+extern void show_mem_extend(unsigned int flags, nodemask_t *nodemask,
+			    enum show_mem_extend_type type);
 
 extern __printf(3, 4)
 void warn_alloc(gfp_t gfp_mask, nodemask_t *nodemask, const char *fmt, ...);
