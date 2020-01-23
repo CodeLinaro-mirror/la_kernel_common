@@ -1,0 +1,52 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000001437627",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1216516?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "cb721d75_942c0ac2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1550585
+      },
+      "writtenOn": "2020-01-23T20:20:12Z",
+      "side": 1,
+      "message": "Commit is not signed off by the committer!\n\nMissing tag: Signed-off-by: Alistair Delva \u003cadelva@google.com\u003e",
+      "revId": "f7d8dc4dce50dfcc5abea323567a921ccf92adda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000001437626",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1216516?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "446428b0_4c17431f",
+        "filename": "security/selinux/include/security.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1550585
+      },
+      "writtenOn": "2020-01-23T20:20:12Z",
+      "side": 1,
+      "message": "This file contains a set of conflict markers.If this is a false alarm, add IGNORE_MERGE_CONFLICT_CHECK\u003d\u003d\u003creason\u003e to your commit message.",
+      "range": {
+        "startLine": 406,
+        "startChar": 1,
+        "endLine": 406,
+        "endChar": 7
+      },
+      "revId": "f7d8dc4dce50dfcc5abea323567a921ccf92adda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
