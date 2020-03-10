@@ -152,6 +152,8 @@ struct bus_type {
 	struct lock_class_key lock_key;
 
 	bool need_parent_lock;
+
+	void *android_gki_kabi_padding;
 };
 
 extern int __must_check bus_register(struct bus_type *bus);
@@ -406,6 +408,8 @@ struct device_driver {
 	void (*coredump) (struct device *dev);
 
 	struct driver_private *p;
+
+	void *android_gki_kabi_padding;
 };
 
 
@@ -610,6 +614,8 @@ struct class {
 	const struct dev_pm_ops *pm;
 
 	struct subsys_private *p;
+
+	void *android_gki_kabi_padding;
 };
 
 struct class_dev_iter {
@@ -1345,6 +1351,7 @@ struct device {
     defined(CONFIG_ARCH_HAS_SYNC_DMA_FOR_CPU_ALL)
 	bool			dma_coherent:1;
 #endif
+	void *android_gki_kabi_padding;
 };
 
 static inline struct device *kobj_to_dev(struct kobject *kobj)
