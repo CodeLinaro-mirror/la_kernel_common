@@ -40,9 +40,19 @@
 
 
 #ifdef ANDROID_ABI_FROZEN
+#define ANDROID_KABI_RENAME(_orig, _new)	_orig
+#define _ANDROID_KABI_REPLACE(_orig, _new)	_orig
 #define _ANDROID_KABI_RESERVE(n)		u64 android_kabi_reserved##n
 
 #else
+
+#define ANDROID_KABI_RENAME(_orig, _new)	_new
+#define _ANDROID_KABI_REPLACE(_orig, _new)		\
+	union {						\
+		_new;					\
+		struct {				\
+			_orig;				\
+		} __UNIQUE_ID(android_kabi_hide);
 
 #define _ANDROID_KABI_RESERVE(n)
 #endif	/* ANDROID_ABI_FROZEN */
@@ -57,6 +67,21 @@
 /*
  * Macros to use _after_ the ABI is frozen
  */
+
+/* Use a previously defined padding variable for a new field in a structure */
+#define ANDROID_KABI_USE(n, _new)		\
+	ANDROID_KABI_REPLACE(_ANDROID_KABI_RESERVE(n), n)
+
+/* Use a previously defined padding variable for multiple fields in a structure */
+/* Note, when using this, the size of the new fields added together must equal
+ * 64 bits
+ */
+#define ANDROID_KABI_USE2(n, _new1, _new2)	\
+	ANDROID_KABI_REPLACE(_ANROID_KABI_RESERVE(n), struct { _new1; _new2; } )
+
+/* Replace an existing field with a new one of the same exact size */
+#define ANDROID_KABI_REPLACE(_orig, _new)	\
+	_ANDROID_KABI_REPLACE(_orig, _new)
 
 
 #endif /* _ANDROID_KABI_H */
