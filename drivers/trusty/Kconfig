@@ -12,12 +12,14 @@ config TRUSTY_SMC_ARM
 	tristate
 	depends on TRUSTY
 	depends on ARM
+	select ARM_SPCI_TRANSPORT
 	default y
 
 config TRUSTY_SMC_ARM64
 	tristate
 	depends on TRUSTY
 	depends on ARM64
+	select ARM_SPCI_TRANSPORT
 	default y
 
 config TRUSTY_FIQ

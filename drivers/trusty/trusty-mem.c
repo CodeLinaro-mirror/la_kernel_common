@@ -16,7 +16,15 @@
 #include <linux/printk.h>
 #include <linux/trusty/trusty.h>
 #include <linux/trusty/smcall.h>
-#include <linux/trusty/spci.h>
+
+/* TODO: "#include <linux/arm_spci.h>" when it defines usable memattrs */
+#define SPCI_MEM_ATTR_RW BIT(6)
+#define SPCI_MEM_ATTR_DEVICE_NGNRNE (0x0U << 2)
+#define SPCI_MEM_ATTR_DEVICE_NGNRE (0x1U << 2)
+#define SPCI_MEM_ATTR_NORMAL_MEMORY_UNCACHED (0x5U << 2)
+#define SPCI_MEM_ATTR_NORMAL_MEMORY_CACHED_WT (0x6U << 2)
+#define SPCI_MEM_ATTR_NORMAL_MEMORY_CACHED_WB (0x7U << 2)
+#define SPCI_MEM_ATTR_INNER_SHAREABLE (0x3U << 0)
 
 #define MEM_ATTR_STRONGLY_ORDERED (0x00U)
 #define MEM_ATTR_DEVICE (0x04U)
