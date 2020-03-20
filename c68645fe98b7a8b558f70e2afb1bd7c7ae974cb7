@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c1797a4_6902000f",
+        "filename": "drivers/base/core.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1446383
+      },
+      "writtenOn": "2020-03-20T17:41:47Z",
+      "side": 1,
+      "message": "There\u0027s a check here about STATELESS and MANAGED_LINK_FLAGS that seem to have been dropped.",
+      "range": {
+        "startLine": 291,
+        "startChar": 5,
+        "endLine": 291,
+        "endChar": 40
+      },
+      "revId": "c68645fe98b7a8b558f70e2afb1bd7c7ae974cb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5cef446_81170589",
+        "filename": "drivers/base/core.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1446383
+      },
+      "writtenOn": "2020-03-20T17:41:47Z",
+      "side": 1,
+      "message": "Yeah, the SYNC_STATE_ONLY stuff is missing here now.",
+      "range": {
+        "startLine": 344,
+        "startChar": 0,
+        "endLine": 368,
+        "endChar": 53
+      },
+      "revId": "c68645fe98b7a8b558f70e2afb1bd7c7ae974cb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
