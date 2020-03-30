@@ -52,7 +52,7 @@ MODULE_PARM_DESC(num_prealloc_crypt_ctxs,
 static struct kmem_cache *bio_crypt_ctx_cache;
 static mempool_t *bio_crypt_ctx_pool;
 
-static void __init bio_crypt_ctx_init(void)
+static int __init bio_crypt_ctx_init(void)
 {
 	size_t i;
 
@@ -74,7 +74,7 @@ static void __init bio_crypt_ctx_init(void)
 		BUG_ON(blk_crypto_modes[i].ivsize > BLK_CRYPTO_MAX_IV_SIZE);
 	}
 
-	return;
+	return 0;
 out_no_mem:
 	panic("Failed to allocate mem for bio crypt ctxs\n");
 }
